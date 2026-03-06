@@ -1,0 +1,355 @@
+\begin{thebibliography}{10}
+
+\bibitem{zhang2024supervised}
+Xiang Zhang and Dujian Ding.
+\newblock Supervised chain of thought.
+\newblock {\em arXiv preprint arXiv:2410.14198}, 2024.
+
+\bibitem{ding2024hybrid}
+Dujian Ding, Ankur Mallick, Chi Wang, Robert Sim, Subhabrata Mukherjee, Victor Ruhle, Laks~VS Lakshmanan, and Ahmed~Hassan Awadallah.
+\newblock Hybrid llm: Cost-efficient and quality-aware query routing.
+\newblock {\em arXiv preprint arXiv:2404.14618}, 2024.
+
+\bibitem{fang2024large}
+Xi~Fang, Weijie Xu, Fiona~Anting Tan, Jiani Zhang, Ziqing Hu, Yanjun~Jane Qi, Scott Nickleach, Diego Socolinsky, Srinivasan Sengamedu, Christos Faloutsos, et~al.
+\newblock Large language models (llms) on tabular data: Prediction, generation, and understanding-a survey.
+\newblock 2024.
+
+\bibitem{dam2024complete}
+Sumit~Kumar Dam, Choong~Seon Hong, Yu~Qiao, and Chaoning Zhang.
+\newblock A complete survey on llm-based ai chatbots.
+\newblock {\em arXiv preprint arXiv:2406.16937}, 2024.
+
+\bibitem{dong2023towards}
+Xin~Luna Dong, Seungwhan Moon, Yifan~Ethan Xu, Kshitiz Malik, and Zhou Yu.
+\newblock Towards next-generation intelligent assistants leveraging llm techniques.
+\newblock In {\em Proceedings of the 29th ACM SIGKDD Conference on Knowledge Discovery and Data Mining}, pages 5792--5793, 2023.
+
+\bibitem{liang2024monitoring}
+Weixin Liang, Zachary Izzo, Yaohui Zhang, Haley Lepp, Hancheng Cao, Xuandong Zhao, Lingjiao Chen, Haotian Ye, Sheng Liu, Zhi Huang, et~al.
+\newblock Monitoring ai-modified content at scale: A case study on the impact of chatgpt on ai conference peer reviews.
+\newblock {\em arXiv preprint arXiv:2403.07183}, 2024.
+
+\bibitem{shao2024assisting}
+Yijia Shao, Yucheng Jiang, Theodore~A Kanell, Peter Xu, Omar Khattab, and Monica~S Lam.
+\newblock Assisting in writing wikipedia-like articles from scratch with large language models.
+\newblock {\em arXiv preprint arXiv:2402.14207}, 2024.
+
+\bibitem{guo2024embodied}
+Xudong Guo, Kaixuan Huang, Jiale Liu, Wenhui Fan, Natalia V{\'e}lez, Qingyun Wu, Huazheng Wang, Thomas~L Griffiths, and Mengdi Wang.
+\newblock Embodied llm agents learn to cooperate in organized teams.
+\newblock {\em arXiv preprint arXiv:2403.12482}, 2024.
+
+\bibitem{agashe2023evaluating}
+Saaket Agashe, Yue Fan, and Xin~Eric Wang.
+\newblock Evaluating multi-agent coordination abilities in large language models.
+\newblock {\em arXiv preprint arXiv:2310.03903}, 2023.
+
+\bibitem{xi2023rise}
+Zhiheng Xi, Wenxiang Chen, Xin Guo, Wei He, Yiwen Ding, Boyang Hong, Ming Zhang, Junzhe Wang, Senjie Jin, Enyu Zhou, et~al.
+\newblock The rise and potential of large language model based agents: A survey.
+\newblock {\em arXiv preprint arXiv:2309.07864}, 2023.
+
+\bibitem{bianchi2024well}
+Federico Bianchi, Patrick~John Chia, Mert Yuksekgonul, Jacopo Tagliabue, Dan Jurafsky, and James Zou.
+\newblock How well can llms negotiate? negotiationarena platform and analysis.
+\newblock {\em arXiv preprint arXiv:2402.05863}, 2024.
+
+\bibitem{horton2023large}
+John~J Horton.
+\newblock Large language models as simulated economic agents: What can we learn from homo silicus?
+\newblock Technical report, National Bureau of Economic Research, 2023.
+
+\bibitem{li2024econagent}
+Nian Li, Chen Gao, Mingyu Li, Yong Li, and Qingmin Liao.
+\newblock Econagent: large language model-empowered agents for simulating macroeconomic activities.
+\newblock In {\em Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)}, pages 15523--15536, 2024.
+
+\bibitem{chen2024comm}
+Pei Chen, Boran Han, and Shuai Zhang.
+\newblock Comm: Collaborative multi-agent, multi-reasoning-path prompting for complex problem solving.
+\newblock {\em arXiv preprint arXiv:2404.17729}, 2024.
+
+\bibitem{li2023metaagents}
+Yuan Li, Yixuan Zhang, and Lichao Sun.
+\newblock Metaagents: Simulating interactions of human behaviors for llm-based task-oriented coordination via collaborative generative agents.
+\newblock {\em arXiv preprint arXiv:2310.06500}, 2023.
+
+\bibitem{leng2023llm}
+Yan Leng and Yuan Yuan.
+\newblock Do llm agents exhibit social behavior?
+\newblock {\em arXiv preprint arXiv:2312.15198}, 2023.
+
+\bibitem{stade2024large}
+Elizabeth~C Stade, Shannon~Wiltsey Stirman, Lyle~H Ungar, Cody~L Boland, H~Andrew Schwartz, David~B Yaden, Jo{\~a}o Sedoc, Robert~J DeRubeis, Robb Willer, and Johannes~C Eichstaedt.
+\newblock Large language models could change the future of behavioral healthcare: a proposal for responsible development and evaluation.
+\newblock {\em npj Mental Health Research}, 3(1):12, 2024.
+
+\bibitem{wu2024shall}
+Zengqing Wu, Shuyuan Zheng, Qianying Liu, Xu~Han, Brian~Inhyuk Kwon, Makoto Onizuka, Shaojie Tang, Run Peng, and Chuan Xiao.
+\newblock Shall we talk: Exploring spontaneous collaborations of competing llm agents.
+\newblock {\em arXiv preprint arXiv:2402.12327}, 2024.
+
+\bibitem{de2023emergent}
+I~de~Zarz{\`a}, J~de~Curt{\`o}, Gemma Roig, Pietro Manzoni, and Carlos~T Calafate.
+\newblock Emergent cooperation and strategy adaptation in multi-agent systems: An extended coevolutionary theory with llms.
+\newblock {\em Electronics}, 12(12):2722, 2023.
+
+\bibitem{lan2023llm}
+Yihuai Lan, Zhiqiang Hu, Lei Wang, Yang Wang, Deheng Ye, Peilin Zhao, Ee-Peng Lim, Hui Xiong, and Hao Wang.
+\newblock Llm-based agent society investigation: Collaboration and confrontation in avalon gameplay.
+\newblock {\em arXiv preprint arXiv:2310.14985}, 2023.
+
+\bibitem{zhong2024evaluation}
+Tianyang Zhong, Zhengliang Liu, Yi~Pan, Yutong Zhang, Yifan Zhou, Shizhe Liang, Zihao Wu, Yanjun Lyu, Peng Shu, Xiaowei Yu, et~al.
+\newblock Evaluation of openai o1: Opportunities and challenges of agi.
+\newblock {\em arXiv preprint arXiv:2409.18486}, 2024.
+
+\bibitem{lewis2017deal}
+Mike Lewis, Denis Yarats, Yann~N Dauphin, Devi Parikh, and Dhruv Batra.
+\newblock Deal or no deal? end-to-end learning for negotiation dialogues.
+\newblock {\em arXiv preprint arXiv:1706.05125}, 2017.
+
+\bibitem{gemp2024states}
+Ian Gemp, Yoram Bachrach, Marc Lanctot, Roma Patel, Vibhavari Dasagi, Luke Marris, Georgios Piliouras, and Karl Tuyls.
+\newblock States as strings as strategies: Steering language models with game-theoretic solvers.
+\newblock {\em arXiv preprint arXiv:2402.01704}, 2024.
+
+\bibitem{sreedhar2024simulating}
+Karthik Sreedhar and Lydia Chilton.
+\newblock Simulating human strategic behavior: Comparing single and multi-agent llms.
+\newblock {\em arXiv preprint arXiv:2402.08189}, 2024.
+
+\bibitem{akata2023playing}
+Elif Akata, Lion Schulz, Julian Coda-Forno, Seong~Joon Oh, Matthias Bethge, and Eric Schulz.
+\newblock Playing repeated games with large language models.
+\newblock {\em arXiv preprint arXiv:2305.16867}, 2023.
+
+\bibitem{fan2024can}
+Caoyun Fan, Jindou Chen, Yaohui Jin, and Hao He.
+\newblock Can large language models serve as rational players in game theory? a systematic analysis.
+\newblock In {\em Proceedings of the AAAI Conference on Artificial Intelligence}, pages 17960--17967, 2024.
+
+\bibitem{mao2023alympics}
+Shaoguang Mao, Yuzhe Cai, Yan Xia, Wenshan Wu, Xun Wang, Fengyi Wang, Tao Ge, and Furu Wei.
+\newblock Alympics: Language agents meet game theory.
+\newblock {\em arXiv preprint arXiv:2311.03220}, 2023.
+
+\bibitem{guo2023gpt}
+Fulin Guo.
+\newblock Gpt in game theory experiments, 2023.
+
+\bibitem{fudenberg1991game}
+Drew Fudenberg and Jean Tirole.
+\newblock {\em Game theory}.
+\newblock MIT press, 1991.
+
+\bibitem{li2023theory}
+Huao Li, Yu~Quan Chong, Simon Stepputtis, Joseph Campbell, Dana Hughes, Michael Lewis, and Katia Sycara.
+\newblock Theory of mind for multi-agent collaboration via large language models.
+\newblock {\em arXiv preprint arXiv:2310.10701}, 2023.
+
+\bibitem{huang2024far}
+Jen-tse Huang, Eric~John Li, Man~Ho Lam, Tian Liang, Wenxuan Wang, Youliang Yuan, Wenxiang Jiao, Xing Wang, Zhaopeng Tu, and Michael~R Lyu.
+\newblock How far are we on the decision-making of llms? evaluating llms' gaming ability in multi-agent environments.
+\newblock {\em arXiv preprint arXiv:2403.11807}, 2024.
+
+\bibitem{duan2024gtbench}
+Jinhao Duan, Renming Zhang, James Diffenderfer, Bhavya Kailkhura, Lichao Sun, Elias Stengel-Eskin, Mohit Bansal, Tianlong Chen, and Kaidi Xu.
+\newblock Gtbench: Uncovering the strategic reasoning limitations of llms via game-theoretic evaluations.
+\newblock {\em arXiv preprint arXiv:2402.12348}, 2024.
+
+\bibitem{wang2023avalon}
+Shenzhi Wang, Chang Liu, Zilong Zheng, Siyuan Qi, Shuo Chen, Qisen Yang, Andrew Zhao, Chaofei Wang, Shiji Song, and Gao Huang.
+\newblock Avalon's game of thoughts: Battle against deception through recursive contemplation.
+\newblock {\em arXiv preprint arXiv:2310.01320}, 2023.
+
+\bibitem{park2024ai}
+Peter~S Park, Simon Goldstein, Aidan O’Gara, Michael Chen, and Dan Hendrycks.
+\newblock Ai deception: A survey of examples, risks, and potential solutions.
+\newblock {\em Patterns}, 5(5), 2024.
+
+\bibitem{lore2023strategic}
+Nunzio Lor{\`e} and Babak Heydari.
+\newblock Strategic behavior of large language models: Game structure vs. contextual framing.
+\newblock {\em arXiv preprint arXiv:2309.05898}, 2023.
+
+\bibitem{coda2024cogbench}
+Julian Coda-Forno, Marcel Binz, Jane~X Wang, and Eric Schulz.
+\newblock Cogbench: a large language model walks into a psychology lab.
+\newblock {\em arXiv preprint arXiv:2402.18225}, 2024.
+
+\bibitem{guo2024can}
+Hongyi Guo, Zhihan Liu, Yufeng Zhang, and Zhaoran Wang.
+\newblock Can large language models play games? a case study of a self-play approach.
+\newblock {\em arXiv preprint arXiv:2403.05632}, 2024.
+
+\bibitem{wei2022chain}
+Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Fei Xia, Ed~Chi, Quoc~V Le, Denny Zhou, et~al.
+\newblock Chain-of-thought prompting elicits reasoning in large language models.
+\newblock {\em Advances in neural information processing systems}, 35:24824--24837, 2022.
+
+\bibitem{yao2023tree}
+Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Thomas~L Griffiths, Yuan Cao, and Karthik Narasimhan.
+\newblock Tree of thoughts: Deliberate problem solving with large language models, 2023.
+\newblock {\em URL https://arxiv. org/pdf/2305.10601. pdf}, 2023.
+
+\bibitem{liu2024dellma}
+Ollie Liu, Deqing Fu, Dani Yogatama, and Willie Neiswanger.
+\newblock Dellma: A framework for decision making under uncertainty with large language models.
+\newblock {\em arXiv preprint arXiv:2402.02392}, 2024.
+
+\bibitem{hu2024pok}
+Sihao Hu, Tiansheng Huang, and Ling Liu.
+\newblock Pok$\backslash$'ellmon: A human-parity agent for pok$\backslash$'emon battles with large language models.
+\newblock {\em arXiv preprint arXiv:2402.01118}, 2024.
+
+\bibitem{xia2024measuring}
+Tian Xia, Zhiwei He, Tong Ren, Yibo Miao, Zhuosheng Zhang, Yang Yang, and Rui Wang.
+\newblock Measuring bargaining abilities of llms: A benchmark and a buyer-enhancement method.
+\newblock {\em arXiv preprint arXiv:2402.15813}, 2024.
+
+\bibitem{ge2023openagi}
+Yingqiang Ge, Wenyue Hua, Kai Mei, Jianchao Ji, Juntao Tan, Shuyuan Xu, Zelong Li, and Yongfeng Zhang.
+\newblock Open{AGI}: When {LLM} meets domain experts.
+\newblock In {\em Thirty-seventh Conference on Neural Information Processing Systems}, 2023.
+
+\bibitem{wu2023autogen}
+Qingyun Wu, Gagan Bansal, Jieyu Zhang, Yiran Wu, Shaokun Zhang, Erkang Zhu, Beibin Li, Li~Jiang, Xiaoyun Zhang, and Chi Wang.
+\newblock Autogen: Enabling next-gen llm applications via multi-agent conversation framework.
+\newblock {\em arXiv preprint arXiv:2308.08155}, 2023.
+
+\bibitem{li2023camel}
+Guohao Li, Hasan Abed Al~Kader Hammoud, Hani Itani, Dmitrii Khizbullin, and Bernard Ghanem.
+\newblock Camel: Communicative agents for "mind" exploration of large scale language model society, 2023.
+
+\bibitem{topsakal2023creating}
+Oguzhan Topsakal and Tahir~Cetin Akinci.
+\newblock Creating large language model applications utilizing langchain: A primer on developing llm apps fast.
+\newblock In {\em International Conference on Applied Engineering and Natural Sciences}, volume~1, pages 1050--1056, 2023.
+
+\bibitem{xie2024travelplanner}
+Jian Xie, Kai Zhang, Jiangjie Chen, Tinghui Zhu, Renze Lou, Yuandong Tian, Yanghua Xiao, and Yu~Su.
+\newblock Travelplanner: A benchmark for real-world planning with language agents.
+\newblock {\em arXiv preprint arXiv:2402.01622}, 2024.
+
+\bibitem{xia2024agentless}
+Chunqiu~Steven Xia, Yinlin Deng, Soren Dunn, and Lingming Zhang.
+\newblock Agentless: Demystifying llm-based software engineering agents.
+\newblock {\em arXiv preprint arXiv:2407.01489}, 2024.
+
+\bibitem{inglecomprehensive}
+Palash Ingle, Mithun Parab, Pranay Lendave, Amisha Bhanushali, and Pavan~Kumar BN.
+\newblock A comprehensive study on llm agent challenges.
+
+\bibitem{li2024survey}
+Xinyi Li, Sai Wang, Siqi Zeng, Yu~Wu, and Yi~Yang.
+\newblock A survey on llm-based multi-agent systems: workflow, infrastructure, and challenges.
+\newblock {\em Vicinagearth}, 1(1):9, 2024.
+
+\bibitem{schwartz2023enhancing}
+Sivan Schwartz, Avi Yaeli, and Segev Shlomov.
+\newblock Enhancing trust in llm-based ai automation agents: New considerations and future challenges.
+\newblock {\em arXiv preprint arXiv:2308.05391}, 2023.
+
+\bibitem{yu2023thought}
+Junchi Yu, Ran He, and Rex Ying.
+\newblock Thought propagation: An analogical approach to complex reasoning with large language models.
+\newblock {\em arXiv preprint arXiv:2310.03965}, 2023.
+
+\bibitem{wu2024stateflow}
+Yiran Wu, Tianwei Yue, Shaokun Zhang, Chi Wang, and Qingyun Wu.
+\newblock Stateflow: Enhancing llm task-solving through state-driven workflows.
+\newblock {\em arXiv preprint arXiv:2403.11322}, 2024.
+
+\bibitem{zeng2023flowmind}
+Zhen Zeng, William Watson, Nicole Cho, Saba Rahimi, Shayleen Reynolds, Tucker Balch, and Manuela Veloso.
+\newblock Flowmind: automatic workflow generation with llms.
+\newblock In {\em Proceedings of the Fourth ACM International Conference on AI in Finance}, pages 73--81, 2023.
+
+\bibitem{xiao2024flowbench}
+Ruixuan Xiao, Wentao Ma, Ke~Wang, Yuchuan Wu, Junbo Zhao, Haobo Wang, Fei Huang, and Yongbin Li.
+\newblock Flowbench: Revisiting and benchmarking workflow-guided planning for llm-based agents.
+\newblock {\em arXiv preprint arXiv:2406.14884}, 2024.
+
+\bibitem{li2024autoflow}
+Zelong Li, Shuyuan Xu, Kai Mei, Wenyue Hua, Balaji Rama, Om~Raheja, Hao Wang, He~Zhu, and Yongfeng Zhang.
+\newblock Autoflow: Automated workflow generation for large language model agents.
+\newblock {\em arXiv preprint arXiv:2407.12821}, 2024.
+
+\bibitem{jimenez2023swe}
+Carlos~E Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, and Karthik Narasimhan.
+\newblock Swe-bench: Can language models resolve real-world github issues?
+\newblock {\em arXiv preprint arXiv:2310.06770}, 2023.
+
+\bibitem{yang2024swe}
+John Yang, Carlos~E Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao, Karthik Narasimhan, and Ofir Press.
+\newblock Swe-agent: Agent-computer interfaces enable automated software engineering.
+\newblock {\em arXiv preprint arXiv:2405.15793}, 2024.
+
+\bibitem{wang2023voyager}
+Guanzhi Wang, Yuqi Xie, Yunfan Jiang, Ajay Mandlekar, Chaowei Xiao, Yuke Zhu, Linxi Fan, and Anima Anandkumar.
+\newblock Voyager: An open-ended embodied agent with large language models.
+\newblock {\em arXiv preprint arXiv:2305.16291}, 2023.
+
+\bibitem{zhu2023ghost}
+Xizhou Zhu, Yuntao Chen, Hao Tian, Chenxin Tao, Weijie Su, Chenyu Yang, Gao Huang, Bin Li, Lewei Lu, Xiaogang Wang, et~al.
+\newblock Ghost in the minecraft: Generally capable agents for open-world environments via large language models with text-based knowledge and memory.
+\newblock {\em arXiv preprint arXiv:2305.17144}, 2023.
+
+\bibitem{xu2023language}
+Zelai Xu, Chao Yu, Fei Fang, Yu~Wang, and Yi~Wu.
+\newblock Language agents with reinforcement learning for strategic play in the werewolf game.
+\newblock {\em arXiv preprint arXiv:2310.18940}, 2023.
+
+\bibitem{guo2023suspicion}
+Jiaxian Guo, Bo~Yang, Paul Yoo, Bill~Yuchen Lin, Yusuke Iwasawa, and Yutaka Matsuo.
+\newblock Suspicion-agent: Playing imperfect information games with theory of mind aware gpt-4.
+\newblock {\em arXiv preprint arXiv:2309.17277}, 2023.
+
+\bibitem{von2007theory}
+John Von~Neumann and Oskar Morgenstern.
+\newblock Theory of games and economic behavior: 60th anniversary commemorative edition.
+\newblock In {\em Theory of games and economic behavior}. Princeton university press, 2007.
+
+\bibitem{luce2012games}
+R~Duncan Luce and Howard Raiffa.
+\newblock {\em Games and decisions: Introduction and critical survey}.
+\newblock Courier Corporation, 2012.
+
+\bibitem{nowak2000fairness}
+Martin~A Nowak, Karen~M Page, and Karl Sigmund.
+\newblock Fairness versus reason in the ultimatum game.
+\newblock {\em Science}, 289(5485):1773--1775, 2000.
+
+\bibitem{cripps2018divisible}
+Martin~W Cripps.
+\newblock Divisible updating.
+\newblock {\em Manuscript, UCL}, 2018.
+
+\bibitem{krishnamurthy2024can}
+Akshay Krishnamurthy, Keegan Harris, Dylan~J Foster, Cyril Zhang, and Aleksandrs Slivkins.
+\newblock Can large language models explore in-context?
+\newblock {\em arXiv preprint arXiv:2403.15371}, 2024.
+
+\bibitem{dawes1988anomalies}
+Robyn~M Dawes and Richard~H Thaler.
+\newblock Anomalies: cooperation.
+\newblock {\em Journal of economic perspectives}, 2(3):187--197, 1988.
+
+\bibitem{sally1995conversation}
+David Sally.
+\newblock Conversation and cooperation in social dilemmas: A meta-analysis of experiments from 1958 to 1992.
+\newblock {\em Rationality and society}, 7(1):58--92, 1995.
+
+\bibitem{van2012split}
+Martijn~J Van~den Assem, Dennie Van~Dolder, and Richard~H Thaler.
+\newblock Split or steal? cooperative behavior when the stakes are large.
+\newblock {\em Management Science}, 58(1):2--20, 2012.
+
+\bibitem{post2008deal}
+Thierry Post, Martijn~J Van~den Assem, Guido Baltussen, and Richard~H Thaler.
+\newblock Deal or no deal? decision making under risk in a large-payoff game show.
+\newblock {\em American Economic Review}, 98(1):38--71, 2008.
+
+\end{thebibliography}
