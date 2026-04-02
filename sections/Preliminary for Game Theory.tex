@@ -1,0 +1,61 @@
+\section{Preliminary for Game Theory}
+\label{sec:preliminary}
+In this section, we introduce fundamental notations, concepts, and definitions essential for understanding game theory and the strategic behavior of rational agents \cite{von2007theory, luce2012games}.
+
+Consider a game involving $n$ agents, indexed by $i\in\mathbf{N} = \{1,2, \dots, n\}$. Each agent begins by interpreting the game's introduction and rules, which include detailed descriptions of the payoff matrices. Each agent has an action set defined as: $$A_i = \{a_i^1, \dots, a_i^k\}$$ where $k$ is the number of available actions for each player. The agents are also given the payoff matrix $$U_i(\mathbf{a})$$ for all strategy profiles $\mathbf{a} = (a_1,a_2, \dots, a_n)$ for $a_i\in A_i$. If there are only two players, we use $i\in \{1, -1\}$ to denote the two players and the payoff matrix is $$U_i(a_i, a_{-i})$$ for all $a_i\in A_i$ and $a_{-i}\in A_{-i}$, where $A_{-i}$ is the action set of the other player.
+
+We now present key definitions that will be utilized throughout this study.
+
+\begin{definition}[Complete-information Game]
+A \emph{complete information game} is a strategic game where all players have full knowledge of the game's structure, including the set of players, the action sets, and the payoff functions of all players. Specifically, each player knows:
+\begin{itemize}
+    \item the total number of players involved in the game
+    \item $A_j$: The set of actions available to each player $j$
+    \item $U_j(a_1,a_2,\dots,a_n)$: The payoff function for each player $j$, which assigns a real number to every possible strategy profile $(a_1, a_2, \dots, a_n)$
+\end{itemize}
+
+This comprehensive knowledge allows each player to make informed strategic decisions, anticipating the choices and payoffs of other players based on complete information.
+\end{definition}
+
+\begin{definition}[Incomplete-information Game]
+An \emph{incomplete information game} is a strategic game where  there exists at least one player $i\leq n$ who does not have complete information about the payoff functions or action sets of other players $j\leq n$.
+
+In incomplete information games, players form beliefs about the unknown elements based on available information and update these beliefs according to Bayesian principles as the game progresses. The lack of complete information requires players to strategize under uncertainty, considering not only the possible actions of others but also their possible types and the likelihood of various game structures.
+\end{definition}
+
+\begin{definition}[Simultaneous Game]
+A \emph{simultaneous game} is a type of game where all players make their decisions or choose their actions at the same time, without knowledge of the choices made by the other players. In such games, players act independently and cannot coordinate their strategies based on others' actions.
+\end{definition}
+
+\begin{definition}[Sequential Game]
+A \emph{sequential game} is a game in which players make decisions or choose actions in a specific order, with later players having some knowledge about earlier players' actions. These games are often represented using game trees and are analyzed using techniques like backward induction to determine optimal strategies.
+\end{definition}
+
+\begin{definition}[Payoff Matrix]
+A \emph{payoff matrix} is a tabular representation used in game theory to illustrate the payoffs or utilities that each player receives for every possible combination of strategies chosen by all players in a game. 
+
+In a two-player game, let $A_1 = \{a_1^1, a_1^2,\dots, a_1^m\}$ be the set of strategies available to Player$_1$, and $A_{-1} = \{a_{-1}^1, a_{-1}^2,\dots, a_{-1}^n\}$ be the set of strategies available to Player$_{-1}$. The payoff matrix $U$ is an $m\times n$ matrix where each entry $U_{ij}$ corresponds on the strategy profile $(a_1^i, a_{-1}^j)$ and contains the payoff vector $(u_1(a_1^i, a_{-1}^j), u_{-1}(a_1^i, a_{-1}^j))$.
+
+Informally, the payoff matrix is typically structured as follows:
+\begin{itemize}
+    \item Rows represent the possible actions or strategies available to Player$_1$ (the \emph{row player}).
+    \item Columns represent the possible actions or strategies available to Player$_{-1}$ (the \emph{column player}).
+    \item Cells within the matrix contain ordered pairs of numbers $(u_1, u_{-1})$ where $u_1$ is the payoff to Player$_1$ and is the payoff to Player$_{-1}$ for the corresponding combination of strategies. 
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Nash Equilibrium]
+A \emph{Nash Equilibrium} is a strategy profile in a game where no player can unilaterally improve their payoff by deviating from their current strategy, assuming the other players' strategies remain unchanged. Formally, a strategy profile $(a_1^*,a_2^*,\dots, a_n^*,)$ is a Nash Equilibrium if, for every player $i$: $$U_i(a_i^*, a_{-1}^*)\geq U_i(a_i, a_{-1}^*)$$ or all $a_i\in A_i$, where $a_{-1}^*$ represents the equilibrium strategies of all players other than player $i$.
+\end{definition}
+
+\begin{definition}[Envy freeness]
+Envy freeness is a criterion for fair division that states that when resources are allocated to people with equal rights, each person should receive a share that they believe is at least as good as the share received by any other person. 
+
+An allocation is said to be \emph{envy free} if no agent prefers another agent's allocation over their own. Formally, in an allocation among $n$ agents, allocation $L = (L_1, L_2, \dots, L_n)$ is envy free if for every pair of agents $i$ and $j$, $$U_i(L_i)\geq U_i(L_j)$$ where $U_i(L_k)$ denotes the utility of agent $i$ for the allocation $L_k$ received by agent $k$.
+\end{definition}
+
+\begin{definition}[pareto optimality]
+A strategy profile $\mathbf{a} = (a_1,a_2,\dots, a_n)$ is considered \emph{Pareto optimal} (or Pareto efficient) if there is no other feasible action profile $\mathbf{a'} = (a_1',a_2',\dots, a_n')$ such that $$U_i(\mathbf{a'})\geq U_i(\mathbf{a})$$ for all agents $i\in\{1, 2, \dots, n\}$, and $U_j(\mathbf{a'})> U_j(\mathbf{a})$ for at least one agent $j$.
+
+Therefore, an action profile $\mathbf{a}$ is Pareto optimal if it is impossible to make any agent better off without making at least one other agent worse off. This concept focuses on the efficiency of the collective action choices, ensuring that no improvement in one agent's payoff can be achieved without a detriment to another agent's payoff, as represented in the payoff matrix.
+\end{definition}

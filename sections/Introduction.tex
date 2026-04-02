@@ -1,0 +1,66 @@
+\section{Introduction}
+
+Modern internet platforms presume that users act as both producers and consumers of user-generated content (UGC), collaboratively shaping digital communities through interaction and contribution. With core infrastructures operated by major technology companies (e.g., Google, Meta, Amazon), these platforms harness network effects and centralized coordination to deliver seamless, scalable user experiences and drive sustained ecosystem growth~\cite{Malik2024Confronting}.
+
+
+However, while effective at scale, this centralized paradigm introduces fundamental structural concerns embedded in its architecture. {\textbf{(a) Data Monopoly.}} Centralized platforms hold unilateral access to massive user data with limited transparency or consent, consolidating control over information flow and depriving users of ownership and agency~\cite{Beck2023BreakingUp, Schulzrinne2021Centralization, Giaretta2022DecentralizedDataMarket}. {\textbf{(b) Algorithmic Manipulation.} }User experience is predominantly shaped by opaque algorithms optimized for commercial metrics (e.g., click-through rate, retention), which systematically steers user behavior and potentially distorts their genuine preferences~\cite{Eslami2019Opacity, Ali2019Discrimination, Srba2023AuditingYouTube}. {\textbf{(c) Limited User Participation.} }While platforms thrive on user contributions, core mechanisms such as content matching and incentive distribution remain dictated and unauditable, creating power asymmetry that erodes trust and endangers the platform sustainability ~\cite{Engelmann2020DemocraticSocialMedia, Jiang2023TradeOffModeration}.
+
+% Contemporary applications routinely presume that every user is both a producer and a consumer of user‑generated content, engaging in community‑level interaction and collaboration. By leveraging the core infrastructure maintained by large high-tech companies (e.g., Google, Meta, Amazon), these systems harness network effects to deliver seamless, highly scalable user experiences. This centralized paradigm, while enabling high throughput and elasticity, also exposes fundamental limitations.
+
+% $\bullet$  \textbf{Data Monopoly.} Service providers systematically collect, store, and analyze user data at scale, eroding user ownership and control over personal information.
+
+% $\bullet$  \textbf{Algorithmic Manipulation.} Service providers typically develop algorithms optimized for platform-centric objectives, such as maximizing click-through rates or engagement time, thereby exerting opaque and structured influence over user behavior, which may distort users' genuine preferences.
+
+% $\bullet$  \textbf{Opaque Decision-Making.} Service providers usually retain exclusive authority over decision-making processes. Despite operational efficiency, it limits transparency, marginalizes user participation, and increases the risk of platform abuse, ultimately undermining the long-term development of the ecosystem.
+
+
+\begin{figure*}[!htbp]
+\centering
+% \vspace{-5mm}
+\caption{Transition from existing centralized to next-generation decentralized systems. At the macro level, a hub-and-spoke architecture evolves into a fully connected peer-to-peer network. At the micro level, DeQA enables decentralized query-responder routing through validator-mediated collective coordination.}
+
+\includegraphics[width=\textwidth]{figures/Decentralization.pdf}
+% \vspace{-2mm}
+\label{From centralization to decentralization}
+\end{figure*} 
+
+In light of these structural limitations, a foundational rethinking of existing application architectures is gaining momentum ~\cite{Narayanan2012Critical, Secoda2024Decentralized}. As users increasingly advocate for data sovereignty, algorithmic transparency, and autonomous participation, a central question emerges: \textbf{\textit{Can we envision a decentralized paradigm that empower next-generation platforms without centralized enforcement?}}
+
+In this paper, we posit that modern internet applications are evolving toward a user-centric, autonomous, and decentralized paradigm, as demonstrated in Figure \ref{From centralization to decentralization}. To ground this transformation, we instantiate a \textbf{De}centralized \textbf{Q}uestion \textbf{A}nswering ecosystem, referred to as \textbf{DeQA}, which embeds token-aligned incentive mechanisms and can be maintained by blockchain-based infrastructure.
+
+\textbf{Mechanism Design.} In conventional QA systems, consumers initiate domain-specific queries and seek long-term subscriptions, while producers promote their knowledge-intensive services in the hope of attracting subscription. However, query–responder matching primarily relies on the producer’s self-assessment and the consumer’s intuition, leading to information asymmetry between knowledge supply and demand and, consequently, to suboptimal or unreliable decisions.
+In contrast, DeQA introduces validators as independent third-party participants who leverage their domain knowledge to evaluate query–responder alignment. Since promotion and subscription involve higher stakes and longer-term commitments than validation, both producers and consumers have motivation to request cost-efficient validation to reduce potential mismatch risks.
+Inspired by Proof-of-Work (PoW)\cite{jakobsson1999proofs} and Proof-of-Stake (PoS)\cite{dwork1992pricing} in Web3, we define this decentralized validation paradigm as \textbf{Proof-of-Intelligence (PoI)}.
+In PoI, heterogeneous validators are incentivized to exert effort and vote truthfully, collaboratively forming a reliable consensus that serves as a reference for the requester’s final decision.
+Each validator stakes tokens and receives rewards when their judgments align with the majority, while those deviating from consensus forfeit their stake.
+
+
+\textbf{Tokenomics Incentives.} We have observed that tokenomics serves as the primary driving force behind the prosperity of our decentralized ecosystem. Our tokenomics framework incentivizes users to participate across different roles by coupling each role with both token-earning and token-spending opportunities, thereby fostering a dynamic flow of value within the system. However, in practice, validators may not always engage honestly in the validation process, and requesters do not necessarily accept the consensus outcome.
+These realities motivate a deeper investigation into the incentive compatibility constraints that ensure truthful and rational contributions. To this end, we analyze the strategic interactions among producers, consumers, and validators within a unified game-theoretic framework. Starting from each role’s optimal subgame, we first establish validator incentive compatibility, ensuring that PoI voting truthfully aggregates dispersed or biased knowledge into an efficient consensus.
+On this foundation, we derive threshold-optimal policy for consumer subscription and producer promotion, characterizing when individual rationality chooses to engage under token-backed commitments. 
+By jointly satisfying these IC and IR conditions, we demonstrate the existence of a \textbf{symmetric Bayesian–Nash equilibrium (BNE)} that guarantees consistent strategic behavior and robust query–responder matching. This incentive-compatible equilibrium aligns individual rationality with collective stability, forming a self-enforcing \textbf{tokenomics–knowledge dual loop} within the ecosystem.
+
+Overall, the contributions of our work are summarized as follows:
+
+$\bullet$ We identify the structural limitations of traditional centralized applications and articulate the emerging paradigm shift toward next-generation decentralized platforms.
+
+$\bullet$ We instantiate a decentralized question answering ecosystem to concretize this vision. In DeQA, we introduce a proof-of-intelligence validation mechanism and establish a self-enforcing tokenomics–knowledge dual loop.
+
+$\bullet$ We formalize the incentive compatibility of validators and derive threshold-based policies for producers and consumers, demonstrating a symmetric Bayesian–Nash equilibrium that ensures consistent strategic behavior and collective coordination across roles.
+
+$\bullet$ We conduct extensive experiments to examine how truthful contributions positively influence community evolution and achieve maximum social welfare.
+
+% \textbf{(1) Incentivizing Resource Contribution. }In the absence of centralized employment and command, the community must rely on token incentives to mobilize diverse participants toward continuous contribution of resources and services.
+% \textbf{(2) Coordinating Economic Behavior. }Structuring incentives around self-interest steers stakeholders to dutifully fulfilling their roles, naturally fostering system-wide cooperation, stability, and resilience.
+% \textbf{(3) Empowering Community Decision-Making.} By coupling voting rights with token ownership and embedding both rewards and penalties, the community incentivizes active and responsible participation in collective decision-making processes, advancing on-chain democracy.
+% \textbf{(4) Reinforcing Sustainable Growth.}
+% A successful decentralized platform should redistribute captured value to users, aligning individual incentives with ecosystem prosperity and sustainable growth.
+\begin{figure*}[!tb]
+\centering
+\vspace{-4mm}
+\caption{Tokenomics incentive flow in our DeQA ecosystem. Each user can dynamically assume the role of a producer, consumer, or validator. In any role, users may spend tokens to request services or earn tokens by contributing to others. This dual-path incentive design not only sustains active participation across roles, but also internalizes economic coordination within the community, fostering a stable and self-sustaining ecosystem over the long term.}
+
+\includegraphics[width=\textwidth]{figures/Tokenomics.pdf}
+\vspace{-4mm}
+\label{Tokenomics}
+\end{figure*}

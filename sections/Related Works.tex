@@ -1,0 +1,19 @@
+\section{Related Works}
+% \textbf{Question Answering.} 
+% Question Answering (QA) has been extensively studied in both open-domain and knowledge-intensive settings. Early methods used retrieval techniques such as TF-IDF~\cite{aizawa2003information} and BM25~\cite{robertson2009probabilistic} to fetch relevant documents, followed by rule-based or statistical models. Neural QA systems like DrQA~\cite{chen2017reading} and BiDAF~\cite{seo2016bidirectional} integrated retrieval and comprehension for end-to-end QA.
+% More recently, large language models (LLMs), including GPT-3 and ChatGPT, have achieved strong zero- and few-shot QA performance through prompt-based inference. RAG improves factuality by combining neural retrievers and generators, especially for knowledge-intensive tasks. For example, PaperQA~\cite{lala2023paperqa} applies RAG to scientific literature, while RE-RAG~\cite{kim2024rerag} adds a relevance estimator to filter noisy contexts and improve interpretability.
+% In parallel, multi-agent and decentralized QA systems have emerged to improve scalability, robustness, and transparency. Aryal et al.~\cite{aryal2024multiagent} propose a framework where domain-specific agents collaborate for cross-domain knowledge discovery. However, challenges remain in aligning retrieved evidence with generation, evaluating faithfulness, and coordinating agents in open environments.
+% Our work builds on these directions by proposing a decentralized QA framework with token-based incentives and validator-mediated routing, with the aim of enhancing trust, diversity, and scalability.
+
+
+\textbf{Decentralized Systems.}
+Decentralized systems have redefined digital coordination by enabling trustless value exchange and computation without central authority. From peer-to-peer sharing to blockchain-based smart contracts, infrastructures like Ethereum \cite{buterin2014ethereum} introduced programmable logic and token incentives to power autonomous applications.
+To enhance scalability and modularity, recent architectures adopt rollups and data availability layers \cite{celestia2025data}, while decentralized storage ensures verifiable and persistent data access \cite{trautwein2022ipfs}.
+Since most platforms still rely on centralized pipelines, lacking transparency, incentive alignment, and robustness to adversarial behaviors \cite{min2025llm}.
+To address this gap, we propose a present decentralized QA framework with token-incentivized query-responder routing and validator-mediated interaction. Our  mechanism enables transparent, auditable, and self-organized knowledge exchange beyond centralized control \cite{dsqa2025}.
+
+
+\noindent \textbf{Economic Incentives and Tokenomics.}
+Economic incentives are central to the viability of decentralized systems. Unlike Web2 platforms with centralized control, Web3 protocols embed economic coordination into their infrastructure via programmable tokens, a paradigm known as \textit{tokenomics}, which governs token issuance, distribution, and utility across roles \cite{ito2024cryptoeconomics,abadi2024governance,zuo2023set}.
+Recent systems apply tokenomics to sustain participation and core functionality: staking secures consensus \cite{cong2025tokenomics}, liquidity mining supports decentralized exchanges \cite{augustin2024yield,liu2022two-swaps}, and governance tokens incentivize protocol stewardship \cite{abadi2024governance}. These mechanisms enable trustless coordination and help bootstrap growth, security, and decision-making.
+Yet, existing designs largely target financial systems. We extend tokenomics to decentralized ecosystem, where tokens not only regulate access but also incentivize retrieval, validation, and participation \cite{allen2023airdrops}.
