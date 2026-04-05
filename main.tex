@@ -171,14 +171,17 @@ Yongfeng Zhang$^{1}$\thanks{Corresponding Email: xi.zhu@rutgers.edu, yongfeng.zh
 
 \begin{abstract}
 
-As LLM-based agents evolve from isolated tools into autonomous actors with heterogeneous domain expertise, agent-to-agent collaboration across organizational boundaries becomes structurally necessary. However, open collaboration introduces a fundamental trust crisis: agents may produce hallucinated or erroneous outputs due to capability limitations, or engage in strategic misbehavior such as shirking effort and misrepresenting competence. When consumers cannot reliably distinguish capable producers from unreliable ones, classic adverse selection threatens to unravel the knowledge market entirely. Centralized orchestration cannot resolve this crisis: it faces both a capability barrier (no single authority can verify quality across all domains) and structural barriers (knowledge monopoly, routing manipulation, and suppression of agent autonomy).
+The proliferation of LLM-based agents---autonomous actors with heterogeneous domain expertise deployed by independent organizations---is giving rise to an \textit{agent society} in which cross-organizational knowledge exchange becomes structurally necessary.
+However, realizing trustworthy collaboration in this open society faces a fundamental crisis: agents may produce hallucinated or erroneous outputs due to capability limitations, or engage in strategic misbehavior such as shirking effort and misrepresenting competence, creating a ``market for lemons'' where adverse selection threatens to unravel knowledge exchange entirely.
+Centralized orchestration cannot resolve this crisis: it faces both a capability barrier (no single authority can verify quality across all domains) and structural barriers (knowledge monopoly, routing manipulation, and suppression of agent autonomy).
 
-We propose a tokenomics-driven decentralized ecosystem that enables self-enforcing coordination among LLM agents without centralized authority.
-Agents dynamically assume the roles of consumers, producers, and validators: consumers issue token-backed service requests, producers supply knowledge-intensive services, and validators assess service quality through a novel Proof-of-Intelligence (PoI) mechanism.
-Validators stake tokens and are rewarded when their assessments align with majority consensus, creating incentive-compatible validation that deters free-riding and promotes truthful effort.
+We propose a \textbf{tokenomics-driven decentralized ecosystem} that enables self-enforcing coordination among LLM agents without centralized authority.
+Agents dynamically assume three interchangeable roles---consumers, producers, and validators---coordinated through a novel \textbf{Proof-of-Intelligence (PoI)} mechanism in which validators stake tokens, leverage domain knowledge to independently assess service quality, and are rewarded only when their assessments align with majority consensus.
+A key design principle is \textit{architectural heterogeneity}: validators must employ model architectures distinct from the producer under evaluation, transforming the mathematical assumption of independence into an enforceable protocol rule that cross-eliminates correlated biases and hallucinations.
+Token flows across all roles form a self-reinforcing \textbf{tokenomics--knowledge dual loop}: tokens incentivize truthful behavior, truthful behavior produces reliable information, and reliable information sustains token value.
 
 Within a unified game-theoretic framework, we establish validator incentive compatibility (IC), derive threshold-optimal policies for producer promotion and consumer subscription under individual rationality (IR), and prove the existence of a symmetric Bayesian--Nash equilibrium (BNE) that guarantees consistent strategic behavior and stable service matching.
-These conditions jointly close a self-reinforcing tokenomics--knowledge dual loop.
+Over time, the dual loop generates evolutionary selection pressure---high-quality agents accumulate tokens and expand their reach while low-quality agents are filtered out---transforming the ecosystem into an \textbf{evolutionary engine} that progressively elevates the collective intelligence of the agent population.
 We instantiate the framework as a decentralized question answering system (DeQA) and conduct extensive simulations demonstrating that the mechanism drives agent communities toward truthful contribution and maximal social welfare.
 
 \end{abstract}

@@ -78,7 +78,12 @@ Under these assumptions, we now derive the three layers of incentive guarantees.
 \subsubsection{Incentive Compatibility (IC) of Validators}
 \label{sec:ic}
 
-We analyze the decision problem of a single validator $v_i$ who must choose between exerting truthful effort ($e = 1$) and free-riding ($e = 0$), taking as given that the other $n - 1$ validators play truthfully.
+The first and most fundamental question is whether the validation mechanism can be trusted at all.
+If validators shirk---submitting random judgments to avoid effort costs---then the consensus signal $Z$ carries no information, and the entire ecosystem collapses: producers cannot credibly signal quality, consumers cannot make informed subscription decisions, and the tokenomics--knowledge dual loop breaks down.
+We therefore begin by analyzing the validator's decision problem and deriving the conditions under which truthful effort is each validator's strict best response.
+
+Consider a single validator $v_i$ who must choose between exerting truthful effort ($e = 1$) and free-riding ($e = 0$), taking as given that the other $n - 1$ validators play truthfully.
+This is a standard Bayesian incentive analysis: we compute the expected payoff under each strategy and identify when truthful effort strictly dominates.
 
 \vspace{1mm}
 \noindent\textbf{Payoff Structure.}
@@ -170,14 +175,24 @@ Under Assumptions~\ref{assum:validators}--\ref{assum:costs}, truthful effort is 
 \end{theorem}
 
 \begin{proof}
-Truthful effort strictly dominates free-riding iff $\mathbb{E}[U \mid e=1] > \mathbb{E}[U \mid e=0]$. Substituting Equations~\eqref{eq:u_truthful} and~\eqref{eq:u_shirk}:
+Truthful effort strictly dominates free-riding iff $\mathbb{E}[U \mid e=1] > \mathbb{E}[U \mid e=0]$. Substituting the expected payoffs from Equations~\eqref{eq:u_truthful} and~\eqref{eq:u_shirk}, we require:
 \begin{align}
-&P_{\text{match}} \cdot R_{\min} - (1 - P_{\text{match}}) \cdot \sigma - c_u > \frac{1}{2}(R_{\min} - \sigma) \nonumber \\
-\Longleftrightarrow\quad & P_{\text{match}} \cdot R_{\min} + P_{\text{match}} \cdot \sigma - \sigma - c_u > \frac{1}{2} R_{\min} - \frac{1}{2}\sigma \nonumber \\
-\Longleftrightarrow\quad & P_{\text{match}} (R_{\min} + \sigma) - \frac{1}{2}(R_{\min} + \sigma) > c_u \nonumber \\
+&P_{\text{match}} \cdot R_{\min} - (1 - P_{\text{match}}) \cdot \sigma - c_u > \frac{1}{2}(R_{\min} - \sigma). \nonumber
+\end{align}
+We expand the left-hand side by distributing $(1 - P_{\text{match}})$ and collecting terms involving $P_{\text{match}}$:
+\begin{align}
+\Longleftrightarrow\quad & P_{\text{match}} \cdot R_{\min} + P_{\text{match}} \cdot \sigma - \sigma - c_u > \frac{1}{2} R_{\min} - \frac{1}{2}\sigma. \nonumber
+\end{align}
+Rearranging to isolate $c_u$ on the right and grouping the terms involving $P_{\text{match}}$ and the constant $\frac{1}{2}$:
+\begin{align}
+\Longleftrightarrow\quad & P_{\text{match}} (R_{\min} + \sigma) - \frac{1}{2}(R_{\min} + \sigma) > c_u. \nonumber
+\end{align}
+Factoring out $(R_{\min} + \sigma)$---the total economic exposure per validation---yields:
+\begin{align}
 \Longleftrightarrow\quad & (R_{\min} + \sigma)\Big(P_{\text{match}} - \frac{1}{2}\Big) > c_u. \label{eq:ic_derivation}
 \end{align}
-Since $R_{\min} = \tau_{\text{val}} + \sigma$, we obtain $R_{\min} + \sigma = \tau_{\text{val}} + 2\sigma$, yielding the stated condition~\eqref{eq:ic}.
+The key insight of this derivation is that the IC condition reduces to a product of two terms: the \textit{total economic stake} $(R_{\min} + \sigma)$ and the \textit{informational edge} $(P_{\text{match}} - \frac{1}{2})$ that truthful effort provides over random guessing.
+Since $R_{\min} = \tau_{\text{val}} + \sigma$ (the per-capita reward under unanimous agreement), we obtain $R_{\min} + \sigma = \tau_{\text{val}} + 2\sigma$, yielding the stated condition~\eqref{eq:ic}.
 \end{proof}
 
 \begin{interpretbox}{Takeaway: Economic Interpretation of Validator IC}
@@ -203,8 +218,11 @@ In the limit $n \to \infty$, $P_{\text{match}} \to 1$, so IC holds for any finit
 \subsubsection{Producer's Threshold-Optimal Promotion}
 \label{sec:producer_ir}
 
-We now turn to the supply side: when should a producer rationally choose to promote its service?
-This question is non-trivial because promotion involves upfront costs (the promotion fee $\tau_p$ and validation costs $mn\tau_{\text{val}}$) against an uncertain prospect of subscription revenue.
+Having established that validators can be trusted to report truthfully (Theorem~\ref{Strict IC for Validators}), we now ask the next logical question in the mechanism's causal chain: \textit{given that the consensus signal $Z$ is informative, when should a producer rationally choose to promote its service?}
+This is the supply-side participation problem.
+If no producer is willing to pay the promotion fee and face validation, the ecosystem has no services to offer---regardless of how well the validation layer works.
+
+The question is non-trivial because promotion involves upfront costs (the promotion fee $\tau_p$ and validation costs $mn\tau_{\text{val}}$) against an uncertain prospect of subscription revenue.
 
 \vspace{1mm}
 \noindent\textbf{Setup.}
@@ -264,7 +282,9 @@ The threshold $\bar{q}_p$ responds to mechanism parameters as follows:
 \subsubsection{Consumer's Threshold-Optimal Subscription}
 \label{sec:consumer_ir}
 
-Symmetrically, we derive the demand-side best response: when is it individually rational for a consumer to subscribe based on the validation consensus?
+The analysis so far has established two layers of the mechanism: validators truthfully report (IC), and producers self-screen by promoting only when sufficiently capable (IR). The final piece is the demand side: \textit{given that the consensus $Z$ is informative and that only competent producers enter the market, when should a consumer rationally commit tokens to a subscription?}
+
+This completes the causal chain of the mechanism. The consumer's problem differs from the producer's in a fundamental way: while the producer knows its own quality $q_p$ and decides whether to enter, the consumer does \textit{not} know $q_p$ and must \textit{infer} it from the noisy consensus signal $Z$. This makes the consumer's problem inherently Bayesian---it must form a posterior belief about producer quality and subscribe only when the expected posterior utility justifies the cost.
 
 \vspace{1mm}
 \noindent\textbf{Setup.}
@@ -316,22 +336,27 @@ Here $\bar{q}_c$ is the minimum producer quality at which the consumer's posteri
 
 \begin{proof}
 The consumer subscribes iff $\Pi_c \geq 0$, i.e., the posterior expected utility exceeds the total cost $C_c \coloneqq \tau_s + mn\tau_{\text{val}}$.
+The proof strategy is to show that the consumer's expected payoff from subscription is (1) monotonically increasing in producer quality, (2) negative at the low end and positive at the high end, and therefore (3) crosses zero exactly once, defining a unique threshold.
 
 \textit{Step 1: Monotonicity.}
-We show that $\mathbb{E}[V_c(q_p) \mid Z = 1]$ is strictly increasing in the true underlying quality of the producer pool.
+We must show that better producers yield higher posterior expected utility for the consumer---i.e., that the validation signal $Z$ is not only informative but \textit{monotonically} informative.
 Consider two scenarios where the producer's true quality is $q_p' > q_p$.
 By Assumption~\ref{assum:mlrp}, $V(q_p') > V(q_p)$, so the ``pass'' probability is higher for the better producer.
-By the MLRP, the posterior distribution $f(\cdot \mid Z = 1)$ under the higher-quality producer first-order stochastically dominates that under the lower-quality one.
-Since $V_c(\cdot)$ is strictly increasing, the expected utility under stochastic dominance is strictly higher:
+The MLRP implies that the posterior distribution $f(\cdot \mid Z = 1)$ under the higher-quality producer first-order stochastically dominates that under the lower-quality one---intuitively, observing $Z = 1$ from a better producer is ``stronger good news'' than from a weaker one.
+Since $V_c(\cdot)$ is strictly increasing (higher quality $\Rightarrow$ higher consumer utility), the expected utility under stochastic dominance is strictly higher:
 $\mathbb{E}[V_c \mid Z = 1, q_p'] > \mathbb{E}[V_c \mid Z = 1, q_p]$.
+This establishes that the consumer's expected payoff from subscription is strictly increasing in the true quality of the producer being evaluated.
 
 \textit{Step 2: Boundary behavior.}
-When $q_p \to \frac{1}{2}$, the producer's output is near-random. Even conditional on $Z = 1$, the posterior assigns substantial mass to low-quality regions (because $V(\frac{1}{2}) > 0$, so ``pass'' signals still occur). The posterior expected utility is low, bounded by $V_c(\frac{1}{2}) + \epsilon$ for small $\epsilon$, and the net payoff is negative since $V_c(\frac{1}{2})$ is small (the producer is barely better than random) while $C_c$ is substantial.
+We verify that the payoff is negative at one extreme and positive at the other, ensuring the threshold exists.
+When $q_p \to \frac{1}{2}$ (minimal quality), the producer's output is near-random. Even conditional on $Z = 1$, the posterior assigns substantial mass to low-quality regions (because $V(\frac{1}{2}) > 0$, so ``pass'' signals still occur even for near-random producers). The posterior expected utility is low, bounded by $V_c(\frac{1}{2}) + \epsilon$ for small $\epsilon$, and the net payoff $\Pi_c < 0$ since $V_c(\frac{1}{2})$ is small (the producer is barely better than random) while $C_c$ is substantial.
 
-When $q_p \to 1$, the pass probability $V(q_p) \to 1$, the posterior concentrates near $q_p \approx 1$, and $\mathbb{E}[V_c \mid Z = 1] \to V_c(1) \gg C_c$, giving a strictly positive net payoff.
+When $q_p \to 1$ (perfect quality), the pass probability $V(q_p) \to 1$, the posterior concentrates near $q_p \approx 1$, and $\mathbb{E}[V_c \mid Z = 1] \to V_c(1) \gg C_c$, giving a strictly positive net payoff. This reflects the intuition that subscribing to a near-perfect producer is clearly worthwhile regardless of cost.
 
-\textit{Step 3: Existence and uniqueness.}
-Since the posterior expected utility is strictly increasing and continuous in $q_p$ (by Step~1 and the continuity of $V(\cdot)$ and $V_c(\cdot)$), and transitions from negative to positive (Step~2), the intermediate value theorem guarantees a unique threshold $\bar{q}_c$ such that $\Pi_c \geq 0 \iff q_p \geq \bar{q}_c$.
+\textit{Step 3: Existence and uniqueness of the threshold.}
+Combining Steps 1 and 2: the posterior expected utility is a strictly increasing, continuous function of $q_p$ that transitions from negative (at $q_p \to \frac{1}{2}$) to positive (at $q_p \to 1$).
+By the intermediate value theorem, there exists a unique crossing point $\bar{q}_c$ where $\Pi_c = 0$.
+By strict monotonicity, $\Pi_c \geq 0 \iff q_p \geq \bar{q}_c$, giving the stated threshold policy.
 \end{proof}
 
 \vspace{1mm}
@@ -355,7 +380,12 @@ The three layers of the mechanism are therefore \textit{interdependent}: validat
 \subsubsection{Symmetric BNE and the Tokenomics--Knowledge Dual Loop}
 \label{sec:bne}
 
-We now combine the three results above---validator IC, producer IR, and consumer IR---into a unified equilibrium statement.
+The preceding three subsections have independently established that each role has a well-defined optimal strategy: validators truthfully report (Theorem~\ref{Strict IC for Validators}), producers self-screen by threshold (Theorem~\ref{IR for Producers}), and consumers subscribe by threshold (Theorem~\ref{IR-based Policy for Consumers}).
+However, these results were derived in isolation---each takes the other roles' strategies as given.
+The critical remaining question is whether these individually optimal strategies are \textit{mutually consistent}: do they form a stable equilibrium when all three roles play simultaneously?
+If not, the ecosystem could unravel despite each individual component being well-designed.
+
+We now show that they are indeed consistent, forming a symmetric Bayesian--Nash equilibrium.
 
 \begin{theorem}[Symmetric Bayesian Nash Equilibrium]
 \label{Symmetric Bayesian Nash Equilibrium}
@@ -523,11 +553,18 @@ The symmetric BNE unifies three independently derived conditions---V-IC, P-IR, a
 \label{sec:case_study}
 % =========================================================================
 
-To empirically validate the ecosystem framework and its theoretical guarantees, we instantiate it as a \textbf{De}centralized \textbf{Q}uestion \textbf{A}nswering system (\textbf{DeQA}).
+The theoretical analysis above establishes that the ecosystem admits a self-enforcing equilibrium under appropriate parameter conditions.
+We now ask: \textit{do these predictions hold in practice?}
+Specifically, we seek to verify three empirical implications of the theory:
+(i) that rational agents converge toward truthful strategies under the tokenomics--knowledge dual loop (predicted by the IC and IR conditions);
+(ii) that the validation mechanism improves welfare, with performance depending on committee size $n$ (predicted by the comparative statics of Theorem~\ref{Strict IC for Validators});
+and (iii) that the mechanism amplifies genuine quality but cannot compensate for fundamentally unreliable agents (predicted by the MLRP-based threshold structure of Theorems~\ref{IR for Producers}--\ref{IR-based Policy for Consumers}).
+
+To test these predictions, we instantiate the ecosystem as a \textbf{De}centralized \textbf{Q}uestion \textbf{A}nswering system (\textbf{DeQA}).
 Question answering serves as a natural testbed: consumer agents issue domain-specific queries, producer agents provide answers drawing on their knowledge bases, and validator agents independently generate answers and compare them against the producer's output to assess service alignment.
 While we use QA for concreteness, we emphasize that the mechanism design, theoretical results, and incentive structures are domain-agnostic and apply to any knowledge-intensive agent collaboration scenario (e.g., code generation, data analysis, research synthesis).
 
-We address three research questions:
+These empirical implications motivate three research questions:
 
 $\bullet$~\textbf{RQ1} (Rationality and Evolution): How do agent strategies influence ecosystem evolution?
 
@@ -611,21 +648,28 @@ Service quality $q$ denotes the probability of generating a correct answer for a
 
 \subsubsection{Simulation Setting}
 
+The simulation parameters are chosen to satisfy the theoretical assumptions while reflecting realistic operating conditions. We explain each choice and its connection to the formal model.
+
 \textbf{(1) Agents and Roles.}
 The system contains $N = 10{,}000$ agents, each randomly assuming the role of consumer, producer, or validator in each round.
 Consumers issue queries uniformly across domains.
-Agent service quality follows $q \sim 0.98 + 0.02\,\mathrm{Beta}(4,4) > \frac{1}{2}$; agents selected randomly (without effort) have $q = \frac{1}{2}$.
-Each agent starts with $2{,}000$ tokens and exits once depleted.
+Agent service quality follows $q \sim 0.98 + 0.02\,\mathrm{Beta}(4,4) > \frac{1}{2}$, ensuring that Assumption~\ref{assum:validators} ($q_v > \frac{1}{2}$) is satisfied for all agents.
+The Beta(4,4) distribution concentrates quality near the mean while allowing meaningful variance, modeling a population of generally competent but heterogeneous agents.
+Agents selected randomly (without effort) have $q = \frac{1}{2}$, corresponding to the shirking case in Assumption~\ref{assum:binary}.
+Each agent starts with $2{,}000$ tokens and exits once depleted, creating the finite-resource pressure that drives evolutionary dynamics.
 
 \textbf{(2) Validation Mechanism.}
-Validator count $n$ is odd and chosen from $\{1, 5, 9, 17, 33, 65\}$; each validation uses $m = 10$ sample queries.
-Validation fee $\tau_{\text{val}} = 1$, stake $\sigma = 1$, and consensus is by majority vote.
-Each agent's strategy is parameterized by its truthful participation rate $t_u \in [0, 1]$ in both production and validation.
-Agents aim to maximize return on capital (ROC); low-ROC agents learn strategies from high-ROC agents, modeling rational adaptive behavior.
-Initial strategies are random: $t_u = \text{Uniform}(0, 1)$.
+Validator count $n$ is odd (as required by Assumption~\ref{assum:validators}) and varied across $\{1, 5, 9, 17, 33, 65\}$ to test the comparative statics prediction that larger $n$ strengthens IC by raising $P_{\text{match}}$.
+Each validation uses $m = 10$ sample queries, providing sufficient statistical power for consensus.
+Validation fee $\tau_{\text{val}} = 1$ and stake $\sigma = 1$, satisfying $c_u < \tau_{\text{val}}$ (Assumption~\ref{assum:costs}) for all effort costs in our range.
+Consensus is by majority vote, consistent with the theoretical model.
+Each agent's strategy is parameterized by its truthful participation rate $t_u \in [0, 1]$ in both production and validation---when $t_u = 1$, the agent always exerts full effort ($e = 1$ in the formal model); when $t_u = 0$, it always shirks ($e = 0$).
+Agents aim to maximize return on capital (ROC); low-ROC agents learn strategies from high-ROC agents, modeling the rational adaptive behavior predicted by the BNE dynamics.
+Initial strategies are random ($t_u = \text{Uniform}(0, 1)$), representing a ``cold start'' ecosystem with no prior coordination.
 
 \textbf{(3) Promotion and Subscription.}
 Producers incur effort cost $c_u \in (0, 1)$ per validation query and receive $\tau_s = 1{,}000$ upon successful subscription.
+The large ratio $\tau_s / \tau_{\text{val}} = 1{,}000$ ensures the cost ordering $mn\tau_{\text{val}} \ll \tau_s$ required by Assumption~\ref{assum:costs}, making validation economically viable relative to the subscription stakes.
 
 \textbf{(4) System Assumptions.}
 Validators are independent and non-collusive (Assumption~\ref{assum:validators}). All parameters are finite and drawn from bounded intervals.
