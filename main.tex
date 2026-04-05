@@ -9,6 +9,7 @@
 \usepackage{url}            % simple URL typesetting
 \usepackage{booktabs}       % professional-quality tables
 \usepackage{amsmath, amsfonts}       % blackboard math symbols
+\usepackage{amsthm}                 % proof environment
 \usepackage{nicefrac}       % compact symbols for 1/2, etc.
 \usepackage{microtype}      % microtypography
 \usepackage{lipsum}
@@ -35,6 +36,7 @@
 \usepackage{cleveref}
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
+\newtheorem{theorem}{Theorem}
 \newtheorem{definition}{Definition}
 \newtheorem{assumption}{Assumption}
 \newtheorem{remark}{Remark}
@@ -123,7 +125,7 @@
 
 % \title{Game-theoretic LLM:\\ Agent Workflow for Negotiation Games}
 
-\title{Towards a Tokenomics-Driven Decentralized Ecosystem for LLM Agents}
+\title{Towards a Tokenomics-Driven Decentralized Ecosystem for LLM Agent collaboration}
 
 \author{
 % \vspace{.5mm}
@@ -149,23 +151,24 @@ Yongfeng Zhang$^{1}$\thanks{Corresponding Email: xi.zhu@rutgers.edu, yongfeng.zh
 
 \begin{abstract}
 
-Modern online platforms are predominantly centralized, where data storage, algorithmic governance, and reward distribution remain under the dominance of platform operators. This motivates a foundational rethinking of application architecture and organization. In this paper, we posit that next-generation internet applications are evolving towards decentralized ecosystems that enable self-governance without centralized enforcement. To ground this vision, we instantiate DeQA, a decentralized knowledge question answering ecosystem that aligns user incentives through a self-enforcing tokenomics-knowledge dual loop, supported by a blockchain-based infrastructure for transparent and tamper-resistant coordination.
+As LLM-based agents evolve from isolated tools into autonomous actors with heterogeneous domain expertise, agent-to-agent collaboration across organizational boundaries becomes structurally necessary. However, open collaboration introduces a fundamental trust crisis: agents may produce hallucinated or erroneous outputs due to capability limitations, or engage in strategic misbehavior such as shirking effort and misrepresenting competence. When consumers cannot reliably distinguish capable producers from unreliable ones, classic adverse selection threatens to unravel the knowledge market entirely. Centralized orchestration cannot resolve this crisis: it faces both a capability barrier (no single authority can verify quality across all domains) and structural barriers (knowledge monopoly, routing manipulation, and suppression of agent autonomy).
 
-In DeQA, users dynamically assume the roles of consumers, producers, and validators: consumers issue token-backed queries, producers provide knowledge-intensive services, and validators ensure reliable matching through consensus. Along this line, we introduce a decentralized validation paradigm called Proof-of-Intelligence (PoI), where heterogeneous validators leverage their knowledge to assess query–responder alignment.
-Validators stake tokens and are rewarded when their judgments align with the majority, forming a self-enforcing incentive structure that promotes truthful effort and deters free-riding.
+We propose a tokenomics-driven decentralized ecosystem that enables self-enforcing coordination among LLM agents without centralized authority.
+Agents dynamically assume the roles of consumers, producers, and validators: consumers issue token-backed service requests, producers supply knowledge-intensive services, and validators assess service quality through a novel Proof-of-Intelligence (PoI) mechanism.
+Validators stake tokens and are rewarded when their assessments align with majority consensus, creating incentive-compatible validation that deters free-riding and promotes truthful effort.
 
-To prevent moral hazard and low-quality validation, we model the strategic interactions among producers, consumers, and validators within a unified game-theoretic framework. Specifically, we first establish validator incentive compatibility (IC) to guarantee truthful aggregation of dispersed knowledge, then we derive threshold-optimal policies for consumer subscription and producer promotion under individual rationality (IR). Combining these conditions, we prove the existence of a symmetric Bayesian-Nash equilibrium (BNE) that ensures consistent strategic behavior, rational cooperation, and stable query-responder matching. Extensive simulations validate that DeQA enables a self-enforcing ecosystem with truthful contributions and maximum social welfare.
+Within a unified game-theoretic framework, we establish validator incentive compatibility (IC), derive threshold-optimal policies for producer promotion and consumer subscription under individual rationality (IR), and prove the existence of a symmetric Bayesian--Nash equilibrium (BNE) that guarantees consistent strategic behavior and stable service matching.
+These conditions jointly close a self-reinforcing tokenomics--knowledge dual loop.
+We instantiate the framework as a decentralized question answering system (DeQA) and conduct extensive simulations demonstrating that the mechanism drives agent communities toward truthful contribution and maximal social welfare.
 
 \end{abstract}
-
-\textit{Note: Sections 4, 5, and 6 are independent of one another and can be read in any order. Each section is self-contained and does not require prior knowledge of the others to be fully understood.}
-
+\newpage
 
 \input{sections/Introduction}
 
 \input{sections/Methodology}
 
-\input{sections/Experiments}
+\input{sections/GameTheoryAndCaseStudy}
 
 \input{sections/Related Works}
 

@@ -1,19 +1,46 @@
 \section{Related Works}
-% \textbf{Question Answering.} 
-% Question Answering (QA) has been extensively studied in both open-domain and knowledge-intensive settings. Early methods used retrieval techniques such as TF-IDF~\cite{aizawa2003information} and BM25~\cite{robertson2009probabilistic} to fetch relevant documents, followed by rule-based or statistical models. Neural QA systems like DrQA~\cite{chen2017reading} and BiDAF~\cite{seo2016bidirectional} integrated retrieval and comprehension for end-to-end QA.
-% More recently, large language models (LLMs), including GPT-3 and ChatGPT, have achieved strong zero- and few-shot QA performance through prompt-based inference. RAG improves factuality by combining neural retrievers and generators, especially for knowledge-intensive tasks. For example, PaperQA~\cite{lala2023paperqa} applies RAG to scientific literature, while RE-RAG~\cite{kim2024rerag} adds a relevance estimator to filter noisy contexts and improve interpretability.
-% In parallel, multi-agent and decentralized QA systems have emerged to improve scalability, robustness, and transparency. Aryal et al.~\cite{aryal2024multiagent} propose a framework where domain-specific agents collaborate for cross-domain knowledge discovery. However, challenges remain in aligning retrieved evidence with generation, evaluating faithfulness, and coordinating agents in open environments.
-% Our work builds on these directions by proposing a decentralized QA framework with token-based incentives and validator-mediated routing, with the aim of enhancing trust, diversity, and scalability.
+
+\textbf{Multi-Agent LLM Systems.}
+The rapid advancement of LLMs has catalyzed a proliferation of multi-agent frameworks for collaborative task solving.
+AutoGen~\cite{wu2023autogen} enables flexible multi-agent conversation with customizable roles and human-in-the-loop capabilities.
+MetaGPT~\cite{hong2023metagpt} encodes human-like standard operating procedures into multi-agent collaboration, assigning specialized software engineering roles (product manager, architect, engineer) to coordinating agents.
+CAMEL~\cite{li2023camel} explores autonomous cooperation through role-playing with inception prompting, while ChatDev~\cite{qian2023communicative} models software development as a multi-agent chat chain where agents in distinct roles communicate through structured dialogue.
+AgentVerse~\cite{chen2023agentverse} investigates emergent group behaviors when multiple agents collaborate dynamically, and recent surveys~\cite{guo2024large} comprehensively map the landscape of LLM-based multi-agent systems.
+CompeteAI~\cite{zhao2023competeai} studies competitive dynamics among LLM agents in market simulations, revealing emergent economic behaviors.
+However, all these frameworks share a common architectural assumption: agents are cooperative and governed by a single orchestrator that manages task assignment and message routing.
+None addresses the fundamental challenges of cross-organizational trust, strategic misbehavior, or incentive misalignment that arise when agents are deployed by independent entities with divergent objectives---the core challenges our ecosystem is designed to resolve.
+Our work complements these frameworks by providing the missing \textit{economic coordination layer} that enables trustworthy collaboration among self-interested agents.
+
+
+\textbf{Question Answering Systems.}
+Question answering (QA) has evolved from retrieval-based pipelines using TF-IDF~\cite{aizawa2003information} and BM25~\cite{robertson2009probabilistic} to neural approaches that integrate retrieval and comprehension end-to-end~\cite{chen2017reading}.
+The advent of LLMs has further transformed QA: models such as GPT-4 achieve strong zero- and few-shot performance through prompt-based inference, while Retrieval-Augmented Generation (RAG) improves factual grounding by combining neural retrievers with generators~\cite{schwartz2023enhancing}.
+Multi-agent QA systems have also emerged: Aryal et al.~\cite{aryal2024multiagent} propose a framework where domain-specific agents collaborate for cross-domain knowledge discovery.
+However, existing QA systems---whether centralized or multi-agent---do not address incentive alignment, quality verification under information asymmetry, or economic coordination among independently deployed agents.
+Our case study (DeQA) instantiates the proposed ecosystem in the QA domain, demonstrating that tokenomics-driven decentralized coordination can enhance both the reliability and sustainability of knowledge exchange.
 
 
 \textbf{Decentralized Systems.}
-Decentralized systems have redefined digital coordination by enabling trustless value exchange and computation without central authority. From peer-to-peer sharing to blockchain-based smart contracts, infrastructures like Ethereum \cite{buterin2014ethereum} introduced programmable logic and token incentives to power autonomous applications.
-To enhance scalability and modularity, recent architectures adopt rollups and data availability layers \cite{celestia2025data}, while decentralized storage ensures verifiable and persistent data access \cite{trautwein2022ipfs}.
-Since most platforms still rely on centralized pipelines, lacking transparency, incentive alignment, and robustness to adversarial behaviors \cite{min2025llm}.
-To address this gap, we propose a present decentralized QA framework with token-incentivized query-responder routing and validator-mediated interaction. Our  mechanism enables transparent, auditable, and self-organized knowledge exchange beyond centralized control \cite{dsqa2025}.
+Decentralized architectures have redefined digital coordination by enabling trustless value exchange without central authority.
+From peer-to-peer sharing to blockchain-based smart contracts, platforms like Ethereum~\cite{buterin2014ethereum} introduced programmable logic and token incentives to power autonomous applications.
+Recent architectures adopt rollups and data availability layers~\cite{celestia2025data} for scalability, while decentralized storage ensures verifiable and persistent data access~\cite{trautwein2022ipfs}.
+At the intersection of decentralization and AI, Bittensor~\cite{bittensor2023} creates a token-incentivized peer-to-peer market for machine intelligence, and Petals~\cite{borzunov2023petals} enables collaborative decentralized inference by distributing model layers across volunteer nodes.
+However, these systems focus primarily on model training or inference infrastructure rather than on the higher-level problem of \textit{runtime agent collaboration}---coordinating which agent should serve which task, verifying quality, and distributing rewards.
+Our work extends decentralized coordination to this knowledge-intensive agent ecosystem layer, where tokens regulate not just access but also validation, routing, and participation quality.
 
 
-\noindent \textbf{Economic Incentives and Tokenomics.}
-Economic incentives are central to the viability of decentralized systems. Unlike Web2 platforms with centralized control, Web3 protocols embed economic coordination into their infrastructure via programmable tokens, a paradigm known as \textit{tokenomics}, which governs token issuance, distribution, and utility across roles \cite{ito2024cryptoeconomics,abadi2024governance,zuo2023set}.
-Recent systems apply tokenomics to sustain participation and core functionality: staking secures consensus \cite{cong2025tokenomics}, liquidity mining supports decentralized exchanges \cite{augustin2024yield,liu2022two-swaps}, and governance tokens incentivize protocol stewardship \cite{abadi2024governance}. These mechanisms enable trustless coordination and help bootstrap growth, security, and decision-making.
-Yet, existing designs largely target financial systems. We extend tokenomics to decentralized ecosystem, where tokens not only regulate access but also incentivize retrieval, validation, and participation \cite{allen2023airdrops}.
+\textbf{Economic Incentives and Mechanism Design.}
+Economic incentives are central to decentralized system viability.
+Web3 protocols embed coordination into infrastructure via programmable tokens---a paradigm known as \textit{tokenomics}---governing token issuance, distribution, and utility~\cite{ito2024cryptoeconomics, abadi2024governance, zuo2023set}.
+Staking secures consensus~\cite{cong2025tokenomics}, liquidity mining supports decentralized exchanges~\cite{augustin2024yield, liu2022two-swaps}, and governance tokens incentivize protocol stewardship~\cite{abadi2024governance}.
+Information elicitation mechanisms such as prediction markets~\cite{wolfers2004prediction} and peer prediction~\cite{miller2005eliciting} provide theoretical foundations for truthful reporting without ground truth---a problem directly relevant to our PoI mechanism, where validators must be incentivized to report honestly despite the absence of verifiable correct answers.
+Recent work has begun to explore mechanism design specifically for LLM-based systems: Duetting et al.~\cite{duetting2024mechanism} investigate auction and incentive design in settings where LLM agents interact strategically, while Horton~\cite{horton2023homo} demonstrates that LLMs can simulate economic agents whose behavior aligns with classical game-theoretic predictions---supporting our modeling assumption that agent behavior can be precisely captured by Bayesian game theory.
+We extend tokenomics and mechanism design beyond financial systems to agent ecosystems, where tokens incentivize knowledge validation and honest service provision.
+
+
+\textbf{Trust, Reliability, and Alignment in AI Systems.}
+LLM hallucination---generating plausible but incorrect outputs---has been extensively documented~\cite{huang2023survey, ji2023hallucination, zhang2023siren} and remains a fundamental challenge for any system that depends on LLM-generated content.
+While most mitigation strategies focus on individual model improvements (e.g., retrieval augmentation, self-consistency checking, chain-of-thought verification), our approach tackles reliability at the \textit{ecosystem level}: rather than trusting any single agent, we aggregate assessments from multiple architecturally heterogeneous validators under economic incentives that promote truthful evaluation.
+This connects to the broader challenge of multi-agent alignment~\cite{de2023emergent}---ensuring that a population of self-interested agents collectively produces beneficial outcomes.
+Traditional alignment research focuses on training individual models to follow human intent (e.g., via RLHF); our game-theoretic framework addresses alignment at a different level of abstraction: through mechanism design that makes honest behavior the individually rational strategy for every participant, regardless of each agent's internal training objective.
+Kapoor et al.~\cite{kapoor2024agents} argue that rigorous evaluation of AI agent capabilities is essential for building reliable systems---a perspective that resonates with our PoI mechanism, which provides exactly such rigorous, decentralized, and incentive-compatible evaluation.

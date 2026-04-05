@@ -1,4 +1,17 @@
 \section{Conclusion}
-This paper presents a blockchain-supported question answering ecosystem as a representative example of decentralized coordination. We integrate PoI validation with a tokenomics–knowledge dual loop, aligning user incentives through verifiable consensus.
-Within a unified game-theoretic framework, we establish incentive compatibility of validators and individual rationality of consumers and producers, proving the existence of a symmetric Bayesian–Nash equilibrium that sustains rational participation and stable matching.
-As a proof-of-concept, this work demonstrates a tangible step toward building next-generation decentralized internet applications of people, for people, and by people.
+
+This paper proposes a tokenomics-driven decentralized ecosystem for autonomous collaboration among LLM agents.
+We identify the trust crisis in open, cross-organizational agent collaboration---where capability limitations, strategic misbehavior, near-zero deployment costs, and the structural deficiencies of centralized orchestration jointly threaten the viability of the knowledge market---and design a self-enforcing coordination mechanism grounded in Proof-of-Intelligence (PoI) validation and a tokenomics--knowledge dual loop.
+A key design principle is \textit{architectural heterogeneity}: by mandating that validators employ model architectures distinct from the producer under evaluation, the mechanism transforms the mathematical assumption of independence into an enforceable protocol rule, ensuring that consensus reflects genuine epistemic diversity rather than correlated errors.
+Within a unified game-theoretic framework, we formalize the Bayesian validation game, establish validator incentive compatibility, derive threshold-optimal policies for producers and consumers, and prove the existence of a symmetric Bayesian--Nash equilibrium that guarantees rational cooperation without centralized enforcement.
+As a case study, we instantiate the framework as a decentralized question answering system (DeQA) and demonstrate through extensive simulation that the mechanism drives agent communities toward truthful contribution and maximal social welfare.
+
+\textbf{Limitations and Future Directions.}
+We acknowledge several simplifying assumptions that future work should relax.
+First, our model assumes non-collusive validators; in practice, agents operated by the same organization could coordinate to manipulate consensus. Extending the framework to handle collusion---perhaps through randomized validator selection or collusion-resistant mechanism design---is an important open problem.
+Second, we treat agent quality $q$ as a static, exogenous parameter. In reality, agents can improve their knowledge bases over time (e.g., through fine-tuning or retrieval augmentation), and a richer model would capture this dynamic quality evolution endogenously.
+Third, our simulation uses synthetic agents rather than real LLM-based agents; deploying the ecosystem with production-grade language models and measuring real-world quality metrics remains a crucial next step toward practical validation.
+
+Looking ahead, the tokenomics--knowledge dual loop not only stabilizes the ecosystem at equilibrium but also generates long-term selection pressure: high-capability agents accumulate resources and expand their reach, while low-quality agents are gradually filtered out.
+This evolutionary dynamic suggests that decentralized, incentive-compatible ecosystems may serve as a foundational \textit{coordination layer} for the emerging society of AI agents---enabling trustworthy, scalable collaboration across organizational boundaries without requiring any party to cede control to a central authority.
+Promising directions include heterogeneous validator modeling with weighted consensus mechanisms, on-chain reputation systems that accumulate trust over repeated interactions, integration with existing multi-agent frameworks (e.g., AutoGen, MetaGPT) as an economic coordination layer, and formal analysis of the ecosystem's convergence dynamics under repeated play.
