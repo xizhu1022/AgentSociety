@@ -180,15 +180,14 @@ Truthful effort strictly dominates free-riding iff $\mathbb{E}[U \mid e=1] > \ma
 Since $R_{\min} = \tau_{\text{val}} + \sigma$, we obtain $R_{\min} + \sigma = \tau_{\text{val}} + 2\sigma$, yielding the stated condition~\eqref{eq:ic}.
 \end{proof}
 
-\vspace{1mm}
-\noindent\textbf{Economic Interpretation.}
-The IC condition decomposes into three interpretable components:
-
-\begin{itemize}
-    \item $(\tau_{\text{val}} + 2\sigma)$: the \textbf{total economic exposure}---the validation fee plus twice the stake. This captures the total amount ``at risk'' that amplifies the value of being on the right side of the consensus.
-    \item $(P_{\text{match}} - \frac{1}{2})$: the \textbf{informational advantage} of truthful effort over random guessing. The larger this gap, the more a truthful validator benefits relative to a shirker.
-    \item $c_u$: the \textbf{effort cost} that must be overcome. The IC condition states that the expected economic advantage of being informed must exceed the cost of becoming informed.
+\begin{interpretbox}{Takeaway: Economic Interpretation of Validator IC}
+The IC condition $(\tau_{\text{val}} + 2\sigma)(P_{\text{match}} - \frac{1}{2}) > c_u$ decomposes into three interpretable components:
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+    \item $(\tau_{\text{val}} + 2\sigma)$: \textbf{Total economic exposure}---the validation fee plus twice the stake, capturing the amount ``at risk'' that amplifies the value of being on the right side of consensus.
+    \item $(P_{\text{match}} - \frac{1}{2})$: \textbf{Informational advantage}---how much better a truthful vote aligns with the majority compared to a random coin flip. Larger committees and higher-quality validators widen this gap.
+    \item $c_u$: \textbf{Effort cost}---the computational expense that must be overcome. IC holds when the marginal benefit of being informed exceeds the cost of becoming informed.
 \end{itemize}
+\end{interpretbox}
 
 \noindent\textbf{Comparative Statics.}
 The IC region---the set of parameters for which~\eqref{eq:ic} holds---expands when:
@@ -249,12 +248,9 @@ At $q_p \to 1$ (perfect quality), $V_p(q_p) \to 1$, so $\Pi_p = (\tau_s - c_s) -
 By the intermediate value theorem, there exists a unique $\bar{q}_p$ satisfying $V_p(\bar{q}_p) \cdot (\tau_s - c_s) = \tau_p + mn\tau_{\text{val}}$, and by strict monotonicity, $\Pi_p(q_p) \geq 0 \iff q_p \geq \bar{q}_p$.
 \end{proof}
 
-\vspace{1mm}
-\noindent\textbf{Interpretation: Supply-Side Self-Screening.}
-The threshold $\bar{q}_p$ implements an elegant self-screening mechanism without centralized curation.
-Producers with quality below $\bar{q}_p$ know that they are likely to fail validation (low $V_p$), making promotion unprofitable; they rationally abstain.
-Producers above $\bar{q}_p$ expect to pass validation and earn subscription revenue; they rationally promote.
-The market thus \textit{self-selects} for quality: the very act of paying promotion and validation fees serves as a credible signal of competence, because only agents who expect to pass can afford the risk.
+\begin{interpretbox}{Takeaway: Supply-Side Self-Screening}
+The threshold $\bar{q}_p$ implements self-screening without centralized curation. Producers below $\bar{q}_p$ know they are likely to fail validation, making promotion unprofitable---they rationally abstain. Producers above $\bar{q}_p$ expect to pass and earn subscription revenue---they rationally promote. The market thus \textit{self-selects} for quality: the very act of paying promotion and validation fees serves as a credible signal of competence, because only agents who expect to pass can afford the risk.
+\end{interpretbox}
 
 \noindent\textbf{Comparative Statics.}
 The threshold $\bar{q}_p$ responds to mechanism parameters as follows:
@@ -423,6 +419,10 @@ Beyond static stability, the equilibrium generates evolutionary dynamics across 
 High-quality agents---those with $q_p > \bar{q}_p$---successfully promote, attract subscriptions, earn tokens, and expand their participation.
 Low-quality agents---those with $q_p < \bar{q}_p$---fail validation, waste promotion fees, forfeit stakes, and see their token reserves deplete.
 Over time, this economic natural selection filters out unreliable agents and concentrates ecosystem activity among capable ones, progressively elevating aggregate service quality and maximizing social welfare.
+
+\begin{interpretbox}{Takeaway: From Individual Rationality to Collective Intelligence}
+The symmetric BNE unifies three independently derived conditions---V-IC, P-IR, and C-IR---into a single self-consistent equilibrium. At this equilibrium, no agent of any type can improve its payoff by unilateral deviation: validators truthfully report, producers self-screen for competence, and consumers discipline their demand. The resulting tokenomics--knowledge dual loop is self-reinforcing and generates evolutionary pressure that progressively elevates the ecosystem's aggregate intelligence---without any centralized authority directing the process.
+\end{interpretbox}
 
 
 % ===== FIGURES (experiment figures moved from old Methodology) =====

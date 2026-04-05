@@ -45,6 +45,38 @@
 \usepackage{wrapfig}
 \definecolor{light-gray}{gray}{0.95}
 \usepackage{tcolorbox}
+\definecolor{insightbg}{RGB}{237,242,252}
+\definecolor{insightbar}{RGB}{59,89,152}
+\newtcolorbox{insightbox}[1]{
+  colback=insightbg,
+  colframe=insightbar,
+  coltitle=white,
+  fonttitle=\bfseries\small,
+  title={#1},
+  boxrule=0pt,
+  leftrule=3pt,
+  arc=2pt,
+  top=4pt,
+  bottom=4pt,
+  left=6pt,
+  right=6pt
+}
+\definecolor{interpretbg}{RGB}{237,248,240}
+\definecolor{interpretbar}{RGB}{46,125,50}
+\newtcolorbox{interpretbox}[1]{
+  colback=interpretbg,
+  colframe=interpretbar,
+  coltitle=white,
+  fonttitle=\bfseries\small,
+  title={#1},
+  boxrule=0pt,
+  leftrule=3pt,
+  arc=2pt,
+  top=4pt,
+  bottom=4pt,
+  left=6pt,
+  right=6pt
+}
 
 \usepackage{mathtools}
 
@@ -109,26 +141,15 @@
   \vspace{2pt}\end{adjustwidth}\endMakeFramed%
 }
 
-\newcommand{\yongfeng}[1]{{\small\textcolor{blue}{\bf Yongfeng: #1}}}
-\newcommand{\lingyao}[1]{{\small\textcolor{green}{\bf Lingyao: #1}}}
-\newcommand{\wenyue}[1]{{\small\textcolor{red}{\bf Wenyue: #1}}}
-\newcommand{\oliver}[1]{{\small\textcolor{magenta}{\bf Oliver: #1}}}
-
 \makeatletter
 \def\thanks#1{\protected@xdef\@thanks{\@thanks
         \protect\footnotetext{#1}}}
 \makeatother
 
-% \title{Game Theory with Negotiation:\\ How to obtain Pareto optimal Nash Equilibrium for LLM-based Agents}
-
-% \title{AI4History: An Example of Large Language Model-based Multi-Agent Simulation of World Wars}
-
-% \title{Game-theoretic LLM:\\ Agent Workflow for Negotiation Games}
 
 \title{Towards a Tokenomics-Driven Decentralized Ecosystem for LLM Agent collaboration}
 
 \author{
-% \vspace{.5mm}
 Xi Zhu$^1$\quad
 Zhuoqiao Shen$^2$\quad 
 Shuhang Lin$^1$\quad 
@@ -137,7 +158,6 @@ Yongfeng Zhang$^{1}$\thanks{Corresponding Email: xi.zhu@rutgers.edu, yongfeng.zh
   $^1$Rutgers University\;\;\;  $^2$Independent Researcher\;\;\;
 }
 
-% \vspace{0.4cm}
 
 \begin{document}
 
@@ -146,7 +166,7 @@ Yongfeng Zhang$^{1}$\thanks{Corresponding Email: xi.zhu@rutgers.edu, yongfeng.zh
 \noindent\makebox[\linewidth]{\rule{\textwidth}{1pt}}
 \tableofcontents
 \noindent\makebox[\linewidth]{\rule{\textwidth}{1pt}}
-\vspace{0.2cm}
+\newpage
 \noindent
 
 \begin{abstract}
