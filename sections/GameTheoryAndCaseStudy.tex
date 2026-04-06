@@ -56,24 +56,13 @@ Producing a truthful judgment on one task costs $c_u > 0$ (computation, knowledg
 The probability that a producer passes majority-vote validation is strictly increasing in its true quality $q_p$. Formally, for the consensus signal $Z \in \{0, 1\}$ (pass/fail), the pass probability $V(q_p) \coloneqq \Pr(Z = 1 \mid q_p)$ is a strictly increasing, continuous function of $q_p$.
 \end{assumption}
 
-\begin{remark}[MLRP as a Consequence of the Binary Signal Model]
+\begin{remark}[MLRP as a Consequence]
 \label{rem:mlrp_derived}
-Assumption~\ref{assum:mlrp} is not an independent postulate but follows from Assumptions~\ref{assum:validators}--\ref{assum:costs} under the binary signal model. To see this, consider how majority-vote consensus depends on producer quality $q_p$.
-Each validator independently compares its own output (correct with probability $q_v$) against the producer's output (correct with probability $q_p$). On a given task, validator $v_i$ reports ``match'' ($r_i = 1$) if both are correct or both are incorrect, and ``mismatch'' ($r_i = 0$) otherwise. Thus the per-task agreement probability is:
-\[
-p_{\text{agree}}(q_p, q_v) = q_p q_v + (1 - q_p)(1 - q_v).
-\]
-This is strictly increasing in $q_p$ for any fixed $q_v > \frac{1}{2}$ (since $\frac{\partial}{\partial q_p} p_{\text{agree}} = 2q_v - 1 > 0$).
-
-The consensus $Z = 1$ (pass) requires that a strict majority of validators report ``match'' across the $m$ sample tasks.
-Since each validator's per-task agreement probability $p_{\text{agree}}$ is strictly increasing in $q_p$, the aggregate pass probability under majority voting---a composition of binomial tail probabilities---is itself strictly increasing and continuous in $q_p$. This establishes the MLRP.
+Assumption~\ref{assum:mlrp} is not an independent postulate but follows from Assumptions~\ref{assum:validators}--\ref{assum:costs}: the per-task agreement probability $p_{\text{agree}}(q_p, q_v) = q_p q_v + (1 - q_p)(1 - q_v)$ is strictly increasing in $q_p$ for $q_v > \frac{1}{2}$, and this monotonicity propagates through majority voting to $V(q_p)$. See Appendix~\ref{app:mlrp_derived} for details.
 \end{remark}
 
-\vspace{1mm}
-\noindent\textbf{Extension from Single Query to $m$ Queries.}
-In the analysis that follows, we derive IC conditions on a per-query basis ($m = 1$) without loss of generality.
-Since tasks are drawn i.i.d.\ (Assumption~\ref{assum:binary}), the validator's effort decision on each task is an independent subgame with identical structure. If truthful effort is a strict best response on each individual task, it remains a strict best response across all $m$ tasks, because the expected payoff from exerting effort on all tasks is $m$ times the per-task payoff gain.
-Formally, the IC condition for $m$ tasks scales to $m(\tau_{\text{val}} + 2\sigma)(P_{\text{match}} - \frac{1}{2}) > m \cdot c_u$, which simplifies to the same per-task condition. The producer and consumer IR conditions similarly aggregate linearly across tasks.
+\noindent\textbf{Extension to $m$ queries.}
+Since tasks are i.i.d., the IC condition scales linearly and simplifies to the same per-task condition. We derive all results for $m = 1$ without loss of generality (see Appendix~\ref{app:m_extension}).
 
 \vspace{1mm}
 Under these assumptions, we now derive the three layers of incentive guarantees.
@@ -101,48 +90,21 @@ A validator who disagrees with the majority forfeits $\sigma$ and receives nothi
 
 \vspace{1mm}
 \noindent\textbf{Matching Probability under Truthful Play.}
-We now derive $P_{\text{match}}(n, q_v)$, the probability that a truthful validator's vote matches the majority when all validators report truthfully. Let the ground truth state of a task be $\theta \in \{0, 1\}$. Under Assumption~\ref{assum:binary}, each truthful validator's report agrees with $\theta$ independently with probability $q_v$.
-
-A truthful validator $v_i$ matches the majority if and only if \textit{at least} $\lfloor n/2 \rfloor$ of the \textit{other} $n-1$ validators agree with $v_i$'s report. Since $v_i$'s report matches $\theta$ with probability $q_v$, and each other validator independently matches $\theta$ with probability $q_v$, we can condition on whether $v_i$'s report is correct:
-
-\begin{itemize}
-    \item \textbf{Case 1: $v_i$ reports correctly} (probability $q_v$). The validator matches the majority iff $\geq \lfloor n/2 \rfloor$ of the other $n-1$ validators also report correctly. Since each does so independently with probability $q_v$, this probability is:
-    \[
-    \alpha(n, q_v) = \sum_{k=\lfloor n/2 \rfloor}^{n-1} \binom{n-1}{k} q_v^k (1 - q_v)^{n-1-k}.
-    \]
-
-    \item \textbf{Case 2: $v_i$ reports incorrectly} (probability $1 - q_v$). The validator matches the majority iff $\geq \lfloor n/2 \rfloor$ of the other $n-1$ validators also report incorrectly. This probability is:
-    \[
-    \beta(n, q_v) = \sum_{k=\lfloor n/2 \rfloor}^{n-1} \binom{n-1}{k} (1 - q_v)^k q_v^{n-1-k}.
-    \]
-\end{itemize}
-
-The total matching probability is therefore:
+Let $P_{\text{match}}(n, q_v)$ denote the probability that a truthful validator's vote matches the majority when all $n$ validators report truthfully. By conditioning on whether $v_i$'s report is correct (probability $q_v$) or incorrect (probability $1 - q_v$), and computing the probability that a majority of the remaining $n-1$ validators agree in each case, we obtain (see Appendix~\ref{app:pmatch_derivation} for the full derivation):
 \begin{equation}
 \label{eq:pmatch}
-P_{\text{match}}(n, q_v) = q_v \cdot \alpha(n, q_v) + (1 - q_v) \cdot \beta(n, q_v).
+P_{\text{match}}(n, q_v) = q_v \cdot \alpha(n, q_v) + (1 - q_v) \cdot \beta(n, q_v),
 \end{equation}
+where $\alpha$ and $\beta$ are binomial tail probabilities with parameters $q_v$ and $1-q_v$ respectively.
 
-\begin{remark}[Properties of $P_{\text{match}}$]
-\label{rem:pmatch}
-We establish three key properties of $P_{\text{match}}(n, q_v)$:
-
-\textbf{(i) $P_{\text{match}}(n, q_v) > \frac{1}{2}$ for all $q_v > \frac{1}{2}$.}
-Observe that $\alpha(n, q_v)$ and $\beta(n, q_v)$ are cumulative binomial tail probabilities with parameters $q_v$ and $1-q_v$, respectively, over the same threshold $\lfloor n/2 \rfloor$ out of $n-1$ trials.
-Since $q_v > 1 - q_v$ when $q_v > \frac{1}{2}$, it follows by first-order stochastic dominance that $\alpha(n, q_v) > \beta(n, q_v)$.
-Hence:
-\[
-P_{\text{match}} = q_v \alpha + (1-q_v)\beta > q_v \beta + (1-q_v)\beta = \beta,
-\]
-and similarly $P_{\text{match}} < \alpha$. To show $P_{\text{match}} > \frac{1}{2}$, note that $P_{\text{match}}$ equals the probability that $v_i$ is on the majority side. Since the full committee of $n$ validators (including $v_i$) forms an i.i.d.\ majority vote with individual accuracy $q_v > \frac{1}{2}$, the Condorcet jury theorem guarantees that the majority is correct with probability exceeding $q_v > \frac{1}{2}$. A truthful $v_i$ agrees with a correct majority with probability $q_v$ and with an incorrect majority with probability $1-q_v$, giving $P_{\text{match}} > q_v \cdot q_v + (1-q_v)(1-q_v) = q_v^2 + (1-q_v)^2 > \frac{1}{2}$ for all $q_v \neq \frac{1}{2}$.
-
-\textbf{(ii) $P_{\text{match}}$ is strictly increasing in $q_v$ and in $n$.}
-For fixed $n$, increasing $q_v$ simultaneously raises $\alpha$ (more likely to be in the correct majority) and reduces the weight on the smaller term $\beta$, strictly increasing $P_{\text{match}}$.
-For fixed $q_v > \frac{1}{2}$, increasing $n$ strengthens the majority (by the law of large numbers), making the majority more likely to be correct and thus increasing the probability that any individual truthful vote matches it.
-
-\textbf{(iii) $P_{\text{match}} \to 1$ as $n \to \infty$.}
-Under truthful play with $q_v > \frac{1}{2}$, the fraction of correct votes converges to $q_v > \frac{1}{2}$ almost surely by the strong law of large numbers. Thus the majority is correct with probability $\to 1$, and a truthful voter matches this correct majority with probability $\to q_v \cdot 1 + (1-q_v) \cdot 0 = q_v$. Since $q_v > \frac{1}{2}$ and the majority itself is correct with probability $\to 1$, we get $P_{\text{match}} \to 1$.
-\end{remark}
+\begin{proposition}[Properties of $P_{\text{match}}$]
+\label{prop:pmatch_properties}
+The matching probability satisfies:
+\textbf{(i)}~$P_{\text{match}}(n, q_v) > \frac{1}{2}$ for all $q_v > \frac{1}{2}$ (by the Condorcet jury theorem);
+\textbf{(ii)}~$P_{\text{match}}$ is strictly increasing in both $q_v$ and $n$;
+\textbf{(iii)}~$P_{\text{match}} \to 1$ as $n \to \infty$.
+\end{proposition}
+\noindent\textit{Proof.} See Appendix~\ref{app:pmatch_properties}. The key insight for (i) is that $P_{\text{match}} \geq q_v^2 + (1-q_v)^2 > \frac{1}{2}$. \qed
 
 \vspace{1mm}
 \noindent\textbf{Expected Payoffs.}
@@ -154,16 +116,7 @@ Under \textbf{truthful effort} ($e = 1$): the validator matches the majority wit
 \mathbb{E}[U \mid e = 1] = P_{\text{match}} \cdot R_{\min} - (1 - P_{\text{match}}) \cdot \sigma - c_u.
 \end{equation}
 
-Under \textbf{free-riding} ($e = 0$): the validator ignores the task and submits a random vote $r_i \in \{0,1\}$ with equal probability $\frac{1}{2}$ each, independent of the ground truth $\theta$.
-We claim that a random vote matches the majority with probability exactly $\frac{1}{2}$.
-
-To see why, condition on the ground truth $\theta$ and the majority outcome $M$ of the other $n-1$ truthful validators.
-Since $v_i$'s random vote is independent of both $\theta$ and the other validators' reports, and since $r_i$ takes each value with probability $\frac{1}{2}$, the probability that $r_i$ agrees with $M$ is:
-\[
-\Pr(r_i = M) = \Pr(r_i = 1)\Pr(M = 1) + \Pr(r_i = 0)\Pr(M = 0) = \tfrac{1}{2}\Pr(M=1) + \tfrac{1}{2}\Pr(M=0) = \tfrac{1}{2}.
-\]
-Note that this holds regardless of the distribution of $M$, because the random vote is uniformly distributed and independent of everything else.
-Therefore:
+Under \textbf{free-riding} ($e = 0$): the validator submits a random vote, which matches any majority with probability exactly $\frac{1}{2}$ (since a uniform random vote is independent of the majority outcome; see Appendix~\ref{app:freeriding}). Therefore:
 \begin{equation}
 \label{eq:u_shirk}
 \mathbb{E}[U \mid e = 0] = \frac{1}{2} \cdot R_{\min} - \frac{1}{2} \cdot \sigma = \frac{1}{2}(R_{\min} - \sigma).
@@ -178,25 +131,8 @@ Under Assumptions~\ref{assum:validators}--\ref{assum:costs}, truthful effort is 
 \end{equation}
 \end{theorem}
 
-\begin{proof}
-Truthful effort strictly dominates free-riding iff $\mathbb{E}[U \mid e=1] > \mathbb{E}[U \mid e=0]$. Substituting the expected payoffs from Equations~\eqref{eq:u_truthful} and~\eqref{eq:u_shirk}, we require:
-\begin{align}
-&P_{\text{match}} \cdot R_{\min} - (1 - P_{\text{match}}) \cdot \sigma - c_u > \frac{1}{2}(R_{\min} - \sigma). \nonumber
-\end{align}
-We expand the left-hand side by distributing $(1 - P_{\text{match}})$ and collecting terms involving $P_{\text{match}}$:
-\begin{align}
-\Longleftrightarrow\quad & P_{\text{match}} \cdot R_{\min} + P_{\text{match}} \cdot \sigma - \sigma - c_u > \frac{1}{2} R_{\min} - \frac{1}{2}\sigma. \nonumber
-\end{align}
-Rearranging to isolate $c_u$ on the right and grouping the terms involving $P_{\text{match}}$ and the constant $\frac{1}{2}$:
-\begin{align}
-\Longleftrightarrow\quad & P_{\text{match}} (R_{\min} + \sigma) - \frac{1}{2}(R_{\min} + \sigma) > c_u. \nonumber
-\end{align}
-Factoring out $(R_{\min} + \sigma)$---the total economic exposure per validation---yields:
-\begin{align}
-\Longleftrightarrow\quad & (R_{\min} + \sigma)\Big(P_{\text{match}} - \frac{1}{2}\Big) > c_u. \label{eq:ic_derivation}
-\end{align}
-The key insight of this derivation is that the IC condition reduces to a product of two terms: the \textit{total economic stake} $(R_{\min} + \sigma)$ and the \textit{informational edge} $(P_{\text{match}} - \frac{1}{2})$ that truthful effort provides over random guessing.
-Since $R_{\min} = \tau_{\text{val}} + \sigma$ (the per-capita reward under unanimous agreement), we obtain $R_{\min} + \sigma = \tau_{\text{val}} + 2\sigma$, yielding the stated condition~\eqref{eq:ic}.
+\begin{proof}[Proof sketch (full proof in Appendix~\ref{app:proof_ic})]
+Requiring $\mathbb{E}[U \mid e=1] > \mathbb{E}[U \mid e=0]$ and substituting Equations~\eqref{eq:u_truthful}--\eqref{eq:u_shirk}, the algebra reduces to $(R_{\min} + \sigma)(P_{\text{match}} - \frac{1}{2}) > c_u$. The IC condition decomposes into a product of the \textit{total economic stake} $(R_{\min} + \sigma) = \tau_{\text{val}} + 2\sigma$ and the \textit{informational edge} $(P_{\text{match}} - \frac{1}{2})$ that truthful effort provides over random guessing.
 \end{proof}
 
 \begin{interpretbox}{Takeaway: Economic Interpretation of Validator IC}
@@ -257,17 +193,8 @@ V_p(q_p) \cdot (\tau_s - c_s) \geq \tau_p + mn\tau_{\text{val}} \quad \Longleftr
 \end{equation}
 \end{theorem}
 
-\begin{proof}
-The producer promotes iff $\Pi_p(q_p) \geq 0$. By Equation~\eqref{eq:producer_payoff}, this is equivalent to:
-\[
-V_p(q_p) \cdot (\tau_s - c_s) \geq \tau_p + mn\tau_{\text{val}}.
-\]
-The left-hand side is the product of $V_p(q_p)$---which is strictly increasing and continuous in $q_p$ by Assumption~\ref{assum:mlrp}---and the positive constant $(\tau_s - c_s)$. Hence the left-hand side is itself strictly increasing and continuous in $q_p$.
-
-At the boundary $q_p \to \frac{1}{2}$ (minimal quality), $V_p(\frac{1}{2})$ is small enough that $V_p(\frac{1}{2}) \cdot (\tau_s - c_s) < \tau_p + mn\tau_{\text{val}}$ by the cost ordering in Assumption~\ref{assum:costs}, so $\Pi_p < 0$.
-At $q_p \to 1$ (perfect quality), $V_p(q_p) \to 1$, so $\Pi_p = (\tau_s - c_s) - (\tau_p + mn\tau_{\text{val}}) > 0$ by the cost ordering assumption $mn\tau_{\text{val}} \ll \tau_p \ll \tau_s$.
-
-By the intermediate value theorem, there exists a unique $\bar{q}_p$ satisfying $V_p(\bar{q}_p) \cdot (\tau_s - c_s) = \tau_p + mn\tau_{\text{val}}$, and by strict monotonicity, $\Pi_p(q_p) \geq 0 \iff q_p \geq \bar{q}_p$.
+\begin{proof}[Proof sketch (full proof in Appendix~\ref{app:proof_producer_ir})]
+Since $V_p(q_p) \cdot (\tau_s - c_s)$ is strictly increasing and continuous in $q_p$ (by Assumption~\ref{assum:mlrp}), is negative at $q_p = \frac{1}{2}$ and positive at $q_p = 1$ (by the cost ordering $mn\tau_{\text{val}} \ll \tau_p \ll \tau_s$), the intermediate value theorem yields a unique crossing point $\bar{q}_p$.
 \end{proof}
 
 \begin{interpretbox}{Takeaway: Supply-Side Self-Screening}
@@ -294,14 +221,7 @@ This completes the causal chain of the mechanism. The consumer's problem differs
 \noindent\textbf{Setup.}
 The consumer pays subscription fee $\tau_s$ and validation cost $mn\tau_{\text{val}}$ (for the subscription-stage validation). Majority voting produces a consensus signal $Z \in \{0, 1\}$.
 
-We formalize the consumer's utility from subscription as follows. Let $q_p$ denote the true quality of the producer the consumer is considering. If the consumer subscribes, it delegates future tasks to the producer, receiving correct outputs with probability $q_p$ per task.
-We define the consumer's \textit{per-subscription value function} as:
-\begin{equation}
-\label{eq:vc_def}
-V_c(q_p) \coloneqq \sum_{t=1}^{T} \delta^{t-1} \cdot \bigl[ q_p \cdot b - (1 - q_p) \cdot \ell \bigr] = \frac{1 - \delta^T}{1 - \delta} \bigl[ q_p \cdot b - (1 - q_p) \cdot \ell \bigr],
-\end{equation}
-where $T$ is the subscription horizon, $\delta \in (0,1)$ is a discount factor, $b > 0$ is the benefit per correct output, and $\ell \geq 0$ is the loss per incorrect output. For analytical tractability, we note that $V_c(q_p)$ is a strictly increasing, continuous, and affine function of $q_p$.
-In what follows, the specific parametric form is not essential; what matters is that $V_c(\cdot)$ is strictly increasing in $q_p$.
+Let $V_c(q_p)$ denote the consumer's \textit{per-subscription value function}---the discounted expected utility from delegating future tasks to a producer of quality $q_p$. The only property required for our analysis is that $V_c(\cdot)$ is \textit{strictly increasing and continuous} in $q_p$ (higher producer quality yields higher consumer utility). A concrete parametric form---$V_c(q_p) = \frac{1-\delta^T}{1-\delta}[q_p \cdot b - (1-q_p) \cdot \ell]$ for discount factor $\delta$, horizon $T$, benefit $b > 0$, and loss $\ell \geq 0$---is provided in Appendix~\ref{app:proof_consumer_ir}, but the results hold for any monotone $V_c$.
 
 \vspace{1mm}
 \noindent\textbf{Posterior Utility under Validation.}
@@ -339,31 +259,8 @@ Moreover, this condition is equivalent to an \textit{ex ante quality threshold}:
 The consumer does not observe $q_p$ directly; rather, the posterior formed via the consensus signal $Z$ implicitly enforces this threshold through Bayesian updating.
 \end{theorem}
 
-\begin{proof}
-The consumer subscribes iff $\Pi_c \geq 0$, i.e., the posterior expected utility exceeds the total cost $C_c \coloneqq \tau_s + mn\tau_{\text{val}}$.
-The proof proceeds in three steps: we show that the consumer's expected payoff is (1)~monotonically increasing in the \textit{true} producer quality $q_p$, (2)~negative at the low end and positive at the high end, and therefore (3)~crosses zero exactly once, defining a unique threshold.
-
-\textit{Step 1: Monotonicity.}
-We show that higher producer quality yields higher posterior expected utility for the consumer.
-Fix two quality levels $q_p' > q_p$.
-By Assumption~\ref{assum:mlrp}, $V(q_p') > V(q_p)$, so the pass probability is higher for the better producer.
-The MLRP implies that the posterior distribution $f(\cdot \mid Z = 1)$ under $q_p'$ first-order stochastically dominates that under $q_p$: a pass signal from a higher-quality producer concentrates posterior mass on higher quality levels.
-Since $V_c(\cdot)$ is strictly increasing, the expected utility under stochastic dominance is strictly higher:
-$\mathbb{E}[V_c \mid Z = 1, q_p'] > \mathbb{E}[V_c \mid Z = 1, q_p]$.
-This establishes that the consumer's expected payoff from subscription is strictly increasing in the true quality of the producer being evaluated.
-
-\textit{Step 2: Boundary behavior.}
-When $q_p \to \frac{1}{2}$ (minimal quality), the producer's output is near-random. Even conditional on $Z = 1$, the posterior assigns substantial mass to low-quality regions (since $V(\frac{1}{2}) > 0$, pass signals still occur for near-random producers). The posterior expected utility is bounded above by $V_c(\frac{1}{2}) + \epsilon$ for small $\epsilon$, and $\Pi_c < 0$ since $V_c(\frac{1}{2})$ is small while $C_c$ is substantial.
-
-When $q_p \to 1$ (perfect quality), $V(q_p) \to 1$, the posterior concentrates near $q_p \approx 1$, and $\mathbb{E}[V_c \mid Z = 1] \to V_c(1) \gg C_c$, giving $\Pi_c > 0$.
-
-\textit{Step 3: Existence and uniqueness of the threshold.}
-Combining Steps 1 and 2: the posterior expected utility is a strictly increasing, continuous function of $q_p$ that transitions from negative (at $q_p \to \frac{1}{2}$) to positive (at $q_p \to 1$).
-By the intermediate value theorem, there exists a unique crossing point $\bar{q}_c$ where $\Pi_c = 0$.
-By strict monotonicity, $\Pi_c \geq 0 \iff q_p \geq \bar{q}_c$.
-
-\textit{Step 4: Signal-contingent implementation.}
-The consumer does not observe $q_p$ directly but instead conditions on the consensus signal $Z$. The threshold policy is implemented through Bayesian updating: when the consumer observes $Z = 1$, its posterior $f(q_p \mid Z = 1)$ upweights high-quality producers (by the MLRP), and the condition $\mathbb{E}[V_c(q_p) \mid Z = 1] \geq C_c$ is automatically satisfied for producers whose true quality exceeds $\bar{q}_c$---because validation is informative enough to distinguish quality levels above and below the threshold in expectation.
+\begin{proof}[Proof sketch (full proof in Appendix~\ref{app:proof_consumer_ir})]
+The posterior expected utility $\mathbb{E}[V_c \mid Z = 1]$ is: (1)~strictly increasing in $q_p$ (by MLRP-induced first-order stochastic dominance of the posterior); (2)~negative at $q_p \to \frac{1}{2}$ and positive at $q_p \to 1$ (by the cost ordering). The intermediate value theorem yields a unique threshold $\bar{q}_c$. The consumer implements this threshold via Bayesian updating on $Z$, without directly observing $q_p$.
 \end{proof}
 
 \vspace{1mm}
@@ -414,29 +311,9 @@ then a symmetric BNE exists in which:
 Moreover, no agent of any type has incentive to unilaterally deviate from this strategy profile.
 \end{theorem}
 
-\begin{proof}
-The proof proceeds in two parts: we first show that the parameter region satisfying all three conditions is non-empty, then verify that the strategy profile constitutes a BNE.
-
-\textit{Part 1: Non-emptiness of the feasible parameter region.}
-We must show that there exist parameter values $(\tau_{\text{val}}, \sigma, c_u, n, q_v, \tau_p, \tau_s, m)$ such that V-IC, P-IR, and C-IR hold simultaneously.
-
-For V-IC, fix any $q_v > \frac{1}{2}$ and $n \geq 3$. By Remark~\ref{rem:pmatch}(i), $P_{\text{match}}(n, q_v) > \frac{1}{2}$, so $P_{\text{match}} - \frac{1}{2} > 0$. For any effort cost $c_u > 0$, we can choose $\tau_{\text{val}}$ and $\sigma$ large enough that $(\tau_{\text{val}} + 2\sigma)(P_{\text{match}} - \frac{1}{2}) > c_u$.
-As a concrete example: with $n = 5$, $q_v = 0.8$, direct computation yields $P_{\text{match}}(5, 0.8) \approx 0.942$, so the left-hand side of \eqref{eq:ic} becomes $(\tau_{\text{val}} + 2\sigma) \times 0.442$. Setting $\tau_{\text{val}} = \sigma = 1$ gives $3 \times 0.442 = 1.326$, which exceeds any effort cost $c_u < 1$.
-
-Given that V-IC holds (making $Z$ informative), the thresholds $\bar{q}_p$ and $\bar{q}_c$ are well-defined by Theorems~\ref{IR for Producers} and~\ref{IR-based Policy for Consumers}. By the comparative statics of both theorems, $\bar{q}_p$ and $\bar{q}_c$ can be made arbitrarily close to $\frac{1}{2}$ by choosing a sufficiently large subscription fee $\tau_s$ (which lowers $\bar{q}_p$) and sufficiently informative validation (large $n$ or $m$, which lowers $\bar{q}_c$). Since the quality distribution $F$ has support on $(\frac{1}{2}, 1]$, there exist agents with $q_p \geq \bar{q}_p$ and $q_c \geq \bar{q}_c$, satisfying P-IR and C-IR.
-
-\textit{Part 2: Verification of best responses.}
-We verify that under the proposed strategy profile, each type's strategy is a best response to the others'.
-
-\textit{Validators}: Given that all other $n-1$ validators exert truthful effort, the IC condition (Theorem~\ref{Strict IC for Validators}) ensures that truthful effort yields strictly higher expected utility than free-riding. This holds for each validator independently, since the IC condition depends only on the \textit{other} validators' strategies and the mechanism parameters.
-
-\textit{Producers}: Given that validators play truthfully, the consensus signal $Z$ is informative (i.e., $V(q_p)$ is strictly increasing by Assumption~\ref{assum:mlrp} and Remark~\ref{rem:mlrp_derived}). Given this informative signal and the consumer's threshold subscription policy, the producer's expected payoff from promotion is $\Pi_p(q_p)$ as in Equation~\eqref{eq:producer_payoff}. By Theorem~\ref{IR for Producers}, promoting iff $q_p \geq \bar{q}_p$ is the unique payoff-maximizing strategy.
-
-\textit{Consumers}: Given that validators play truthfully (making $Z$ informative) and producers self-screen (so that only agents with $q_p \geq \bar{q}_p$ promote), the consumer faces a pre-screened pool of producers. The Bayesian posterior (Equation~\ref{eq:posterior}) correctly incorporates both the validation signal and the producer's self-screening. By Theorem~\ref{IR-based Policy for Consumers}, subscribing when $\mathbb{E}[V_c(q_p) \mid Z = 1] \geq \tau_s + mn\tau_{\text{val}}$ maximizes the consumer's expected payoff.
-
-\textit{Symmetry}: All agents of the same type face identical payoff structures, prior distributions, and mechanism parameters. Therefore, the optimal strategy mapping is identical within each type, and the profile is symmetric.
-
-Since each type's strategy is a best response to the others' strategies, and all agents of the same type employ the same strategy, the profile constitutes a symmetric BNE. The ``moreover'' clause follows directly: unilateral deviation by any single agent (to a different effort level, promotion threshold, or subscription threshold) strictly reduces that agent's expected payoff, by the strict inequalities established in Theorems~\ref{Strict IC for Validators}--\ref{IR-based Policy for Consumers}.
+\begin{proof}[Proof sketch (full proof in Appendix~\ref{app:proof_bne})]
+\textit{Non-emptiness:} By Proposition~\ref{prop:pmatch_properties}(i), $P_{\text{match}} > \frac{1}{2}$, so V-IC is satisfiable for appropriate $(\tau_{\text{val}}, \sigma)$. Concretely, $n = 5$, $q_v = 0.8$ gives $P_{\text{match}} \approx 0.942$; setting $\tau_{\text{val}} = \sigma = 1$ yields IC margin $1.326 > c_u$ for any $c_u < 1$. Given V-IC, the IR thresholds $\bar{q}_p, \bar{q}_c$ are well-defined and can be made close to $\frac{1}{2}$ via large $\tau_s$ and informative validation.
+\textit{Best responses:} Each role's optimal strategy (Theorems~\ref{Strict IC for Validators}--\ref{IR-based Policy for Consumers}) is derived taking the other roles' strategies as given. Under the proposed profile, each role's assumption about others is satisfied, so all strategies are mutually consistent. Symmetry follows from identical payoff structures within each type.
 \end{proof}
 
 \vspace{1mm}
@@ -489,12 +366,8 @@ Let $h = n - k$ denote the number of honest validators, with $k < \lfloor n/2 \r
 then truthful effort remains a strict best response for every honest validator. Moreover, $P_{\textup{match}}^{\textup{Sybil}}(n, k, q_v) > \frac{1}{2}$ holds whenever $h > n/2$ and $q_v > \frac{1}{2}$.
 \end{theorem}
 
-\begin{proof}
-The proof structure mirrors Theorem~\ref{Strict IC for Validators}; only the matching probability changes. The honest validator $v_i$'s payoff structure remains identical: it stakes $\sigma$, earns $R_{\min}$ if it matches the majority, and forfeits $\sigma$ otherwise. The effort cost $c_u$ and the shirking payoff $\frac{1}{2}(R_{\min} - \sigma)$ are unchanged (a random vote still matches any majority with probability $\frac{1}{2}$, regardless of the adversary's presence, because the random vote is independent of all other votes).
-
-It remains to show $P_{\text{match}}^{\text{Sybil}} > \frac{1}{2}$. Condition on the ground truth $\theta$. When $\theta$ agrees with the adversary's vote direction (e.g., both say ``pass''), the adversary's $k$ votes reinforce truth, and the honest majority is even more likely to prevail---so $P_{\text{match}}^{\text{Sybil}} \geq P_{\text{match}}$ in this case. When $\theta$ opposes the adversary (e.g., truth is ``fail'' but adversary votes ``pass''), the honest validators must overcome the $k$ adversarial votes. Since $h > n/2$, the honest bloc has more seats than needed. By the Condorcet jury theorem applied to the $h$ honest validators (each with accuracy $q_v > \frac{1}{2}$), their majority is correct with probability exceeding $\frac{1}{2}$. A truthful $v_i$ agrees with this correct honest majority with probability at least $q_v^2 + (1-q_v)^2 > \frac{1}{2}$.
-
-Averaging over both cases (weighted by $\Pr(\theta)$), we obtain $P_{\text{match}}^{\text{Sybil}} > \frac{1}{2}$. Substituting into the IC derivation (Equations~\eqref{eq:u_truthful}--\eqref{eq:ic_derivation}) yields condition~\eqref{eq:ic_sybil}.
+\begin{proof}[Proof sketch (full proof in Appendix~\ref{app:proof_sybil})]
+The payoff structure and shirking probability ($\frac{1}{2}$) are unchanged from Theorem~\ref{Strict IC for Validators}. The key step is showing $P_{\text{match}}^{\text{Sybil}} > \frac{1}{2}$: when $\theta$ agrees with the adversary, the adversary reinforces truth ($P_{\text{match}}^{\text{Sybil}} \geq P_{\text{match}}$); when $\theta$ opposes, the honest majority ($h > n/2$) overrides via Condorcet. Averaging over both cases preserves $P_{\text{match}}^{\text{Sybil}} > \frac{1}{2}$.
 \end{proof}
 
 \noindent\textbf{Interpretation.}
@@ -517,7 +390,7 @@ P_{\text{match}}^{\rho}(n, q_v, \rho) = \rho \cdot \bigl[q_v^2 + (1 - q_v)^2\big
 \end{equation}
 The first term corresponds to the correlated regime (all validators receive the same signal, so $v_i$ matches the unanimous majority iff its own signal matches truth, which occurs with probability $q_v^2 + (1-q_v)^2$). The second term is the standard independent case.
 
-Since $q_v^2 + (1 - q_v)^2 > \frac{1}{2}$ for all $q_v \neq \frac{1}{2}$ and $P_{\text{match}}(n, q_v) > \frac{1}{2}$ by Remark~\ref{rem:pmatch}(i), the convex combination satisfies $P_{\text{match}}^{\rho} > \frac{1}{2}$ for all $\rho \in [0, 1)$ and $q_v > \frac{1}{2}$.
+Since $q_v^2 + (1 - q_v)^2 > \frac{1}{2}$ for all $q_v \neq \frac{1}{2}$ and $P_{\text{match}}(n, q_v) > \frac{1}{2}$ by Proposition~\ref{prop:pmatch_properties}(i), the convex combination satisfies $P_{\text{match}}^{\rho} > \frac{1}{2}$ for all $\rho \in [0, 1)$ and $q_v > \frac{1}{2}$.
 
 \begin{theorem}[IC under Bounded Correlation]
 \label{thm:corr_ic}
