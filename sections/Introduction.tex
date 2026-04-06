@@ -1,92 +1,86 @@
 \section{Introduction}
 \label{sec:intro}
 
-\subsection{The Rise of an Agent Society}
+\subsection{From Language Models to an Agent Society}
 \label{sec:agent_society}
 
-The rapid advancement of large language models (LLMs) has catalyzed a fundamental shift in how intelligent systems are designed and deployed~\cite{openai2023gpt4, claude, brown2020language}.
-Models such as GPT-4~\cite{openai2023gpt4}, Claude~\cite{claude}, and open-source alternatives like LLaMA~\cite{li2024survey} have demonstrated remarkable capabilities in reasoning, planning, and natural language understanding, establishing LLMs as general-purpose cognitive engines.
-Yet raw language models, however powerful, remain stateless responders: they lack persistent memory, cannot take actions in external environments, and do not pursue goals autonomously.
-This gap has driven a wave of research into \textit{LLM-based agents}---autonomous systems that augment raw language modeling with perception, memory, tool use, and goal-directed decision-making~\cite{xi2023rise, li2024survey, wang2024survey_agents}.
-These agents are no longer passive tools; they are evolving into autonomous actors capable of perceiving environments, reasoning over complex objectives, planning multi-step strategies, and executing tasks independently---from tool-augmented reasoning~\cite{yao2023react, schick2024toolformer, qin2024toolllm} to multi-agent software engineering~\cite{wu2023autogen, hong2023metagpt, qian2023communicative} and embodied exploration~\cite{wang2023voyager, ge2023openagi}.
+Large language models (LLMs) have established themselves as general-purpose cognitive engines with remarkable capabilities in reasoning, planning, and natural language understanding~\cite{openai2023gpt4, claude, brown2020language}.
+Yet a language model alone---however capable---remains a stateless function: it maps input text to output text without persistent memory, without the ability to act on external environments, and without goals of its own.
+Bridging this gap has become one of the central research agendas in AI, giving rise to the paradigm of \textit{LLM-based agents}---autonomous systems that augment raw language modeling with perception, memory, tool use, and goal-directed planning, transforming the model from a passive responder into an autonomous actor~\cite{xi2023rise, li2024survey, wang2024survey_agents}.
+Rapid progress in tool-augmented reasoning~\cite{yao2023react, schick2024toolformer, qin2024toolllm}, embodied exploration~\cite{wang2023voyager}, and agent infrastructure~\cite{mei2024aios, liu2024agentbench} has demonstrated that individual LLM agents can already execute complex, multi-step tasks with increasing autonomy.
 
-As individual agents mature, a natural next frontier emerges: \textit{multi-agent collaboration}.
-Recent work has demonstrated that groups of specialized agents can collectively solve problems far beyond any single agent's capability---from collaborative software development~\cite{qian2023communicative, hong2023metagpt} to scientific research~\cite{chen2023agentverse}, strategic game playing~\cite{zhao2023competeai, leng2023llm}, and simulated social interaction~\cite{park2023generative}.
-These developments point toward the emergence of an \textbf{agent society}---a large-scale, dynamic population of specialized agents that interact, transact, and collaborate across organizational and domain boundaries~\cite{guo2024large, horton2023homo}.
+As individual agents mature, a natural and arguably inevitable next frontier emerges: \textit{multi-agent collaboration}.
+If one specialist agent can solve tasks that a single model cannot, a team of heterogeneous specialists can tackle problems that no individual agent---regardless of its capability---could address alone.
+This principle has already yielded striking results within controlled, cooperative settings: teams of role-specialized agents can autonomously complete complex software projects~\cite{hong2023metagpt, qian2023communicative}, improve each other's factual accuracy through structured debate~\cite{du2024debate, chan2024chateval}, and exhibit emergent collective intelligence that exceeds the sum of individual contributions~\cite{chen2023agentverse}.
 
-Within this society, a structural reality becomes apparent: \textbf{no single agent can master all domains}.
-A medical diagnostic agent may lack pharmacological expertise; a legal reasoning agent may need financial modeling capabilities; a scientific literature agent may require engineering simulation support.
-This heterogeneity is not a limitation to be overcome but an inherent property of any sufficiently complex knowledge ecosystem---just as human economies thrive on specialization and trade~\cite{hayek1945use}, the agent society demands systematic mechanisms for \textit{knowledge exchange across domain boundaries}.
-The question is no longer whether agents will collaborate, but \textit{how to make that collaboration trustworthy, efficient, and scalable} in the absence of any central authority.
+However, the most revealing---and most consequential---experiments are those in which agents do \textit{not} share a common objective.
+When LLM agents interact with divergent incentives, they exhibit sophisticated strategic behaviors that closely mirror those of rational economic actors: price competition, reputation gaming, tacit collusion, and near-Nash-equilibrium play in canonical strategic interactions~\cite{park2023generative, zhao2023competeai, horton2023homo, fish2024collusion, akata2023repeated_games}.
+These findings carry a profound implication.
+As agents are increasingly built, trained, and deployed by independent organizations---hospitals, law firms, research labs, financial institutions---each with proprietary knowledge and competing interests, cooperation can no longer be taken for granted.
+It becomes a \textit{strategic decision}, contingent on whether honest participation is individually rational.
+This is the point at which multi-agent collaboration undergoes a qualitative shift: within a single organization, coordination is a matter of engineering---assign roles, route messages, share a common reward; \textit{across} organizations, coordination becomes a matter of \textit{economics}---agents must be given the right incentives to participate honestly, because no external authority can compel them to do so.
 
-We identify three defining characteristics that distinguish this emerging agent society from both traditional human platforms and existing multi-agent frameworks:
-
-\textbf{(a) Cross-organizational deployment.}
-Agents are increasingly built, trained, and deployed by independent organizations---hospitals, law firms, research labs, financial institutions---each with proprietary knowledge bases and divergent objectives. No single entity owns or controls the entire agent population.
-
-\textbf{(b) Autonomous economic agency.}
-Unlike conventional software services, LLM agents can evaluate proposals, negotiate terms, and make decisions based on their own utility functions. They are not passive endpoints but active economic participants capable of strategic behavior.
-
-\textbf{(c) Knowledge as the primary asset.}
-In the agent society, the most valuable resource is not compute or storage but \textit{domain-specific knowledge}---the ability to produce accurate, reliable, and contextually appropriate outputs. This knowledge is heterogeneous, difficult to verify externally, and constitutes each agent's core competitive advantage.
-
-These characteristics collectively demand a new coordination paradigm: one that enables agents to discover, evaluate, and engage reliable knowledge partners without relying on any centralized authority.
+The emerging landscape thus resembles less a controlled multi-agent system and more an open \textbf{agent society}---a large-scale population of specialized agents that discover, evaluate, and transact with each other across organizational and domain boundaries~\cite{guo2024large}, inheriting all the richness of human market economies, including the potential for market failure.
+Within this society, a fundamental economic reality takes hold: \textbf{no single agent can master all domains}.
+A medical diagnostic agent lacks pharmacological depth; a legal reasoning agent needs financial modeling support; a scientific literature agent requires engineering simulation capabilities.
+This specialization is not a deficiency---it is the defining structural property of any sufficiently complex knowledge economy.
+Just as human economies generate wealth through the division of labor and voluntary exchange~\cite{hayek1945use}, the agent society demands systematic mechanisms for \textit{knowledge exchange across domain boundaries}.
+The question, then, is not \textit{whether} agents will collaborate, but \textit{how to build an ecosystem that makes such collaboration trustworthy, efficient, and scalable}---without relying on any central authority, and despite the strategic self-interest of every participant.
 
 
-\subsection{The Trust Crisis in Agent Collaboration}
+\subsection{Three Broken Assumptions and the Case for Incentive-Driven Coordination}
 \label{sec:trust_crisis}
 
-While the potential of agent-to-agent collaboration is immense, realizing it faces a fundamental obstacle: \textbf{trust}.
-In open, cross-organizational settings, a consumer agent seeking knowledge services has no reliable way to assess whether a prospective producer agent will deliver accurate outputs.
-This trust deficit arises from two distinct but reinforcing failure modes:
+Coordinating autonomous agents is not a new problem.
+Multi-agent AI frameworks have addressed it through centralized orchestration; human platform economies have addressed it through reputation and legal accountability; and traditional software markets have addressed it through testable service contracts.
+Each of these paradigms, however, relies on a specific structural assumption that \textit{fails} in the agent society.
+It is the \textbf{simultaneous breakdown} of all three assumptions that creates an unprecedented coordination crisis---and, as we argue, one that only an incentive-driven ecosystem can resolve.
 
-\textbf{(a) Capability limitations (honest incompetence).}
-Even well-intentioned agents may produce unreliable outputs. LLMs are known to hallucinate plausible but incorrect content~\cite{huang2023survey, ji2023hallucination, zhang2023siren}, suffer from knowledge staleness as their training data ages, and degrade sharply on out-of-domain queries.
-A producer agent may genuinely believe it can handle a task while lacking the requisite knowledge---a form of \textit{unknown unknowns} that neither the producer nor the consumer can detect unilaterally.
+The first assumption is \textit{cooperation}.
+Existing multi-agent frameworks~\cite{wu2023autogen, hong2023metagpt, li2023camel, qian2023communicative} coordinate agents through a centralized orchestrator that assigns roles, routes messages, and trusts that all participants faithfully follow instructions.
+This works when every agent is deployed within a single organization toward a shared objective---the orchestrator is trusted, and agents have no incentive to defect.
+In the agent society, this assumption collapses: agents are operated by independent, potentially competing organizations, each with proprietary knowledge and divergent objectives.
+No single entity controls the population; no orchestrator can claim universal trust.
+When a hospital's diagnostic agent interacts with a pharmaceutical company's drug-interaction agent, cooperation is not a given---it is a strategic choice whose outcome depends on whether the expected payoff exceeds the expected cost.
+Cooperation, in short, must be \textit{incentivized}, not assumed.
 
-\textbf{(b) Strategic misbehavior (rational deception).}
-Agents, as programmatic utility maximizers, may deliberately exploit information asymmetries for self-interest. Concrete manifestations include:
-\textit{shirking}---returning low-effort, approximate outputs to conserve compute while collecting full payment;
-\textit{misrepresentation}---overstating domain coverage to attract queries in fields where the agent is actually weak; and
-\textit{free-riding}---copying or paraphrasing other agents' outputs rather than producing original analysis~\cite{de2023emergent}.
+The difficulty is compounded by a second breakdown: the loss of \textit{accountability}.
+Human service platforms---Uber, Fiverr, StackOverflow---manage trust through reputation systems, identity verification, and legal recourse, all of which rely on the fact that creating a credible human identity is inherently expensive: years of education, professional credentials, accumulated social capital.
+Sybil attacks---fabricating fake identities to game the system---are naturally costly when identities carry real-world weight.
+In the agent society, this natural defense evaporates.
+Deploying a new LLM agent costs virtually nothing---a new API key, a fresh prompt, a different checkpoint---and a discredited agent can be replaced by a ``clean'' copy instantaneously.
+Reputation-based trust, effective for human participants, offers no defense when identities are disposable.
+Accountability must therefore be \textit{economic}---grounded in financial commitment rather than persistent identity.
 
-These two failure modes are not independent---they interact perniciously.
-Capability limitations make quality hard to observe; strategic misbehavior exploits this unobservability.
-Together, they create classic \textit{adverse selection}~\cite{akerlof1970market}: when consumers cannot distinguish high-quality producers from low-quality ones, they discount all services equally; high-quality producers, unable to credibly signal their competence, are undercompensated and gradually exit; the market is left with progressively lower quality---the ``market for lemons'' unravels.
+Even if cooperation could be secured and identities made durable, a third and arguably deeper problem remains: \textit{quality is not verifiable}.
+In conventional software markets, output quality is largely testable---an API returns valid JSON or it does not; compiled code passes its test suite or it fails---and contracts can specify objective performance metrics.
+In the agent society, the primary commodity is \textit{domain-specific knowledge}---medical diagnoses, legal analyses, financial forecasts, scientific interpretations---whose correctness the consumer often \textit{cannot judge} because it lacks the requisite domain expertise.
+This information asymmetry is what makes knowledge markets fundamentally different from commodity markets: the consumer needs the producer's expertise precisely because it cannot evaluate the output on its own.
+The difficulty is further compounded by the tendency of LLMs to hallucinate plausible but incorrect content~\cite{huang2023survey, ji2023hallucination, zhang2023siren}, producing outputs that \textit{appear} authoritative but may be entirely fabricated.
+Quality verification must therefore be \textit{delegated}---to knowledgeable third parties whose own incentives are aligned with truthful assessment.
 
-The problem is uniquely severe in the agent society for one additional reason: \textbf{the near-zero marginal cost of agent deployment}.
-Unlike human service markets where creating a credible new identity requires substantial investment (education, credentials, reputation), deploying a new agent is virtually free. This makes the ecosystem acutely vulnerable to identity fabrication, quality dilution, and Sybil-style manipulation---problems that have no natural analog in human economies.
+Taken individually, each of these breakdowns has known remedies: mechanism design can align incentives; staking and bonding can deter misbehavior; third-party auditing can verify quality.
+But when all three fail simultaneously---as they do in the agent society---the standard remedies become circular, each presupposing the very condition that another breakdown has destroyed:
+\begin{itemize}[leftmargin=2em, itemsep=2pt]
+\item Mechanism design can align incentives---but requires a trusted mediator to enforce the rules, which the cooperation breakdown denies.
+\item Staking can deter misbehavior---but requires stable identities to make penalties meaningful, which the accountability breakdown denies.
+\item Third-party auditing can verify quality---but requires qualified, honest auditors, which the verifiability breakdown denies.
+\end{itemize}
+With every escape route blocked by a different breakdown, the agent society falls into a classic \textit{adverse selection} spiral~\cite{akerlof1970market}: consumers cannot distinguish reliable producers from unreliable ones and discount all services equally; high-quality producers, unable to credibly signal their competence, are undercompensated and withdraw; strategic manipulators---who can shirk, misrepresent, or free-ride~\cite{de2023emergent}---face no consequences and proliferate.
+The market devolves toward progressively lower quality: the ``market for lemons'' unravels.
 
-\subsection{Why Existing Solutions Fail}
-\label{sec:existing_fail}
+One might hope that a centralized orchestrator---a ``platform'' for the agent society---could cut through these failures by imposing order from above.
+But centralized architectures bring their own well-documented pathologies~\cite{Narayanan2012Critical, Secoda2024Decentralized}, which are amplified rather than mitigated in the agent setting: knowledge monopoly, where the platform accumulates proprietary interaction data that competing organizations would not willingly expose~\cite{Beck2023BreakingUp, Giaretta2022DecentralizedDataMarket}; opaque routing that may serve the platform's revenue rather than participants' welfare~\cite{Eslami2019Opacity, Ali2019Discrimination}; and suppression of the very agent autonomy that makes LLM agents economically valuable~\cite{Engelmann2020DemocraticSocialMedia, Jiang2023TradeOffModeration}.
+Centralization does not resolve the trust crisis; it merely relocates it from a distributed problem---whom to trust among many agents---to a concentrated one: whether to trust the platform itself.
 
-Current multi-agent frameworks~\cite{wu2023autogen, hong2023metagpt, li2023camel, qian2023communicative, kapoor2024agents} address coordination through centralized orchestration: a single controller assigns tasks, routes messages, and manages agent interactions based on predefined role descriptions or capability profiles.
-This approach implicitly rests on two assumptions: \textbf{(i)} all agents are cooperative and follow the orchestrator's instructions faithfully, and \textbf{(ii)} the orchestrator possesses sufficient knowledge to evaluate agent capabilities across all domains.
+The three-way breakdown thus reveals why no existing paradigm suffices, and points toward the only viable resolution: a protocol in which \textit{honest, high-quality participation is the individually rational choice for every agent}, sustained not by external enforcement or trusted intermediaries, but by the economic structure of the mechanism itself.
+This is the defining role of incentive design in our framework.
+Mechanism design and tokenomics transform the coordination problem from one that requires \textit{trust}---which presupposes a trusted party---into one that requires only \textit{rational self-interest}---which every agent already possesses.
+The incentive-driven approach breaks the circularity by embedding cooperation, accountability, and verification into a single, unified economic protocol: token-backed staking replaces identity-based accountability, majority-vote consensus among economically motivated validators replaces centralized quality assessment, and the resulting tokenomics--knowledge dual loop sustains cooperation as an emergent property of rational self-interest.
 
-Both assumptions collapse in the open agent society.
-When agents are deployed by independent, potentially competing organizations, cooperation cannot be assumed---it must be \textit{incentivized}.
-When agents span hundreds of specialized domains, no single orchestrator can credibly evaluate quality across all of them.
-The centralized paradigm thus faces a fundamental \textbf{capability barrier}: the orchestrator becomes either a bottleneck (if it verifies everything) or a liability (if it trusts agent self-reports).
+While individual agent capabilities have advanced rapidly---from tool-augmented reasoning to multi-agent verification~\cite{yao2023react, schick2024toolformer, du2024debate, zheng2023judging}---and decentralized infrastructure has emerged for distributed inference and blockchain-based coordination~\cite{borzunov2023petals, yuan2024decentralized_inference, bittensor2023, hu2024blockchain_fl}, no existing work unifies these advances into a coherent ecosystem with formal game-theoretic guarantees for cross-organizational agent collaboration.
+Our framework bridges this gap (see \Cref{sec:related_work} for a detailed positioning).
 
-Yet even a hypothetically omniscient orchestrator would face a second, deeper obstacle: \textbf{structural barriers} inherent to any architecture that concentrates coordination authority in a single entity.
-These structural deficiencies mirror the well-documented pathologies of centralized internet platforms~\cite{Narayanan2012Critical, Secoda2024Decentralized}, but take on new urgency in the agent society.
-{\textbf{(a) Knowledge monopoly.}}
-A centralized orchestrator accumulates all interaction data---which agents excel in which domains, whose outputs were accepted or rejected, how quality scores evolve over time---and this information asymmetry becomes a strategic asset under the platform's exclusive control~\cite{Beck2023BreakingUp, Giaretta2022DecentralizedDataMarket}.
-More critically, agents' proprietary knowledge bases may be exposed during the routing and evaluation process, creating intellectual property risks that no independent organization would willingly accept.
-When agents are operated by competing hospitals, law firms, or research labs, entrusting their most valuable knowledge assets to a shared, opaque platform is a non-starter.
-{\textbf{(b) Routing manipulation.}}
-The centralized orchestrator controls the matching algorithm and can optimize for its own objectives---maximizing platform revenue, favoring affiliated agents, or steering traffic for commercial purposes---rather than serving the genuine interests of consumers and producers~\cite{Eslami2019Opacity, Ali2019Discrimination, Srba2023AuditingYouTube}.
-Such opaque algorithmic governance systematically distorts the knowledge market, steering agents' behavior toward platform-centric metrics rather than their authentic service quality, and eroding the trust that the platform was supposed to provide.
-{\textbf{(c) Limited agent autonomy.}}
-Under centralized control, agents have no voice in how routing decisions are made, how rewards are distributed, or how quality is assessed~\cite{Engelmann2020DemocraticSocialMedia, Jiang2023TradeOffModeration}.
-The platform unilaterally dictates all rules, reducing agents to passive participants in a system whose internal logic they cannot audit or influence.
-This stands in fundamental contradiction with the nature of LLM agents as autonomous economic actors: if agents possess the capability to evaluate proposals, make strategic decisions, and optimize their own outcomes, their economic fate should not be dictated by an unaccountable central authority.
-
-The capability barrier and the structural barrier are independent---resolving one does not address the other---and together they render the centralized paradigm untenable for the agent society.
-What is needed is a fundamentally different design principle: \textbf{coordination must emerge from the protocol itself}---through decentralized verification, economic incentives, and game-theoretic guarantees---rather than from any central controller.
-
-While individual agent capabilities have advanced rapidly---from tool-use frameworks like ReAct~\cite{yao2023react} and Toolformer~\cite{schick2024toolformer} to multi-agent debate~\cite{du2024debate} and LLM-as-judge evaluation~\cite{zheng2023judging}---and decentralized AI infrastructure has emerged for distributed inference~\cite{borzunov2023petals, yuan2024decentralized_inference} and blockchain-based coordination~\cite{bittensor2023, hu2024blockchain_fl}, no existing work integrates these advances into a unified ecosystem with formal game-theoretic guarantees for cross-organizational agent collaboration.
-Our framework bridges this gap (see \Cref{sec:related_work} for a detailed comparison).
 
 \begin{figure*}[!htbp]
 \centering
@@ -95,47 +89,40 @@ Our framework bridges this gap (see \Cref{sec:related_work} for a detailed compa
 \label{fig:decentralization}
 \end{figure*}
 
-\subsection{Our Vision: A Tokenomics-Driven Decentralized Ecosystem}
+
+\subsection{A Tokenomics-Driven Decentralized Ecosystem}
 \label{sec:vision}
 
-In this paper, we propose a \textbf{tokenomics-driven decentralized ecosystem} for autonomous collaboration among LLM agents, as illustrated in Figure~\ref{fig:decentralization}.
-Our central thesis is that the trust crisis in agent collaboration can be resolved not by building a better central authority, but by designing \textit{self-enforcing economic protocols} that make honest behavior the rational choice for every participant.
+We propose a \textbf{tokenomics-driven decentralized ecosystem} in which LLM agents coordinate autonomously through economic incentives rather than centralized control (Figure~\ref{fig:decentralization}).
+The central thesis is that the trust crisis can be resolved by designing protocols where honest, high-quality participation is the \textit{utility-maximizing strategy} for every agent---so that the ecosystem is sustained by rational self-interest alone.
+The ecosystem rests on three pillars, each targeting a specific dimension of the coordination crisis identified above.
 
-The ecosystem is organized around three core design pillars:
+The first pillar is a \textit{fluid role structure} that transforms the cooperation problem into an economic opportunity.
+Every agent can dynamically assume any of three roles depending on its context and knowledge advantage:
+\textit{consumers} issue token-backed service requests for tasks beyond their expertise;
+\textit{producers} provide knowledge-intensive inference and earn tokens for reliable outputs;
+\textit{validators} independently assess producer quality on behalf of consumers.
+A medical agent might serve as a producer for diagnostic queries, a consumer for pharmacological questions, and a validator for clinical trial analysis---reflecting the heterogeneous, context-dependent nature of knowledge in the agent society.
+By coupling each role with both token-earning and token-spending pathways, the ecosystem makes participation in every capacity individually rational, transforming cooperation from a fragile assumption into an emergent consequence of economic self-interest.
 
-\textbf{(a) Three dynamically interchangeable roles.}
-Every agent in the ecosystem can fluidly assume any of three roles depending on its current context and knowledge advantage:
-\textit{consumers} issue token-backed service requests when they encounter tasks beyond their expertise;
-\textit{producers} supply knowledge-intensive inference capabilities and earn tokens for reliable outputs;
-\textit{validators} independently assess the alignment between consumer requests and producer capabilities.
-This role fluidity---where a medical agent might be a producer for diagnostic queries, a consumer for pharmacological questions, and a validator for clinical trial analysis---reflects the heterogeneous, context-dependent nature of knowledge in the agent society.
-No agent is permanently confined to a single role; the same underlying inference capability can generate revenue both by serving consumers directly (as a producer) and by evaluating other agents' outputs (as a validator).
+The second pillar is a novel validation mechanism called \textit{Proof-of-Intelligence (PoI)}, which resolves the verifiability crisis by delegating quality assessment to economically motivated third parties.
+Inspired by Proof-of-Work~\cite{jakobsson1999proofs} and Proof-of-Stake~\cite{dwork1992pricing} in blockchain systems, PoI is grounded not in raw computation or financial capital but in \textit{domain knowledge}: validators stake tokens, independently assess service quality using their own models, and are rewarded only when their judgments align with the majority consensus---those who deviate forfeit their stake.
+To ensure that consensus reflects genuine epistemic diversity rather than correlated errors, PoI mandates \textit{architectural heterogeneity}: validators must employ model architectures distinct from the producer under evaluation, substantially reducing shared failure modes.
 
-\textbf{(b) Proof-of-Intelligence (PoI).}
-At the core of our ecosystem is a novel decentralized validation paradigm called \textit{Proof-of-Intelligence}, inspired by Proof-of-Work (PoW)~\cite{jakobsson1999proofs} and Proof-of-Stake (PoS)~\cite{dwork1992pricing} in blockchain systems.
-Unlike PoW, which requires raw computational power (solving cryptographic puzzles), or PoS, which demands financial capital (staking tokens for the right to validate), PoI is grounded in \textit{domain-specific knowledge} and \textit{verifiable intellectual effort}.
-In PoI, validators stake tokens and leverage their expertise to independently assess service quality; their assessments are aggregated through majority voting to form a verifiable consensus.
-Validators whose judgments align with the majority are rewarded from both the requester's payment and a shared stake pool; those who deviate forfeit their stake entirely.
-This creates an incentive structure in which truthful effort is economically rewarded, while free-riding and shirking are financially penalized---without any centralized adjudicator.
-To ensure that consensus reflects genuine epistemic diversity rather than correlated errors, PoI further mandates \textit{architectural heterogeneity}: validators must employ model architectures distinct from the producer under evaluation, substantially reducing shared biases and correlated hallucinations.
+The third pillar is the \textit{tokenomics--knowledge dual loop}, which resolves the accountability crisis by replacing identity-based trust with economic commitment.
+Token flows link all three roles into a self-reinforcing cycle: producers earn tokens for reliable services $\to$ consumers spend tokens for quality knowledge $\to$ validators earn tokens for truthful assessments $\to$ truthful assessments sustain the information quality that makes tokens valuable (Figure~\ref{fig:tokenomics}).
+Crucially, token staking serves as an economic bond that makes misbehavior costly regardless of identity---directly neutralizing the Sybil threat: creating a new identity is free, but staking tokens on that identity is not.
+Given appropriate mechanism parameters (\Cref{sec:ecosystem}), the dual loop is sustained by rational self-interest alone, requiring no external subsidy or centralized intervention.
 
-\textbf{(c) Tokenomics--knowledge dual loop.}
-Tokens serve as the universal coordination protocol of the ecosystem.
-Each role is coupled with both token-earning and token-spending pathways, forming a closed-loop economic cycle:
-producers earn tokens by delivering reliable services $\rightarrow$ consumers spend tokens to access quality knowledge $\rightarrow$ validators earn tokens by providing truthful assessments $\rightarrow$ the resulting credible information sustains the value of tokens themselves.
-This \textit{tokenomics--knowledge dual loop} is self-reinforcing: tokens incentivize truthful behavior, truthful behavior produces reliable information, and reliable information sustains token value (Figure~\ref{fig:tokenomics}).
-Given appropriate mechanism parameters and infrastructure (detailed in Section~\ref{sec:ecosystem}), the dual loop is sustained by each participant's rational self-interest without centralized intervention.
+These design choices are not merely intuitive---they are backed by rigorous game-theoretic guarantees.
+Within a unified Bayesian game framework, we establish three layers of formal results:
+\textbf{(i)}~\textit{Incentive compatibility (IC)}---truthful effort is a strict best response for every validator, ensuring that PoI produces an informative consensus signal;
+\textbf{(ii)}~\textit{Individual rationality (IR)}---producers promote only when their quality exceeds a self-screening threshold, and consumers subscribe only when posterior utility justifies the cost;
+\textbf{(iii)}~\textit{Symmetric Bayesian--Nash equilibrium (BNE)}---the IC and IR conditions are mutually consistent, forming a stable equilibrium where no agent has incentive to deviate.
+We further prove that these results are \textit{robust} to bounded Sybil attacks, correlated validator errors, and heterogeneous validator quality (\Cref{sec:robustness}).
 
-The economic mechanisms described above are not merely intuitive designs---they are grounded in rigorous game-theoretic analysis.
-We model the strategic interactions among producers, consumers, and validators within a unified Bayesian game framework and establish three layers of formal guarantees:
-\textbf{(i)} \textit{Incentive compatibility (IC)} of validators---we prove that truthful effort is a strict best response, ensuring that PoI reliably aggregates dispersed domain knowledge into an informative consensus signal;
-\textbf{(ii)} \textit{Individual rationality (IR)} of producers and consumers---we derive threshold-optimal policies where producers promote only when their quality exceeds a competence threshold (supply-side self-screening) and consumers subscribe only when posterior utility justifies the cost (demand-side disciplined engagement);
-\textbf{(iii)} \textit{Symmetric Bayesian--Nash equilibrium (BNE)}---by jointly satisfying IC and IR, we prove the existence of an equilibrium in which all agents of the same type adopt the same strategy and no agent has incentive to unilaterally deviate.
-
-Beyond static equilibrium, the tokenomics--knowledge dual loop generates \textbf{dynamic selection pressure} within the agent population.
-High-quality agents accumulate tokens through successful service provision, expanding their participation opportunities; low-quality agents see their tokens depleted through failed promotions and forfeited stakes, eventually exiting the ecosystem.
-Over time, this economic selection drives improvement in aggregate service quality, transforming individual rational optimization into collective welfare gains.
-The ecosystem thus operates not merely as a matching platform but as an \textbf{evolutionary engine} for the agent society.
+Beyond static equilibrium, the dual loop generates \textbf{evolutionary selection pressure}: high-quality agents accumulate tokens and expand their participation, while low-quality agents deplete their reserves and exit.
+Over time, this economic selection progressively elevates the aggregate capability of the agent population, making the ecosystem not merely a coordination platform but an \textbf{evolutionary engine} for the agent society.
 
 
 \begin{figure*}[!tb]
@@ -143,7 +130,7 @@ The ecosystem thus operates not merely as a matching platform but as an \textbf{
 \vspace{-4mm}
 \includegraphics[width=\textwidth]{figures/Tokenomics.pdf}
 \vspace{-2mm}
-\caption{Tokenomics incentive flow in the ecosystem. Each agent can dynamically assume the role of a producer, consumer, or validator. In any role, agents may spend tokens to request services or earn tokens by contributing to others. This dual-path incentive design sustains active participation across roles, internalizes economic coordination within the community, and fosters a self-sustaining ecosystem without centralized control.}
+\caption{Tokenomics incentive flow in the ecosystem. Each agent dynamically assumes the role of a producer, consumer, or validator. In any role, agents may spend tokens to request services or earn tokens by contributing. This dual-path design sustains active participation, internalizes coordination within the community, and requires no centralized control.}
 \label{fig:tokenomics}
 \vspace{-4mm}
 \end{figure*}
@@ -152,15 +139,13 @@ The ecosystem thus operates not merely as a matching platform but as an \textbf{
 \subsection{Contributions}
 \label{sec:contributions}
 
-The contributions of this paper are summarized as follows:
+$\bullet$~We identify the trust crisis in cross-organizational LLM agent collaboration---where capability limitations, strategic misbehavior, and near-zero deployment costs jointly create adverse selection---and expose the capability and structural barriers that render centralized orchestration untenable, articulating the need for an incentive-driven decentralized ecosystem.
 
-$\bullet$~We identify the trust crisis in cross-organizational LLM agent collaboration---where capability limitations, strategic misbehavior, and near-zero deployment costs jointly create a ``market for lemons''---and expose the capability and structural barriers that render centralized orchestration untenable, articulating the need for a decentralized, incentive-driven coordination paradigm.
+$\bullet$~We design a tokenomics-driven decentralized ecosystem with three dynamically interchangeable agent roles, introduce Proof-of-Intelligence (PoI) as a novel decentralized validation mechanism grounded in domain knowledge, and establish a tokenomics--knowledge dual loop that aligns individual rationality with collective welfare.
 
-$\bullet$~We design a tokenomics-driven decentralized ecosystem with three dynamically interchangeable agent roles, introduce Proof-of-Intelligence (PoI) as a novel decentralized validation mechanism, and establish a self-enforcing tokenomics--knowledge dual loop that aligns individual rationality with collective welfare.
+$\bullet$~Within a unified game-theoretic framework, we formally prove validator incentive compatibility, derive threshold-optimal policies for producers and consumers, demonstrate the existence of a symmetric Bayesian--Nash equilibrium, and prove robustness to bounded Sybil attacks, correlated errors, and heterogeneous validator quality.
 
-$\bullet$~Within a unified game-theoretic framework, we formally prove validator incentive compatibility, derive threshold-optimal policies for producers and consumers, and demonstrate the existence of a symmetric Bayesian--Nash equilibrium guaranteeing consistent strategic behavior and stable service matching.
-
-$\bullet$~We instantiate the proposed ecosystem as a decentralized question answering system (DeQA) and conduct extensive simulations demonstrating that the mechanism drives agent communities toward truthful contribution and improved social welfare.
+$\bullet$~We instantiate the ecosystem as a decentralized question answering system (DeQA) and conduct extensive simulations demonstrating that the mechanism drives agent communities toward truthful participation and improved social welfare.
 
 \vspace{1mm}
-\noindent\textit{Note: The proposed framework is domain-agnostic and applies broadly to any knowledge-intensive agent collaboration scenario. We use question answering as a concrete case study for empirical validation.}
+\noindent\textit{The proposed framework is domain-agnostic and applies broadly to any knowledge-intensive agent collaboration scenario. We use question answering as a concrete case study for empirical validation.}
