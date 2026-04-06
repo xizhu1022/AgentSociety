@@ -1,12 +1,14 @@
 \section{Introduction}
+\label{sec:intro}
 
 \subsection{The Rise of an Agent Society}
+\label{sec:agent_society}
 
 The rapid advancement of large language models (LLMs) has catalyzed a fundamental shift in how intelligent systems are designed and deployed~\cite{openai2023gpt4, claude, brown2020language}.
 Models such as GPT-4~\cite{openai2023gpt4}, Claude~\cite{claude}, and open-source alternatives like LLaMA~\cite{li2024survey} have demonstrated remarkable capabilities in reasoning, planning, and natural language understanding, establishing LLMs as general-purpose cognitive engines.
 Yet raw language models, however powerful, remain stateless responders: they lack persistent memory, cannot take actions in external environments, and do not pursue goals autonomously.
-This gap has driven a wave of research into \textit{LLM-based agents}---autonomous systems that augment raw language modeling with perception, memory, tool use, and goal-directed decision-making~\cite{xi2023rise, li2024survey}.
-These agents are no longer passive tools that respond to human instructions; they are evolving into autonomous actors capable of perceiving environments, reasoning over complex objectives, planning multi-step strategies, and executing tasks independently~\cite{wu2023autogen, hong2023metagpt, qian2023communicative, ge2023openagi}.
+This gap has driven a wave of research into \textit{LLM-based agents}---autonomous systems that augment raw language modeling with perception, memory, tool use, and goal-directed decision-making~\cite{xi2023rise, li2024survey, wang2024survey_agents}.
+These agents are no longer passive tools; they are evolving into autonomous actors capable of perceiving environments, reasoning over complex objectives, planning multi-step strategies, and executing tasks independently---from tool-augmented reasoning~\cite{yao2023react, schick2024toolformer, qin2024toolllm} to multi-agent software engineering~\cite{wu2023autogen, hong2023metagpt, qian2023communicative} and embodied exploration~\cite{wang2023voyager, ge2023openagi}.
 
 As individual agents mature, a natural next frontier emerges: \textit{multi-agent collaboration}.
 Recent work has demonstrated that groups of specialized agents can collectively solve problems far beyond any single agent's capability---from collaborative software development~\cite{qian2023communicative, hong2023metagpt} to scientific research~\cite{chen2023agentverse}, strategic game playing~\cite{zhao2023competeai, leng2023llm}, and simulated social interaction~\cite{park2023generative}.
@@ -32,6 +34,7 @@ These characteristics collectively demand a new coordination paradigm: one that 
 
 
 \subsection{The Trust Crisis in Agent Collaboration}
+\label{sec:trust_crisis}
 
 While the potential of agent-to-agent collaboration is immense, realizing it faces a fundamental obstacle: \textbf{trust}.
 In open, cross-organizational settings, a consumer agent seeking knowledge services has no reliable way to assess whether a prospective producer agent will deliver accurate outputs.
@@ -55,6 +58,7 @@ The problem is uniquely severe in the agent society for one additional reason: \
 Unlike human service markets where creating a credible new identity requires substantial investment (education, credentials, reputation), deploying a new agent is virtually free. This makes the ecosystem acutely vulnerable to identity fabrication, quality dilution, and Sybil-style manipulation---problems that have no natural analog in human economies.
 
 \subsection{Why Existing Solutions Fail}
+\label{sec:existing_fail}
 
 Current multi-agent frameworks~\cite{wu2023autogen, hong2023metagpt, li2023camel, qian2023communicative, kapoor2024agents} address coordination through centralized orchestration: a single controller assigns tasks, routes messages, and manages agent interactions based on predefined role descriptions or capability profiles.
 This approach implicitly rests on two assumptions: \textbf{(i)} all agents are cooperative and follow the orchestrator's instructions faithfully, and \textbf{(ii)} the orchestrator possesses sufficient knowledge to evaluate agent capabilities across all domains.
@@ -81,16 +85,20 @@ This stands in fundamental contradiction with the nature of LLM agents as autono
 The capability barrier and the structural barrier are independent---resolving one does not address the other---and together they render the centralized paradigm untenable for the agent society.
 What is needed is a fundamentally different design principle: \textbf{coordination must emerge from the protocol itself}---through decentralized verification, economic incentives, and game-theoretic guarantees---rather than from any central controller.
 
+While individual agent capabilities have advanced rapidly---from tool-use frameworks like ReAct~\cite{yao2023react} and Toolformer~\cite{schick2024toolformer} to multi-agent debate~\cite{du2024debate} and LLM-as-judge evaluation~\cite{zheng2023judging}---and decentralized AI infrastructure has emerged for distributed inference~\cite{borzunov2023petals, yuan2024decentralized_inference} and blockchain-based coordination~\cite{bittensor2023, hu2024blockchain_fl}, no existing work integrates these advances into a unified ecosystem with formal game-theoretic guarantees for cross-organizational agent collaboration.
+Our framework bridges this gap (see \Cref{sec:related_work} for a detailed comparison).
+
 \begin{figure*}[!htbp]
 \centering
-\caption{Transition from centralized orchestration to decentralized agent-to-agent coordination. At the macro level, a single-orchestrator hub-and-spoke architecture evolves into a peer-to-peer network where agents coordinate autonomously. At the micro level, our ecosystem enables decentralized service routing through validator-mediated collective intelligence, replacing centralized quality assessment with incentive-compatible distributed consensus.}
 \includegraphics[width=\textwidth]{figures/Decentralization.pdf}
-\label{From centralization to decentralization}
+\caption{Transition from centralized orchestration to decentralized agent-to-agent coordination. At the macro level, a single-orchestrator hub-and-spoke architecture evolves into a peer-to-peer network where agents coordinate autonomously. At the micro level, our ecosystem enables decentralized service routing through validator-mediated collective intelligence, replacing centralized quality assessment with incentive-compatible distributed consensus.}
+\label{fig:decentralization}
 \end{figure*}
 
 \subsection{Our Vision: A Tokenomics-Driven Decentralized Ecosystem}
+\label{sec:vision}
 
-In this paper, we propose a \textbf{tokenomics-driven decentralized ecosystem} for autonomous collaboration among LLM agents, as illustrated in Figure~\ref{From centralization to decentralization}.
+In this paper, we propose a \textbf{tokenomics-driven decentralized ecosystem} for autonomous collaboration among LLM agents, as illustrated in Figure~\ref{fig:decentralization}.
 Our central thesis is that the trust crisis in agent collaboration can be resolved not by building a better central authority, but by designing \textit{self-enforcing economic protocols} that make honest behavior the rational choice for every participant.
 
 The ecosystem is organized around three core design pillars:
@@ -108,15 +116,15 @@ At the core of our ecosystem is a novel decentralized validation paradigm called
 Unlike PoW, which requires raw computational power (solving cryptographic puzzles), or PoS, which demands financial capital (staking tokens for the right to validate), PoI is grounded in \textit{domain-specific knowledge} and \textit{verifiable intellectual effort}.
 In PoI, validators stake tokens and leverage their expertise to independently assess service quality; their assessments are aggregated through majority voting to form a verifiable consensus.
 Validators whose judgments align with the majority are rewarded from both the requester's payment and a shared stake pool; those who deviate forfeit their stake entirely.
-This creates a \textbf{self-enforcing incentive structure}: truthful effort is economically rewarded, while free-riding and shirking are financially penalized---without any centralized adjudicator.
-To ensure that consensus reflects genuine epistemic diversity rather than correlated errors, PoI further mandates \textit{architectural heterogeneity}: validators must employ model architectures distinct from the producer under evaluation, thereby cross-eliminating shared biases and hallucinations.
+This creates an incentive structure in which truthful effort is economically rewarded, while free-riding and shirking are financially penalized---without any centralized adjudicator.
+To ensure that consensus reflects genuine epistemic diversity rather than correlated errors, PoI further mandates \textit{architectural heterogeneity}: validators must employ model architectures distinct from the producer under evaluation, substantially reducing shared biases and correlated hallucinations.
 
 \textbf{(c) Tokenomics--knowledge dual loop.}
 Tokens serve as the universal coordination protocol of the ecosystem.
 Each role is coupled with both token-earning and token-spending pathways, forming a closed-loop economic cycle:
 producers earn tokens by delivering reliable services $\rightarrow$ consumers spend tokens to access quality knowledge $\rightarrow$ validators earn tokens by providing truthful assessments $\rightarrow$ the resulting credible information sustains the value of tokens themselves.
-This \textit{tokenomics--knowledge dual loop} is self-reinforcing: tokens incentivize truthful behavior, truthful behavior produces reliable information, and reliable information sustains token value (Figure~\ref{Tokenomics}).
-The dual loop requires no external subsidy or centralized intervention to sustain; each participant's rational self-interest drives the cycle forward.
+This \textit{tokenomics--knowledge dual loop} is self-reinforcing: tokens incentivize truthful behavior, truthful behavior produces reliable information, and reliable information sustains token value (Figure~\ref{fig:tokenomics}).
+Given appropriate mechanism parameters and infrastructure (detailed in Section~\ref{sec:ecosystem}), the dual loop is sustained by each participant's rational self-interest without centralized intervention.
 
 The economic mechanisms described above are not merely intuitive designs---they are grounded in rigorous game-theoretic analysis.
 We model the strategic interactions among producers, consumers, and validators within a unified Bayesian game framework and establish three layers of formal guarantees:
@@ -125,23 +133,24 @@ We model the strategic interactions among producers, consumers, and validators w
 \textbf{(iii)} \textit{Symmetric Bayesian--Nash equilibrium (BNE)}---by jointly satisfying IC and IR, we prove the existence of an equilibrium in which all agents of the same type adopt the same strategy and no agent has incentive to unilaterally deviate.
 
 Beyond static equilibrium, the tokenomics--knowledge dual loop generates \textbf{dynamic selection pressure} within the agent population.
-High-quality agents accumulate tokens through successful service provision, expanding their participation opportunities and reinforcing their market position.
-Low-quality agents see their tokens steadily depleted through failed promotions, forfeited stakes, and inability to attract subscriptions---eventually exiting the ecosystem.
-Over time, this economic natural selection drives continuous improvement in aggregate service quality, transforming individual rational optimization into collective welfare maximization.
-The ecosystem thus operates not merely as a matching platform but as an \textbf{evolutionary engine} for the agent society: it reveals capability, rewards reliability, penalizes deception, and progressively elevates the knowledge quality of the entire population.
+High-quality agents accumulate tokens through successful service provision, expanding their participation opportunities; low-quality agents see their tokens depleted through failed promotions and forfeited stakes, eventually exiting the ecosystem.
+Over time, this economic selection drives improvement in aggregate service quality, transforming individual rational optimization into collective welfare gains.
+The ecosystem thus operates not merely as a matching platform but as an \textbf{evolutionary engine} for the agent society.
 
 
 \begin{figure*}[!tb]
 \centering
 \vspace{-4mm}
-\caption{Tokenomics incentive flow in the ecosystem. Each agent can dynamically assume the role of a producer, consumer, or validator. In any role, agents may spend tokens to request services or earn tokens by contributing to others. This dual-path incentive design sustains active participation across roles, internalizes economic coordination within the community, and fosters a self-sustaining ecosystem without centralized control.}
 \includegraphics[width=\textwidth]{figures/Tokenomics.pdf}
+\vspace{-2mm}
+\caption{Tokenomics incentive flow in the ecosystem. Each agent can dynamically assume the role of a producer, consumer, or validator. In any role, agents may spend tokens to request services or earn tokens by contributing to others. This dual-path incentive design sustains active participation across roles, internalizes economic coordination within the community, and fosters a self-sustaining ecosystem without centralized control.}
+\label{fig:tokenomics}
 \vspace{-4mm}
-\label{Tokenomics}
 \end{figure*}
 
 
 \subsection{Contributions}
+\label{sec:contributions}
 
 The contributions of this paper are summarized as follows:
 
@@ -151,7 +160,7 @@ $\bullet$~We design a tokenomics-driven decentralized ecosystem with three dynam
 
 $\bullet$~Within a unified game-theoretic framework, we formally prove validator incentive compatibility, derive threshold-optimal policies for producers and consumers, and demonstrate the existence of a symmetric Bayesian--Nash equilibrium guaranteeing consistent strategic behavior and stable service matching.
 
-$\bullet$~We instantiate the proposed ecosystem as a decentralized question answering system (DeQA) and conduct extensive simulations demonstrating that the mechanism drives agent communities toward truthful contribution and maximal social welfare.
+$\bullet$~We instantiate the proposed ecosystem as a decentralized question answering system (DeQA) and conduct extensive simulations demonstrating that the mechanism drives agent communities toward truthful contribution and improved social welfare.
 
 \vspace{1mm}
 \noindent\textit{Note: The proposed framework is domain-agnostic and applies broadly to any knowledge-intensive agent collaboration scenario. We use question answering as a concrete case study for empirical validation.}

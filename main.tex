@@ -164,26 +164,23 @@ Yongfeng Zhang$^{1}$\thanks{Corresponding Email: xi.zhu@rutgers.edu. }\\
 
 \maketitle
 
-\noindent\makebox[\linewidth]{\rule{\textwidth}{1pt}}
-\tableofcontents
-\noindent\makebox[\linewidth]{\rule{\textwidth}{1pt}}
-\newpage
-\noindent
+\vspace{2mm}
 
 \begin{abstract}
 
 The proliferation of LLM-based agents---autonomous actors with heterogeneous domain expertise deployed by independent organizations---is giving rise to an \textit{agent society} in which cross-organizational knowledge exchange becomes structurally necessary.
-However, realizing trustworthy collaboration in this open society faces a fundamental crisis: agents may produce hallucinated or erroneous outputs due to capability limitations, or engage in strategic misbehavior such as shirking effort and misrepresenting competence, creating a ``market for lemons'' where adverse selection threatens to unravel knowledge exchange entirely.
+However, realizing trustworthy collaboration in this open setting faces a fundamental crisis: agents may produce hallucinated or erroneous outputs due to capability limitations, or engage in strategic misbehavior such as shirking effort and misrepresenting competence, creating a ``market for lemons'' where adverse selection threatens to unravel knowledge exchange entirely.
 Centralized orchestration cannot resolve this crisis: it faces both a capability barrier (no single authority can verify quality across all domains) and structural barriers (knowledge monopoly, routing manipulation, and suppression of agent autonomy).
 
-We propose a \textbf{tokenomics-driven decentralized ecosystem} that enables self-enforcing coordination among LLM agents without centralized authority.
+We propose a \textbf{tokenomics-driven decentralized ecosystem} that enables incentive-compatible coordination among LLM agents without centralized authority.
 Agents dynamically assume three interchangeable roles---consumers, producers, and validators---coordinated through a novel \textbf{Proof-of-Intelligence (PoI)} mechanism in which validators stake tokens, leverage domain knowledge to independently assess service quality, and are rewarded only when their assessments align with majority consensus.
-A key design principle is \textit{architectural heterogeneity}: validators must employ model architectures distinct from the producer under evaluation, transforming the mathematical assumption of independence into an enforceable protocol rule that cross-eliminates correlated biases and hallucinations.
-Token flows across all roles form a self-reinforcing \textbf{tokenomics--knowledge dual loop}: tokens incentivize truthful behavior, truthful behavior produces reliable information, and reliable information sustains token value.
+A key design principle is \textit{architectural heterogeneity}: validators must employ model architectures distinct from the producer under evaluation, substantially reducing correlated errors and approximating the independence assumption that underpins reliable consensus.
+Token flows across all roles form a \textbf{tokenomics--knowledge dual loop}: tokens incentivize truthful behavior, truthful behavior produces reliable information, and reliable information sustains token value.
 
-Within a unified game-theoretic framework, we establish validator incentive compatibility (IC), derive threshold-optimal policies for producer promotion and consumer subscription under individual rationality (IR), and prove the existence of a symmetric Bayesian--Nash equilibrium (BNE) that guarantees consistent strategic behavior and stable service matching.
-Over time, the dual loop generates evolutionary selection pressure---high-quality agents accumulate tokens and expand their reach while low-quality agents are filtered out---transforming the ecosystem into an \textbf{evolutionary engine} that progressively elevates the collective intelligence of the agent population.
-We instantiate the framework as a decentralized question answering system (DeQA) and conduct extensive simulations demonstrating that the mechanism drives agent communities toward truthful contribution and maximal social welfare.
+Within a unified game-theoretic framework, we establish validator incentive compatibility (IC), derive threshold-optimal promotion and subscription policies under individual rationality (IR), and prove the existence of a symmetric Bayesian--Nash equilibrium (BNE) in which no agent has incentive to unilaterally deviate.
+We further show that these guarantees are robust to bounded Sybil attacks, correlated validator errors, and heterogeneous validator quality---with the economic stake serving as a tunable parameter that compensates for adversarial degradation.
+The dual loop further generates evolutionary selection pressure---high-quality agents accumulate tokens and expand their reach while low-quality agents are filtered out---progressively elevating the aggregate capability of the agent population.
+We instantiate the framework as a decentralized question answering system (DeQA) and conduct extensive simulations demonstrating that the mechanism drives agent communities toward truthful contribution and improved social welfare.
 
 \end{abstract}
 \newpage
@@ -194,7 +191,11 @@ We instantiate the framework as a decentralized question answering system (DeQA)
 
 \input{sections/GameTheoryAndCaseStudy}
 
+\input{sections/Applications}
+
 \input{sections/Related Works}
+
+\input{sections/FutureWork}
 
 \input{sections/Conclusion}
 

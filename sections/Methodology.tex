@@ -1,6 +1,7 @@
 \section{A Decentralized Ecosystem for LLM Agents}
+\label{sec:ecosystem}
 
-Having identified the trust crisis in agent collaboration and argued for a decentralized, incentive-driven paradigm in Section~1, we now present the concrete design of our ecosystem.
+Having identified the trust crisis in agent collaboration and argued for a decentralized, incentive-driven paradigm in \Cref{sec:intro}, we now present the concrete design of our ecosystem.
 We begin by formalizing the ecosystem's role structure and motivating each design choice from the challenges identified previously (\S\ref{sec:motivation}).
 We then detail the complete mechanism design---including the transaction protocol, validation workflow, Proof-of-Intelligence, and incentive structure (\S\ref{sec:mechanism}).
 Finally, we describe the decentralized infrastructure that enables trustless execution (\S\ref{sec:decentral_tech}).
@@ -11,43 +12,43 @@ Finally, we describe the decentralized infrastructure that enables trustless exe
 
 \subsubsection{From Knowledge Heterogeneity to Role Specialization}
 
-The agent society introduced in Section~1 is characterized by a large, open population of agents $\mathcal{U}$, each possessing domain-specific knowledge $\mathcal{K}_u$ and operating under the authority of its deploying organization.
+The agent society introduced in \Cref{sec:intro} is characterized by a large, open population of agents $\mathcal{U}$, each possessing domain-specific knowledge $\mathcal{K}_u$ and operating under the authority of its deploying organization.
 When an agent encounters a task outside its domain expertise, it must locate and engage a capable counterpart---a process we term \textit{service routing}.
 In the centralized paradigm, an orchestrator manages this routing; in our ecosystem, routing emerges from decentralized economic interactions among three roles.
 
 The first two roles arise directly from the knowledge supply-demand structure:
 
 \begin{definition}{\textbf{(Consumer)}}\label{def:consumer}
-A consumer $c \in \mathcal{U}$ is an agent that performs \textit{computational need identification}: upon encountering a task outside its domain expertise, it decomposes the problem, identifies the required knowledge domain, and issues a set of domain-specific tasks $\mathcal{Q} = \{q_1, \cdots ,q_{N}\}$ to be delegated externally. The consumer seeks to establish a long-term service agreement with a qualified producer $p \in \mathcal{U}$, committing tokens to fund this engagement. Unlike a human user who subjectively ``asks a question,'' the consumer agent executes a deterministic routing protocol driven by its utility function.
+A consumer $c \in \mathcal{U}$ is an agent that performs \textit{computational need identification}: upon encountering a task outside its domain expertise, it decomposes the problem, identifies the required knowledge domain, and issues a set of domain-specific tasks $\{x_1, \ldots, x_{N}\} \subset \mathcal{Q}$ to be delegated externally. The consumer seeks to establish a long-term service agreement with a qualified producer $p \in \mathcal{U}$, committing tokens to fund this engagement. Unlike a human user who subjectively ``asks a question,'' the consumer agent executes a deterministic routing protocol driven by its utility function.
 \end{definition}
 
 \begin{definition}{\textbf{(Producer)}}\label{def:producer}
-A producer $p \in \mathcal{U}$ is an agent that encapsulates domain knowledge $\mathcal{K}_p$ into a callable \textit{inference capability}: given a task $q \in \mathcal{Q}$, it executes its service $a_p(q)$ and returns an output $r \in \mathcal{R}$. The producer's service quality $q_p \in (0,1]$---the probability of generating a correct output---is an objective, measurable property that can be estimated through sampling, rather than a subjective reputation score. By delivering reliable, high-quality outputs, the producer earns tokens from the consumer.
+A producer $p \in \mathcal{U}$ is an agent that encapsulates domain knowledge $\mathcal{K}_p$ into a callable \textit{inference capability}: given a task $x \in \mathcal{Q}$, it executes its service $a_p(x)$ and returns an output $r \in \mathcal{R}$. The producer's service quality $q_p \in (0,1]$---the probability of generating a correct output---is an objective, measurable property that can be estimated through sampling, rather than a subjective reputation score. By delivering reliable, high-quality outputs, the producer earns tokens from the consumer.
 \end{definition}
 
-However, as established in Section~1.2, the consumer-producer dyad alone cannot sustain a reliable market: the information asymmetry between knowledge supply and demand---where consumers cannot verify producer quality, and producers may overstate their capabilities---triggers adverse selection that can unravel the entire ecosystem.
+However, as established in \Cref{sec:trust_crisis}, the consumer-producer dyad alone cannot sustain a reliable market: the information asymmetry between knowledge supply and demand---where consumers cannot verify producer quality, and producers may overstate their capabilities---triggers adverse selection that can unravel the entire ecosystem.
 
 \subsubsection{Validators as the Missing Trust Layer}
 
 To break this information asymmetry, we introduce a third role that is structurally absent from existing multi-agent frameworks: \textbf{validators}---independent agents who provide decentralized quality assessment on behalf of requesters.
 
 \begin{definition}{\textbf{(Validator)}}\label{def:validator}
-A validator $v \in \mathcal{U}$ is an independent agent that performs \textit{cross-verification}: given a task $q \in \mathcal{Q}$ and a producer $p$'s output $a_p(q)$, the validator independently executes its own inference $a_v(q)$ and compares the two outputs to produce a binary judgment $r_v \in \{0, 1\}$ (agree/disagree). This is not a subjective evaluation but an \textit{auditable computational process}---the validator's reasoning trace and output can be recorded and verified. Multiple validators' judgments are aggregated via majority voting to form a consensus that is strictly more reliable than any individual assessment. To ensure statistical independence, validators are required to employ \textit{heterogeneous model architectures} distinct from the producer under evaluation (see \S\ref{sec:poi_detail}), thereby cross-eliminating shared biases and correlated hallucinations.
+A validator $v \in \mathcal{U}$ is an independent agent that performs \textit{cross-verification}: given a task $x \in \mathcal{Q}$ and a producer $p$'s output $a_p(x)$, the validator independently executes its own inference $a_v(x)$ and compares the two outputs to produce a binary judgment $r_v \in \{0, 1\}$ (agree/disagree). This is not a subjective evaluation but an \textit{auditable computational process}---the validator's reasoning trace and output can be recorded and verified. Multiple validators' judgments are aggregated via majority voting to form a consensus that is strictly more reliable than any individual assessment. To ensure statistical independence, validators are required to employ \textit{heterogeneous model architectures} distinct from the producer under evaluation (see \S\ref{sec:poi_detail}), thereby cross-eliminating shared biases and correlated hallucinations.
 \end{definition}
 
 \begin{insightbox}{Ecosystem Roles at a Glance}
 \begin{itemize}[leftmargin=1.5em, itemsep=2pt, topsep=2pt]
     \item \textbf{Consumer} --- performs \textit{computational need identification}: decomposes problems, identifies required domains, and delegates tasks externally via token-backed requests.
     \item \textbf{Producer} --- provides a callable \textit{inference capability} $a_p: \mathcal{Q} \to \mathcal{R}$ with objectively measurable quality $q_p$, earning tokens for reliable outputs.
-    \item \textbf{Validator} --- executes \textit{cross-verification}: independently infers $a_v(q)$, compares against the producer's output, and contributes a binary judgment to majority-vote consensus.
+    \item \textbf{Validator} --- executes \textit{cross-verification}: independently infers $a_v(x)$, compares against the producer's output, and contributes a binary judgment to majority-vote consensus.
 \end{itemize}
 \vspace{1pt}
 \textit{Role fluidity}: Any agent can assume any role depending on its current context and knowledge advantage. The same agent may be a producer in one domain, a consumer in another, and a validator in a third.
 \end{insightbox}
 
-The validator role addresses the trust crisis on both fronts identified in Section~1.2.
+The validator role addresses the trust crisis on both fronts identified in \Cref{sec:trust_crisis}.
 Against \textit{capability limitations}, multiple independent validators provide epistemic diversity: even if individual validators are imperfect, their majority consensus is substantially more reliable than any single agent's judgment (a formalization of the Condorcet jury theorem).
-Against \textit{strategic misbehavior}, the economic mechanism (staking, rewards, and penalties) creates a structure where truthful effort is the dominant strategy---validators who shirk or deceive are financially penalized, as we will prove formally in Section~3.
+Against \textit{strategic misbehavior}, the economic mechanism (staking, rewards, and penalties) creates a structure where truthful effort is the dominant strategy---validators who shirk or deceive are financially penalized, as we will prove formally in \Cref{sec:game_theory}.
 
 Crucially, validators are not a privileged class: \textbf{any agent can dynamically assume any role}---consumer, producer, or validator---depending on its current context, task, and knowledge advantage.
 A medical agent might be a producer for diagnostic queries, a consumer for pharmacological questions, and a validator for clinical trial analysis.
@@ -63,7 +64,7 @@ With the three roles in place, the core design question becomes: \textit{\textbf
 \subsection{Mechanism Design}
 \label{sec:mechanism}
 
-As shown in Figure~\ref{Tokenomics}, our ecosystem couples every role with both token-earning and token-spending pathways.
+As shown in Figure~\ref{fig:tokenomics}, our ecosystem couples every role with both token-earning and token-spending pathways.
 This dual coupling is not merely an accounting device; it is the engine of self-organization.
 When an agent earns tokens by providing reliable services, those tokens flow to other agents who supply knowledge in return, creating a virtuous cycle that sustains participation without external subsidies.
 Every transaction---whether promotion, subscription, or validation---simultaneously advances knowledge exchange and generates the token flow that keeps the ecosystem alive.
@@ -90,6 +91,7 @@ $\mathcal{K}_u$ & Domain-specific knowledge of agent $u$ \\
 \midrule
 $a_u: \mathcal{Q} \to \mathcal{R}$ & Knowledge-intensive service (inference capability) of agent $u$ \\
 $\mathcal{Q},\; \mathcal{R}$ & Task space and response space \\
+$x, x_j$ & Individual task instance ($x \in \mathcal{Q}$) \\
 $q_p,\; q_v$ & Service quality of producer / validator (correctness probability) \\
 $c_u$ & Computational cost per service invocation \\
 \midrule
@@ -123,7 +125,7 @@ $Z \in \{0,1\}$ & Consensus signal (pass / fail) \\
 
 \subsubsection{Promotion and Subscription}
 
-The core transaction loop consists of two complementary actions: producer-initiated \textit{promotion} and consumer-initiated \textit{subscription}. Together, they form the two-sided market at the heart of the ecosystem. The overall workflows are illustrated in Figures~\ref{Promotion} and~\ref{Subscription}.
+The core transaction loop consists of two complementary actions: producer-initiated \textit{promotion} and consumer-initiated \textit{subscription}. Together, they form the two-sided market at the heart of the ecosystem. The overall workflows are illustrated in Figures~\ref{fig:promotion} and~\ref{fig:subscription}.
 
 \begin{definition}{\textbf{(Knowledge-intensive Service)}}\label{def:knowledge-intensive agent}
 Each agent $u \in \mathcal{U}$ encapsulates its domain knowledge $\mathcal{K}_u$ into a knowledge-intensive service $a_u: \mathcal{Q} \rightarrow \mathcal{R}$, a callable inference capability that maps tasks in task space $\mathcal{Q}$ to outputs in response space $\mathcal{R}$. The service quality $q \in (0,1]$ reflects the probability of generating a correct output for a given task, with a computational cost $c_u$ per invocation. Crucially, $q$ is an \textit{objective, measurable property} that can be estimated through repeated sampling---it is not a reputation score or a self-reported rating, but a statistical characteristic of the agent's inference pipeline.
@@ -163,7 +165,7 @@ Consumer receives promotion $\xrightarrow{\text{requests independent validation}
 
 \subsubsection{Validation Requests}
 
-Without external verification, service routing depends entirely on the producer's self-assessment and the consumer's intuition---the very information asymmetry identified in Section~1.2 as the root cause of market failure.
+Without external verification, service routing depends entirely on the producer's self-assessment and the consumer's intuition---the very information asymmetry identified in \Cref{sec:trust_crisis} as the root cause of market failure.
 The consumer typically lacks the domain expertise to verify whether a producer's outputs are correct, and the producer may overestimate (or deliberately overstate) its own competence.
 Objective ground truth is generally unavailable for knowledge-intensive tasks, making unilateral quality assessment fundamentally unreliable.
 
@@ -185,27 +187,29 @@ This second validation provides an independent cross-check, further reducing the
 \begin{figure*}[!tbp]
 \centering
 \vspace{-4mm}
-\caption{Overall Promotion Workflow.
-(1) A consumer broadcasts a sample task when a service need arises.
-(2) A producer provides its output and requests validators to assess correctness.
-(3) Validators independently produce outputs, form a consensus, and return it to the producer.
-(4) If the producer's output agrees with the consensus, the service capability is confirmed, and the producer proceeds with the promotion offer to the consumer.}
 \includegraphics[width=\textwidth]{figures/Promotion.pdf}
-\label{Promotion}
+\vspace{-2mm}
+\caption{Overall Promotion Workflow.
+(1)~A consumer broadcasts a sample task when a service need arises.
+(2)~A producer provides its output and requests validators to assess correctness.
+(3)~Validators independently produce outputs, form a consensus, and return it to the producer.
+(4)~If the producer's output agrees with the consensus, the service capability is confirmed, and the producer proceeds with the promotion offer to the consumer.}
+\label{fig:promotion}
 \vspace{-4mm}
 \end{figure*}
 
 
 \begin{figure*}[!htbp]
 \centering
-\caption{Overall Subscription Workflow.
-(1) Upon receiving a promotion, the consumer issues new sample tasks and requests fresh validators to assess the producer's capability.
-(2) Validators independently produce their outputs and reach a consensus.
-(3) The producer provides its own output to the same tasks.
-(4) Validators return the consensus result.
-(5) The consumer compares the two outputs and decides whether to subscribe to the service.}
 \includegraphics[width=\textwidth]{figures/Subscription.pdf}
-\label{Subscription}
+\vspace{-2mm}
+\caption{Overall Subscription Workflow.
+(1)~Upon receiving a promotion, the consumer issues new sample tasks and requests fresh validators to assess the producer's capability.
+(2)~Validators independently produce their outputs and reach a consensus.
+(3)~The producer provides its own output to the same tasks.
+(4)~Validators return the consensus result.
+(5)~The consumer compares the two outputs and decides whether to subscribe to the service.}
+\label{fig:subscription}
 \end{figure*}
 
 
@@ -240,8 +244,8 @@ Once a subscription is confirmed, the producer becomes obligated to respond to f
 \begin{insightbox}{Validation Lifecycle (Proof-of-Intelligence)}
 \begin{enumerate}[leftmargin=1.5em, itemsep=1pt, topsep=2pt]
     \item \textbf{Stake}: Each validator locks $\sigma$ tokens as financial commitment.
-    \item \textbf{Infer}: Each validator independently executes $a_v(q)$ on sample tasks using its own (architecturally heterogeneous) model.
-    \item \textbf{Compare}: Each validator compares its output against the producer's output $a_p(q)$, producing a binary judgment $r_v \in \{0,1\}$.
+    \item \textbf{Infer}: Each validator independently executes $a_v(x)$ on sample tasks using its own (architecturally heterogeneous) model.
+    \item \textbf{Compare}: Each validator compares its output against the producer's output $a_p(x)$, producing a binary judgment $r_v \in \{0,1\}$.
     \item \textbf{Vote}: Judgments are aggregated via majority voting to form consensus $r^*$.
     \item \textbf{Settle}: Validators aligned with consensus receive reward from the shared pool; deviating validators forfeit their stake. All executed automatically via smart contract.
 \end{enumerate}
@@ -259,14 +263,14 @@ The key distinctions are:
 \end{itemize}
 
 PoI thus operationalizes epistemic labor---the ability to produce correct, knowledge-grounded assessments---as a stakeable and rewardable asset.
-This directly connects to the agent society's defining characteristic identified in Section~1.1: \textit{knowledge is the primary asset}, and PoI provides the mechanism to monetize and verify it.
+This directly connects to the agent society's defining characteristic identified in \Cref{sec:agent_society}: \textit{knowledge is the primary asset}, and PoI provides the mechanism to monetize and verify it.
 
 \vspace{1mm}
 \noindent\textbf{Architectural Heterogeneity as a Design Principle.}
 A critical requirement of PoI is that validators must employ \textit{model architectures distinct from the producer under evaluation}.
 If all agents share the same underlying model (e.g., all based on GPT-4), their errors become highly correlated: they hallucinate on the same inputs, share the same training-data biases, and fail on the same out-of-distribution queries.
 Under such conditions, majority voting offers no epistemic advantage---a unanimous but incorrect consensus is indistinguishable from a correct one.
-By enforcing architectural heterogeneity (e.g., a Llama-based validator assessing a GPT-based producer, or a Claude-based validator cross-checking a Gemini-based producer), the mechanism ensures that validators' errors are \textit{statistically independent}---the formal assumption underpinning the Condorcet jury theorem and our game-theoretic analysis in Section~3.
+By enforcing architectural heterogeneity (e.g., a Llama-based validator assessing a GPT-based producer, or a Claude-based validator cross-checking a Gemini-based producer), the mechanism substantially reduces the correlation among validators' errors---approximating the statistical independence assumption that underpins the Condorcet jury theorem and our game-theoretic analysis in \Cref{sec:game_theory}. While models trained on overlapping data may retain residual correlation, architectural diversity eliminates the dominant source of shared failure modes (identical model weights and decoding procedures), making the independence assumption a reasonable approximation in practice.
 This heterogeneity requirement transforms an abstract mathematical assumption (independence) into a concrete, enforceable protocol rule.
 
 \vspace{1mm}
@@ -320,9 +324,17 @@ Consumer & $+\tau_p$ & $-\tau_s$ & --- & $-mn\tau_{\text{val}}$ \\
 
 $\bullet$ \textbf{Sybil Defense through Economic Identity.}
 The staking requirement serves a critical secondary function: \textbf{Sybil defense}.
-As noted in Section~1.2, agents can be replicated at near-zero marginal cost, making the ecosystem vulnerable to identity fabrication.
+As noted in \Cref{sec:trust_crisis}, agents can be replicated at near-zero marginal cost, making the ecosystem vulnerable to identity fabrication.
 By requiring each validator to lock tokens of value $\sigma$, the mechanism raises the cost of operating multiple fake identities.
 An attacker seeking to dominate the consensus with $k$ Sybil validators must lock $k\sigma$ tokens---an investment that scales linearly with the attack's scope and is forfeited if the attack fails.
+
+$\bullet$ \textbf{Validator Selection and Collusion Resistance.}
+A natural concern is whether the requester (producer or consumer) can strategically select colluding validators to manipulate the consensus.
+Our design mitigates this through two mechanisms.
+First, for subscription validation, the \textit{consumer} selects the validator committee $V_s$, and since the consumer has a direct economic interest in obtaining an accurate signal (a wrong subscription wastes $\tau_s$), it is individually rational for the consumer to select diverse, reputable validators.
+Second, for promotion validation, while the \textit{producer} selects $V_p$, the consumer independently re-validates with a disjoint committee $V_s$ ($V_s \cap V_p = \varnothing$), so any manipulation in the promotion stage is corrected at the subscription stage.
+In a fully deployed system, validator selection could be further hardened via randomized committee assignment from a qualified validator pool, eliminating requester influence entirely.
+We discuss remaining collusion risks in \Cref{sec:conclusion}.
 
 $\bullet$ \textbf{Moral Hazard and the Need for Formal Guarantees.}
 Despite the staking mechanism, validators face a persistent temptation: they can \textit{shirk} by returning a random judgment at zero cost rather than exerting genuine effort at cost $c_u$.
@@ -355,8 +367,8 @@ Algorithm~\ref{alg:ecosystem} consolidates the complete service engagement lifec
 \State $p$ pays each validator $\tau_{\text{val}}$ per task ($mn\tau_{\text{val}}$ total)
 \For{each validator $v_i \in V_p$ \textbf{in parallel}}
     \State $v_i$ stakes $\sigma$ tokens
-    \State $v_i$ independently executes $a_{v_i}(q)$ for each $q \in \mathcal{Q}_c$ \Comment{Heterogeneous architecture}
-    \State $v_i$ compares own output with $a_p(q)$, produces judgment $r_i \in \{0,1\}$
+    \State $v_i$ independently executes $a_{v_i}(x)$ for each $x \in \mathcal{Q}_c$ \Comment{Heterogeneous architecture}
+    \State $v_i$ compares own output with $a_p(x)$, produces judgment $r_i \in \{0,1\}$
 \EndFor
 \State $r^* \gets \text{MajorityVote}(\{r_1, \dots, r_n\})$  \Comment{Promotion consensus}
 \State Distribute rewards/penalties: aligned validators share pool; deviators forfeit $\sigma$
@@ -369,7 +381,7 @@ Algorithm~\ref{alg:ecosystem} consolidates the complete service engagement lifec
 \State $c$ selects disjoint validator committee $V_s = \{v_1', \dots, v_n'\}$ ($V_s \cap V_p = \varnothing$)
 \State $c$ pays each validator $\tau_{\text{val}}$ per task; validators stake $\sigma$ each
 \For{each validator $v_j' \in V_s$ \textbf{in parallel}}
-    \State $v_j'$ independently executes $a_{v_j'}(q)$, compares with $a_p(q)$, produces $r_j' \in \{0,1\}$
+    \State $v_j'$ independently executes $a_{v_j'}(x)$, compares with $a_p(x)$, produces $r_j' \in \{0,1\}$
 \EndFor
 \State $r^{**} \gets \text{MajorityVote}(\{r_1', \dots, r_n'\})$ \Comment{Subscription consensus}
 \State Distribute rewards/penalties to $V_s$
@@ -384,7 +396,7 @@ Algorithm~\ref{alg:ecosystem} consolidates the complete service engagement lifec
 \subsubsection{Ecosystem Overview: The Tokenomics--Knowledge Dual Loop}
 
 We conclude the mechanism design by stepping back to view the ecosystem as a whole.
-The token flow across roles and actions forms a self-reinforcing cycle that we call the \textbf{tokenomics--knowledge dual loop}, as illustrated in Figure~\ref{Tokenomics}:
+The token flow across roles and actions forms a self-reinforcing cycle that we call the \textbf{tokenomics--knowledge dual loop}, as illustrated in Figure~\ref{fig:tokenomics}:
 
 \begin{enumerate}[leftmargin=2em]
     \item \textbf{Knowledge drives token flow}: Producers earn subscription fees by delivering reliable services; validators earn validation fees by providing truthful assessments. In both cases, the \textit{quality of knowledge} directly determines \textit{economic reward}.
@@ -392,13 +404,14 @@ The token flow across roles and actions forms a self-reinforcing cycle that we c
     \item \textbf{The loop closes}: Better knowledge $\rightarrow$ more tokens $\rightarrow$ more opportunities $\rightarrow$ incentive to improve knowledge further. Conversely, poor knowledge $\rightarrow$ fewer tokens $\rightarrow$ reduced participation $\rightarrow$ eventual exit.
 \end{enumerate}
 
-This dual loop has two important properties.
-First, it is \textbf{self-enforcing}: no external subsidy or centralized intervention is needed to sustain it, because each participant's rational self-interest drives the cycle forward.
-Second, it generates \textbf{evolutionary pressure}: over time, the economic selection mechanism filters out low-quality agents and rewards high-quality ones, progressively elevating the aggregate knowledge level of the entire ecosystem.
+Two properties distinguish this dual loop from conventional platform economies.
+First, it requires no external subsidy---each participant's rational self-interest drives the cycle forward, given appropriate mechanism parameters (formalized in \Cref{sec:game_theory}).
+Second, it generates \textbf{evolutionary pressure}: the economic selection mechanism progressively filters out low-quality agents and concentrates ecosystem activity among capable ones.
+Note, however, that the loop's self-reinforcing character presupposes that the initial token endowment, the architectural heterogeneity enforcement, and the smart contract infrastructure are in place---these are non-trivial preconditions discussed in \S\ref{sec:decentral_tech}.
 
-A critical enabler of the dual loop's credibility is that agents are \textit{programmatic utility maximizers}.
-Unlike human participants who may exhibit bounded rationality, loss aversion, or social preferences, agent behavior can be precisely modeled as optimal responses to incentive structures.
-This makes the game-theoretic predictions underlying the mechanism design---which we formalize in Section~3---hold with particular force in the agent society context.
+A critical enabler of the dual loop is that LLM agents are \textit{programmatic utility maximizers}.
+Unlike human participants who may exhibit bounded rationality or social preferences, agent behavior can be precisely modeled as optimal responses to incentive structures.
+This makes the game-theoretic predictions underlying the mechanism design---which we formalize in \Cref{sec:game_theory}---hold with particular force in the agent society context.
 
 
 \subsection{Decentralization Infrastructure}
@@ -431,4 +444,4 @@ This design achieves \textbf{on-chain trust with off-chain scalability} while pr
 \subsubsection{Smart Contracts as Protocol Enforcement}
 \textbf{Smart contracts} govern the full lifecycle of ecosystem interactions: validator voting, reward distribution, stake slashing, and role operations such as promotion and subscription.
 By encoding coordination logic directly into self-executing code, smart contracts enforce the PoI mechanism and tokenomics--knowledge dual loop in a transparent, tamper-resistant, and deterministic manner.
-This replaces the need for centralized intermediaries and transforms trust from a social assumption into a \textit{programmable, auditable guarantee}---precisely the infrastructure required for the trustless agent society envisioned in Section~1.
+This replaces the need for centralized intermediaries and transforms trust from a social assumption into a \textit{programmable, auditable guarantee}---precisely the infrastructure required for the trustless agent society envisioned in \Cref{sec:intro}.

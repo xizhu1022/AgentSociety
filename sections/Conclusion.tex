@@ -1,18 +1,29 @@
 \section{Conclusion}
+\label{sec:conclusion}
 
 As LLM agents evolve into an interconnected society of autonomous, cross-organizational actors, the question of how to coordinate their collaboration without centralized authority becomes both urgent and foundational.
 This paper addresses this challenge by proposing a tokenomics-driven decentralized ecosystem in which the trust crisis---arising from capability limitations, strategic misbehavior, near-zero deployment costs, and the structural deficiencies of centralized orchestration---is resolved through self-enforcing economic protocols rather than central control.
-The ecosystem is grounded in Proof-of-Intelligence (PoI) validation and a tokenomics--knowledge dual loop that aligns individual rationality with collective welfare.
-A key design principle is \textit{architectural heterogeneity}: by mandating that validators employ model architectures distinct from the producer under evaluation, the mechanism transforms the mathematical assumption of independence into an enforceable protocol rule, ensuring that consensus reflects genuine epistemic diversity rather than correlated errors.
-Within a unified game-theoretic framework, we formalize the Bayesian validation game, establish validator incentive compatibility, derive threshold-optimal policies for producers and consumers, and prove the existence of a symmetric Bayesian--Nash equilibrium that guarantees rational cooperation without centralized enforcement.
-As a case study, we instantiate the framework as a decentralized question answering system (DeQA) and demonstrate through extensive simulation that the mechanism drives agent communities toward truthful contribution and maximal social welfare.
+The ecosystem is organized around three dynamically interchangeable roles (consumers, producers, and validators), coordinated through a novel Proof-of-Intelligence (PoI) validation mechanism and a tokenomics--knowledge dual loop that aligns individual rationality with collective welfare.
+A key design principle is \textit{architectural heterogeneity}: by mandating that validators employ model architectures distinct from the producer under evaluation, the mechanism substantially reduces correlated errors and approximates the independence assumption that underpins reliable consensus formation.
+Within a unified game-theoretic framework, we formalize the Bayesian validation game, establish validator incentive compatibility (Theorem~\ref{Strict IC for Validators}), derive threshold-optimal policies for producers (Theorem~\ref{IR for Producers}) and consumers (Theorem~\ref{IR-based Policy for Consumers}), and prove the existence of a symmetric Bayesian--Nash equilibrium (Theorem~\ref{Symmetric Bayesian Nash Equilibrium}) that guarantees rational cooperation without centralized enforcement.
+As a case study, we instantiate the framework as a decentralized question answering system (DeQA) and demonstrate through extensive simulation that the mechanism drives agent communities toward truthful contribution and improved social welfare.
 
-\textbf{Limitations and Future Directions.}
-We acknowledge several simplifying assumptions that future work should relax.
-First, our model assumes non-collusive validators; in practice, agents operated by the same organization could coordinate to manipulate consensus. Extending the framework to handle collusion---perhaps through randomized validator selection or collusion-resistant mechanism design---is an important open problem.
-Second, we treat agent quality $q$ as a static, exogenous parameter. In reality, agents can improve their knowledge bases over time (e.g., through fine-tuning or retrieval augmentation), and a richer model would capture this dynamic quality evolution endogenously.
-Third, our simulation uses synthetic agents rather than real LLM-based agents; deploying the ecosystem with production-grade language models and measuring real-world quality metrics remains a crucial next step toward practical validation.
+\textbf{Limitations.}
+We acknowledge several simplifying assumptions that constrain the scope of our current results.
 
-Looking ahead, the tokenomics--knowledge dual loop not only stabilizes the ecosystem at equilibrium but also generates long-term selection pressure: high-capability agents accumulate resources and expand their reach, while low-quality agents are gradually filtered out.
-This evolutionary dynamic suggests that decentralized, incentive-compatible ecosystems may serve as a foundational \textit{coordination layer} for the emerging society of AI agents---enabling trustworthy, scalable collaboration across organizational boundaries without requiring any party to cede control to a central authority.
-Promising directions include heterogeneous validator modeling with weighted consensus mechanisms, on-chain reputation systems that accumulate trust over repeated interactions, integration with existing multi-agent frameworks (e.g., AutoGen, MetaGPT) as an economic coordination layer, and formal analysis of the ecosystem's convergence dynamics under repeated play.
+\textit{(i) Bounded collusion.}
+Our robustness analysis (\S\ref{sec:robustness}) shows that IC is preserved under bounded Sybil attacks ($k < \lfloor n/2 \rfloor$ adversarial validators) and bounded correlation ($\rho < \rho^*$). However, an adversary controlling a \textit{majority} of validators in a single committee could still subvert the consensus. Extending the framework with randomized committee assignment from a qualified pool, collusion-resistant mechanism design~\cite{miller2005eliciting}, or cryptographic commit-reveal schemes would harden the mechanism beyond the $k < \lfloor n/2 \rfloor$ bound.
+
+\textit{(ii) Static quality assumption.}
+We treat agent quality $q_u$ as a static, exogenous parameter drawn from a fixed distribution. In reality, agents can improve their knowledge bases over time (e.g., through fine-tuning or retrieval augmentation), and a richer model would capture this dynamic quality evolution endogenously, potentially leading to more complex equilibrium dynamics.
+
+\textit{(iii) Residual correlation beyond the analyzed regime.}
+Our robustness analysis shows that the mechanism tolerates substantial equicorrelation ($\rho < \rho^*$, see Theorem~\ref{thm:corr_ic}), but real-world correlation structures may be non-uniform (e.g., models from the same family may be more correlated than models from different families). Extending the analysis to block-correlated or hierarchically correlated validators remains an open problem.
+
+\textit{(iv) Synthetic simulation.}
+Our DeQA case study uses synthetic agents with parameterized quality distributions rather than production-grade LLMs. Deploying the ecosystem with real language models---where quality is task-dependent, non-stationary, and harder to characterize by a single scalar---remains a crucial next step toward practical validation.
+
+\textit{(v) Token macroeconomics.}
+The current model operates with a fixed token supply and does not analyze long-run macroeconomic dynamics such as token inflation, deflation through agent exit, or wealth concentration effects. A thorough analysis of the token supply dynamics under repeated play would complement the static equilibrium results.
+
+We discuss promising extensions, a detailed research roadmap, and the long-term vision for the ecosystem as a coordination layer for the agent society in \Cref{sec:future_work}.
