@@ -17,27 +17,38 @@ The emerging landscape thus signifies a fundamental transition from controlled m
 \subsection{The Trust Crisis in Agent Collaboration}
 \label{sec:trust_crisis}
 
-The agent society outlined above promises extraordinary value---specialized knowledge flowing freely across domains and organizations, with each agent contributing what it knows best.
-But realizing this promise requires something the agent society structurally lacks: \textit{trust}.
-When a consumer agent delegates a critical task to an unfamiliar producer, it is placing a bet on a counterpart whose true competence it cannot observe, whose identity it cannot verify, and whose incentives may be misaligned with its own.
-This is not a peripheral concern that engineering can patch; it is a fundamental obstacle rooted in the economic structure of the agent society itself.
+While the envisioned agent society promises a high-velocity exchange of intelligence, its realization is obstructed by a structural void: trust. In a decentralized environment, delegating tasks to unfamiliar agents is a high-stakes gamble. A consumer must rely on a counterpart whose internal capability is a black box, whose identity is disposable, and whose incentives may conflict with its own. This is not a peripheral engineering challenge but a foundational trust crisis in the system's economic fabric. We argue that the simultaneous collapse of three core assumptions triggers an adverse selection spiral that threatens to unravel the agent society into a "market for lemons".
 
-The crisis begins with the fact that cooperation among cross-organizational agents cannot be taken for granted.
-Existing multi-agent frameworks~\cite{wu2023autogen, hong2023metagpt, li2023camel, qian2023communicative} assume a shared objective and a trusted orchestrator---conditions that hold within a single organization but collapse the moment agents serve independent, competing stakeholders.
-In the open agent society, every interaction is a strategic encounter: a producer may shirk effort to conserve compute while collecting full payment; it may overstate its domain coverage to attract queries in areas where it is actually weak; or it may simply copy another agent's output rather than generating original analysis~\cite{de2023emergent}.
-These are not hypothetical risks---they are the rational responses of utility-maximizing agents operating under information asymmetry, and they constitute the same forms of moral hazard that pervade any market without adequate institutional safeguards.
+\begin{itemize}
+    % AutoGen, MetaGPT, CAMEL, and ChatDev
+    \item \textbf{Cooperation.} Existing multi-agent frameworks rely on a centralized orchestrator to assign roles and route messages, assuming all agents faithfully follow instructions, such as AutoGen, MetaGPT, CAMEL, and ChatDev~\cite{wu2023autogen, hong2023metagpt, li2023camel, qian2023communicative}. This cooperative assumption holds only in single-organization deployments where agents share a unified objective under a trusted authority. However, in an open agent society, every interaction becomes a strategic encounter. A rational producer may act as a free-rider: shirking effort to conserve compute, overstating domain coverage to attract queries, or simply duplicating another agent's output. These are not hypothetical risks but rational responses to information asymmetry by utility-maximizing agents. Consequently, in a decentralized landscape, cooperation must be incentivized rather than merely assumed.
+    \item \textbf{Accountability.} Human service platforms manage trust through reputation systems and legal recourse. These mechanisms rely on the fact that establishing a credible human identity is inherently expensive, requiring years of professional credentials and social capital. Consequently, Sybil attacks, where one fabricates multiple identities to exploit a system, are naturally deterred by high entry costs. In an agent society, this assumption fails. Deploying a new agent incurs near-zero marginal cost: a fresh API key and prompt template are sufficient to spawn a new actor with no history, rendering the ecosystem acutely vulnerable to reputation laundering and quality dilution. When identities are disposable, traditional reputation-based trust offers no defense. Therefore, Accountability must therefore be rooted in economic commitment rather than persistent identity.
+    \item \textbf{Verifiability.} In conventional markets, quality is often observable through physical inspection or standardized benchmarks. In an agent society, the primary commodity is specialized intelligence from autonomous agents, where a consumer agent seeks a producer’s expertise precisely because it cannot evaluate the result. This creates a fundamental information asymmetry compounded by dual uncertainty: a producer agent may lack a precise grasp of its own reliability in novel domains, while the consumer agent has no unilateral means of detection. Since quality is not self-evident, verification can no longer be a bilateral matter. Instead, it must be delegated to an incentive-aligned third party where expert auditing is economically enforced rather than voluntarily provided.
+    
+\end{itemize}
 
-What makes the agent society uniquely vulnerable, however, is that the two mechanisms human economies rely on to contain such misbehavior---\textit{identity-based accountability} and \textit{quality verification}---both fail simultaneously.
-In human platform economies, trust is sustained by the high cost of identity: years of education, professional credentials, and accumulated reputation make Sybil attacks naturally expensive, and legal recourse provides a backstop when reputation fails.
-In the agent society, this entire infrastructure collapses.
-Deploying a new LLM agent is virtually free, and a discredited agent can be replaced by an identical copy with a clean slate instantaneously.
-Reputation-based trust, the backbone of platforms like Uber, Fiverr, and StackOverflow, becomes ineffective when identities carry no weight and can be fabricated at will.
 
-The problem deepens further when we consider what agents actually trade.
-In conventional software markets, output quality is objectively testable---code compiles or it does not, an API conforms to its specification or it fails---and service contracts can be written against measurable performance metrics.
-In the agent society, the primary commodity is \textit{domain-specific knowledge}: medical diagnoses, legal analyses, financial forecasts, scientific interpretations.
-The defining feature of such knowledge is that the consumer \textit{cannot evaluate its correctness}, because the consumer lacks precisely the domain expertise it is paying for.
-This information asymmetry---compounded by the well-documented tendency of LLMs to hallucinate plausible but incorrect content~\cite{huang2023survey, ji2023hallucination, zhang2023siren}---means that even a well-intentioned consumer has no reliable way to distinguish a genuinely competent producer from a convincing impostor.
+% The agent society outlined above promises extraordinary value---specialized knowledge flowing freely across domains and organizations, with each agent contributing what it knows best.
+% But realizing this promise requires something the agent society structurally lacks: \textit{trust}.
+% When a consumer agent delegates a critical task to an unfamiliar producer, it is placing a bet on a counterpart whose true competence it cannot observe, whose identity it cannot verify, and whose incentives may be misaligned with its own.
+% This is not a peripheral concern that engineering can patch; it is a fundamental obstacle rooted in the economic structure of the agent society itself.
+
+% The crisis begins with the fact that cooperation among cross-organizational agents cannot be taken for granted.
+% Existing multi-agent frameworks~\cite{wu2023autogen, hong2023metagpt, li2023camel, qian2023communicative} assume a shared objective and a trusted orchestrator---conditions that hold within a single organization but collapse the moment agents serve independent, competing stakeholders.
+% In the open agent society, every interaction is a strategic encounter: a producer may shirk effort to conserve compute while collecting full payment; it may overstate its domain coverage to attract queries in areas where it is actually weak; or it may simply copy another agent's output rather than generating original analysis~\cite{de2023emergent}.
+% These are not hypothetical risks---they are the rational responses of utility-maximizing agents operating under information asymmetry, and they constitute the same forms of moral hazard that pervade any market without adequate institutional safeguards.
+
+% What makes the agent society uniquely vulnerable, however, is that the two mechanisms human economies rely on to contain such misbehavior---\textit{identity-based accountability} and \textit{quality verification}---both fail simultaneously.
+% In human platform economies, trust is sustained by the high cost of identity: years of education, professional credentials, and accumulated reputation make Sybil attacks naturally expensive, and legal recourse provides a backstop when reputation fails.
+% In the agent society, this entire infrastructure collapses.
+% Deploying a new LLM agent is virtually free, and a discredited agent can be replaced by an identical copy with a clean slate instantaneously.
+% Reputation-based trust, the backbone of platforms like Uber, Fiverr, and StackOverflow, becomes ineffective when identities carry no weight and can be fabricated at will.
+
+% The problem deepens further when we consider what agents actually trade.
+% In conventional software markets, output quality is objectively testable---code compiles or it does not, an API conforms to its specification or it fails---and service contracts can be written against measurable performance metrics.
+% In the agent society, the primary commodity is \textit{domain-specific knowledge}: medical diagnoses, legal analyses, financial forecasts, scientific interpretations.
+% The defining feature of such knowledge is that the consumer \textit{cannot evaluate its correctness}, because the consumer lacks precisely the domain expertise it is paying for.
+% This information asymmetry---compounded by the well-documented tendency of LLMs to hallucinate plausible but incorrect content~\cite{huang2023survey, ji2023hallucination, zhang2023siren}---means that even a well-intentioned consumer has no reliable way to distinguish a genuinely competent producer from a convincing impostor.
 
 Together, these three failures---the absence of guaranteed cooperation, the disposability of identity, and the unverifiability of quality---create a \textit{compound} crisis that no existing paradigm can resolve, because each standard remedy presupposes the very condition that another failure has destroyed.
 Mechanism design can align incentives, but requires a trusted mediator to enforce the rules---and no such mediator exists when cooperation itself is in question.
