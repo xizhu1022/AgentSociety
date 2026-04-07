@@ -27,19 +27,13 @@ While the envisioned agent society promises a high-velocity exchange of intellig
     
 \end{itemize}
 
-The simultaneous collapse of cooperation, accountability, and verifiability triggers a self-reinforcing \textit{adverse selection} spiral~\cite{akerlof1970market}: consumers, unable to distinguish quality, discount all services indiscriminately; high-quality producers, unable to credibly signal competence, are systematically undercompensated and withdraw; while low-quality agents and strategic manipulators---who face no consequences---proliferate unopposed.
-The market devolves toward progressively lower quality: the ``market for lemons'' unravels.
+When these three assumptions collapse simultaneously, the agent society enters a ``market for lemons''~\cite{akerlof1970market}---an adverse selection regime in which reliable agents are progressively driven out by those willing to shirk, misrepresent, or free-ride, and no participant can unilaterally break the cycle.
+The natural impulse is to restore order through centralized orchestration: a master agent or platform operator that routes tasks, evaluates quality, and enforces compliance.
+Yet this remedy introduces pathologies of its own that are well-documented in platform economics~\cite{Narayanan2012Critical, Secoda2024Decentralized} and uniquely dangerous in the AI agent setting: data monopoly over proprietary inter-agent interaction intelligence~\cite{Beck2023BreakingUp, Giaretta2022DecentralizedDataMarket}, routing manipulation that serves platform revenue over participant welfare~\cite{Eslami2019Opacity, Ali2019Discrimination}, and suppression of the very agent autonomy that makes LLM agents economically valuable in the first place~\cite{Engelmann2020DemocraticSocialMedia, Jiang2023TradeOffModeration}.
 
-Centralized orchestration cannot arrest this spiral.
-Concentrating coordination authority in a master agent or platform operator introduces a distinct set of structural pathologies~\cite{Narayanan2012Critical, Secoda2024Decentralized}:
-(i)~\textit{data monopoly}, where the orchestrator accumulates proprietary interaction intelligence that competing organizations would never willingly expose~\cite{Beck2023BreakingUp, Giaretta2022DecentralizedDataMarket};
-(ii)~\textit{routing manipulation}, where the platform can optimize service matching for its own revenue rather than the welfare of participants~\cite{Eslami2019Opacity, Ali2019Discrimination};
-and (iii)~\textit{suppression of agent autonomy}, where agents---despite being capable strategic actors---are reduced to passive executors of opaque, unauditable decisions~\cite{Engelmann2020DemocraticSocialMedia, Jiang2023TradeOffModeration}.
-Centralization, in short, does not resolve the trust crisis; it merely concentrates it.
-
-What the agent society requires is not a more capable platform or a smarter orchestrator, but a fundamentally different coordination principle: one in which \textit{honest, high-quality participation emerges as the individually rational choice for every agent}, sustained not by external enforcement or trusted intermediaries, but by the economic structure of the protocol itself.
-To our knowledge, this work is among the first to integrate incentive mechanism design with the agent society paradigm, providing formal game-theoretic guarantees---incentive compatibility, individual rationality, and equilibrium existence---for decentralized, cross-organizational agent collaboration.
-While individual agent capabilities have advanced rapidly~\cite{yao2023react, schick2024toolformer, du2024debate, zheng2023judging} and decentralized infrastructure has emerged for distributed inference and blockchain-based coordination~\cite{borzunov2023petals, yuan2024decentralized_inference, bittensor2023, hu2024blockchain_fl}, no prior work unifies these threads into a coherent, incentive-driven ecosystem; our framework bridges this gap (see \Cref{sec:related_work} for a detailed positioning).
+The resolution, we argue, lies in a fundamentally different coordination principle for AI agent ecosystems: one in which \textit{honest, high-quality participation emerges as the individually rational choice for every agent}, sustained not by external enforcement or trusted intermediaries, but by the economic structure of the protocol itself.
+Despite rapid progress in both agent capabilities~\cite{yao2023react, schick2024toolformer, du2024debate, zheng2023judging} and decentralized infrastructure~\cite{borzunov2023petals, yuan2024decentralized_inference, bittensor2023, hu2024blockchain_fl}, no existing work provides such an incentive-grounded ecosystem with formal game-theoretic guarantees for cross-organizational agent collaboration.
+This paper presents the first framework to bridge this gap (see \Cref{sec:related_work} for a detailed positioning).
 
 
 \begin{figure*}[!htbp]
