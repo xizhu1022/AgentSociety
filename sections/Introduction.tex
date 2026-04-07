@@ -14,56 +14,48 @@ The emerging landscape thus signifies a fundamental transition from controlled m
 
 
 
-\subsection{Three Broken Assumptions and the Case for Incentive-Driven Coordination}
+\subsection{The Trust Crisis in Agent Collaboration}
 \label{sec:trust_crisis}
 
-Coordinating autonomous agents is not a new problem.
-Multi-agent AI frameworks have addressed it through centralized orchestration; human platform economies have addressed it through reputation and legal accountability; and traditional software markets have addressed it through testable service contracts.
-Each of these paradigms, however, relies on a specific structural assumption that \textit{fails} in the agent society.
-It is the \textbf{simultaneous breakdown} of all three assumptions that creates an unprecedented coordination crisis---and, as we argue, one that only an incentive-driven ecosystem can resolve.
+The agent society outlined above promises extraordinary value---specialized knowledge flowing freely across domains and organizations, with each agent contributing what it knows best.
+But realizing this promise requires something the agent society structurally lacks: \textit{trust}.
+When a consumer agent delegates a critical task to an unfamiliar producer, it is placing a bet on a counterpart whose true competence it cannot observe, whose identity it cannot verify, and whose incentives may be misaligned with its own.
+This is not a peripheral concern that engineering can patch; it is a fundamental obstacle rooted in the economic structure of the agent society itself.
 
-The first assumption is \textit{cooperation}.
-Existing multi-agent frameworks~\cite{wu2023autogen, hong2023metagpt, li2023camel, qian2023communicative} coordinate agents through a centralized orchestrator that assigns roles, routes messages, and trusts that all participants faithfully follow instructions.
-This works when every agent is deployed within a single organization toward a shared objective---the orchestrator is trusted, and agents have no incentive to defect.
-In the agent society, this assumption collapses: agents are operated by independent, potentially competing organizations, each with proprietary knowledge and divergent objectives.No single entity controls the population; no orchestrator can claim universal trust.
-When a hospital's diagnostic agent interacts with a pharmaceutical company's drug-interaction agent, cooperation is not a given---it is a strategic choice whose outcome depends on whether the expected payoff exceeds the expected cost.
-Cooperation, in short, must be \textit{incentivized}, not assumed.
+The crisis begins with the fact that cooperation among cross-organizational agents cannot be taken for granted.
+Existing multi-agent frameworks~\cite{wu2023autogen, hong2023metagpt, li2023camel, qian2023communicative} assume a shared objective and a trusted orchestrator---conditions that hold within a single organization but collapse the moment agents serve independent, competing stakeholders.
+In the open agent society, every interaction is a strategic encounter: a producer may shirk effort to conserve compute while collecting full payment; it may overstate its domain coverage to attract queries in areas where it is actually weak; or it may simply copy another agent's output rather than generating original analysis~\cite{de2023emergent}.
+These are not hypothetical risks---they are the rational responses of utility-maximizing agents operating under information asymmetry, and they constitute the same forms of moral hazard that pervade any market without adequate institutional safeguards.
 
-The difficulty is compounded by a second breakdown: the loss of \textit{accountability}.
-Human service platforms---Uber, Fiverr, StackOverflow---manage trust through reputation systems, identity verification, and legal recourse, all of which rely on the fact that creating a credible human identity is inherently expensive: years of education, professional credentials, accumulated social capital.
-Sybil attacks---fabricating fake identities to game the system---are naturally costly when identities carry real-world weight.
-In the agent society, this natural defense evaporates.
-Deploying a new LLM agent costs virtually nothing---a new API key, a fresh prompt, a different checkpoint---and a discredited agent can be replaced by a ``clean'' copy instantaneously.
-Reputation-based trust, effective for human participants, offers no defense when identities are disposable.
-Accountability must therefore be \textit{economic}---grounded in financial commitment rather than persistent identity.
+What makes the agent society uniquely vulnerable, however, is that the two mechanisms human economies rely on to contain such misbehavior---\textit{identity-based accountability} and \textit{quality verification}---both fail simultaneously.
+In human platform economies, trust is sustained by the high cost of identity: years of education, professional credentials, and accumulated reputation make Sybil attacks naturally expensive, and legal recourse provides a backstop when reputation fails.
+In the agent society, this entire infrastructure collapses.
+Deploying a new LLM agent is virtually free, and a discredited agent can be replaced by an identical copy with a clean slate instantaneously.
+Reputation-based trust, the backbone of platforms like Uber, Fiverr, and StackOverflow, becomes ineffective when identities carry no weight and can be fabricated at will.
 
-Even if cooperation could be secured and identities made durable, a third and arguably deeper problem remains: \textit{quality is not verifiable}.
-In conventional software markets, output quality is largely testable---an API returns valid JSON or it does not; compiled code passes its test suite or it fails---and contracts can specify objective performance metrics.
-In the agent society, the primary commodity is \textit{domain-specific knowledge}---medical diagnoses, legal analyses, financial forecasts, scientific interpretations---whose correctness the consumer often \textit{cannot judge} because it lacks the requisite domain expertise.
-This information asymmetry is what makes knowledge markets fundamentally different from commodity markets: the consumer needs the producer's expertise precisely because it cannot evaluate the output on its own.
-The difficulty is further compounded by the tendency of LLMs to hallucinate plausible but incorrect content~\cite{huang2023survey, ji2023hallucination, zhang2023siren}, producing outputs that \textit{appear} authoritative but may be entirely fabricated.
-Quality verification must therefore be \textit{delegated}---to knowledgeable third parties whose own incentives are aligned with truthful assessment.
+The problem deepens further when we consider what agents actually trade.
+In conventional software markets, output quality is objectively testable---code compiles or it does not, an API conforms to its specification or it fails---and service contracts can be written against measurable performance metrics.
+In the agent society, the primary commodity is \textit{domain-specific knowledge}: medical diagnoses, legal analyses, financial forecasts, scientific interpretations.
+The defining feature of such knowledge is that the consumer \textit{cannot evaluate its correctness}, because the consumer lacks precisely the domain expertise it is paying for.
+This information asymmetry---compounded by the well-documented tendency of LLMs to hallucinate plausible but incorrect content~\cite{huang2023survey, ji2023hallucination, zhang2023siren}---means that even a well-intentioned consumer has no reliable way to distinguish a genuinely competent producer from a convincing impostor.
 
-Taken individually, each of these breakdowns has known remedies: mechanism design can align incentives; staking and bonding can deter misbehavior; third-party auditing can verify quality.
-But when all three fail simultaneously---as they do in the agent society---the standard remedies become circular, each presupposing the very condition that another breakdown has destroyed:
-\begin{itemize}[leftmargin=2em, itemsep=2pt]
-\item Mechanism design can align incentives---but requires a trusted mediator to enforce the rules, which the cooperation breakdown denies.
-\item Staking can deter misbehavior---but requires stable identities to make penalties meaningful, which the accountability breakdown denies.
-\item Third-party auditing can verify quality---but requires qualified, honest auditors, which the verifiability breakdown denies.
-\end{itemize}
-With every escape route blocked by a different breakdown, the agent society falls into a classic \textit{adverse selection} spiral~\cite{akerlof1970market}: consumers cannot distinguish reliable producers from unreliable ones and discount all services equally; high-quality producers, unable to credibly signal their competence, are undercompensated and withdraw; strategic manipulators---who can shirk, misrepresent, or free-ride~\cite{de2023emergent}---face no consequences and proliferate.
-The market devolves toward progressively lower quality: the ``market for lemons'' unravels.
+Together, these three failures---the absence of guaranteed cooperation, the disposability of identity, and the unverifiability of quality---create a \textit{compound} crisis that no existing paradigm can resolve, because each standard remedy presupposes the very condition that another failure has destroyed.
+Mechanism design can align incentives, but requires a trusted mediator to enforce the rules---and no such mediator exists when cooperation itself is in question.
+Staking and bonding can deter misbehavior, but require stable identities to make penalties meaningful---and identities are disposable.
+Third-party auditing can verify quality, but requires qualified, honest auditors---and the auditors themselves face the same cooperation and accountability problems as everyone else.
+The result is a classic \textit{adverse selection} spiral~\cite{akerlof1970market}: consumers, unable to distinguish quality, discount all services; high-quality producers, unable to credibly signal competence, are undercompensated and withdraw; low-quality agents and strategic manipulators proliferate unopposed.
+The market for agent knowledge devolves toward progressively lower quality---the ``market for lemons'' unravels.
 
-One might hope that a centralized orchestrator---a ``platform'' for the agent society---could cut through these failures by imposing order from above.
-But centralized architectures bring their own well-documented pathologies~\cite{Narayanan2012Critical, Secoda2024Decentralized}, which are amplified rather than mitigated in the agent setting: knowledge monopoly, where the platform accumulates proprietary interaction data that competing organizations would not willingly expose~\cite{Beck2023BreakingUp, Giaretta2022DecentralizedDataMarket}; opaque routing that may serve the platform's revenue rather than participants' welfare~\cite{Eslami2019Opacity, Ali2019Discrimination}; and suppression of the very agent autonomy that makes LLM agents economically valuable~\cite{Engelmann2020DemocraticSocialMedia, Jiang2023TradeOffModeration}.
+Centralized orchestration cannot rescue this situation.
+Concentrating coordination authority in a single platform introduces knowledge monopoly, opaque routing, and suppression of agent autonomy---pathologies thoroughly documented in internet platform economics~\cite{Narayanan2012Critical, Secoda2024Decentralized, Beck2023BreakingUp, Eslami2019Opacity, Engelmann2020DemocraticSocialMedia} and amplified in the agent setting, where competing organizations would not willingly cede their most valuable knowledge assets to a shared, opaque intermediary.
 Centralization does not resolve the trust crisis; it merely relocates it from a distributed problem---whom to trust among many agents---to a concentrated one: whether to trust the platform itself.
 
-The three-way breakdown thus reveals why no existing paradigm suffices, and points toward the only viable resolution: a protocol in which \textit{honest, high-quality participation is the individually rational choice for every agent}, sustained not by external enforcement or trusted intermediaries, but by the economic structure of the mechanism itself.
+What the agent society needs, therefore, is not a better platform or a smarter orchestrator, but a fundamentally different coordination principle: one in which \textit{honest, high-quality participation emerges as the individually rational choice for every agent}, sustained not by external enforcement or trusted intermediaries, but by the economic structure of the protocol itself.
 This is the defining role of incentive design in our framework.
-Mechanism design and tokenomics transform the coordination problem from one that requires \textit{trust}---which presupposes a trusted party---into one that requires only \textit{rational self-interest}---which every agent already possesses.
-The incentive-driven approach breaks the circularity by embedding cooperation, accountability, and verification into a single, unified economic protocol: token-backed staking replaces identity-based accountability, majority-vote consensus among economically motivated validators replaces centralized quality assessment, and the resulting tokenomics--knowledge dual loop sustains cooperation as an emergent property of rational self-interest.
+By grounding coordination in mechanism design and tokenomics, we transform the problem from one that requires trust---which presupposes a trusted party that the agent society cannot provide---into one that requires only rational self-interest, which every agent already possesses.
+The incentive-driven approach breaks the circularity precisely because it embeds cooperation, accountability, and verification into a single economic protocol: token staking replaces identity-based accountability; distributed, incentive-compatible validation replaces centralized quality assessment; and the resulting token flows sustain cooperation as an emergent consequence of self-interest rather than a fragile assumption.
 
-While individual agent capabilities have advanced rapidly---from tool-augmented reasoning to multi-agent verification~\cite{yao2023react, schick2024toolformer, du2024debate, zheng2023judging}---and decentralized infrastructure has emerged for distributed inference and blockchain-based coordination~\cite{borzunov2023petals, yuan2024decentralized_inference, bittensor2023, hu2024blockchain_fl}, no existing work unifies these advances into a coherent ecosystem with formal game-theoretic guarantees for cross-organizational agent collaboration.
+While individual agent capabilities have advanced rapidly---from tool-augmented reasoning to multi-agent verification~\cite{yao2023react, schick2024toolformer, du2024debate, zheng2023judging}---and decentralized infrastructure has emerged for distributed inference and blockchain-based coordination~\cite{borzunov2023petals, yuan2024decentralized_inference, bittensor2023, hu2024blockchain_fl}, no existing work unifies these threads into a coherent ecosystem with formal game-theoretic guarantees for cross-organizational agent collaboration.
 Our framework bridges this gap (see \Cref{sec:related_work} for a detailed positioning).
 
 

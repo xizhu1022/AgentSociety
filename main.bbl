@@ -164,6 +164,13 @@ Guohao Li, Hasan Abed Al~Kader Hammoud, Hani Itani, Dmitrii Khizbullin, and
 \newblock Camel: Communicative agents for "mind" exploration of large scale
   language model society, 2023.
 
+\bibitem{de2023emergent}
+I~de~Zarz{\`a}, J~de~Curt{\`o}, Gemma Roig, Pietro Manzoni, and Carlos~T
+  Calafate.
+\newblock Emergent cooperation and strategy adaptation in multi-agent systems:
+  An extended coevolutionary theory with llms.
+\newblock {\em Electronics}, 12(12):2722, 2023.
+
 \bibitem{huang2023survey}
 Lei Huang, Weijiang Yu, Weitao Ma, Weihong Zhong, Zhangyin Feng, Haotian Wang,
   Qianglong Chen, Weihua Peng, Xiaocheng Feng, Bing Qin, and Ting Liu.
@@ -190,13 +197,6 @@ George~A Akerlof.
   mechanism.
 \newblock {\em The Quarterly Journal of Economics}, 84(3):488--500, 1970.
 
-\bibitem{de2023emergent}
-I~de~Zarz{\`a}, J~de~Curt{\`o}, Gemma Roig, Pietro Manzoni, and Carlos~T
-  Calafate.
-\newblock Emergent cooperation and strategy adaptation in multi-agent systems:
-  An extended coevolutionary theory with llms.
-\newblock {\em Electronics}, 12(12):2722, 2023.
-
 \bibitem{Narayanan2012Critical}
 Arvind Narayanan, Vincent Toubiana, Solon Barocas, Helen Nissenbaum, and Dan
   Boneh.
@@ -215,14 +215,6 @@ Micah~D. Beck and Terry~R. Moore.
 \newblock Breaking up a digital monopoly.
 \newblock {\em Communications of the ACM}, 66(6):38--41, 2023.
 
-\bibitem{Giaretta2022DecentralizedDataMarket}
-Lodovico Giaretta, Thomas Marchioro, Evangelos Markatos, and
-  {\v{S}}ar{\={u}}nas Girdzijauskas.
-\newblock Towards a decentralized infrastructure for data marketplaces:
-  Narrowing the gap between academia and industry.
-\newblock In {\em Proceedings of the 1st International Workshop on Data Economy
-  (DE '22)}, pages 49--56. ACM, 2022.
-
 \bibitem{Eslami2019Opacity}
 Motahhare Eslami, Kristen Vaccaro, Min~Kyung Lee, Amit Elazari~Bar On, Eric
   Gilbert, and Karrie Karahalios.
@@ -231,23 +223,11 @@ Motahhare Eslami, Kristen Vaccaro, Min~Kyung Lee, Amit Elazari~Bar On, Eric
 \newblock In {\em Proceedings of the 2019 CHI Conference on Human Factors in
   Computing Systems (CHI '19)}, 2019.
 
-\bibitem{Ali2019Discrimination}
-Muhammad Ali, Piotr Sapiezynski, Miranda Bogen, Aleksandra Korolova, Alan
-  Mislove, and Aaron Rieke.
-\newblock Discrimination through optimization: How facebook's ad delivery can
-  lead to biased outcomes.
-\newblock {\em Proc. ACM Hum.-Comput. Interact.}, 3(CSCW), 2019.
-
 \bibitem{Engelmann2020DemocraticSocialMedia}
 Severin Engelmann, Jens Grossklags, and Lisa Herzog.
 \newblock Should users participate in governing social media? philosophical and
   technical considerations of democratic social media.
 \newblock {\em First Monday}, 25(12), 2020.
-
-\bibitem{Jiang2023TradeOffModeration}
-Jialun~Aaron Jiang, Peipei Nie, Jed~R. Brubaker, and Casey Fiesler.
-\newblock A trade-off-centered framework of content moderation.
-\newblock {\em ACM Transactions on Computer-Human Interaction}, 30(1), 2023.
 
 \bibitem{zheng2023judging}
 Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan Zhuang, Zhanghao Wu, Yonghao
