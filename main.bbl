@@ -222,35 +222,16 @@ Jialun~Aaron Jiang, Peipei Nie, Jed~R. Brubaker, and Casey Fiesler.
 \newblock A trade-off-centered framework of content moderation.
 \newblock {\em ACM Transactions on Computer-Human Interaction}, 30(1), 2023.
 
-\bibitem{zheng2023judging}
-Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan Zhuang, Zhanghao Wu, Yonghao
-  Zhuang, Zi~Lin, Zhuohan Li, Dacheng Li, Eric~P Xing, et~al.
-\newblock Judging {LLM}-as-a-judge with {MT-Bench} and chatbot arena.
-\newblock In {\em Advances in Neural Information Processing Systems (NeurIPS)},
-  2023.
-
-\bibitem{borzunov2023petals}
-Alexander Borzunov, Dmitry Baranchuk, Tim Dettmers, Maksim Ryabinin, Younes
-  Belkada, Artem Chumachenko, Pavel Samygin, and Colin Raffel.
-\newblock Petals: Collaborative inference and fine-tuning of large models.
-\newblock In {\em Proceedings of the 61st Annual Meeting of the Association for
-  Computational Linguistics: System Demonstrations}, pages 558--568, 2023.
+\bibitem{bittensor2023}
+Ala~Shaabana Rao and Jacob~Robert Benson.
+\newblock Bittensor: A peer-to-peer intelligence market.
+\newblock {\em arXiv preprint arXiv:2312.09508}, 2023.
 
 \bibitem{yuan2024decentralized_inference}
 Fangcheng Yuan, Shengyuan Lian, Yuxuan Chen, Biao Guo, and Kai Ning.
 \newblock Decentralized inference: A survey on distributed large language model
   serving.
 \newblock {\em arXiv preprint arXiv:2407.00857}, 2024.
-
-\bibitem{bittensor2023}
-Ala~Shaabana Rao and Jacob~Robert Benson.
-\newblock Bittensor: A peer-to-peer intelligence market.
-\newblock {\em arXiv preprint arXiv:2312.09508}, 2023.
-
-\bibitem{hu2024blockchain_fl}
-Yongzhi Hu, Yan Gao, et~al.
-\newblock Blockchain-based federated learning: A comprehensive survey.
-\newblock {\em IEEE Internet of Things Journal}, 2024.
 
 \bibitem{jakobsson1999proofs}
 Markus Jakobsson and Ari Juels.
@@ -315,10 +296,22 @@ Celestia Labs.
   \url{https://docs.celestia.org/learn/how-celestia-works/data-availability-layer},
   2025.
 
+\bibitem{borzunov2023petals}
+Alexander Borzunov, Dmitry Baranchuk, Tim Dettmers, Maksim Ryabinin, Younes
+  Belkada, Artem Chumachenko, Pavel Samygin, and Colin Raffel.
+\newblock Petals: Collaborative inference and fine-tuning of large models.
+\newblock In {\em Proceedings of the 61st Annual Meeting of the Association for
+  Computational Linguistics: System Demonstrations}, pages 558--568, 2023.
+
 \bibitem{ding2024deai}
 Zhenzhi Ding, Yinda Chen, et~al.
 \newblock {DeAI}: Decentralized artificial intelligence.
 \newblock {\em arXiv preprint arXiv:2406.18049}, 2024.
+
+\bibitem{hu2024blockchain_fl}
+Yongzhi Hu, Yan Gao, et~al.
+\newblock Blockchain-based federated learning: A comprehensive survey.
+\newblock {\em IEEE Internet of Things Journal}, 2024.
 
 \bibitem{ito2024cryptoeconomics}
 Kensuke Ito.
@@ -384,6 +377,13 @@ Yue Zhang, Yafu Li, Leyang Cui, Deng Cai, Lemao Liu, Tingchen Fu, Xinting
 \newblock Siren's song in the {AI} ocean: A survey on hallucination in large
   language models.
 \newblock {\em arXiv preprint arXiv:2309.01219}, 2023.
+
+\bibitem{zheng2023judging}
+Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan Zhuang, Zhanghao Wu, Yonghao
+  Zhuang, Zi~Lin, Zhuohan Li, Dacheng Li, Eric~P Xing, et~al.
+\newblock Judging {LLM}-as-a-judge with {MT-Bench} and chatbot arena.
+\newblock In {\em Advances in Neural Information Processing Systems (NeurIPS)},
+  2023.
 
 \bibitem{kim2024prometheus}
 Seungone Kim, Jamin Shin, Yejin Cho, Joel Jang, Shayne Longpre, Hwaran Lee,

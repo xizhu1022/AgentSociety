@@ -53,36 +53,24 @@ The resolution lies in a fundamentally different coordination principle: an ince
 \subsection{A Tokenomics-Driven Decentralized Ecosystem}
 \label{sec:vision}
 
-We propose a \textbf{tokenomics-driven decentralized ecosystem} in which LLM agents coordinate autonomously through economic incentives rather than centralized control (Figure~\ref{fig:decentralization}).
-The central thesis is that the trust crisis can be resolved by designing protocols where honest, high-quality participation is the \textit{utility-maximizing strategy} for every agent---so that the ecosystem is sustained by rational self-interest alone.
-The ecosystem rests on three pillars, each targeting a specific dimension of the coordination crisis identified above.
+To address the trust crisis identified above, we propose a \textbf{tokenomics-driven decentralized ecosystem} in which LLM agents coordinate through economic incentives rather than centralized control (Figure~\ref{fig:decentralization}).
 
-The first pillar is a \textit{fluid role structure} that transforms the cooperation problem into an economic opportunity.
-Every agent can dynamically assume any of three roles depending on its context and knowledge advantage:
-\textit{consumers} issue token-backed service requests for tasks beyond their expertise;
-\textit{producers} provide knowledge-intensive inference and earn tokens for reliable outputs;
-\textit{validators} independently assess producer quality on behalf of consumers.
-A medical agent might serve as a producer for diagnostic queries, a consumer for pharmacological questions, and a validator for clinical trial analysis---reflecting the heterogeneous, context-dependent nature of knowledge in the agent society.
-By coupling each role with both token-earning and token-spending pathways, the ecosystem makes participation in every capacity individually rational, transforming cooperation from a fragile assumption into an emergent consequence of economic self-interest.
+\textbf{Mechanism design.}
+The ecosystem organizes agents into three dynamically interchangeable roles---\textit{consumers} who issue token-backed service requests, \textit{producers} who provide knowledge-intensive inference, and \textit{validators} who independently assess producer quality---with every agent free to assume any role depending on its context and knowledge advantage.
+Service routing proceeds through a two-stage protocol: producers initiate \textit{promotion} by staking tokens and requesting validator assessment of their capabilities; consumers then independently \textit{validate} and, if satisfied, commit to a token-backed subscription.
+At the core of this process is a novel consensus mechanism we call \textit{Proof-of-Intelligence (PoI)}: unlike Proof-of-Work~\cite{jakobsson1999proofs} or Proof-of-Stake~\cite{dwork1992pricing}, which require raw computation or financial capital, PoI is grounded in \textit{domain knowledge}---validators stake tokens, independently assess service quality using their own architecturally heterogeneous models, and reach consensus through majority voting, ensuring that collective judgments reflect genuine epistemic diversity rather than correlated errors.
 
-The second pillar is a novel validation mechanism called \textit{Proof-of-Intelligence (PoI)}, which resolves the verifiability crisis by delegating quality assessment to economically motivated third parties.
-Inspired by Proof-of-Work~\cite{jakobsson1999proofs} and Proof-of-Stake~\cite{dwork1992pricing} in blockchain systems, PoI is grounded not in raw computation or financial capital but in \textit{domain knowledge}: validators stake tokens, independently assess service quality using their own models, and are rewarded only when their judgments align with the majority consensus---those who deviate forfeit their stake.
-To ensure that consensus reflects genuine epistemic diversity rather than correlated errors, PoI mandates \textit{architectural heterogeneity}: validators must employ model architectures distinct from the producer under evaluation, substantially reducing shared failure modes.
+\textbf{Tokenomics incentives.}
+Token flows link all three roles into a self-reinforcing \textit{tokenomics--knowledge dual loop}: producers earn tokens for reliable services $\to$ consumers spend tokens for quality knowledge $\to$ validators earn tokens for truthful assessments $\to$ truthful assessments sustain the information quality that makes tokens valuable (Figure~\ref{fig:tokenomics}).
+The staking-and-reward structure ensures that validators who align with the majority consensus are compensated, while those who shirk or misreport forfeit their stake---making honest effort the profitable strategy.
+Token staking further serves as an economic bond that makes misbehavior costly regardless of identity, neutralizing the Sybil threat at its root: creating a new agent is free, but staking tokens on that agent is not.
+The dual loop thus sustains cooperation, accountability, and quality verification as emergent properties of rational self-interest, requiring no external subsidy or centralized enforcement.
 
-The third pillar is the \textit{tokenomics--knowledge dual loop}, which resolves the accountability crisis by replacing identity-based trust with economic commitment.
-Token flows link all three roles into a self-reinforcing cycle: producers earn tokens for reliable services $\to$ consumers spend tokens for quality knowledge $\to$ validators earn tokens for truthful assessments $\to$ truthful assessments sustain the information quality that makes tokens valuable (Figure~\ref{fig:tokenomics}).
-Crucially, token staking serves as an economic bond that makes misbehavior costly regardless of identity---directly neutralizing the Sybil threat: creating a new identity is free, but staking tokens on that identity is not.
-Given appropriate mechanism parameters (\Cref{sec:ecosystem}), the dual loop is sustained by rational self-interest alone, requiring no external subsidy or centralized intervention.
-
-These design choices are not merely intuitive---they are backed by rigorous game-theoretic guarantees.
-Within a unified Bayesian game framework, we establish three layers of formal results:
-\textbf{(i)}~\textit{Incentive compatibility (IC)}---truthful effort is a strict best response for every validator, ensuring that PoI produces an informative consensus signal;
-\textbf{(ii)}~\textit{Individual rationality (IR)}---producers promote only when their quality exceeds a self-screening threshold, and consumers subscribe only when posterior utility justifies the cost;
-\textbf{(iii)}~\textit{Symmetric Bayesian--Nash equilibrium (BNE)}---the IC and IR conditions are mutually consistent, forming a stable equilibrium where no agent has incentive to deviate.
-We further prove that these results are \textit{robust} to bounded Sybil attacks, correlated validator errors, and heterogeneous validator quality (\Cref{sec:robustness}).
-
-Beyond static equilibrium, the dual loop generates \textbf{evolutionary selection pressure}: high-quality agents accumulate tokens and expand their participation, while low-quality agents deplete their reserves and exit.
-Over time, this economic selection progressively elevates the aggregate capability of the agent population, making the ecosystem not merely a coordination platform but an \textbf{evolutionary engine} for the agent society.
+\textbf{Game-theoretic guarantees.}
+These design choices are not merely intuitive---they admit rigorous formal analysis.
+Within a unified Bayesian game framework, we prove: \textbf{(i)}~\textit{incentive compatibility (IC)}---truthful effort is a strict best response for every validator; \textbf{(ii)}~\textit{individual rationality (IR)}---producers and consumers participate only when their expected payoff justifies the cost; and \textbf{(iii)}~\textit{symmetric Bayesian--Nash equilibrium (BNE)}---all conditions hold simultaneously, forming a stable equilibrium from which no agent has incentive to deviate.
+We further prove that these guarantees are \textit{robust} to bounded Sybil attacks, correlated validator errors, and heterogeneous validator quality (\Cref{sec:robustness}).
+Beyond static equilibrium, the dual loop generates \textbf{evolutionary selection pressure} that progressively elevates the aggregate capability of the agent population, making the ecosystem not merely a coordination platform but an \textbf{evolutionary engine} for the agent society.
 
 
 \begin{figure*}[!tb]
