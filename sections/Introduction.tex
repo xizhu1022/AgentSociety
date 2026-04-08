@@ -65,11 +65,15 @@ Along this line, inspired by Proof-of-Work (PoW) \cite{jakobsson1999proofs} and 
 Token flows orchestrate the interactions among all three roles into a self-reinforcing tokenomics–knowledge dual loop, which serves as the primary driving force behind the prosperity of the decentralized ecosystem. Specifically, our framework incentivizes agents to participate across various roles by coupling each with both token-earning and token-spending opportunities, thereby fostering a dynamic flow of value. At its core, the staking-and-reward structure ensures that validators who align with the majority consensus are compensated, while those who shirk or misreport forfeit their stake—rendering honest effort the most profitable strategy.
 Token staking further serves as an economic bond that makes misbehavior costly regardless of agent identity, neutralizing the Sybil threat at its root: while creating a new agent is costless, staking tokens on that agent is not. The dual loop thus sustains cooperation, accountability, and quality verification as emergent properties of rational self-interest, requiring no external subsidy or centralized enforcement.
 
-\textbf{Game-theoretic guarantees.}
-These design choices are not merely intuitive---they admit rigorous formal analysis.
-Within a unified Bayesian game framework, we prove: \textbf{(i)}~\textit{incentive compatibility (IC)}---truthful effort is a strict best response for every validator; \textbf{(ii)}~\textit{individual rationality (IR)}---producers and consumers participate only when their expected payoff justifies the cost; and \textbf{(iii)}~\textit{symmetric Bayesian--Nash equilibrium (BNE)}---all conditions hold simultaneously, forming a stable equilibrium from which no agent has incentive to deviate.
-We further prove that these guarantees are \textit{robust} to bounded Sybil attacks, correlated validator errors, and heterogeneous validator quality (\Cref{sec:robustness}).
-Beyond static equilibrium, the dual loop generates \textbf{evolutionary selection pressure} that progressively elevates the aggregate capability of the agent population, making the ecosystem not merely a coordination platform but an \textbf{evolutionary engine} for the agent society.
+\textbf{Game-Theoretic Guarantees.}
+The mechanism design and tokenomics described above are not merely intuitive---they admit rigorous formal analysis within a unified Bayesian game framework.
+We model the strategic interactions among validators, producers, and consumers and establish three layers of guarantees that build upon one another.
+First, we prove \textit{incentive compatibility (IC)} for validators: truthful effort is a strict best response for every validator, because the economic stake amplifies the informational advantage that honest assessment provides over random guessing.
+This ensures that the PoI consensus is a reliable quality signal rather than noise.
+Building on this informative signal, we derive \textit{threshold-optimal policies} under \textit{individual rationality (IR)}: producers rationally promote their services only when their true quality is high enough to justify the staking cost (supply-side self-screening), while consumers rationally subscribe only when the posterior expected utility---conditioned on the validation outcome---exceeds the subscription cost (demand-side disciplined engagement).
+Finally, we prove that these individually optimal strategies are mutually consistent, forming a \textit{symmetric Bayesian--Nash equilibrium (BNE)} in which no agent of any role has incentive to unilaterally deviate.
+We further show that these guarantees are \textit{robust} to bounded Sybil attacks, correlated validator errors, and heterogeneous validator quality (\Cref{sec:robustness}), with the economic stake serving as a tunable parameter that compensates for adversarial degradation.
+Beyond static equilibrium, the dual loop generates \textbf{evolutionary selection pressure}: high-quality agents accumulate tokens and expand their reach, while low-quality agents deplete their reserves and exit---progressively elevating the aggregate capability of the agent population and making the ecosystem an \textbf{evolutionary engine} for the agent society.
 
 
 \begin{figure*}[!tb]
@@ -86,13 +90,15 @@ Beyond static equilibrium, the dual loop generates \textbf{evolutionary selectio
 \subsection{Contributions}
 \label{sec:contributions}
 
-$\bullet$~We identify the trust crisis in cross-organizational LLM agent collaboration---where capability limitations, strategic misbehavior, and near-zero deployment costs jointly create adverse selection---and expose the capability and structural barriers that render centralized orchestration untenable, articulating the need for an incentive-driven decentralized ecosystem.
+The contributions of this paper are summarized as follows:
 
-$\bullet$~We design a tokenomics-driven decentralized ecosystem with three dynamically interchangeable agent roles, introduce Proof-of-Intelligence (PoI) as a novel decentralized validation mechanism grounded in domain knowledge, and establish a tokenomics--knowledge dual loop that aligns individual rationality with collective welfare.
+$\bullet$~We identify the trust crisis in the emerging LLM agent society---where the simultaneous collapse of cooperation, accountability, and verifiability triggers adverse selection---and argue that centralized orchestration cannot resolve this crisis due to inherent capability and structural barriers, establishing the need for an incentive-driven decentralized ecosystem.
 
-$\bullet$~Within a unified game-theoretic framework, we formally prove validator incentive compatibility, derive threshold-optimal policies for producers and consumers, demonstrate the existence of a symmetric Bayesian--Nash equilibrium, and prove robustness to bounded Sybil attacks, correlated errors, and heterogeneous validator quality.
+$\bullet$~We design a tokenomics-driven decentralized ecosystem organized around three dynamically interchangeable agent roles (consumer, producer, validator), introduce \textit{Proof-of-Intelligence} (PoI) as a novel decentralized validation mechanism grounded in domain knowledge and architectural heterogeneity, and establish a self-reinforcing \textit{tokenomics--knowledge dual loop} that aligns individual rationality with collective welfare without centralized enforcement.
 
-$\bullet$~We instantiate the ecosystem as a decentralized question answering system (DeQA) and conduct extensive simulations demonstrating that the mechanism drives agent communities toward truthful participation and improved social welfare.
+$\bullet$~Within a unified Bayesian game framework, we formally prove validator incentive compatibility (IC), derive threshold-optimal promotion and subscription policies under individual rationality (IR), demonstrate the existence of a symmetric Bayesian--Nash equilibrium (BNE), and establish robustness of these guarantees to bounded Sybil attacks, correlated validator errors, and heterogeneous validator quality.
+
+$\bullet$~We instantiate the ecosystem as a Decentralized Question Answering system (DeQA) and conduct extensive simulations demonstrating that the mechanism drives agent communities toward truthful participation, effective quality screening, and improved social welfare.
 
 \vspace{1mm}
-\noindent\textit{The proposed framework is domain-agnostic and applies broadly to any knowledge-intensive agent collaboration scenario. We use question answering as a concrete case study for empirical validation.}
+\noindent\textit{The proposed framework is domain-agnostic and applies to any knowledge-intensive agent collaboration scenario. We use question answering as a concrete case study for empirical validation.}
