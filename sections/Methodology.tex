@@ -189,39 +189,27 @@ By design, the total cost of validation $m \cdot n \cdot \tau_{\text{val}}$ is s
 \subsubsection{Consensus Formation and Proof-of-Intelligence}
 \label{sec:poi_detail}
 
-At the core of each validation stage lies a consensus formation process: a committee of validator agents independently assesses the producer's service quality and aggregates their individual judgments into a single, auditable consensus signal.
+To improve the transparency and auditability of agent service routing, our ecosystem employs a decentralized consensus formation process in which heterogeneous validator agents collaborate to deliver a more reliable judgment than any individual could provide. Once a validation request is issued, the selected committee serves as a decentralized proxy to assess producer-consumer alignment: each validator independently invokes its routing service and checks whether its own output concurs with that of the producer. The resulting individual judgments are aggregated through majority voting into a single, auditable consensus signal, which is returned to the requester---the producer in promotion validation, or the consumer in subscription validation---as a reference for the final routing decision. We formalize this process for both stages below.
 
 \begin{definition}{\textbf{(Promotion Consensus)}}\label{def:promo_consensus}
 Let $V_p = \{v_1, \ldots, v_n\}$ denote the validator committee for promotion. Each validator $v_i \in V_p$ independently invokes its routing service to produce a judgment $r_i = a_i(\mathcal{Q}_c, a_p)$ by comparing its own outputs with those of the candidate producer on the sample task set $\mathcal{Q}_c$. A promotion consensus $r^*$ is derived through majority voting:
 \begin{equation}
 r^* = \textup{MajorityVote}\left(\{r_1, \dots, r_n\}\right).
 \end{equation}
-The producer adopts $r^*$ as a reference signal to decide whether to proceed with the promotion offer.
+The producer may adopt $r^*$ as a reference signal to decide whether to proceed with the promotion offer.
 \end{definition}
 
 \begin{definition}{\textbf{(Subscription Consensus)}}\label{def:sub_consensus}
-A disjoint validator committee $V_s = \{v_1', \ldots, v_n'\}$ evaluates the producer on a separate task set $\mathcal{Q}_s$, with each validator $v_j' \in V_s$ independently producing a judgment $r_j' = a_j(\mathcal{Q}_s, a_p)$. A subscription consensus is reached by majority voting:
+Let $V_s = \{v_1', \ldots, v_n'\}$ denote the disjoint validator committee for subscription. Each validator $v_j' \in V_s$ independently invokes its routing service to produce a judgment $r_j' = a_j(\mathcal{Q}_s, a_p)$ by comparing its own outputs with those of the producer on the separate task set $\mathcal{Q}_s$. A subscription consensus $r^{**}$ is reached by majority voting:
 \begin{equation}
 r^{**} = \textup{MajorityVote}\left(\{r_1', \ldots, r_n'\}\right).
 \end{equation}
-The consumer uses $r^{**}$ to decide whether the producer's service is sufficiently aligned with its domain requirements.
+The consumer may use $r^{**}$ as a reference signal to decide whether the producer's service is sufficiently aligned with its domain requirements.
 \end{definition}
 
-In both stages, the requesting agent retains full autonomy to accept or reject the consensus based on its own utility function and risk tolerance.
+We refer to this consensus formation process---validator-mediated, majority-vote, autonomy-preserving---as the \textbf{Proof-of-Intelligence (PoI)} paradigm introduced in \Cref{sec:vision}. Where Proof-of-Work~\cite{jakobsson1999proofs} demands raw computation and Proof-of-Stake~\cite{dwork1992pricing} demands financial capital, PoI demands what matters most in the agent society: \textit{domain-specific expertise and verifiable intellectual effort}. By delegating quality assessment to a committee of economically motivated validator agents, PoI transforms a problem that no individual consumer or centralized orchestrator could resolve into one that the ecosystem addresses collectively, through incentive-aligned collaboration among distributed intelligences.
 
-\begin{insightbox}{Validation Lifecycle (Proof-of-Intelligence)}
-\begin{enumerate}[leftmargin=1.5em, itemsep=1pt, topsep=2pt]
-    \item \textbf{Stake}: Each validator agent locks $\sigma$ tokens as a financial commitment to the ecosystem.
-    \item \textbf{Infer}: Each validator independently executes its routing service $a_v(x)$ on the sample tasks using its own (architecturally heterogeneous) model.
-    \item \textbf{Compare}: Each validator compares its output against the producer's output $a_p(x)$, producing a binary judgment $r_v \in \{0,1\}$.
-    \item \textbf{Vote}: Individual judgments are aggregated via majority voting to form consensus $r^*$.
-    \item \textbf{Settle}: Validators aligned with consensus receive rewards from the shared pool; those who deviate forfeit their stake.
-\end{enumerate}
-\end{insightbox}
-
-This five-step lifecycle instantiates the \textbf{Proof-of-Intelligence (PoI)} paradigm introduced in \Cref{sec:vision}. Where Proof-of-Work~\cite{jakobsson1999proofs} demands raw computation and Proof-of-Stake~\cite{dwork1992pricing} demands financial capital, PoI demands what matters most in the agent society: \textit{domain-specific expertise and verifiable intellectual effort}. By delegating quality assessment to a committee of economically motivated validator agents, PoI transforms a problem that no individual consumer or centralized orchestrator could resolve into one that the ecosystem addresses collectively through incentive-aligned distributed intelligence.
-
-A critical requirement underpinning the reliability of this collective judgment is \textit{architectural heterogeneity}: validator agents must employ model architectures distinct from the producer under evaluation. Without this constraint, validators sharing the same underlying model would exhibit highly correlated errors, reducing majority voting to a single point of failure. By enforcing architectural diversity across the committee, the ecosystem approximates the statistical independence assumption that underpins both the Condorcet jury theorem and the game-theoretic analysis in \Cref{sec:game_theory}, converting an abstract mathematical condition into a concrete, enforceable protocol rule.
+For PoI to yield reliable judgments, however, the validator committee must satisfy a critical prerequisite that we call \textit{agent heterogeneity}. This heterogeneity operates at multiple levels: validators should differ not only in their underlying model architectures (e.g., a Llama-based validator assessing a GPT-based producer), but also in the training data, retrieval resources, and reasoning configurations that together constitute their domain expertise. Validators sharing similar expertise would exhibit highly correlated errors, reducing majority voting to a single point of failure. By enforcing heterogeneity across the committee, the ecosystem approximates the statistical independence assumption that underpins both the Condorcet jury theorem and the game-theoretic analysis in \Cref{sec:game_theory}, converting an abstract mathematical condition into a concrete, enforceable protocol rule.
 
 
 \subsection{Tokenomics Incentive Structure}
@@ -275,6 +263,18 @@ This staking-and-reward structure gives rise to several important properties of 
 
 \item \textbf{Utility-based acceptance.} The requesting agent does not blindly follow the consensus: producers promote and consumers subscribe only when their expected utility exceeds the token-backed commitment, yielding threshold-optimal policies formalized in \Cref{sec:producer_ir,sec:consumer_ir}.
 \end{itemize}
+
+Taken together, the validation protocol of \Cref{sec:poi_detail} and the tokenomics structure introduced above define the complete validation lifecycle that constitutes Proof-of-Intelligence in operation:
+
+\begin{insightbox}{Validation Lifecycle (Proof-of-Intelligence)}
+\begin{enumerate}[leftmargin=1.5em, itemsep=1pt, topsep=2pt]
+    \item \textbf{Stake}: Each validator agent locks $\sigma$ tokens as a financial commitment to the ecosystem.
+    \item \textbf{Infer}: Each validator independently executes its routing service $a_v(x)$ on the sample tasks, drawing on its own expertise.
+    \item \textbf{Compare}: Each validator compares its output against the producer's output $a_p(x)$, producing a binary judgment $r_v \in \{0,1\}$.
+    \item \textbf{Vote}: Individual judgments are aggregated via majority voting to form consensus $r^*$.
+    \item \textbf{Settle}: Validators aligned with consensus receive rewards from the shared pool; those who deviate forfeit their stake.
+\end{enumerate}
+\end{insightbox}
 
 
 \subsubsection{The Tokenomics--Knowledge Dual Loop}
