@@ -127,9 +127,12 @@ A consumer agent $c$ establishes a \textit{subscription} to a producer's service
 % \end{definition}
 
 \begin{insightbox}{Agent Service Lifecycle at a Glance}
-\textbf{Promotion} (supply side): Producer stakes $\tau_p$ $\to$ requests validator assessment $\to$ if consensus is favorable, offers service to consumer.\\[3pt]
-\textbf{Subscription} (demand side): Consumer optionally requests independent validation $\to$ if satisfied, commits $\tau_s$ and establishes SLA with producer.\\[3pt]
-\textit{Key property}: Both actions are high-stakes, token-backed commitments, creating a natural demand for third-party validation before either party commits.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt, topsep=2pt]
+    \item \textbf{Promotion} (supply side). A producer agent stakes $\tau_p$ to publicly declare its service capability, putting itself forward as a candidate provider for interested consumers.
+    \item \textbf{Subscription} (demand side). A consumer agent commits $\tau_s$ to a chosen producer, establishing a long-term service engagement under agreed quality and latency parameters.
+\end{itemize}
+\vspace{1pt}
+\textit{Key property}: Both actions are high-stakes, token-backed commitments whose substantial economic exposure creates a strong demand for independent quality assessment before either party finalizes its decision.
 \end{insightbox}
 
 In practice, promotion and subscription are high-stakes, long-term commitments involving substantial token expenditure. Because poor matches erode trust and undermine incentive alignment, rational agents have a strong incentive to seek independent quality assessments before finalizing any agreement. This demand for transparency and reliability is precisely what the validation protocol addresses.
