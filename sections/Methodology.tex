@@ -42,11 +42,11 @@ Conceptually, an agent’s inference capability constitutes a non-transferable a
 \begin{insightbox}{Agent Roles in the Ecosystem}
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt, topsep=2pt]
     \item \textbf{Consumer agent} --- identifies tasks beyond its expertise and delegates them externally via token-backed service requests.
-    \item \textbf{Producer agent} --- encapsulates domain expertise into a callable agent service $a_p: \mathcal{Q} \to \mathcal{R}$, expecting to earn tokens for continuous reliable outputs.
-    \item \textbf{Validator agent} --- provides an independent routing service $a_v: \mathcal{Q} \to \mathcal{R}$ that benchmarks the producer’s output, contributing a judgment to the ecosystem’s consensus.
+    \item \textbf{Producer agent} --- encapsulates domain expertise into a callable agent service $a_p$, expecting to earn tokens for continuous reliable outputs.
+    \item \textbf{Validator agent} --- provides an independent routing service $a_v$ that benchmarks the producer’s output, contributing a judgment to the ecosystem’s consensus.
 \end{itemize}
 \vspace{1pt}
-\textit{Role fluidity}: Any agent may assume any role depending on its current context and expertise. The same agent may act as a producer in one domain, a consumer in another, and a validator in a third.
+\textit{Role Fluidity}: Any agent may assume any role based on its context and expertise. The same agent may act as a producer in one domain, a consumer in another, and a validator in a third.
 \end{insightbox}
 
 \subsection{Agent Actions and Validation Protocol}
@@ -111,12 +111,20 @@ $\bar{q}_p,\; \bar{q}_c$ & Quality thresholds for promotion and subscription \\
 The agent service lifecycle revolves around two complementary economic actions that together constitute the two-sided market at the heart of the ecosystem. Producers promote their agent services to establish visibility and attract potential users, while consumers subscribe to preferred producers for long-term agent service. These two workflows are illustrated in Figures~\ref{fig:promotion} and~\ref{fig:subscription}.
 
 \begin{definition}{\textbf{(Promotion)}}\label{def:promotion}
-A producer agent $p$ initiates a \textit{promotion} by advertising its service capabilities and staking a token fee $\tau_p$ as a commitment to quality. This stake acts as a costly signal~\cite{spence1973job}: only agents confident in their competence will risk forfeiting $\tau_p$ through failed validation.
+A producer agent $p$ initiates a promotion by advertising its service capabilities and staking a commitment fee $\tau_p$. This stake functions as a costly signal, ensuring that only agents with high confidence in their competence will risk the potential forfeiture of tokens to establish market visibility.
 \end{definition}
 
 \begin{definition}{\textbf{(Subscription)}}\label{def:subscription}
-A consumer agent $c$ establishes a \textit{subscription} to a producer's service $a_p$ by paying a fee $\tau_s$ in tokens. In return, the producer commits to serving the consumer's future tasks within agreed quality and latency parameters.
+A consumer agent $c$ establishes a \textit{subscription} to a producer's service $a_p$ by paying a fee $\tau_s$ in tokens, forming a service-level agreement (SLA) between the two autonomous agents. Under this agreement, the consumer delegates future tasks to $a_p$, and the producer becomes obligated to respond within specified quality and latency parameters. 
 \end{definition}
+
+% \begin{definition}{\textbf{(Promotion)}}\label{def:promotion}
+% A producer agent $p$ initiates a \textit{promotion} by publishing a verifiable performance declaration---comprising its domain coverage, inference capability profile, and willingness to be evaluated---backed by a token stake $\tau_p$. This stake functions as a costly signal~\cite{spence1973job}: an agent lacking genuine competence faces a high probability of failing the subsequent validation and forfeiting $\tau_p$, rendering spurious declarations economically irrational. Promotion thus serves as a decentralized entry filter that screens out underqualified producers without centralized gatekeeping.
+% \end{definition}
+
+% \begin{definition}{\textbf{(Subscription)}}\label{def:subscription}
+% A consumer agent $c$ establishes a \textit{subscription} to a preferred producer's service $a_p$ by committing a subscription fee $\tau_s$ in tokens, forming a service-level agreement (SLA) between the two autonomous agents. Under this agreement, the consumer delegates future tasks to $a_p$, and the producer becomes obligated to respond within specified quality and latency parameters. A mismatched subscription carries significant consequences: the consumer wastes its fee and suffers degraded downstream performance, with cascading effects across any agent systems that depend on its outputs.
+% \end{definition}
 
 \begin{insightbox}{Agent Service Lifecycle at a Glance}
 \textbf{Promotion} (supply side): Producer stakes $\tau_p$ $\to$ requests validator assessment $\to$ if consensus is favorable, offers service to consumer.\\[3pt]
@@ -124,18 +132,25 @@ A consumer agent $c$ establishes a \textit{subscription} to a producer's service
 \textit{Key property}: Both actions are high-stakes, token-backed commitments, creating a natural demand for third-party validation before either party commits.
 \end{insightbox}
 
-Given the high economic stakes of both actions, rational agents on both sides have a strong incentive to seek reliable, independent quality assessment before committing---which is precisely the function that the validation protocol serves.
+In practice, promotion and subscription are high-stakes, long-term commitments involving substantial token expenditure. Because poor matches erode trust and undermine incentive alignment, rational agents have a strong incentive to seek independent quality assessments before finalizing any agreement. This demand for transparency and reliability is precisely what the validation protocol addresses.
 
+\subsubsection{Validation Requests}
 
-\subsubsection{Validation Protocol}
+% In conventional platforms, agent routing relies heavily on subjective judgment, where producers evaluate their own competence and consumers rely on intuition to judge results. However, objective ground truth is often unavailable because consumers lack the expertise to verify correctness, while producers operate based on partial or biased knowledge. To bridge this gap, the ecosystem provides a structured third-party validation mechanism that allows heterogeneous agents to reach an independent consensus on service quality. Since promotion and subscription are high-stakes, long-term commitments, both parties are motivated to invoke this cost-efficient validation to mitigate mismatch risks before finalizing any transaction.
 
-Given that agent service quality cannot be unilaterally verified by the consumer, the ecosystem provides a structured third-party validation mechanism that both producers and consumers can invoke before committing to high-stakes transactions. By design, the total cost of validation ($m \times n \times \tau_{\text{val}}$) is substantially lower than that of a mismatched subscription ($\tau_s$), making the request for validation economically rational for both parties. The protocol operates in two stages, each employing an independent validator committee to ensure integrity.
+% In conventional platforms, consumer-producer routing relies heavily on subjective judgments. Producers evaluate their own competence and provide answers they believe to be correct, while consumers rely on intuition to judge the responses they receive. However, objective ground truth is usually unavailable: consumers often lack expertise to verify correctness, and producers answer based on their partial or biased knowledge. 
 
-\begin{definition}{\textbf{(Promotion Validation)}}\label{def:promo_validation}
+% To address this issue, heterogeneous third-party validators make independent decision and reach consensus, yielding outcomes that should be more objective and reliable. Since promotion and subscription are long-term commitments with substantial costs, both producers and consumers have motivation to request cost-efficient validation to reduce potential mismatch risks.
+
+In conventional systems, producer-consumer agent routing relies heavily on subjective judgment, where producers evaluate their own competence and consumers rely on intuition to judge results. However, objective ground truth is often unavailable because consumers usually lack the expertise to verify correctness, while producers may operate based on partial or biased knowledge. To bridge this gap, the ecosystem provides a structured third-party validation mechanism that both producers and consumers can request before committing to high-stakes transactions.
+
+% Given that agent service quality cannot be unilaterally verified by the consumer, the ecosystem provides a structured third-party validation mechanism that both producers and consumers can invoke before committing to high-stakes transactions. By design, the total cost of validation ($m \times n \times \tau_{\text{val}}$) is substantially lower than that of a mismatched subscription ($\tau_s$), making the request for validation economically rational for both parties. The protocol operates in two stages, each employing an independent validator committee to ensure integrity.
+
+\begin{definition}{\textbf{(Promotion Validation Request)}}\label{def:promo_validation}
 Before risking the promotion fee, the producer agent $p$ requests an external assessment of its own capabilities. When a consumer $c$ broadcasts a service need along with a sample task set $\mathcal{Q}_c \subset \mathcal{Q}$ ($|\mathcal{Q}_c| = m$), the producer selects a validator committee $V_p \subset \mathcal{U}$ ($|V_p| = n$) and pays each validator a fixed fee $\tau_{\text{val}}$ per task. The fee structure satisfies $m \times n \times \tau_{\text{val}} \ll \tau_p$ (validation is inexpensive relative to the promotion stake) and $c_u < \tau_{\text{val}}$ (honest effort is profitable for validators). This pre-screening step filters out underqualified producers before they enter the market.
 \end{definition}
 
-\begin{definition}{\textbf{(Subscription Validation)}}\label{def:sub_validation}
+\begin{definition}{\textbf{(Subscription Validation Request)}}\label{def:sub_validation}
 Before committing tokens, the consumer agent $c$ independently verifies the producer's quality. Upon receiving a promotion, the consumer issues a fresh task set $\mathcal{Q}_s \subset \mathcal{Q}$ ($|\mathcal{Q}_s| = m$) to a disjoint validator committee $V_s \subset \mathcal{U}$ ($|V_s| = n$), subject to the constraints $\mathcal{Q}_s \cap \mathcal{Q}_c = \varnothing$ and $V_s \cap V_p = \varnothing$, which prevent information leakage and collusion between the two validation stages. This second, independent assessment provides a cross-check that further reduces the probability of a mismatched subscription.
 \end{definition}
 
