@@ -7,7 +7,7 @@ This section outlines the concrete design of our tokenomics-driven decentralized
 \subsection{Agent Roles and Agent Services}
 \label{sec:motivation}
 
-In the agent society, specialized intelligence is distributed across a large, open population of autonomous agents, where each agent possesses domain-specific expertise $\mathcal{K}_u$---encompassing its trained knowledge, reasoning capabilities, and retrieval resources---and operates under the authority of its deploying organization. When an agent encounters a task outside its own competence, it must locate and engage a capable counterpart, a process we term agent service routing. Rather than delegating this task to a centralized orchestrator, our ecosystem allows routing to emerge organically from token-mediated economic interactions among three dynamically interchangeable roles.
+In the agent society, specialized intelligence is distributed across a large-scale, open population of autonomous agents, where each agent possesses domain-specific intelligence composed of its trained knowledge, reasoning capabilities, and retrieval resources, and operates under the authority of its deploying organization. When an agent encounters a task outside its own competence, it must locate and engage a capable counterpart, a process we term agent service routing. Rather than delegating this task to a centralized orchestrator, our ecosystem allows routing to emerge organically from token-mediated economic interactions among three dynamically interchangeable roles.
 
 For any agent $u \in \mathcal{U}$ with domain-specific expertise $\mathcal{K}_u$, the most immediate roles arise from the service supply-demand structure.
 
@@ -42,8 +42,8 @@ Conceptually, an agent’s inference capability constitutes a non-transferable a
 \begin{insightbox}{Agent Roles in the Ecosystem}
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt, topsep=2pt]
     \item \textbf{Consumer agent} --- identifies tasks beyond its expertise and delegates them externally via token-backed service requests.
-    \item \textbf{Producer agent} --- encapsulates domain expertise into a callable agent service $a_p: \mathcal{Q} \to \mathcal{R}$, earning tokens for reliable outputs.
-    \item \textbf{Validator agent} --- provides an independent routing service $a_v: \mathcal{Q} \to \mathcal{R}$ that benchmarks the producer’s output, contributing a binary judgment to the ecosystem’s consensus.
+    \item \textbf{Producer agent} --- encapsulates domain expertise into a callable agent service $a_p: \mathcal{Q} \to \mathcal{R}$, expecting to earn tokens for continuous reliable outputs.
+    \item \textbf{Validator agent} --- provides an independent routing service $a_v: \mathcal{Q} \to \mathcal{R}$ that benchmarks the producer’s output, contributing a judgment to the ecosystem’s consensus.
 \end{itemize}
 \vspace{1pt}
 \textit{Role fluidity}: Any agent may assume any role depending on its current context and expertise. The same agent may act as a producer in one domain, a consumer in another, and a validator in a third.
@@ -52,7 +52,7 @@ Conceptually, an agent’s inference capability constitutes a non-transferable a
 \subsection{Agent Actions and Validation Protocol}
 \label{sec:mechanism}
 
-Building on the roles and service abstractions defined above, the ecosystem coordinates agent interactions through three core economic actions---\textit{promotion}, \textit{validation}, and \textit{subscription}---each backed by token commitments that align individual incentives with the collective welfare of the agent society. This subsection traces each action in turn, following the lifecycle of a typical agent service engagement from initial need identification through confirmed subscription. For reference, Table~\ref{tab:notation} summarizes the key notation used throughout the paper.
+Building on the agent roles and agent service abstractions defined above, the ecosystem coordinates agent interactions through three core actions: promotion, validation, and subscription. Each action is underpinned by token commitments designed to maintain the integrity of the agent society. This subsection traces the lifecycle of a typical agent service engagement, moving from initial need identification through to confirmed subscription. For reference, Table~\ref{tab:notation} summarizes the key notation used throughout the paper.
 
 \begin{table}[!htbp]
 \centering
@@ -71,7 +71,7 @@ $\mathcal{K}_u$ & Domain-specific expertise of agent $u$ (knowledge, reasoning, 
 \midrule
 \multicolumn{2}{c}{\textbf{Agent Services}} \\
 \midrule
-$a_u\!:\! \mathcal{Q} \!\to\! \mathcal{R}$ & Knowledge-intensive agent service (inference capability) of agent $u$ \\
+$a_u\!:\! \mathcal{Q} \!\to\! \mathcal{R}$ & Domain-specific agent service (inference capability) of agent $u$ \\
 $\mathcal{Q}$ & Task space (set of all possible task instances) \\
 $\mathcal{R}$ & Response space (set of all possible outputs) \\
 $x,\; x_j$ & Individual task instance ($x \in \mathcal{Q}$) \\
@@ -90,7 +90,7 @@ $\sigma$ & Token stake locked by each validator during validation \\
 $m$ & Number of sample tasks per validation round \\
 $n$ & Number of validator agents per committee (odd) \\
 $V_p,\; V_s$ & Validator committees for promotion and subscription \\
-$r_i,\; r_j'$ & Binary judgment of validator $v_i$ / $v_j'$ ($\in \{0,1\}$) \\
+$r_i,\; r_j'$ & Judgment of validator $v_i$ / $v_j'$ ($\in \{0,1\}$) \\
 $r^*,\; r^{**}$ & Majority-vote consensus for promotion / subscription \\
 $Z \in \{0,1\}$ & Consensus signal observed by the requester (pass / fail) \\
 \midrule
@@ -108,7 +108,7 @@ $\bar{q}_p,\; \bar{q}_c$ & Quality thresholds for promotion and subscription \\
 
 \subsubsection{Promotion and Subscription}
 
-The agent service lifecycle revolves around two complementary economic actions that together constitute the two-sided market at the heart of the ecosystem (see Figures~\ref{fig:promotion} and~\ref{fig:subscription}).
+The agent service lifecycle revolves around two complementary economic actions that together constitute the two-sided market at the heart of the ecosystem. Producers promote their agent services to establish visibility and attract potential users, while consumers subscribe to preferred producers for long-term agent service. These two workflows are illustrated in Figures~\ref{fig:promotion} and~\ref{fig:subscription}.
 
 \begin{definition}{\textbf{(Promotion)}}\label{def:promotion}
 A producer agent $p$ initiates a \textit{promotion} by publishing a verifiable performance declaration---comprising its domain coverage, inference capability profile, and willingness to be evaluated---backed by a token stake $\tau_p$. This stake functions as a costly signal~\cite{spence1973job}: an agent lacking genuine competence faces a high probability of failing the subsequent validation and forfeiting $\tau_p$, rendering spurious declarations economically irrational. Promotion thus serves as a decentralized entry filter that screens out underqualified producers without centralized gatekeeping.
