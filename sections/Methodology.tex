@@ -9,7 +9,7 @@ This section outlines the concrete design of our tokenomics-driven decentralized
 
 In the agent society, specialized knowledge-intensive services are distributed across a large, open population of autonomous agents, where each agent possesses domain-specific expertise and operates under the authority of its organization. When an agent encounters a task outside its own competence, it must locate and engage a capable counterpart, a process we term agent service routing. Rather than delegating this task to a centralized orchestrator, our ecosystem allows routing to emerge organically from token-mediated economic interactions among three dynamically interchangeable roles.
 
-For any agent $u \in \mathcal{U}$ with domain-specific expertise $\mathcal{K}_u$, it naturally assumes two fundamental roles depending on the task at hand.
+For any agent $u \in \mathcal{U}$ with domain-specific expertise $\mathcal{K}_u$, the most immediate roles arise from the service supply-demand structure.
 
 % In the agent society, specialized knowledge is distributed across a large, open population of autonomous agents $\mathcal{U}$, each possessing domain-specific expertise $\mathcal{K}_u$ and operating under the authority of its deploying organization. When an agent encounters a task that falls outside its own competence, it must locate and engage a capable counterpart---a process we term \textit{service routing}. Rather than delegating this routing to a centralized orchestrator, our ecosystem allows it to emerge organically from token-mediated economic interactions among three dynamically interchangeable roles.
 
@@ -18,7 +18,7 @@ A consumer $c \in \mathcal{U}$ is an agent that requests services from the ecosy
 \end{definition}
 
 \begin{definition}{\textbf{(Producer Agent)}}\label{def:producer}
-A producer $p \in \mathcal{U}$ is an agent that provides agent services by encapsulating domain knowledge $\mathcal{K}_p$ into a callable inference capability. Given a task $x \in \mathcal{Q}$, the producer executes its service $a_p(x)$ and return an output $r \in \mathcal{R}$. The service quality $q_p \in (0,1]$, representing the probability of generating a correct output, is treated as an objective property of the agent that can be estimated through sampling. By delivering high-quality outputs, the producer agent earns tokens from the consumer agent.
+A producer $p \in \mathcal{U}$ is an agent that provides agent services by encapsulating domain knowledge $\mathcal{K}_p$ into a callable inference capability. Given a task $x \in \mathcal{Q}$, the producer executes its service $a_p(x)$ and returns an output $r \in \mathcal{R}$. The service quality $q_p \in (0,1]$, representing the probability of generating a correct output, is treated as an objective property of the agent that can be estimated through sampling. By delivering high-quality outputs, the producer agent earns tokens from the consumer agent.
 \end{definition}
 
 As established in \Cref{sec:trust_crisis}, the consumer-producer dyad alone cannot sustain a reliable agent service market. The information asymmetry between supply and demand, where the consumer lacks the means to verify service quality and the producer may overstate its competence, triggers the adverse selection that our mechanism must overcome. To break this asymmetry and move beyond the risks of centralized "black-box" routing, we introduce a third role: validators, independent agents that provide decentralized quality assessments of agent service on behalf of the ecosystem.
@@ -27,9 +27,9 @@ As established in \Cref{sec:trust_crisis}, the consumer-producer dyad alone cann
 A validator $v \in \mathcal{U}$ is an independent agent that performs cross-verification within the agent service routing process. Given a task $x \in \mathcal{Q}$ and a producer's output $a_p(x)$, the validator agent independently executes its own inference $a_v(x)$ to produce a judgment $j_v \in \{0, 1\}$, indicating agreement or disagreement. This is an auditable computational process rather than a subjective evaluation. To enhance reliability, judgments from multiple validators can be aggregated to form a consensus that ensures the integrity of the routing results (see \S\ref{sec:poi_detail}).
 \end{definition}
 
-Central to both roles is the concept of knowledge-intensive agent services. A producer contributes to the ecosystem through expected long-term service engagements by fulfilling recurring consumer requests, while a validator supports the agent service routing process by independently assessing the quality of producer-consumer matching beforehand. Although their purposes differ, one generating responses and the other verifying it, both agents rely on the same underlying inference capability to provide their respective services.
+Central to both roles is the concept of knowledge-intensive agent services. A producer contributes to the ecosystem through expected long-term service engagements by fulfilling recurring consumer requests, while a validator supports the agent service routing process by independently assessing the quality of producer-consumer matching beforehand. Although their purposes differ---one generating responses and the other verifying them---both agents rely on the same underlying inference capability to provide their respective services.
 
-\begin{definition}{\textbf{(Agent Service Routing)}}\label{def:knowledge-intensive agent}
+\begin{definition}{\textbf{(Agent Service Routing)}}\label{def:agent-service-routing}
 Each validator $v \in \mathcal{U}$ encapsulates its domain knowledge $\mathcal{K}_v$ into a knowledge-intensive routing service $a_v: \mathcal{Q} \rightarrow \mathcal{R}$, providing a reference inference to determine a producer's reliability. From its own perspective, the validator utilizes $a_v$ to assess a producer's performance on a specific task, where $q \in (0,1]$ reflects its internal confidence in the verification's accuracy. This process incurs a computational cost $c_v$ per invocation. Ultimately, the validator functions as a decentralized benchmark, leveraging its proprietary inference pipeline to participate in the service routing between consumers and producers.
 \end{definition}
 
@@ -37,13 +37,12 @@ Each validator $v \in \mathcal{U}$ encapsulates its domain knowledge $\mathcal{K
 
 % This symmetric design implies that any agent with sufficient domain expertise can switch between production and validation, ensuring that the ecosystem's capacity for quality control scales naturally with its capacity for service delivery.
 
-Conceptually, an agent’s inference capability constitutes a non-transferable asset inherently bound to its owner, shaped by its unique training data, knowledge base, and underlying pipeline. This service quality represents the agent's core competitive advantage, dictating both its earning potential as a producer and its credibility as a validator. Specifically, this capability exhibits a functional duality defined by its operational context: as a producer, the agent employs its knowledge as the primary solution to deliver direct utility to the consumer; conversely, as a validator, it utilizes the same service as an independent benchmark to provide an epistemic reference for assessing performance. Within this two-sided market, agent inference is the traded commodity, while tokens serve as the medium of exchange to sustain a continuous and reliable service flow.
+Conceptually, an agent’s inference capability constitutes a non-transferable asset inherently bound to its owner, shaped by its unique training data, knowledge base, and underlying pipeline. This service quality represents the agent's core competitive advantage, dictating both its earning potential as a producer and its credibility as a validator. Specifically, this capability exhibits a functional duality defined by its operational context: as a producer, the agent employs its knowledge as the primary solution to deliver direct utility to the consumer; conversely, as a validator, it utilizes the same service as an independent benchmark to provide an epistemic reference for assessing performance. Within this two-sided market, agent inference is the traded commodity, while tokens will serve as the medium of exchange that aligns individual incentives with ecosystem-wide welfare.
 
 \subsection{Agent Actions and Validation Protocol}
 \label{sec:mechanism}
 
-With the three agent roles and service abstractions established, the core design question becomes: how are the interactions among these agents coordinated, and what protocols ensure the integrity of the knowledge exchange? 
-The ecosystem coordinates agent interactions through a structured sequence of economic actions---promotion, validation, and subscription---each backed by token commitments that align the participants' incentives. We describe each action in turn, following the lifecycle of a typical service engagement. Table~\ref{tab:notation} summarizes the key notation used throughout the paper.
+With the three agent roles and service abstractions established, the next question is how these agents actually interact within the ecosystem and what protocols govern the integrity of their knowledge exchange. The ecosystem coordinates agent interactions through three core economic actions---\textit{promotion}, \textit{validation}, and \textit{subscription}---each backed by token commitments that align individual incentives with the collective welfare of the agent society. We trace each action below, following the lifecycle of a typical agent service engagement. For reference, Table~\ref{tab:notation} summarizes the key notation used throughout the paper.
 
 \begin{table}[!htbp]
 \centering
@@ -60,9 +59,9 @@ $\mathcal{U}$ & Population of all agents \\
 $c, p, v$ & Consumer, producer, and validator agent \\
 $\mathcal{K}_u$ & Domain-specific knowledge of agent $u$ \\
 \midrule
-\multicolumn{2}{c}{\textbf{Services and Quality}} \\
+\multicolumn{2}{c}{\textbf{Agent Services and Quality}} \\
 \midrule
-$a_u: \mathcal{Q} \to \mathcal{R}$ & Knowledge-intensive service (inference capability) of agent $u$ \\
+$a_u: \mathcal{Q} \to \mathcal{R}$ & Knowledge-intensive agent service of agent $u$ \\
 $\mathcal{Q},\; \mathcal{R}$ & Task space and response space \\
 $x, x_j$ & Individual task instance ($x \in \mathcal{Q}$) \\
 $q_p,\; q_v$ & Service quality of producer / validator (correctness probability) \\
@@ -70,15 +69,15 @@ $c_u$ & Computational cost per service invocation \\
 \midrule
 \multicolumn{2}{c}{\textbf{Tokenomics Parameters}} \\
 \midrule
-$\tau_p$ & Promotion fee (staked by producer) \\
+$\tau_p$ & Promotion fee (staked by producer agent) \\
 $\tau_s$ & Subscription fee (paid by consumer to producer) \\
 $\tau_{\text{val}}$ & Validation fee per task per validator \\
 $\sigma$ & Validator stake (locked during validation) \\
 \midrule
 \multicolumn{2}{c}{\textbf{Validation Mechanism}} \\
 \midrule
-$m$ & Number of sample tasks per validation \\
-$n$ & Number of validators per validation (odd) \\
+$m$ & Number of sample tasks per validation round \\
+$n$ & Number of validators per committee (odd) \\
 $V_p,\; V_s$ & Validator committees for promotion / subscription \\
 $r_i,\; r_j'$ & Individual validator judgments ($\in \{0,1\}$) \\
 $r^*,\; r^{**}$ & Majority-vote consensus in promotion / subscription \\
@@ -98,37 +97,28 @@ $Z \in \{0,1\}$ & Consensus signal (pass / fail) \\
 
 \subsubsection{Promotion and Subscription}
 
-The core transaction cycle consists of two complementary actions---producer-initiated \textit{promotion} and consumer-initiated \textit{subscription}---that together form the two-sided market at the heart of the ecosystem. The overall workflows are illustrated in Figures~\ref{fig:promotion} and~\ref{fig:subscription}.
+The agent service lifecycle revolves around two complementary actions that together constitute the two-sided market at the heart of the ecosystem. The overall workflows are illustrated in Figures~\ref{fig:promotion} and~\ref{fig:subscription}.
 
 \begin{insightbox}{Promotion (Performance Declaration + Token Staking)}
-A producer agent $p$ initiates a \textit{promotion}---not an advertisement in the human sense, but a \textit{verifiable performance declaration} issued by an autonomous agent on its own initiative.
-The producer publishes its claimed domain coverage, inference capability profile, and willingness to be evaluated, backed by a token stake $\tau_p$.
-This stake serves as a \textit{costly signal}~\cite{spence1973job}: agents that lack genuine competence face a high probability of failing validation and losing $\tau_p$, making spurious declarations economically irrational.
-The promotion fee thus functions as a decentralized entry filter---only agents confident in their capability will risk the stake---addressing the cooperation challenge without centralized gatekeeping.
+A producer agent $p$ initiates a \textit{promotion}: a verifiable performance declaration in which the agent publishes its domain coverage, inference capability profile, and willingness to be evaluated, all backed by a token stake $\tau_p$. This stake functions as a costly signal~\cite{spence1973job} that deters low-quality agents from entering the market: an agent lacking genuine competence faces a high probability of failing the subsequent validation and forfeiting $\tau_p$, rendering spurious declarations economically irrational. Promotion thus serves as a decentralized entry filter, screening out underqualified producers without centralized gatekeeping.
 \end{insightbox}
 
 \begin{insightbox}{Subscription (Service-Level Agreement)}
-After reviewing promotions and (optionally) requesting independent validation, a consumer $c$ may subscribe to a preferred producer's service $a_p$.
-Subscription is not a casual ``follow'' but a formalized \textit{Service-Level Agreement (SLA)} between two autonomous agents: the consumer commits a subscription fee $\tau_s$ in tokens and delegates future task-solving to $a_p$; in return, the producer becomes contractually obligated to respond to future tasks within specified quality and latency parameters.
-A mismatched subscription not only wastes the substantial fee but degrades the consumer's downstream task performance, with cascading effects across any systems that depend on its outputs.
+After reviewing available promotions, a consumer agent $c$ may subscribe to a preferred producer's service $a_p$, establishing a formalized service-level agreement (SLA) between two autonomous agents. The consumer commits a subscription fee $\tau_s$ in tokens and delegates future tasks to $a_p$; in return, the producer agent becomes obligated to respond within specified quality and latency parameters. A mismatched subscription carries significant economic and operational consequences: the consumer wastes its fee and suffers degraded downstream performance, with cascading effects across any agent systems that depend on its outputs.
 \end{insightbox}
 
-The high stakes of both promotion and subscription create a natural demand for reliable, independent quality assessment---which is precisely the function that the validation mechanism serves.
+Given the high economic stakes of both promotion and subscription, rational agents on both sides have a strong incentive to seek reliable, independent quality assessment before committing---which is precisely the function that the validation protocol serves.
 
 
-\subsubsection{Validation Requests}
+\subsubsection{Validation Protocol}
 
-To overcome the information asymmetry at the heart of the trust crisis (\Cref{sec:trust_crisis}), both producers and consumers can request \textbf{third-party validation} before committing to high-stakes transactions. Since the cost of validation ($m \times n \times \tau_{\text{val}}$) is designed to be substantially lower than the cost of a mismatched subscription ($\tau_s$), requesting validation is economically rational for both sides.
+Since agent service quality is not self-evident to the consumer (as discussed in \Cref{sec:trust_crisis}), the ecosystem provides a structured \textit{third-party validation} mechanism that both producers and consumers can invoke before committing to high-stakes transactions. The cost of validation ($m \times n \times \tau_{\text{val}}$) is designed to be substantially lower than the cost of a mismatched subscription ($\tau_s$), making the request for validation economically rational for both parties.
 
-$\bullet$ \textbf{Promotion Validation.}
-When a consumer $c$ broadcasts a service need with a sample task set $\mathcal{Q}_{c} \subset \mathcal{Q}$, the producer $p$ requests validation from a committee of validators $V_p \subset \mathcal{U}$ \textit{before} initiating a formal promotion, where $|\mathcal{Q}_{c}| = m$ and $|V_p| = n$.
-Each validator receives a fixed fee $\tau_{\text{val}}$ per task from the producer, with the constraint $m \times n \times \tau_{\text{val}} \ll \tau_p$ (validation is inexpensive relative to the promotion stake) and $c_u < \tau_{\text{val}}$ (the validation fee exceeds the effort cost, making honest participation profitable).
-This step provides the producer with an external, credible assessment of its own capabilities before risking the promotion fee---a form of \textit{pre-screening} that filters out incompetent producers early.
+The validation protocol operates in two stages, each employing an independent validator committee to ensure integrity.
 
-$\bullet$ \textbf{Subscription Validation.}
-When a consumer $c$ receives promotions from multiple producers and needs to select among them, it issues a separate task set $\mathcal{Q}_s \subset \mathcal{Q}$ to a disjoint group of validators ${V}_s \subset \mathcal{U}$, where $|\mathcal{Q}_{s}|= m$ and $|V_s| = n$.
-The disjointness constraints $\mathcal{Q}_s \cap \mathcal{Q}_c = \varnothing$ and ${V}_s \cap {V}_p = \varnothing$ prevent information leakage and collusion between the two validation stages.
-This second, independent validation provides a cross-check that further reduces the probability of a mismatched subscription.
+In the first stage (\textit{promotion validation}), the producer agent $p$ requests an external assessment of its own capabilities before risking the promotion fee. When a consumer $c$ broadcasts a service need along with a sample task set $\mathcal{Q}_c \subset \mathcal{Q}$ ($|\mathcal{Q}_c| = m$), the producer selects a validator committee $V_p \subset \mathcal{U}$ ($|V_p| = n$) and pays each validator a fixed fee $\tau_{\text{val}}$ per task. The fee structure satisfies $m \times n \times \tau_{\text{val}} \ll \tau_p$ (validation is inexpensive relative to the promotion stake) and $c_u < \tau_{\text{val}}$ (honest effort is profitable for validators). This pre-screening step filters out underqualified producers before they enter the market.
+
+In the second stage (\textit{subscription validation}), the consumer agent independently verifies the producer's quality before committing tokens. Upon receiving a promotion, the consumer issues a fresh task set $\mathcal{Q}_s \subset \mathcal{Q}$ ($|\mathcal{Q}_s| = m$) to a disjoint validator committee $V_s \subset \mathcal{U}$ ($|V_s| = n$), with the constraints $\mathcal{Q}_s \cap \mathcal{Q}_c = \varnothing$ and $V_s \cap V_p = \varnothing$ to prevent information leakage and collusion between stages. This second, independent assessment provides a cross-check that further reduces the probability of a mismatched subscription.
 
 
 \begin{figure*}[!tbp]
@@ -163,37 +153,27 @@ This second, independent validation provides a cross-check that further reduces 
 \subsubsection{Consensus Formation and Proof-of-Intelligence}
 \label{sec:poi_detail}
 
-With the transaction structure in place, we now formalize how distributed validators collaboratively produce a reliable, auditable consensus on service quality.
+At the core of each validation stage is a consensus formation process in which a committee of validator agents independently assesses service quality and aggregates their judgments into a single, auditable signal. Each selected validator invokes its own routing service on the sample tasks, compares its outputs with those of the producer under evaluation, and submits a binary judgment. These assessments are then aggregated through majority voting to produce a collective consensus.
 
-Upon receiving a validation request, each selected validator independently invokes its own inference service on the sample tasks, compares its outputs with those of the producer under evaluation, and submits a binary judgment. These independent assessments are then aggregated through \textit{majority voting} to form a collective consensus signal, which is returned to the requester as a reference for its final decision.
-
-$\bullet$ \textbf{Promotion Consensus.}
-Let $V_p = \{ v_1, \cdots, v_n \}$ with $n \ll N$ denote the validator committee for promotion. Each validator $v_i \in V_p$ independently produces a judgment $r_i = a_i(\mathcal{Q}_c, a_p)$ by comparing its own outputs with those of the candidate service $a_p$ on the sample task set $\mathcal{Q}_c$. The consensus $r^*$ is derived through majority voting:
+Concretely, in promotion validation, let $V_p = \{v_1, \ldots, v_n\}$ denote the validator committee. Each validator $v_i \in V_p$ independently produces a judgment $r_i = a_i(\mathcal{Q}_c, a_p)$ by comparing its own outputs with those of the candidate producer on the sample task set $\mathcal{Q}_c$. A promotion consensus $r^*$ is derived through majority voting:
 \begin{equation}
-r^* = \text{MajorityVote}\left( \{ r_1, \dots, r_n \} \right).
+r^* = \text{MajorityVote}\left(\{r_1, \dots, r_n\}\right).
 \end{equation}
-The producer adopts $r^*$ as a reference signal to decide whether to proceed with the promotion offer to consumer $c$.
-
-$\bullet$ \textbf{Subscription Consensus.}
-Similarly, let $V_s = \{ v_1', \dots, v_n' \}$ with $n \ll N$ denote the validator committee for subscription. Each validator $v_j \in V_s$ compares its own outputs with the producer's service $a_p$ on a separate task set $\mathcal{Q}_s$, and submits a judgment $r_j' = a_j(\mathcal{Q}_s, a_p)$. A consensus $r^{**}$ is reached by majority voting:
-\begin{equation}
-    r^{**} = \text{MajorityVote}\left( \left\{ r_1', \cdots, r_n'\right\} \right).
-\end{equation}
-The consumer uses $r^{**}$ to decide whether $a_p$ is sufficiently aligned with its domain requirements. Importantly, the requester retains full autonomy: it may accept or reject the consensus based on its own utility function and risk tolerance.
+The producer adopts $r^*$ as a reference signal to decide whether to proceed with the promotion offer. An analogous process governs subscription validation: a disjoint committee $V_s = \{v_1', \ldots, v_n'\}$ evaluates the producer on a separate task set $\mathcal{Q}_s$, yielding a subscription consensus $r^{**} = \text{MajorityVote}(\{r_1', \ldots, r_n'\})$ that the consumer uses to make its subscription decision. In both stages, the requesting agent retains full autonomy to accept or reject the consensus based on its own utility function and risk tolerance.
 
 \begin{insightbox}{Validation Lifecycle (Proof-of-Intelligence)}
 \begin{enumerate}[leftmargin=1.5em, itemsep=1pt, topsep=2pt]
-    \item \textbf{Stake}: Each validator locks $\sigma$ tokens as financial commitment.
-    \item \textbf{Infer}: Each validator independently executes $a_v(x)$ on sample tasks using its own (architecturally heterogeneous) model.
+    \item \textbf{Stake}: Each validator agent locks $\sigma$ tokens as a financial commitment to the ecosystem.
+    \item \textbf{Infer}: Each validator independently executes its routing service $a_v(x)$ on the sample tasks using its own (architecturally heterogeneous) model.
     \item \textbf{Compare}: Each validator compares its output against the producer's output $a_p(x)$, producing a binary judgment $r_v \in \{0,1\}$.
-    \item \textbf{Vote}: Judgments are aggregated via majority voting to form consensus $r^*$.
-    \item \textbf{Settle}: Validators aligned with consensus receive reward from the shared pool; deviating validators forfeit their stake.
+    \item \textbf{Vote}: Individual judgments are aggregated via majority voting to form consensus $r^*$.
+    \item \textbf{Settle}: Validators aligned with consensus receive rewards from the shared pool; those who deviate forfeit their stake.
 \end{enumerate}
 \end{insightbox}
 
-This validation protocol instantiates the \textbf{Proof-of-Intelligence (PoI)} paradigm introduced in \Cref{sec:vision}. Unlike Proof-of-Work~\cite{jakobsson1999proofs} or Proof-of-Stake~\cite{dwork1992pricing}, where the right to validate is earned through raw computation or financial capital, PoI grounds validation in \textit{domain-specific knowledge and verifiable intellectual effort}---directly addressing the verifiability crisis identified in \Cref{sec:trust_crisis} by delegating quality assessment to economically motivated, knowledgeable third-party agents. PoI operationalizes epistemic labor as a stakeable and rewardable asset, providing the mechanism through which agent knowledge is simultaneously monetized and verified within the ecosystem.
+This five-step validation lifecycle instantiates the \textbf{Proof-of-Intelligence (PoI)} paradigm introduced in \Cref{sec:vision}. Where Proof-of-Work~\cite{jakobsson1999proofs} demands raw computation and Proof-of-Stake~\cite{dwork1992pricing} demands financial capital, PoI demands what matters most in the agent society: \textit{domain-specific knowledge and verifiable intellectual effort}. By delegating quality assessment to a committee of economically motivated, knowledgeable validator agents, PoI directly addresses the verifiability breakdown identified in \Cref{sec:trust_crisis}---transforming a problem that no individual consumer or centralized orchestrator could solve into one that the ecosystem resolves collectively.
 
-A critical design requirement is \textit{architectural heterogeneity}: validators must employ model architectures distinct from the producer under evaluation. If all agents share the same underlying model, their errors become highly correlated and majority voting offers no epistemic advantage. By enforcing architectural diversity (e.g., a Llama-based validator assessing a GPT-based producer), the mechanism substantially reduces correlated failures, approximating the statistical independence assumption that underpins both the Condorcet jury theorem and our game-theoretic analysis in \Cref{sec:game_theory}. This requirement transforms an abstract mathematical assumption into a concrete, enforceable protocol rule.
+A critical design requirement that underpins the reliability of this collective judgment is \textit{architectural heterogeneity}: validator agents must employ model architectures distinct from the producer under evaluation. If all agents share the same underlying model, their errors become highly correlated, and majority voting offers no epistemic advantage over a single assessment. By enforcing architectural diversity across the validator committee, the mechanism substantially reduces correlated failures and approximates the statistical independence assumption that underpins both the Condorcet jury theorem and the formal game-theoretic analysis presented in \Cref{sec:game_theory}.
 
 
 \subsection{Tokenomics Incentive Structure}
