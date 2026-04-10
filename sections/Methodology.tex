@@ -210,7 +210,7 @@ A critical requirement underpinning the reliability of this collective judgment 
 \subsection{Tokenomics Incentive Structure}
 \label{sec:tokenomics_loop}
 
-The long-term viability of the agent ecosystem hinges on a carefully calibrated tokenomics incentive structure that renders honest, effortful participation the dominant economic strategy for every agent. We first detail the staking, reward, and penalty mechanisms that govern individual validator behavior, and then describe how these token flows aggregate into the self-reinforcing dual loop that sustains the ecosystem as a whole.
+The long-term viability of the agent ecosystem hinges on a carefully calibrated tokenomics incentive structure, encompassing staking, rewards, and penalties across all three agent roles, that renders honest, effortful participation the dominant economic strategy for every participant. We first detail the token-based mechanisms that govern the economic consequences of each agent's actions, and then describe how these token flows aggregate into the self-reinforcing dual loop that sustains the ecosystem as a whole.
 
 \subsubsection{Staking, Rewards, and Penalties}
 
@@ -276,42 +276,37 @@ Algorithm~\ref{alg:ecosystem} consolidates the complete agent service engagement
 \label{alg:ecosystem}
 \begin{algorithmic}[1]
 \Statex \textbf{Phase 1: Service Need Identification}
-\State Consumer agent $c$ encounters a task outside its domain expertise
-\State $c$ identifies the required expertise domain and broadcasts sample task set $\mathcal{Q}_c$ with $|\mathcal{Q}_c| = m$
+\State Consumer $c$ encounters task outside its expertise
+\State $c$ broadcasts sample task set $\mathcal{Q}_c$ with $|\mathcal{Q}_c| = m$
 \Statex
-\Statex \textbf{Phase 2: Promotion with Validator-Mediated Assessment}
-\State Producer agent $p$ observes $\mathcal{Q}_c$ and decides to promote its agent service $a_p$
-\State $p$ stakes promotion fee $\tau_p$ and selects validator committee $V_p = \{v_1, \dots, v_n\}$
-\State $p$ pays each validator agent $\tau_{\text{val}}$ per task ($mn\tau_{\text{val}}$ total)
-\For{each validator agent $v_i \in V_p$ \textbf{in parallel}}
-    \State $v_i$ stakes $\sigma$ tokens as economic commitment
-    \State $v_i$ executes its routing service $a_{v_i}(x)$ for each $x \in \mathcal{Q}_c$ \Comment{Architecturally heterogeneous}
-    \State $v_i$ compares own output with $a_p(x)$ and produces judgment $r_i \in \{0,1\}$
+\Statex \textbf{Phase 2: Promotion with Validation} \Comment{Producer-initiated}
+\State Producer $p$ stakes promotion fee $\tau_p$
+\State $p$ selects validator committee $V_p$ ($|V_p| = n$) and pays each validator $\tau_{\text{val}}$ per task
+\For{each $v_i \in V_p$ \textbf{in parallel}}
+    \State $v_i$ stakes $\sigma$, executes $a_{v_i}(x)$ for $x \in \mathcal{Q}_c$, produces $r_i \in \{0,1\}$
 \EndFor
-\State $r^* \gets \text{MajorityVote}(\{r_1, \dots, r_n\})$  \Comment{Promotion consensus}
-\State Settle: validators aligned with $r^*$ share reward pool; deviators forfeit $\sigma$
-\If{$r^*$ indicates sufficient alignment \textbf{and} producer's IR condition is satisfied}
-    \State $p$ sends promotion offer to consumer agent $c$
+\State $r^* \gets \text{MajorityVote}(\{r_1, \dots, r_n\})$
+\State Settle: aligned validators share reward pool; deviators forfeit $\sigma$
+\If{$r^* = 1$ \textbf{and} expected payoff justifies promotion}
+    \State $p$ sends promotion offer to $c$
 \EndIf
 \Statex
-\Statex \textbf{Phase 3: Subscription with Independent Validation}
-\State Consumer agent $c$ receives promotion and issues fresh task set $\mathcal{Q}_s$ ($\mathcal{Q}_s \cap \mathcal{Q}_c = \varnothing$)
-\State $c$ selects disjoint validator committee $V_s = \{v_1', \dots, v_n'\}$ ($V_s \cap V_p = \varnothing$)
-\State $c$ pays each validator agent $\tau_{\text{val}}$ per task; each validator stakes $\sigma$
-\For{each validator agent $v_j' \in V_s$ \textbf{in parallel}}
-    \State $v_j'$ executes routing service $a_{v_j'}(x)$, compares with $a_p(x)$, produces $r_j' \in \{0,1\}$
+\Statex \textbf{Phase 3: Subscription with Validation} \Comment{Consumer-initiated}
+\State $c$ issues fresh tasks $\mathcal{Q}_s$ ($\mathcal{Q}_s \cap \mathcal{Q}_c = \varnothing$)
+\State $c$ selects disjoint committee $V_s$ ($V_s \cap V_p = \varnothing$), pays each validator $\tau_{\text{val}}$ per task
+\For{each $v_j' \in V_s$ \textbf{in parallel}}
+    \State $v_j'$ stakes $\sigma$, executes $a_{v_j'}(x)$, produces $r_j' \in \{0,1\}$
 \EndFor
-\State $r^{**} \gets \text{MajorityVote}(\{r_1', \dots, r_n'\})$ \Comment{Subscription consensus}
-\State Settle: validators aligned with $r^{**}$ share reward pool; deviators forfeit $\sigma$
-\If{$r^{**}$ indicates sufficient alignment \textbf{and} consumer's IR condition is satisfied}
-    \State $c$ commits subscription fee $\tau_s$ and establishes SLA with producer $p$
-    \State $p$ is obligated to serve $c$'s future tasks under the agreed service terms
+\State $r^{**} \gets \text{MajorityVote}(\{r_1', \dots, r_n'\})$
+\State Settle: aligned validators share reward pool; deviators forfeit $\sigma$
+\If{$r^{**} = 1$ \textbf{and} expected utility justifies subscription}
+    \State $c$ commits subscription fee $\tau_s$ and begins long-term service engagement with $p$
 \EndIf
 \end{algorithmic}
 \end{algorithm}
 
 
-\begin{remark}[Implementation Considerations]
+\begin{remarkbox}{Implementation Considerations}
 \label{sec:decentral_tech}
-The mechanism design above is infrastructure-agnostic in principle, but its trustless execution naturally maps onto blockchain-based infrastructure. In the agent society, where participants are deployed by independent, competing organizations with no pre-existing trust relationships, no single entity can serve as a credible neutral party---precisely the centralization pathology identified in \Cref{sec:trust_crisis}. A shared ledger enforced by network consensus provides the necessary trust layer for token management, stake escrow, and automated reward distribution via smart contracts, while a hybrid on-chain/off-chain architecture preserves the data sovereignty that cross-organizational agents require (protocol state on-chain; proprietary knowledge assets off-chain with cryptographic integrity proofs). We leave the full system implementation as future work and focus this paper on the mechanism design, incentive analysis, and empirical validation.
-\end{remark}
+The mechanism design above is infrastructure-agnostic in principle, but its trustless execution naturally maps onto blockchain-based infrastructure. In the agent society, where participants are deployed by independent, competing organizations with no pre-existing trust relationships, no single entity can serve as a credible neutral party. A shared ledger enforced by network consensus provides the necessary trust layer for token management, stake escrow, and automated reward distribution via smart contracts, while a hybrid on-chain/off-chain architecture preserves the data sovereignty that cross-organizational agents require (protocol state on-chain; proprietary knowledge assets off-chain with cryptographic integrity proofs). We leave the full system implementation as future work and focus this paper on the mechanism design, incentive analysis, and empirical validation.
+\end{remarkbox}
