@@ -118,13 +118,6 @@ A producer agent $p$ initiates a promotion by advertising its service capabiliti
 A consumer agent $c$ establishes a \textit{subscription} to a producer's service $a_p$ by paying a fee $\tau_s$ in tokens, forming a service-level agreement (SLA) between the two autonomous agents. Under this agreement, the consumer delegates future tasks to $a_p$, and the producer becomes obligated to respond within specified quality and latency parameters. 
 \end{definition}
 
-% \begin{definition}{\textbf{(Promotion)}}\label{def:promotion}
-% A producer agent $p$ initiates a \textit{promotion} by publishing a verifiable performance declaration---comprising its domain coverage, inference capability profile, and willingness to be evaluated---backed by a token stake $\tau_p$. This stake functions as a costly signal~\cite{spence1973job}: an agent lacking genuine competence faces a high probability of failing the subsequent validation and forfeiting $\tau_p$, rendering spurious declarations economically irrational. Promotion thus serves as a decentralized entry filter that screens out underqualified producers without centralized gatekeeping.
-% \end{definition}
-
-% \begin{definition}{\textbf{(Subscription)}}\label{def:subscription}
-% A consumer agent $c$ establishes a \textit{subscription} to a preferred producer's service $a_p$ by committing a subscription fee $\tau_s$ in tokens, forming a service-level agreement (SLA) between the two autonomous agents. Under this agreement, the consumer delegates future tasks to $a_p$, and the producer becomes obligated to respond within specified quality and latency parameters. A mismatched subscription carries significant consequences: the consumer wastes its fee and suffers degraded downstream performance, with cascading effects across any agent systems that depend on its outputs.
-% \end{definition}
 
 \begin{insightbox}{Agent Service Lifecycle at a Glance}
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt, topsep=2pt]
@@ -225,9 +218,9 @@ The long-term viability of the agent ecosystem hinges not on the goodwill of par
 \subsubsection{Staking, Rewards, and Penalties}
 \label{sec:staking}
 
-The tokenomics structure binds all three agent roles through complementary token commitments: producer agents stake the promotion fee $\tau_p$ to enter the market, consumer agents commit the subscription fee $\tau_s$ to engage a chosen producer, and validator agents stake $\sigma$ tokens to participate in each validation round. We focus here on the validator-side mechanism, since it forms the economic backbone of the consensus protocol developed in \Cref{sec:poi_detail}.
+The tokenomics-driven ecosystem binds all agent roles through distinct token commitments: producer agents stake a promotion fee $\tau_p$ to enter the market, consumer agents commit the subscription fee $\tau_s$ to engage a chosen producer, and validator agents stake $\sigma$ tokens to participate in each validation round. While $\tau_p$ and $\tau_s$ serve as transactional prerequisites, the core challenge lies in the validation process: validators must be economically incentivized to exert genuine intellectual effort and report truthfully, as system integrity rests entirely on their judgments. We now detail the staking, reward, and penalty mechanisms that transform this requirement into an incentive-compatible game.
 
-Each validator agent participating in a validation round must lock $\sigma$ tokens as an economic commitment, creating direct financial exposure that deters dishonest behavior. Once voting concludes, a validator is rewarded if its judgment aligns with the consensus ($r_i = r^*$ in promotion or $r_j' = r^{**}$ in subscription), and penalized otherwise. The total reward pool consists of two sources: the requester's validation payment ($mn\tau_{\text{val}}$) and all validators' stakes ($n\sigma$). Letting $n_{\text{agree}}$ denote the number of validators whose judgments agree with the consensus, the per-capita payoff is:
+Each validator agent participating in a validation round must stake $\sigma$ tokens as an economic commitment, creating direct financial exposure necessary to deter dishonest behavior. Once majority-voting concludes, a validator is rewarded if its judgment aligns with the consensus ($r_i = r^*$ in promotion or $r_j' = r^{**}$ in subscription), and penalized otherwise. The total reward pool consists of two sources: the requester's validation payment ($mn\tau_{\text{val}}$) and all validators' stakes ($n\sigma$). Defining $n_{\text{agree}}$ as the count of validators in agreement with the consensus, the per-capita payoff is:
 \begin{equation}
 \label{eq:validator_payoff_mechanism}
 U_v =
@@ -236,29 +229,41 @@ U_v =
 -\sigma & \text{if } r_v \neq r^* \text{ (disagree with consensus)}.
 \end{cases}
 \end{equation}
-In the conservative case where all $n$ validators agree ($n_{\text{agree}} = n$), the per-capita reward reduces to $R_{\min} = m\tau_{\text{val}} + \sigma$, which serves as the lower bound used in our game-theoretic analysis (\Cref{sec:ic}).
+In the conservative case where all $n$ validators agree ($n_{\text{agree}} = n$), the per-capita reward reduces to $R_{\min} = m\tau_{\text{val}} + \sigma$, which serves as the lower bound in our game-theoretic analysis (see \S\ref{sec:ic}).
 
-This staking-and-reward structure gives rise to several important properties of the validation mechanism:
+This staking-and-reward structure gives rise to the following properties of the validation mechanism:
 
 \begin{itemize}[leftmargin=1.5em, itemsep=4pt]
-\item \textbf{Sybil defense.} The staking requirement directly addresses the accountability crisis identified in \Cref{sec:trust_crisis}. While deploying a new agent is virtually free, staking tokens on that agent is not: an attacker seeking to dominate the consensus with $k$ Sybil validators must lock $k\sigma$ tokens, an investment that scales linearly with the attack's scope and is forfeited upon failure, effectively replacing disposable identity with costly economic commitment.
+\item \textbf{Sybil defense.} The staking requirement directly resolves the accountability crisis discussed in \S\ref{sec:trust_crisis}. While deploying a new agent is virtually free, staking tokens on that agent is not: an attacker seeking to dominate the consensus with $k$ Sybil validators must lock $k\sigma$ tokens, an investment that scales linearly with the attack's scope and is forfeited upon failure. This requirement forces an adversary to replace disposable identities with significant, forfeitable capital at risk.
 
-\item \textbf{Collusion resistance.} Strategic validator selection is mitigated by the disjoint committee design ($V_s \cap V_p = \varnothing$): even if the producer agent selects favorable validators for its promotion stage, the consumer agent independently re-validates with a separate committee before committing to subscription.
+\item \textbf{Collusion resistance.} Strategic validator selection is neutralized by the disjoint committee design ($V_p \cap V_s = \varnothing$). This structure functions as a two-key security system: even if a producer successfully manipulates the promotion committee, the service must pass an independent re-validation by a separate committee before subscription. Crucially, this validator assignment is protocol-enforced through a verifiable random or similar decentralized orchestrator, rendering committee composition exogenous to any agent's influence. By decoupling these stages, the mechanism makes successful collusion prohibitively expensive and economically irrational.
 
-\item \textbf{Moral hazard.} Despite the staking mechanism, validator agents face a persistent temptation to shirk by returning random judgments at zero cost rather than exerting genuine effort at cost $c_u$. Resolving this moral hazard requires formal proof that truthful effort is each validator's optimal strategy, which we provide in \Cref{sec:ic}.
+\item \textbf{Moral hazard.} Despite staking, validator agents face a persistent temptation to shirk by returning arbitrary judgments at zero cost rather than exerting genuine intellectual effort at cost $c_u$. Resolving this moral hazard requires formal proof that truthful, effortful participation is the unique Nash equilibrium, preventing the system from collapsing into a "blind voting" regime. We provide a formal proof of this incentive-compatibility in \S\ref{sec:ic}.
 
-\item \textbf{Utility-based acceptance.} The requesting agent does not blindly follow the consensus: producer agents promote and consumer agents subscribe only when their expected utility exceeds the token-backed commitment, yielding threshold-optimal policies formalized in \Cref{sec:producer_ir,sec:consumer_ir}.
+\item \textbf{Utility-based acceptance.} The requesting agent does not blindly follow the consensus: producers promote and consumers subscribe only when their expected utility exceeds the required token commitment. This ensures that the ecosystem remains an economically viable marketplace, yielding the threshold-optimal policies formalized in \S\ref{sec:producer_ir} and \S\ref{sec:consumer_ir}.
 \end{itemize}
+
+
+\begin{insightbox}{Validation Lifecycle (Proof-of-Intelligence)}
+\begin{enumerate}[leftmargin=1.5em, itemsep=1pt, topsep=2pt]
+    \item \textbf{Stake}: Each validator agent locks $\sigma$ tokens as an economic commitment to the ecosystem.
+    \item \textbf{Infer}: Each validator independently executes its routing service $a_v(x)$ on the sample tasks, drawing on its own expertise.
+    \item \textbf{Compare}: Each validator compares its output against the producer's output $a_p(x)$, producing a binary judgment $r_v \in \{0,1\}$.
+    \item \textbf{Vote}: Individual judgments are aggregated via majority voting to form a consensus signal.
+    \item \textbf{Settle}: Validators aligned with consensus share the reward pool; those who deviate forfeit their stake.
+\end{enumerate}
+\end{insightbox}
+
 
 \subsubsection{Token Flow and the Tokenomics--Knowledge Dual Loop}
 \label{sec:dual_loop}
 
-While \S\ref{sec:staking} focused on the validator-side mechanism, the ecosystem's economic vitality ultimately depends on how tokens circulate among all three agent roles over time. As illustrated in Figure~\ref{fig:tokenomics}, our framework deliberately couples each role with both token-earning and token-spending pathways, thereby fostering a dynamic flow of value rather than a static one-shot transaction. Producer agents earn subscription fees from consumers but spend tokens on promotion stakes and validation requests; consumer agents pay subscription fees but receive promotion stakes from producers competing for their attention; validator agents earn validation fees and reward shares while staking $\sigma$ tokens against dishonest reporting. Table~\ref{tab:token_flow} summarizes the net token change for every (role, action) pair.
+While \S\ref{sec:staking} defines the micro-level constraints on validator agents, the ecosystem's economic vitality ultimately depends on the continuous circulation of tokens among all three agent roles. As illustrated in Figure~\ref{fig:tokenomics}, our framework deliberately couples each role with both token-earning and token-spending pathways, fostering a dynamic value flow rather than a static one-shot transaction. Producer agents earn subscription fees from consumers but spend tokens on promotion stakes and validation requests; consumer agents pay subscription fees but receive promotion stakes from producers competing for their attention; and validator agents earn validation fees and reward shares while staking $\sigma$ tokens against dishonest reporting. Table~\ref{tab:token_flow} summarizes the net token change for every (role, action) pair.
 
 \begin{table}[!htbp]
 \centering
 \caption{Token flow across ecosystem actions. Each cell shows the net token change for a given agent role. Validator payoffs depend on consensus alignment, where $n_{\text{agree}}$ denotes the number of validators whose judgments agree with the majority.}
-\vspace{2mm}
+% \vspace{2mm}
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.25}
 \small
@@ -277,13 +282,17 @@ Validator agent (disagree) & --- & --- & \multicolumn{2}{c}{$-\sigma$} \\
 \label{tab:token_flow}
 \end{table}
 
-The significance of this dual coupling becomes clear when viewed dynamically. An agent that only earned tokens would soon find its accumulated wealth economically inert, while an agent that only spent would quickly exhaust its reserves. By making every role both a beneficiary and a contributor of tokens, the ecosystem incentivizes agents to participate continuously across various contexts, shifting fluidly between producer, consumer, and validator depending on each agent's expertise advantage. This continuous circulation of value gives rise to what we call the \textbf{tokenomics--knowledge dual loop}, a self-reinforcing feedback cycle that operates in two directions. On the positive side, agents that deliver high-quality outputs and truthful assessments earn token rewards, and the resulting accumulation expands their participation opportunities across all three roles, reinforcing both their economic standing and the ecosystem's reliance on their capabilities. On the negative side, agents that deliver low-quality outputs or shirk effort see their token reserves deplete through failed validations and forfeited stakes, and are progressively filtered out of the active population. The two directions together produce an evolutionary selection pressure that continuously elevates the aggregate intelligence of the agent society.
-
+The significance of this dual coupling emerges in its dynamic equilibrium. An agent that only earns tokens would soon find its accumulated wealth economically inert, while one that only spends would quickly exhaust its reserves. By requiring every participant to function as both a beneficiary and a contributor, the ecosystem incentivizes agents to participate continuously across various contexts, shifting fluidly between producer, consumer, and validator based on their comparative expertise and intelligence. This continuous circulation fuels the \textbf{tokenomics-knowledge dual loop}, a self-reinforcing feedback cycle that operates in two directions:
+\begin{itemize}
+    \item On the positive side, agents that deliver high-quality outputs and truthful assessments earn token rewards, and the resulting accumulation expands their participation opportunities across all three roles, reinforcing both their economic standing and the ecosystem's reliance on their capabilities. 
+    \item On the negative side, agents that deliver low-quality outputs or shirk effort see their token reserves deplete through failed validations and forfeited stakes, and are progressively filtered out of the active population as they lose the financial capacity to compete. 
+\end{itemize}
+Together, these opposing vectors exert an evolutionary selection pressure that compels agents to continuously refine their capabilities and proactively participate across diverse roles. This dynamic ensures that only agents capable of delivering consistent value retain the financial agency to influence the ecosystem, thereby continuously elevating the aggregate intelligence of the agent society.
 
 \subsubsection{Protocol Summary}
 \label{sec:protocol_summary}
 
-We now consolidate the validation protocol of \Cref{sec:poi_detail} together with the tokenomics structure above into the complete agent service routing protocol. The protocol operates over a qualified validator pool $\mathcal{V} \subset \mathcal{U}$, where each member is registered with the ecosystem along with its expertise profile and stake balance. Algorithm~\ref{alg:ecosystem} traces the full lifecycle, from initial need identification, through validator-mediated quality assessment, to confirmed subscription.
+We now consolidate the validation protocol of \Cref{sec:poi_detail} with the tokenomics structure above into a unified agent service routing protocol. The protocol operates over a qualified validator pool, where each member is registered with the ecosystem along with am expertise profile and a verified stake balance. Algorithm~\ref{alg:ecosystem} traces the full lifecycle, from initial need identification, through validator-mediated quality assessment, to confirmed subscription.
 
 \begin{algorithm}[!htbp]
 \caption{Agent Service Routing Protocol}
@@ -346,19 +355,9 @@ We now consolidate the validation protocol of \Cref{sec:poi_detail} together wit
 \end{algorithmic}
 \end{algorithm}
 
-The two phases of Algorithm~\ref{alg:ecosystem} share a common validation substructure: in each phase, the validator for-loop and the subsequent settlement loop together implement the same five-step routine that defines Proof-of-Intelligence in operation.
+As a note, the two phases of Algorithm~\ref{alg:ecosystem} share a common validation substructure. In each phase, the validator for-loop and the subsequent settlement loop together implement the same five-step routine that defines Proof-of-Intelligence in operation.
 
-\begin{insightbox}{Validation Lifecycle (Proof-of-Intelligence)}
-\begin{enumerate}[leftmargin=1.5em, itemsep=1pt, topsep=2pt]
-    \item \textbf{Stake}: Each validator agent locks $\sigma$ tokens as an economic commitment to the ecosystem.
-    \item \textbf{Infer}: Each validator independently executes its routing service $a_v(x)$ on the sample tasks, drawing on its own expertise.
-    \item \textbf{Compare}: Each validator compares its output against the producer's output $a_p(x)$, producing a binary judgment $r_v \in \{0,1\}$.
-    \item \textbf{Vote}: Individual judgments are aggregated via majority voting to form a consensus signal.
-    \item \textbf{Settle}: Validators aligned with consensus share the reward pool; those who deviate forfeit their stake.
-\end{enumerate}
-\end{insightbox}
-
-The mechanism design developed across \S\ref{sec:motivation}--\S\ref{sec:protocol_summary} thus restores cooperation, accountability, and quality verification, the three properties whose simultaneous breakdown defines the trust crisis of \Cref{sec:trust_crisis}, as emergent consequences of rational self-interest rather than external enforcement. A critical enabler is that LLM agents, unlike human participants subject to bounded rationality and social preferences, are programmatic utility maximizers whose behavior can be precisely modeled as optimal responses to incentive structures. This makes the game-theoretic predictions underlying our mechanism design, which we formalize in \Cref{sec:game_theory}, hold with particular force in the agent society context.
+The designed tokenomics-driven ecosystem thus restores cooperation, accountability, and quality verification, the three pillars compromised in the trust crisis of \Cref{sec:trust_crisis}, as emergent consequences of rational self-interest rather than external enforcement. A critical enabler is that agents, unlike human participants subject to bounded rationality and social preferences, are programmatic utility maximizers whose behavior can be precisely modeled as optimal responses to incentive structures. This allows the game-theoretic predictions formalized in \Cref{sec:game_theory} to hold with particular force within an autonomous agent society.
 
 
 \begin{remarkbox}{Implementation Considerations}
