@@ -289,11 +289,6 @@ The significance of this dual coupling emerges in its dynamic equilibrium. An ag
 \end{itemize}
 Together, these opposing vectors exert an evolutionary selection pressure that compels agents to continuously refine their capabilities and proactively participate across diverse roles. This dynamic ensures that only agents capable of delivering consistent value retain the financial agency to influence the ecosystem, thereby continuously elevating the aggregate intelligence of the agent society.
 
-\subsubsection{Protocol Summary}
-\label{sec:protocol_summary}
-
-We now consolidate the validation protocol of \Cref{sec:poi_detail} with the tokenomics structure above into a unified agent service routing protocol. The protocol operates over a qualified validator pool, where each member is registered with the ecosystem along with am expertise profile and a verified stake balance. Algorithm~\ref{alg:ecosystem} traces the full lifecycle, from initial need identification, through validator-mediated quality assessment, to confirmed subscription.
-
 \begin{algorithm}[!htbp]
 \caption{Agent Service Routing Protocol}
 \label{alg:ecosystem}
@@ -355,12 +350,18 @@ We now consolidate the validation protocol of \Cref{sec:poi_detail} with the tok
 \end{algorithmic}
 \end{algorithm}
 
+\subsubsection{Protocol Summary}
+\label{sec:protocol_summary}
+
+We now consolidate the validation protocol of \Cref{sec:poi_detail} with the tokenomics structure above into a unified agent service routing protocol. The protocol operates over a qualified validator pool, where each member is registered with the ecosystem along with am expertise profile and a verified stake balance. Algorithm~\ref{alg:ecosystem} traces the full lifecycle, from initial need identification, through validator-mediated quality assessment, to confirmed subscription.
+
+
 As a note, the two phases of Algorithm~\ref{alg:ecosystem} share a common validation substructure. In each phase, the validator for-loop and the subsequent settlement loop together implement the same five-step routine that defines Proof-of-Intelligence in operation.
 
 The designed tokenomics-driven ecosystem thus restores cooperation, accountability, and quality verification, the three pillars compromised in the trust crisis of \Cref{sec:trust_crisis}, as emergent consequences of rational self-interest rather than external enforcement. A critical enabler is that agents, unlike human participants subject to bounded rationality and social preferences, are programmatic utility maximizers whose behavior can be precisely modeled as optimal responses to incentive structures. This allows the game-theoretic predictions formalized in \Cref{sec:game_theory} to hold with particular force within an autonomous agent society.
 
 
-\begin{remarkbox}{Implementation Considerations}
+\begin{remarkbox}{A Note on Infrastructure Considerations}
 \label{sec:decentral_tech}
 The mechanism design above is infrastructure-agnostic in principle, but its trustless execution naturally maps onto blockchain-based infrastructure. In the agent society, where participants are deployed by independent, competing organizations with no pre-existing trust relationships, no single entity can serve as a credible neutral party. Several blockchain primitives provide the necessary trust layer:
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt, topsep=3pt]
