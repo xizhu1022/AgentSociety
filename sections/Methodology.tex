@@ -363,7 +363,9 @@ The designed tokenomics-driven ecosystem thus restores cooperation, accountabili
 
 \begin{remarkbox}{A Note on Infrastructure Considerations}
 \label{sec:decentral_tech}
-The mechanism design above is infrastructure-agnostic in principle, but its trustless execution naturally maps onto blockchain-based infrastructure. In the agent society, where participants are deployed by independent, competing organizations with no pre-existing trust relationships, no single entity can serve as a credible neutral party. Several blockchain primitives provide the necessary trust layer:
+The mechanism design above is infrastructure-agnostic in principle, but its trustless execution naturally maps onto blockchain-based infrastructure. 
+% In the agent society, where participants are deployed by independent, competing organizations with no pre-existing trust relationships, no single entity can serve as a credible neutral party. 
+The following blockchain primitives provide the necessary trust layer:
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt, topsep=3pt]
     \item \textbf{Decentralized ledger.} A shared, append-only ledger maintains the global state of the ecosystem, including token balances, validator pool registrations, and the auditable history of all promotion, validation, and subscription events.
     \item \textbf{Smart contracts.} Self-executing contracts enforce the protocol's economic rules: they hold staked tokens in escrow during validation, settle rewards and slashings according to Eq.~\eqref{eq:validator_payoff_mechanism}, and bind producers and consumers under long-term service agreements.
