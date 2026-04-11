@@ -18,7 +18,7 @@ Our robustness analysis (\S\ref{sec:robustness}) shows that IC is preserved unde
 We treat agent quality $q_u$ as a static, exogenous parameter drawn from a fixed distribution. In reality, agents can improve their knowledge bases over time (e.g., through fine-tuning or retrieval augmentation), and a richer model would capture this dynamic quality evolution endogenously, potentially leading to more complex equilibrium dynamics.
 
 \textit{(iii) Residual correlation beyond the analyzed regime.}
-Our robustness analysis shows that the mechanism tolerates substantial equicorrelation ($\rho < \rho^*$, see Theorem~\ref{thm:corr_ic}), but real-world correlation structures may be non-uniform (e.g., models from the same family may be more correlated than models from different families). Extending the analysis to block-correlated or hierarchically correlated validators remains an open problem.
+Our robustness analysis shows that the mechanism tolerates substantial residual correlation under a latent-factor mixture model ($\rho < \rho^*$, \S\ref{sec:robustness}(B)), but real-world correlation structures may be non-uniform (e.g., models from the same family may be more correlated than models from different families). Extending the analysis to block-correlated or hierarchically correlated validators remains an open problem.
 
 \textit{(iv) Synthetic simulation.}
 Our DeQA case study uses synthetic agents with parameterized quality distributions rather than production-grade LLMs. Deploying the ecosystem with real language models---where quality is task-dependent, non-stationary, and harder to characterize by a single scalar---remains a crucial next step toward practical validation.

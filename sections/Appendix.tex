@@ -157,6 +157,34 @@ Unilateral deviation by any agent strictly reduces its payoff by the strict ineq
 
 The proof mirrors Theorem~\ref{Strict IC for Validators}; only $P_{\text{match}}$ changes. The honest validator's payoff structure is identical: stake $\sigma$, earn $R_{\min}$ if matching majority, forfeit $\sigma$ otherwise. The shirking payoff $\frac{1}{2}(R_{\min} - \sigma)$ is unchanged (a random vote matches any majority with probability $\frac{1}{2}$, independent of adversarial votes; see Appendix~\ref{app:freeriding}).
 
-It remains to show $P_{\text{match}}^{\text{Sybil}} > \frac{1}{2}$. Condition on $\theta$. When $\theta$ agrees with the adversary's vote direction, the $k$ adversarial votes reinforce truth, giving $P_{\text{match}}^{\text{Sybil}} \geq P_{\text{match}}$. When $\theta$ opposes the adversary, the honest validators ($h > n/2$) must overcome $k$ adversarial votes. By the Condorcet jury theorem applied to the $h$ honest validators, their majority is correct with probability $> \frac{1}{2}$. A truthful $v_i$ agrees with this correct majority with probability $\geq q_v^2 + (1-q_v)^2 > \frac{1}{2}$.
+It remains to show $P_{\text{match}}^{\text{Sybil}} > \frac{1}{2}$. Condition on the ground truth $\theta$. When $\theta$ agrees with the adversary's vote direction, the $k$ adversarial votes reinforce truth, giving $P_{\text{match}}^{\text{Sybil}} \geq P_{\text{match}}$. When $\theta$ opposes the adversary, the honest validators ($h > n/2$) must overcome $k$ adversarial votes. By the Condorcet jury theorem applied to the $h$ honest validators, their majority is correct with probability $> \frac{1}{2}$. A truthful $v_i$ agrees with this correct majority with probability $\geq q_v^2 + (1-q_v)^2 > \frac{1}{2}$. Averaging over both cases yields $P_{\text{match}}^{\text{Sybil}} > \frac{1}{2}$, after which substituting into the IC derivation yields condition~\eqref{eq:ic_sybil}. \qed
 
-Averaging over both cases yields $P_{\text{match}}^{\text{Sybil}} > \frac{1}{2}$. Substituting into the IC derivation yields condition~\eqref{eq:ic_sybil}. \qed
+\paragraph{Closed form and Sybil-resistance budget.}
+For the per-task case $m = 1$ and a worst-case adversary that votes uniformly to ``pass,'' the matching probability admits a closed form by counting the honest tally. Conditional on $\theta$, an honest validator $v_i$ matches the $n$-vote majority iff at least $\lfloor n/2 \rfloor$ of the remaining $h - 1$ honest peers vote with $v_i$ (the $k$ adversarial votes contribute deterministically to the ``pass'' tally). Writing $\alpha_h(q_v) = \sum_{j = \max(0, \lfloor n/2 \rfloor - k)}^{h-1} \binom{h-1}{j} q_v^j (1-q_v)^{h-1-j}$ for the tail probability that the honest peers reach the threshold conditional on $v_i$ being correct, and $\beta_h(q_v)$ for the corresponding tail conditional on $v_i$ being incorrect, one obtains
+\[
+P_{\text{match}}^{\text{Sybil}}(n, k, q_v) \;=\; q_v\,\alpha_h(q_v) + (1 - q_v)\,\beta_h(q_v).
+\]
+Substituting into~\eqref{eq:ic_sybil} defines the \emph{Sybil-resistance budget}
+\[
+k^*(n, q_v, \tau_{\text{val}}, \sigma, c_u) \;=\; \max\Bigl\{\,k \in \mathbb{Z}_{\geq 0} \;:\; k < \lfloor n/2 \rfloor \text{ and } (\tau_{\text{val}} + 2\sigma)\bigl(P_{\text{match}}^{\text{Sybil}}(n, k, q_v) - \tfrac{1}{2}\bigr) > c_u \,\Bigr\}.
+\]
+Numerical example: with $n = 9$, $q_v = 0.8$, $\tau_{\text{val}} = \sigma = 1$, and $c_u = 0.5$, the mechanism tolerates up to $k^* = 2$ adversarial seats while maintaining honest-validator IC. Doubling the stake to $\sigma = 2$ raises the budget to $k^* = 3$.
+
+
+\subsection{Robustness Details: Correlation and Heterogeneity}
+\label{app:robustness_full}
+
+This appendix collects the closed-form bounds and supporting derivations for relaxations (B) and (C) of \S\ref{sec:robustness}, which the main text states only at the level of the key result.
+
+\paragraph{(B) Closed form of $\rho^*$.}
+Under the latent-factor mixture~\eqref{eq:pmatch_corr}, $P_{\text{match}}^{\rho}$ is a linear function of $\rho$ that is strictly decreasing in $\rho$ whenever $P_{\text{match}}(n, q_v) > q_v^2 + (1-q_v)^2$, which holds for $n \geq 3$ and $q_v > \tfrac{1}{2}$ by Proposition~\ref{prop:pmatch_properties}. Substituting~\eqref{eq:pmatch_corr} into the IC condition $(\tau_{\text{val}} + 2\sigma)(P_{\text{match}}^{\rho} - \tfrac{1}{2}) > c_u$ and solving for $\rho$ yields the maximum tolerable correlation
+\begin{equation}
+\label{eq:rhostar}
+\rho^* \;=\; 1 \;-\; \frac{c_u/(\tau_{\text{val}} + 2\sigma) \;-\; \bigl[q_v^2 + (1-q_v)^2 - \tfrac{1}{2}\bigr]}{P_{\text{match}}(n, q_v) \;-\; \bigl[q_v^2 + (1-q_v)^2\bigr]}.
+\end{equation}
+For $\rho < \rho^*$ V-IC holds strictly. Numerical example: with $n = 9$, $q_v = 0.8$, $\tau_{\text{val}} = \sigma = 1$, and $c_u = 0.5$, one obtains $\rho^* \approx 0.72$, a substantial departure from the idealized $\rho = 0$.
+
+\paragraph{(C) Heterogeneous-quality IC and Condorcet bound.}
+With heterogeneous qualities $\{q_{v,i}\}_{i=1}^n$, validator $v_i$'s matching probability $P_{\text{match},i}$ is the probability that its truthful report agrees with the $n$-vote majority over the entire heterogeneous committee. Since each peer votes truthfully and independently with accuracy $q_{v,j}$, the tally $T = \sum_{j \neq i} \mathbbm{1}[r_j = \theta]$ is a sum of independent Bernoulli variables with mean $\bar q_{v,-i} = \frac{1}{n-1}\sum_{j \neq i} q_{v,j}$. The heterogeneous version of the Condorcet jury theorem states that, provided every $q_{v,j} > \tfrac{1}{2}$, the majority over $n$ truthful votes is correct with probability strictly greater than $\tfrac{1}{2}$, and the probability tends to $1$ as $n \to \infty$ provided $\bar q_{v,-i}$ remains bounded above $\tfrac{1}{2}$. Combining this with the per-validator agreement probability $q_{v,i}$ yields $P_{\text{match},i} > \tfrac{1}{2}$ for every $i$ as long as the quality dispersion is bounded so that no single validator's accuracy is so far above the mean that it is in an adversarial position relative to the (mostly correct) committee majority. The IC condition $(\tau_{\text{val}} + 2\sigma)(P_{\text{match},i} - \tfrac{1}{2}) > c_u$ then has to be checked for each $i$, but the algebra is identical to the homogeneous case once $P_{\text{match},i}$ is known.
+
+In the symmetric special case $q_{v,i} = q_v$ for all $i$, $P_{\text{match},i}$ collapses to $P_{\text{match}}(n, q_v)$ and Theorem~\ref{Strict IC for Validators} is recovered. \qed
