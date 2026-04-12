@@ -20,7 +20,7 @@ Each service engagement proceeds in four stages:
     \item \textit{Decision Stage.} The requester observes $Z$ and decides whether to proceed (promote or subscribe).
     \item \textit{Payoff Realization.} Validators whose reports align with the consensus receive a share of the reward pool, while those who disagree forfeit their stake $\sigma$. The requester's token commitments ($\tau_p$ or $\tau_s$) are settled according to the protocol rules.
 \end{enumerate}
-\noindent As detailed in \Cref{sec:mechanism}, while the ecosystem employs two validation stages (promotion and subscription) with disjoint committees ($V_p \cap V_s = \varnothing$), they share an identical validation substructure. We therefore analyze a single stage without loss of generality; the two-stage design provides collusion resistance at the protocol level rather than altering the game-theoretic structure.
+\noindent As detailed in \Cref{sec:mechanism}, while the ecosystem employs two validation stages (promotion and subscription) with disjoint committees ($V_p \cap V_s = \varnothing$), they share an identical validation substructure. We therefore analyze a single stage without loss of generality.
 
 \noindent\textbf{Strategy spaces.}
 A validator's strategy maps its type $q_v$ to an effort choice $e \in \{0, 1\}$. A producer's strategy maps $q_p$ to an ex ante promotion decision $d_p \in \{0, 1\}$, made before observing the validation outcome. A consumer's strategy maps the observed signal $Z$ to a subscription decision $d_c \in \{0, 1\}$; the consumer's own quality type does not enter its subscription payoff, so the strategy depends on $Z$ alone. A \textit{symmetric} profile requires all agents of the same role to use the same mapping.
