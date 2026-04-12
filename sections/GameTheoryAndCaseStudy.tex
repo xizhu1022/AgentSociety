@@ -5,25 +5,25 @@ This section provides the game-theoretic foundation for the ecosystem designed i
 \subsection{Game-Theoretic Guarantees}
 \label{sec:game_theory}
 
-Our tokenomics-driven ecosystem succeeds only if participation remains individually rational and incentive-compatible across all roles: validators must exert effort, producers must promote selectively, and consumers must subscribe only when evidence justifies the cost. We organize the analysis along this causal chain. \S\ref{sec:setup} defines the Bayesian game and underlying assumptions. \S\ref{sec:ic}--\S\ref{sec:consumer_ir} derive three fundamental conditions: validator incentive compatibility (V-IC), producer individual rationality (P-IR), and consumer individual rationality (C-IR). \S\ref{sec:bne} demonstrates that these conditions are mutually consistent, forming a symmetric Bayesian--Nash equilibrium. Finally, \S\ref{sec:robustness} verifies that this equilibrium survives realistic departures from idealized assumptions. We present proof sketches in the main text and defer full derivations to Appendix~\ref{sec:appendix_proofs}.
+Our tokenomics-driven ecosystem succeeds only if participation remains individually rational and incentive-compatible across all roles: validators must exert effort, producers must promote selectively, and consumers must subscribe only when evidence justifies the cost. We derive these conditions sequentially, each building on the previous. \S\ref{sec:setup} defines the Bayesian game and assumptions. \S\ref{sec:ic}--\S\ref{sec:consumer_ir} establish three conditions: validator incentive compatibility (V-IC), producer individual rationality (P-IR), and consumer individual rationality (C-IR). \S\ref{sec:bne} shows that these conditions are mutually consistent, forming a symmetric Bayesian--Nash equilibrium. \S\ref{sec:robustness} verifies that this equilibrium survives realistic departures from the idealized assumptions. We present proof sketches in the main text and defer full derivations to Appendix~\ref{sec:appendix_proofs}.
 
 \subsubsection{Model Setup and Assumptions}
 \label{sec:setup}
 
-We model the ecosystem as a Bayesian game among validator, producer, and consumer agents interacting through the mechanism of \Cref{sec:ecosystem}.
+We model the ecosystem as a Bayesian game of incomplete information among validator, producer, and consumer agents. Each agent holds a private quality type that determines its signal accuracy and service reliability, and all interactions are mediated by token-backed commitments.
 
 \noindent\textbf{Game structure.}
 Each service engagement proceeds in four stages:
 \begin{enumerate}[leftmargin=2em]
-    \item \textit{Nature's move}: every agent $u$ is endowed with a private quality type $q_u \in (\tfrac{1}{2}, 1]$ drawn i.i.d.\ from a common prior $F$. The type is known only to $u$.
-    \item \textit{Validation stage}: the requester (a producer or consumer agent) selects a committee $\mathcal{V}$ of $n$ validators (with $n$ odd, to avoid ties) and presents $m$ sample tasks. Each validator $v_i$ chooses an effort level $e_i \in \{0, 1\}$ and submits a per-task report. Reports are aggregated by majority vote within the committee to produce a consensus signal $Z \in \{0, 1\}$.
+    \item \textit{Nature's move}: every agent $u$ is endowed with a private quality type $q_u \in (\tfrac{1}{2}, 1]$ drawn i.i.d.\ from a common prior with density $f$. The type is known only to $u$.
+    \item \textit{Validation stage}: the requester initiates validation by committing the required token payment. A committee $\mathcal{V}$ of $n$ validators (with $n$ odd) is assembled by the protocol and presented with $m$ sample tasks. Each validator $v_i$ locks a stake $\sigma$, chooses an effort level $e_i \in \{0, 1\}$, and submits a per-task report. Reports are aggregated by majority vote to produce a consensus signal $Z \in \{0, 1\}$.
     \item \textit{Decision stage}: the requester observes $Z$ and decides whether to proceed (promote or subscribe).
-    \item \textit{Payoff realization}: tokens flow according to the rules in \Cref{sec:ecosystem}, and validator stakes are redistributed based on alignment with the consensus.
+    \item \textit{Payoff realization}: validators whose reports align with the consensus share the reward pool; those who disagree forfeit their stake $\sigma$. The requester's token commitments ($\tau_p$ or $\tau_s$) are settled according to the protocol rules.
 \end{enumerate}
 \noindent As detailed in \Cref{sec:mechanism}, the ecosystem employs two validation stages (promotion and subscription) with disjoint committees ($V_p \cap V_s = \varnothing$). Because both stages share an identical validation substructure (stake, infer, compare, vote, settle), the underlying validator game is the same in each. We therefore analyze a single stage without loss of generality; the two-stage design provides collusion resistance at the protocol level rather than altering the game-theoretic structure.
 
 \noindent\textbf{Strategy spaces.}
-A validator's strategy maps its type $q_v$ to an effort choice $e \in \{0, 1\}$; a producer's strategy maps $q_p$ to a promotion decision $d_p \in \{0, 1\}$; a consumer's strategy maps its type and the observed signal $Z$ to a subscription decision $d_c \in \{0, 1\}$. A \textit{symmetric} profile requires all agents of the same role to use the same mapping.
+A validator's strategy maps its type $q_v$ to an effort choice $e \in \{0, 1\}$. A producer's strategy maps $q_p$ to an ex ante promotion decision $d_p \in \{0, 1\}$, made before observing the validation outcome. A consumer's strategy maps the observed signal $Z$ to a subscription decision $d_c \in \{0, 1\}$; the consumer's own quality type does not enter its subscription payoff, so the strategy depends on $Z$ alone. A \textit{symmetric} profile requires all agents of the same role to use the same mapping.
 
 \noindent\textbf{Assumptions.}
 The following four assumptions support the analysis in \S\ref{sec:ic}--\S\ref{sec:bne}.
@@ -57,12 +57,12 @@ The pass probability $V(q_p) \coloneqq \Pr(Z = 1 \mid q_p)$ is strictly increasi
 Assumption~\ref{assum:mlrp} follows from Assumptions~\ref{assum:validators}--\ref{assum:costs}: the per-task agreement probability $p_{\text{agree}}(q_p, q_v) = q_p q_v + (1 - q_p)(1 - q_v)$ is strictly increasing in $q_p$ for any $q_v > \tfrac{1}{2}$, and this monotonicity propagates through majority voting to $V(q_p)$. We state it separately because all subsequent results invoke it directly (see Appendix~\ref{app:mlrp_derived}).
 \end{remark}
 
-\noindent With the game structure and assumptions in place, we now derive the three incentive conditions along the causal chain, beginning with the foundation: validator truthfulness.
+\noindent With the game and assumptions in place, we begin the analysis with its foundation: validator truthfulness.
 
 \subsubsection{Incentive Compatibility of Validators}
 \label{sec:ic}
 
-The first link in the causal chain is whether the validation layer can be trusted at all. If validators shirk and submit random reports, the consensus $Z$ carries no information, $V(q_p)$ ceases to depend on quality, and the entire mechanism collapses. We therefore ask: when is truthful effort each validator's strict best response, given that the other $n-1$ validators play truthfully?
+The foundational question is whether the validation layer can be trusted at all. If validators shirk and submit random reports, the consensus $Z$ carries no information and the entire mechanism collapses. We therefore ask: when is truthful effort each validator's strict best response, given that the other $n-1$ validators play truthfully?
 
 \noindent\textbf{Payoffs.}
 Each validator stakes $\sigma$ before reporting and is rewarded only if its report matches the committee majority. As a conservative lower bound on the per-capita reward, we adopt $R_{\min} = m\tau_{\text{val}} + \sigma$, which is what each validator earns when all $n$ agree and the total pool $mn\tau_{\text{val}} + n\sigma$ is split equally; in the per-task case $m=1$ this reduces to $R_{\min} = \tau_{\text{val}} + \sigma$. A validator whose report disagrees with the majority forfeits its stake. Let $P_{\text{match}}(n, q_v)$ denote the probability that a truthful validator's report matches the majority in a symmetric committee of $n$ validators each with quality $q_v$. Conditioning on whether $v_i$'s own report is correct (probability $q_v$) or incorrect (probability $1-q_v$) yields the closed form
@@ -555,7 +555,7 @@ In the extreme case $q = 0.5$, producers are no better than random---they cannot
 Both consumer surplus and overall welfare turn negative (Figures~\ref{fig:quality_impact}(d)(e)(f)), reflecting a collapsed market.
 
 As $q$ increases, a qualitative transition occurs: producer effort begins receiving positive feedback from the mechanism.
-Higher quality $\Rightarrow$ higher pass probability $V_p(q_p)$ $\Rightarrow$ higher subscription revenue $\Rightarrow$ stronger incentive to maintain quality.
+Higher quality $\Rightarrow$ higher pass probability $V(q_p)$ $\Rightarrow$ higher subscription revenue $\Rightarrow$ stronger incentive to maintain quality.
 This positive feedback loop stabilizes the incentive environment, driving consumer surplus and total welfare into sustained growth (Figures~\ref{fig:quality_impact}(c)(e)(f)).
 
 \textbf{Core insight.}
