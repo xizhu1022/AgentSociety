@@ -97,7 +97,7 @@ Imposing $\mathbb{E}[U\mid e=1] > \mathbb{E}[U\mid e=0]$ on the two expressions 
 \end{proof}
 
 \begin{interpretbox}{Takeaway: V-IC factorizes into economics and information}
-The IC condition factorizes into \textit{total economic exposure} $(\tau_{\text{val}}+2\sigma)$ times \textit{informational edge} $(P_{\text{match}}-\tfrac{1}{2})$. The protocol designer can therefore promote truthfulness through two complementary levers: raising the economic stakes ($\tau_{\text{val}}, \sigma$), or widening the gap between informed and random voting ($n, q_v$).
+The IC condition factorizes into \textit{total economic exposure} $(\tau_{\text{val}}+2\sigma)$ times \textit{informational edge} $(P_{\text{match}}-\tfrac{1}{2})$. This factorization reveals that the protocol designer can promote truthfulness through two complementary levers by either raising the economic stakes via $\tau_{\text{val}}$ and $\sigma$ or widening the gap between informed and random voting through $n$ and $q_v$. The former increases the penalty for disagreement while the latter enhances the validator's confidence that honest effort will indeed lead to consensus.
 \end{interpretbox}
 
 \noindent Theorem~\ref{Strict IC for Validators} thus formalizes the V-IC condition. Whenever this inequality holds, truthful effort becomes the strictly dominant strategy for every validator, ensuring that the consensus $Z$ serves as a high-fidelity signal of producer quality. This alignment of individual utility with collective truthfulness effectively resolves the moral hazard inherent in the Proof-of-Intelligence protocol.
