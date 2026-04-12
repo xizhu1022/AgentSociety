@@ -23,28 +23,28 @@ Each service engagement proceeds in four stages:
 \noindent As detailed in \Cref{sec:mechanism}, while the ecosystem employs two validation stages (promotion and subscription) with disjoint committees ($V_p \cap V_s = \varnothing$), they share an identical validation substructure. We therefore analyze a single stage without loss of generality.
 
 \noindent\textbf{Strategy spaces.}
-A validator's strategy maps its type $q_v$ to an effort choice $e \in \{0, 1\}$. A producer's strategy maps $q_p$ to an ex ante binary promotion decision, made before observing the validation outcome. A consumer's strategy maps the observed consensus signal $Z$ to a binary subscription decision; the consumer's own quality type does not enter its subscription payoff, so the strategy depends on $Z$ alone. A \textit{symmetric} profile requires all agents of the same role to use the same mapping.
+An agent's strategy is defined by its role-specific mapping. A validator's strategy maps its quality type $q_v$ to an effort choice $e \in \{0, 1\}$. A producer's strategy maps $q_p$ to an ex ante binary promotion decision, contingent on the anticipated validation outcome. A consumer's strategy maps the observed consensus signal $Z$ to a binary subscription decision. Notably, as the consumer's own quality type does not affect its subscription payoff, its strategy depends on $Z$ alone. A symmetric profile requires all agents of the same role to adopt the same mapping.
 
 \noindent\textbf{Assumptions.}
-The following four assumptions support the analysis in \S\ref{sec:ic}--\S\ref{sec:bne}.
+The following four assumptions support the analysis from \S\ref{sec:ic} to \S\ref{sec:bne}.
 
 \begin{assumption}[Validator population and independence]
 \label{assum:validators}
-The committee $\mathcal{V}$ contains $n$ validators (with $n$ odd), each with quality $q_v > \tfrac{1}{2}$. Validators are drawn independently from the agent population and report independently, with no off-protocol coordination.
+The validation committee $\mathcal{V}$ contains $n$ validators (with $n$ odd), each with quality $q_v > \tfrac{1}{2}$. Validators are sampled independently from the agent population and report independently, with no off-protocol coordination.
 \end{assumption}
 
-\noindent This independence is operationalized by the architectural heterogeneity requirement of \Cref{sec:ecosystem}, which mandates distinct model architectures across the committee and the producer. Architectural diversity removes the dominant source of correlated failures (shared weights and decoders) but cannot eliminate residual correlation from overlapping training corpora.
+\noindent This independence is operationalized by the agent heterogeneity requirement of \Cref{sec:ecosystem}, which mandates distinct model architectures across the committee and the producer. While architectural diversity mitigates the primary source of correlated failures (e.g., shared weights or identical decoding heuristics), we acknowledge that residual correlations may persist due to overlapping training corpora.
 
 \begin{assumption}[Per-task binary signal]
 \label{assum:binary}
-On each sample task, validator $v_i$ produces a binary report $r_{ij} \in \{0,1\}$ indicating whether the producer's output is correct. Conditional on the ground truth, $\Pr(r_{ij} = \text{correct}) = q_v$ under truthful effort and $\Pr(r_{ij} = 1) = \tfrac{1}{2}$ under shirking, independently across validators and tasks.
+On each sample task, validator $v_i$ produces a binary report $r_{ij} \in \{0,1\}$ regarding the correctness of the producer's output. Conditional on the ground truth, $\Pr(r_{ij} = \text{correct}) = q_v$ under truthful effort and $\Pr(r_{ij} = 1) = \tfrac{1}{2}$ under shirking, independently across validators and tasks.
 \end{assumption}
 
-\noindent The committee aggregates reports within each task by majority vote, and the consensus $Z \in \{0,1\}$ is the resulting verdict. For $m \geq 2$, the producer passes if it passes a strict majority of the $m$ tasks. Since tasks are i.i.d., we derive all results for $m = 1$ without loss of generality (Appendix~\ref{app:m_extension}).
+\noindent The reports are aggregated within each task by majority vote to produce a consensus $Z \in \{0,1\}$. For $m \geq 2$, the producer passes the validation stage only if it passes a strict majority of the $m$ tasks. Since tasks are i.i.d., we perform our analysis for $m = 1$ without loss of generality (Appendix~\ref{app:m_extension}).
 
 \begin{assumption}[Cost structure]
 \label{assum:costs}
-Producing a truthful per-task judgment costs $c_u > 0$; shirking is free. The validation fee satisfies $\tau_{\text{val}} > c_u$ (honest effort is individually viable), and validation is cheap relative to promotion and subscription: $mn\tau_{\text{val}} \ll \tau_p \ll \tau_s$.
+Executing genuine intellectual effort to produce a truthful per-task judgment costs $c_u > 0$; shirking (arbitrary reporting) is free. The validation fee satisfies $\tau_{\text{val}} > c_u$, ensuring honest effort is individually viable. Furthermore, validation remains economically friction-less relative to high-stakes commitments: $mn\tau_{\text{val}} \ll \tau_p \ll \tau_s$.
 \end{assumption}
 
 \begin{assumption}[Monotone likelihood ratio property]
@@ -54,10 +54,9 @@ The pass probability $V(q_p) \coloneqq \Pr(Z = 1 \mid q_p)$ is strictly increasi
 
 \begin{remark}[MLRP as a derived property]
 \label{rem:mlrp_derived}
-Assumption~\ref{assum:mlrp} follows from Assumptions~\ref{assum:validators}--\ref{assum:costs}: the per-task agreement probability $p_{\text{agree}}(q_p, q_v) = q_p q_v + (1 - q_p)(1 - q_v)$ is strictly increasing in $q_p$ for any $q_v > \tfrac{1}{2}$, and this monotonicity propagates through majority voting to $V(q_p)$. We state it separately because all subsequent results invoke it directly (see Appendix~\ref{app:mlrp_derived}).
+Assumption~\ref{assum:mlrp} follows from Assumptions~\ref{assum:validators}--\ref{assum:costs}. The per-task agreement probability $p_{\text{agree}}(q_p, q_v) = q_p q_v + (1 - q_p)(1 - q_v)$ is strictly increasing in $q_p$ for any $q_v > \tfrac{1}{2}$, and this monotonicity is preserved under the majority voting operator $V(q_p)$. We state it separately because all subsequent results invoke this property directly (see Appendix~\ref{app:mlrp_derived}).
 \end{remark}
 
-\noindent With the game and assumptions in place, we begin the analysis with its foundation: validator truthfulness.
 
 \subsubsection{Incentive Compatibility of Validators}
 \label{sec:ic}
