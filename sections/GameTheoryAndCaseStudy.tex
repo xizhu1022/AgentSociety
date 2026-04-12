@@ -61,10 +61,10 @@ Assumption~\ref{assum:mlrp} follows from Assumptions~\ref{assum:validators}--\re
 \subsubsection{Incentive Compatibility of Validators}
 \label{sec:ic}
 
-The foundational question is whether the validation layer can be trusted at all. If validators shirk and submit random reports, the consensus $Z$ carries no information and the entire mechanism collapses. We therefore ask: when is truthful effort each validator's strict best response, given that the other $n-1$ validators play truthfully?
+Incentive compatibility (IC) asks whether truthful effort is each validator's best response given that the others behave likewise. It is the foundation of our mechanism: without it, validators have no reason to exert genuine effort, and the consensus signal $Z$ degenerates into uninformative noise. We therefore ask: under what conditions is truthful effort the strict best response of validator $v_i$, given that the other $n-1$ validators play truthfully?
 
 \noindent\textbf{Payoffs.}
-Each validator stakes $\sigma$ before reporting and is rewarded only if its report matches the committee majority. As a conservative lower bound on the per-capita reward, we adopt $R_{\min} = m\tau_{\text{val}} + \sigma$, which is what each validator earns when all $n$ agree and the total pool $mn\tau_{\text{val}} + n\sigma$ is split equally; in the per-task case $m=1$ this reduces to $R_{\min} = \tau_{\text{val}} + \sigma$. A validator whose report disagrees with the majority forfeits its stake. Let $P_{\text{match}}(n, q_v)$ denote the probability that a truthful validator's report matches the majority in a symmetric committee of $n$ validators each with quality $q_v$. Conditioning on whether $v_i$'s own report is correct (probability $q_v$) or incorrect (probability $1-q_v$) yields the closed form
+Each validator stakes $\sigma$ before reporting and is rewarded only if its report matches the committee majority. As a conservative lower bound on the per-capita reward, we adopt $R_{\min} = m\tau_{\text{val}} + \sigma$, which is what each validator earns when all $n$ agree and the total pool $mn\tau_{\text{val}} + n\sigma$ is split equally; in the per-task case $m=1$ this reduces to $R_{\min} = \tau_{\text{val}} + \sigma$. A validator whose report disagrees with the majority forfeits its stake. Under this reward rule, the key quantity governing truthful effort is the probability of aligning with the consensus. Let $P_{\text{match}}(n, q_v)$ denote this probability for a truthful validator in a symmetric committee of $n$ validators each with quality $q_v$. Conditioning on whether $v_i$'s own report is correct (probability $q_v$) or incorrect (probability $1-q_v$) yields the closed form
 \begin{equation}
 \label{eq:pmatch}
 P_{\text{match}}(n, q_v) = q_v \cdot \alpha(n, q_v) + (1 - q_v) \cdot \beta(n, q_v),
@@ -75,13 +75,14 @@ where $\alpha$ and $\beta$ are binomial tail probabilities; the full derivation 
 \label{prop:pmatch_properties}
 For all $q_v > \tfrac{1}{2}$ and odd $n \geq 3$: \textbf{(i)}~$P_{\text{match}}(n, q_v) \geq q_v^2 + (1-q_v)^2 > \tfrac{1}{2}$; \textbf{(ii)}~$P_{\text{match}}$ is strictly increasing in both $q_v$ and $n$; \textbf{(iii)}~$P_{\text{match}} \to 1$ as $n \to \infty$.
 \end{proposition}
-\noindent (i) is a direct corollary of the Condorcet jury theorem applied to the $n-1$ peer reports; the full proof is in Appendix~\ref{app:pmatch_properties}.
+\noindent Property (i) is the load-bearing inequality for IC: it guarantees that a truthful validator has a strict informational edge over random voting, without which no economic incentive could induce honest effort. It follows directly from the Condorcet jury theorem applied to the $n-1$ peer reports; the full proof is in Appendix~\ref{app:pmatch_properties}.
 
-The expected utilities under the two strategies follow immediately. Under truthful effort, the validator earns $R_{\min}$ with probability $P_{\text{match}}$ and forfeits $\sigma$ otherwise, after paying the effort cost $c_u$; under shirking, a uniform random report matches any committee majority with probability exactly $\tfrac{1}{2}$ regardless of how the others vote (Appendix~\ref{app:freeriding}). Hence
+The expected utilities under the two strategies follow immediately. Under truthful effort, the validator earns $R_{\min}$ with probability $P_{\text{match}}$ and forfeits $\sigma$ otherwise, after paying the effort cost $c_u$. Under shirking, a uniform random report matches any committee majority with probability exactly $\tfrac{1}{2}$, independent of other validators (Appendix~\ref{app:freeriding}); this defines the baseline that truthful effort must strictly exceed. Hence
 \begin{equation}
 \label{eq:u_truthful}
 \mathbb{E}[U \mid e=1] = P_{\text{match}}\,R_{\min} - (1-P_{\text{match}})\,\sigma - c_u, \qquad \mathbb{E}[U \mid e=0] = \tfrac{1}{2}\,(R_{\min} - \sigma).
 \end{equation}
+Imposing the IC condition $\mathbb{E}[U \mid e=1] > \mathbb{E}[U \mid e=0]$ and simplifying yields the following sharp characterization.
 
 \begin{theorem}[Validator IC]
 \label{Strict IC for Validators}
@@ -100,7 +101,7 @@ Imposing $\mathbb{E}[U\mid e=1] > \mathbb{E}[U\mid e=0]$ on the two expressions 
 The IC condition factorizes into \textit{total economic exposure} $(\tau_{\text{val}}+2\sigma)$ times \textit{informational edge} $(P_{\text{match}}-\tfrac{1}{2})$. The protocol designer can therefore promote truthfulness through two independent levers: raising the economic stakes ($\tau_{\text{val}}, \sigma$), or widening the gap between informed and random voting ($n, q_v$).
 \end{interpretbox}
 
-\noindent Validator truthfulness resolves the moral hazard identified in \Cref{sec:trust_crisis}: the staking mechanism makes honest effort the dominant strategy. We now turn to the supply side.
+\noindent Theorem~\ref{Strict IC for Validators} thus establishes V-IC: whenever the inequality holds, every validator finds truthful effort strictly optimal, and the consensus $Z$ becomes a reliable signal of producer quality. This resolves the moral hazard identified in \Cref{sec:trust_crisis}. With the validation layer now trustworthy, we turn to the supply side.
 
 \subsubsection{Producer's Threshold-Optimal Promotion}
 \label{sec:producer_ir}
