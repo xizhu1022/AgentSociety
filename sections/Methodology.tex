@@ -13,23 +13,23 @@ For any agent $u \in \mathcal{U}$ with domain-specific expertise $\mathcal{K}_u$
 
 % In the agent society, specialized knowledge is distributed across a large, open population of autonomous agents $\mathcal{U}$, each possessing domain-specific expertise $\mathcal{K}_u$ and operating under the authority of its deploying organization. When an agent encounters a task that falls outside its own competence, it must locate and engage a capable counterpart---a process we term \textit{service routing}. Rather than delegating this routing to a centralized orchestrator, our ecosystem allows it to emerge organically from token-mediated economic interactions among three dynamically interchangeable roles.
 
-\begin{definition}{\textbf{(Consumer Agent)}}\label{def:consumer}
+\begin{definition}[Consumer Agent]\label{def:consumer}
 A consumer $c \in \mathcal{U}$ is an agent that requests services from the ecosystem. Upon encountering a task outside its domain expertise, it identifies the required expertise domain and issues a set of domain-specific tasks $\{x_1, \ldots, x_{N}\} \subset \mathcal{Q}$ to be delegated externally. A consumer agent seeks to establish a long-term service agreement with a qualified producer agent, committing tokens to fund this engagement. Unlike a human user who subjectively "asks a question," the consumer agent executes a deterministic routing protocol driven by its utility function.
 \end{definition}
 
-\begin{definition}{\textbf{(Producer Agent)}}\label{def:producer}
+\begin{definition}[Producer Agent]\label{def:producer}
 A producer $p \in \mathcal{U}$ is an agent that provides agent services by encapsulating its domain expertise $\mathcal{K}_p$ into a callable inference capability. Given a task $x \in \mathcal{Q}$, the producer executes its service $a_p(x)$ and returns an output $r \in \mathcal{R}$. The service quality $q_p \in (0,1]$, representing the probability of generating a correct output, is treated as an objective property of the agent that can be estimated through sampling. By delivering high-quality outputs, the producer agent earns tokens from the consumer agent.
 \end{definition}
 
 As established in \Cref{sec:trust_crisis}, the consumer-producer dyad alone cannot sustain a reliable agent service market. The information asymmetry between supply and demand, where the consumer lacks the means to verify service quality and the producer may overstate its competence, triggers the adverse selection that our mechanism must overcome. To break this asymmetry and move beyond the risks of centralized "black-box" routing, we introduce a third role: validators, independent agents that provide decentralized quality assessments of agent service on behalf of the ecosystem.
 
-\begin{definition}{\textbf{(Validator Agent)}}\label{def:validator}
+\begin{definition}[Validator Agent]\label{def:validator}
 A validator $v \in \mathcal{U}$ is an independent agent that performs cross-verification within the agent service routing process. Given a task $x \in \mathcal{Q}$ and a producer's output $a_p(x)$, the validator agent independently executes its own inference $a_v(x)$ to produce a judgment $j_v \in \{0, 1\}$, indicating agreement or disagreement. This is an auditable computational process rather than a subjective evaluation. To enhance reliability, judgments from multiple validators can be aggregated to form a consensus that ensures the integrity of the routing results (see \S\ref{sec:poi_detail}).
 \end{definition}
 
 Central to both roles is the concept of domain-specific and intelligence-intensive agent services. A producer contributes to the ecosystem through expected long-term service engagements by fulfilling recurring consumer requests, while a validator supports the agent service routing process by independently assessing the quality of producer-consumer matching beforehand. Although their purposes differ, one generating responses and the other verifying them, both agents rely on the same underlying inference capability to provide their respective services.
 
-\begin{definition}{\textbf{(Agent Service Routing)}}\label{def:agent-service-routing}
+\begin{definition}[Agent Service Routing]\label{def:agent-service-routing}
 Each validator $v \in \mathcal{U}$ encapsulates its domain expertise $\mathcal{K}_v$ into a knowledge-intensive routing service $a_v: \mathcal{Q} \rightarrow \mathcal{R}$, providing a reference inference to determine a producer's reliability. From its own perspective, the validator utilizes $a_v$ to assess a producer's performance on a specific task, where $q \in (0,1]$ reflects its internal confidence in the verification's accuracy. This process incurs a computational cost $c_v$ per invocation. Ultimately, the validator functions as a decentralized benchmark, leveraging its proprietary inference pipeline to participate in the service routing between consumers and producers.
 \end{definition}
 
@@ -112,11 +112,11 @@ $c_s$ & Net present value of fulfilling future service obligations \\
 
 The agent service lifecycle revolves around two complementary economic actions that together constitute the two-sided market at the heart of the ecosystem. Producers promote their agent services to establish visibility and attract potential users, while consumers subscribe to preferred producers for long-term agent service. These two workflows are illustrated in Figures~\ref{fig:promotion} and~\ref{fig:subscription}.
 
-\begin{definition}{\textbf{(Promotion)}}\label{def:promotion}
+\begin{definition}[Promotion]\label{def:promotion}
 A producer agent $p$ initiates a promotion by advertising its service capabilities and staking a commitment fee $\tau_p$. This stake functions as a costly signal, ensuring that only agents with high confidence in their competence will risk the potential forfeiture of tokens to establish market visibility.
 \end{definition}
 
-\begin{definition}{\textbf{(Subscription)}}\label{def:subscription}
+\begin{definition}[Subscription]\label{def:subscription}
 A consumer agent $c$ establishes a \textit{subscription} to a producer's service $a_p$ by paying a fee $\tau_s$ in tokens, forming a service-level agreement (SLA) between the two autonomous agents. Under this agreement, the consumer delegates future tasks to $a_p$, and the producer becomes obligated to respond within specified quality and latency parameters. 
 \end{definition}
 
@@ -144,11 +144,11 @@ In conventional systems, producer-consumer agent routing relies heavily on subje
 
 % Given that agent service quality cannot be unilaterally verified by the consumer, the ecosystem provides a structured third-party validation mechanism that both producers and consumers can invoke before committing to high-stakes transactions. By design, the total cost of validation ($m \times n \times \tau_{\text{val}}$) is substantially lower than that of a mismatched subscription ($\tau_s$), making the request for validation economically rational for both parties. The protocol operates in two stages, each employing an independent validator committee to ensure integrity.
 
-\begin{definition}{\textbf{(Promotion Validation Request)}}\label{def:promo_validation}
+\begin{definition}[Promotion Validation Request]\label{def:promo_validation}
 When a consumer agent $c$ broadcasts a service need along with a sample task set $\mathcal{Q}_c \subset \mathcal{Q}$ ($|\mathcal{Q}_c| = m$), a producer agent $p$ requests a group of validators $V_p \subset \mathcal{U}$ ($|V_p| = n$) and pays each validator a fixed fee $\tau_{\text{val}}$ per task to assess its service capability before initiating a formal promotion.
 \end{definition}
 
-\begin{definition}{\textbf{(Subscription Validation Request)}}\label{def:sub_validation}
+\begin{definition}[Subscription Validation Request]\label{def:sub_validation}
 Upon receiving a promotion, the consumer agent $c$ issues a separate task set $\mathcal{Q}_s \subset \mathcal{Q}$ ($|\mathcal{Q}_s| = m$) to a disjoint group of validators $V_s \subset \mathcal{U}$ ($|V_s| = n$), subject to the constraints $\mathcal{Q}_s \cap \mathcal{Q}_c = \varnothing$ and $V_s \cap V_p = \varnothing$. Each validator in $V_s$ is paid the same per-task fee $\tau_{\text{val}}$ to independently assess the producer's service quality.
 \end{definition}
 
@@ -189,7 +189,7 @@ By design, the total cost of validation $m \cdot n \cdot \tau_{\text{val}}$ is s
 
 To improve routing transparency and auditability, the ecosystem employs a decentralized consensus formation process where heterogeneous validators collaborate to deliver a more reliable judgment than any individual could provide. Upon a validation request, the selected committee acts as a decentralized proxy to verify producer-consumer alignment by independently invoking its routing services and comparing outputs with the producer's claims. These individual judgments are then aggregated via majority voting into an auditable consensus signal, which is returned to the requester as a formal reference for the final routing decision. This process is formalized for both stages below.
 
-\begin{definition}{\textbf{(Promotion Consensus)}}\label{def:promo_consensus}
+\begin{definition}[Promotion Consensus]\label{def:promo_consensus}
 Let $V_p = \{v_1, \ldots, v_n\}$ denote the validator committee for promotion, where $n \ll N$. Each validator $v_i \in V_p$ independently invokes its routing service to produce a judgment $r_i = a_i(\mathcal{Q}_c, a_p)$ by comparing its own outputs with those of the candidate producer on the sample task set $\mathcal{Q}_c$. A promotion consensus $r^*$ is derived through majority voting:
 \begin{equation}
 r^* = \textup{MajorityVote}\left(\{r_1, \dots, r_n\}\right).
@@ -197,7 +197,7 @@ r^* = \textup{MajorityVote}\left(\{r_1, \dots, r_n\}\right).
 The producer may adopt $r^*$ as a reference to decide whether to proceed with the promotion.
 \end{definition}
 
-\begin{definition}{\textbf{(Subscription Consensus)}}\label{def:sub_consensus}
+\begin{definition}[Subscription Consensus]\label{def:sub_consensus}
 Let $V_s = \{v_1', \ldots, v_n'\}$ be a disjoint committee of validators assigned to the subscription phase. To verify service alignment, each validator $v_j' \in V_s$ evaluates the producer’s responses on another specific task set $\mathcal{Q}_s$, yielding an independent judgment $r_j'$. The collective consensus $r^{**}$ is aggregated through majority voting:
 \begin{equation}
 r^{**} = \textup{MajorityVote}\left(\{r_1', \ldots, r_n'\}\right).
