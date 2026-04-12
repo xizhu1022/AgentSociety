@@ -1,19 +1,16 @@
 \section{Theoretical Foundations and Empirical Validation}
 
-This section provides the game-theoretic underpinning of the ecosystem designed in \Cref{sec:ecosystem} and empirically validates the framework through a case study.
-We first formalize the Bayesian validation game, establish assumptions, and derive incentive compatibility for validators (\S\ref{sec:ic}).
-We then characterize threshold-optimal policies for producers (\S\ref{sec:producer_ir}) and consumers (\S\ref{sec:consumer_ir}), prove the existence of a symmetric Bayesian--Nash equilibrium (\S\ref{sec:bne}), and establish robustness to relaxations of the idealized conditions (\S\ref{sec:robustness}).
-Finally, we instantiate the ecosystem as a decentralized question answering system and present simulation results (\S\ref{sec:case_study}).
+This section provides the game-theoretic foundation for the ecosystem designed in \Cref{sec:ecosystem} (\S\ref{sec:game_theory}) and validates the framework empirically through a case study (\S\ref{sec:case_study}).
 
 \subsection{Game-Theoretic Guarantees}
 \label{sec:game_theory}
 
-The mechanism designed in \Cref{sec:ecosystem} succeeds only if every role finds it individually rational to act as the protocol intends: validators must exert effort, producers must promote only when capable, and consumers must subscribe only when the evidence justifies the cost. We organize the analysis along this causal chain. \S\ref{sec:setup} fixes the Bayesian game and the four assumptions that we will later relax. \S\ref{sec:ic}--\S\ref{sec:consumer_ir} derive the three incentive conditions in turn---validator incentive compatibility (V-IC), producer individual rationality (P-IR), and consumer individual rationality (C-IR)---each taking the others as given. \S\ref{sec:bne} closes the chain by showing that the three conditions are mutually consistent and form a symmetric Bayesian--Nash equilibrium. \S\ref{sec:robustness} then establishes that the equilibrium survives bounded Sybil attacks, residual validator correlation, and quality heterogeneity, with the economic stake serving as a tunable buffer. Two load-bearing properties carry the analysis throughout: a quantitative inequality, $P_{\text{match}} > \tfrac{1}{2}$, which underwrites V-IC and all of its robustness extensions, and a qualitative monotonicity, the MLRP of $V(q_p)$, which underwrites both P-IR and C-IR. Both properties are preserved under every relaxation we consider, and this is precisely what makes the equilibrium argument and its robustness extensions uniformly transparent. To keep the exposition focused, we present only proof sketches in the main text and defer full derivations to Appendix~\ref{sec:appendix_proofs}.
+The mechanism designed in \Cref{sec:ecosystem} succeeds only if every role finds it individually rational to act as the protocol intends: validators must exert effort, producers must promote only when capable, and consumers must subscribe only when the evidence justifies the cost. We organize the analysis along this causal chain. \S\ref{sec:setup} fixes the Bayesian game and assumptions. \S\ref{sec:ic}--\S\ref{sec:consumer_ir} derive three incentive conditions: validator incentive compatibility (V-IC), producer individual rationality (P-IR), and consumer individual rationality (C-IR). \S\ref{sec:bne} shows that these conditions are mutually consistent and form a symmetric Bayesian--Nash equilibrium. \S\ref{sec:robustness} verifies that the equilibrium survives realistic departures from the idealized assumptions. We present proof sketches in the main text and defer full derivations to Appendix~\ref{sec:appendix_proofs}.
 
 \subsubsection{Model Setup and Assumptions}
 \label{sec:setup}
 
-We model the ecosystem as a Bayesian game among three types of strategic agents---validator, producer, and consumer agents---interacting through the mechanism of \Cref{sec:ecosystem}.
+We model the ecosystem as a Bayesian game among validator, producer, and consumer agents interacting through the mechanism of \Cref{sec:ecosystem}.
 
 \noindent\textbf{Game structure.}
 Each service engagement proceeds in four stages:
@@ -23,22 +20,27 @@ Each service engagement proceeds in four stages:
     \item \textit{Decision stage}: the requester observes $Z$ and decides whether to proceed (promote or subscribe).
     \item \textit{Payoff realization}: tokens flow according to the rules in \Cref{sec:ecosystem}, and validator stakes are redistributed based on alignment with the consensus.
 \end{enumerate}
+\noindent As detailed in \Cref{sec:mechanism}, the ecosystem employs two validation stages (promotion and subscription) with disjoint committees ($V_p \cap V_s = \varnothing$). Because both stages share an identical validation substructure (stake, infer, compare, vote, settle), the underlying validator game is the same in each. We therefore analyze a single stage without loss of generality; the two-stage design provides collusion resistance at the protocol level rather than altering the game-theoretic structure.
 
 \noindent\textbf{Strategy spaces.}
 A validator's strategy maps its type $q_v$ to an effort choice $e \in \{0, 1\}$; a producer's strategy maps $q_p$ to a promotion decision $d_p \in \{0, 1\}$; a consumer's strategy maps its type and the observed signal $Z$ to a subscription decision $d_c \in \{0, 1\}$. A \textit{symmetric} profile requires all agents of the same role to use the same mapping.
 
 \noindent\textbf{Assumptions.}
-The following four assumptions support the idealized analysis in \S\ref{sec:ic}--\S\ref{sec:bne}; \S\ref{sec:robustness} relaxes the strongest of them.
+The following four assumptions support the analysis in \S\ref{sec:ic}--\S\ref{sec:bne}.
 
 \begin{assumption}[Validator population and independence]
 \label{assum:validators}
-The committee $\mathcal{V}$ contains $n$ validators (with $n$ odd), each with quality $q_v > \tfrac{1}{2}$. Validators are drawn independently from the agent population and report independently, with no off-protocol coordination. This independence is operationalized at the protocol level by the architectural heterogeneity requirement of \Cref{sec:ecosystem}, which mandates distinct model architectures across the committee and the producer. Architectural diversity removes the dominant source of correlated failures (shared weights and decoders) but cannot eliminate residual correlation from overlapping training corpora; this residual is addressed in \S\ref{sec:robustness}(B).
+The committee $\mathcal{V}$ contains $n$ validators (with $n$ odd), each with quality $q_v > \tfrac{1}{2}$. Validators are drawn independently from the agent population and report independently, with no off-protocol coordination.
 \end{assumption}
+
+\noindent This independence is operationalized by the architectural heterogeneity requirement of \Cref{sec:ecosystem}, which mandates distinct model architectures across the committee and the producer. Architectural diversity removes the dominant source of correlated failures (shared weights and decoders) but cannot eliminate residual correlation from overlapping training corpora.
 
 \begin{assumption}[Per-task binary signal]
 \label{assum:binary}
-On each sample task, validator $v_i$ produces a per-task binary report $r_{ij} \in \{0,1\}$ indicating whether the producer's output is correct. Conditional on the ground truth, $\Pr(r_{ij} = \text{correct}) = q_v$ under truthful effort and $\Pr(r_{ij} = 1) = \tfrac{1}{2}$ under shirking, independently across validators and tasks. The committee aggregates reports \emph{within each task} by majority vote among validators, and the consensus $Z \in \{0,1\}$ is the resulting verdict (for $m \geq 2$, the producer is deemed to pass if it passes a strict majority of the $m$ tasks). Since tasks are i.i.d., we derive all results for the per-task case $m = 1$ without loss of generality (Appendix~\ref{app:m_extension}).
+On each sample task, validator $v_i$ produces a binary report $r_{ij} \in \{0,1\}$ indicating whether the producer's output is correct. Conditional on the ground truth, $\Pr(r_{ij} = \text{correct}) = q_v$ under truthful effort and $\Pr(r_{ij} = 1) = \tfrac{1}{2}$ under shirking, independently across validators and tasks.
 \end{assumption}
+
+\noindent The committee aggregates reports within each task by majority vote, and the consensus $Z \in \{0,1\}$ is the resulting verdict. For $m \geq 2$, the producer passes if it passes a strict majority of the $m$ tasks. Since tasks are i.i.d., we derive all results for $m = 1$ without loss of generality (Appendix~\ref{app:m_extension}).
 
 \begin{assumption}[Cost structure]
 \label{assum:costs}
@@ -52,9 +54,10 @@ The pass probability $V(q_p) \coloneqq \Pr(Z = 1 \mid q_p)$ is strictly increasi
 
 \begin{remark}[MLRP as a derived property]
 \label{rem:mlrp_derived}
-Assumption~\ref{assum:mlrp} is a consequence of Assumptions~\ref{assum:validators}--\ref{assum:costs} rather than an independent postulate: the per-task agreement probability $p_{\text{agree}}(q_p, q_v) = q_p q_v + (1 - q_p)(1 - q_v)$ is strictly increasing in $q_p$ for any $q_v > \tfrac{1}{2}$, and this monotonicity propagates through committee-level majority voting to $V(q_p)$. We list it as an assumption only because all subsequent results invoke it directly; see Appendix~\ref{app:mlrp_derived}.
+Assumption~\ref{assum:mlrp} follows from Assumptions~\ref{assum:validators}--\ref{assum:costs}: the per-task agreement probability $p_{\text{agree}}(q_p, q_v) = q_p q_v + (1 - q_p)(1 - q_v)$ is strictly increasing in $q_p$ for any $q_v > \tfrac{1}{2}$, and this monotonicity propagates through majority voting to $V(q_p)$. We state it separately because all subsequent results invoke it directly (see Appendix~\ref{app:mlrp_derived}).
 \end{remark}
 
+\noindent With the game structure and assumptions in place, we now derive the three incentive conditions along the causal chain, beginning with the foundation: validator truthfulness.
 
 \subsubsection{Incentive Compatibility of Validators}
 \label{sec:ic}
@@ -95,14 +98,15 @@ Imposing $\mathbb{E}[U\mid e=1] > \mathbb{E}[U\mid e=0]$ on the two expressions 
 \end{proof}
 
 \begin{interpretbox}{Takeaway: Stake amplifies information}
-The IC condition factorizes into the product of \textit{total economic exposure} $(\tau_{\text{val}}+2\sigma)$ and \textit{informational edge} $(P_{\text{match}}-\tfrac{1}{2})$. Two policy levers therefore drive truthfulness: economic levers ($\tau_{\text{val}}, \sigma$) raise the cost of being on the wrong side of consensus, while structural levers ($n, q_v$) widen the gap between informed and random voting. Both are tunable by the protocol designer; neither requires trust in any individual agent.
+The IC condition factorizes into \textit{total economic exposure} $(\tau_{\text{val}}+2\sigma)$ times \textit{informational edge} $(P_{\text{match}}-\tfrac{1}{2})$. The protocol designer can therefore promote truthfulness through two independent levers: raising the economic stakes ($\tau_{\text{val}}, \sigma$), or widening the gap between informed and random voting ($n, q_v$).
 \end{interpretbox}
 
+\noindent Validator truthfulness resolves the moral hazard identified in \Cref{sec:trust_crisis}: the staking mechanism makes honest effort the dominant strategy. We now turn to the supply side.
 
 \subsubsection{Producer's Threshold-Optimal Promotion}
 \label{sec:producer_ir}
 
-Given that validators can be trusted to report truthfully, the next link in the chain is the supply side: when does a producer rationally pay the promotion fee and submit to validation? If no producer enters, the ecosystem has no services to offer regardless of how reliable validation is. The question is non-trivial because promotion incurs a certain upfront cost---the promotion fee $\tau_p$ and the validation cost $mn\tau_{\text{val}}$---against an uncertain prospect of subscription revenue.
+With an informative validation signal established, the next question is whether producers will rationally enter the market. Promotion incurs a certain upfront cost (the promotion fee $\tau_p$ and the validation cost $mn\tau_{\text{val}}$) against an uncertain prospect of subscription revenue, so the decision is non-trivial.
 
 A producer with quality $q_p$ that promotes passes validation with probability $V(q_p)$ (Assumption~\ref{assum:mlrp}). A successful subscription yields net revenue $\tau_s - c_s$, where $c_s > 0$ is the net present value of fulfilling future service obligations. The producer's expected payoff from promotion is therefore
 \begin{equation}
@@ -124,22 +128,23 @@ V(q_p)\,(\tau_s - c_s) \geq \tau_p + mn\tau_{\text{val}} \quad \Longleftrightarr
 $\Pi_p(q_p)$ is strictly increasing and continuous in $q_p$ by Assumption~\ref{assum:mlrp}, is negative as $q_p \to \tfrac{1}{2}$ (because $V(\tfrac{1}{2})$ is small while the entry cost is positive) and positive as $q_p \to 1$ (because the cost ordering $mn\tau_{\text{val}} \ll \tau_p \ll \tau_s$ guarantees $\tau_s - c_s > \tau_p + mn\tau_{\text{val}}$). The intermediate value theorem yields a unique crossing point $\bar{q}_p$. The full proof is in Appendix~\ref{app:proof_producer_ir}.
 \end{proof}
 
-\begin{interpretbox}{Takeaway: Self-screening on the supply side}
-The threshold $\bar{q}_p$ is implemented by the producer itself rather than by a curator. Producers below $\bar{q}_p$ anticipate failing validation and rationally abstain; producers above $\bar{q}_p$ expect to pass and rationally promote. Paying the promotion and validation fees thus becomes a credible competence signal, because only agents who expect to pass can absorb the risk. The threshold tightens as $\tau_p$ or $\tau_{\text{val}}$ rise and relaxes as $\tau_s$ rises or as validation becomes more informative (larger $n$, $m$, or $q_v$).
+\begin{interpretbox}{Takeaway: P-IR as self-screening}
+Because $V(q_p)$ is strictly increasing (MLRP), the producer's expected payoff $\Pi_p(q_p)$ crosses zero exactly once, yielding a unique threshold $\bar{q}_p$. This threshold is enforced by the producer itself: those below $\bar{q}_p$ anticipate failing validation and rationally abstain, while those above $\bar{q}_p$ rationally promote. The promotion fee thus functions as a credible competence signal without any external curator.
 \end{interpretbox}
 
+\noindent The supply side is now characterized: only sufficiently capable producers enter the market. The remaining question is whether consumers, facing incomplete information about producer quality, can make rational subscription decisions.
 
 \subsubsection{Consumer's Threshold-Optimal Subscription}
 \label{sec:consumer_ir}
 
-The third link closes the demand side: given an informative consensus signal and a self-screened producer pool, when should a consumer rationally commit tokens to a subscription? Unlike the producer, the consumer does \emph{not} know $q_p$ and must infer it from the consensus signal $Z$, which makes the problem inherently Bayesian.
+Unlike the producer, the consumer does \emph{not} know $q_p$ directly and must infer it from the consensus signal $Z$, making the subscription decision inherently Bayesian.
 
 Let $V_c(q_p)$ denote the consumer's per-subscription value function: the discounted expected utility from delegating future tasks to a producer of quality $q_p$. We require only that $V_c(\cdot)$ is strictly increasing and continuous in $q_p$; a concrete parametric form is provided in Appendix~\ref{app:proof_consumer_ir}, but the result is form-agnostic. Conditional on a pass signal $Z = 1$, the consumer's posterior over producer quality follows from Bayes' rule,
 \begin{equation}
 \label{eq:posterior}
 f(q_p \mid Z = 1) = \frac{V(q_p)\,f(q_p)}{\int V(q)\,f(q)\,dq},
 \end{equation}
-which by MLRP first-order stochastically dominates the prior---a pass signal is \emph{good news} about quality. The consumer's expected payoff from subscribing after observing $Z = 1$ is therefore
+which by MLRP first-order stochastically dominates the prior, meaning that a pass signal is \emph{good news} about quality. The consumer's expected payoff from subscribing after observing $Z = 1$ is therefore
 \begin{equation}
 \label{eq:consumer_payoff}
 \Pi_c = \mathbb{E}[V_c(q_p) \mid Z = 1] - (\tau_s + mn\tau_{\text{val}}).
@@ -152,20 +157,24 @@ Under Assumption~\ref{assum:mlrp}, the consumer's optimal subscription policy is
 \label{eq:consumer_threshold}
 \mathbb{E}[V_c(q_p) \mid Z = 1] \geq \tau_s + mn\tau_{\text{val}}.
 \end{equation}
-The expectation is taken under the equilibrium-induced posterior $f(q_p \mid Z = 1)$, and the rule is enforced implicitly through Bayesian updating on $Z$, without the consumer ever observing $q_p$ directly. Whenever the producer pool admitted by P-IR and the validation signal are jointly informative enough for~\eqref{eq:consumer_threshold} to hold, subscription is rational; \S\ref{sec:bne} characterizes the parameter region in which this occurs at equilibrium.
 \end{theorem}
+
+\noindent The expectation is taken under the posterior $f(q_p \mid Z = 1)$, and the rule is enforced implicitly through Bayesian updating on $Z$, without the consumer ever observing $q_p$ directly.
 
 \begin{proof}[Proof sketch]
 $\mathbb{E}[V_c(q_p) \mid Z = 1]$ inherits strict monotonicity from $V_c$ via the MLRP-induced first-order stochastic dominance of the posterior, so the rational subscription region is well-defined whenever it is non-empty. The full proof is in Appendix~\ref{app:proof_consumer_ir}.
 \end{proof}
 
-In combination with Theorem~\ref{IR for Producers}, the consumer's signal-contingent rule completes the demand-supply double filter: producers self-select on $\bar q_p$ from above, and consumers commit tokens only when the validated evidence clears their cost---both filters anchored on the validators' truthful effort.
+\begin{interpretbox}{Takeaway: C-IR under incomplete information}
+Unlike P-IR, where the producer knows its own $q_p$, the consumer must decide based solely on the consensus signal $Z$. The MLRP ensures that a pass signal shifts the posterior toward higher quality, making Bayesian updating on $Z$ sufficient for rational decision-making. The subscription threshold is therefore signal-contingent rather than quality-contingent: the consumer commits tokens when the validated evidence justifies the cost, without ever observing $q_p$ directly.
+\end{interpretbox}
 
+Together with Theorem~\ref{IR for Producers}, the consumer's signal-contingent rule completes a demand-supply double filter: producers self-select on $\bar q_p$ from above, and consumers commit tokens only when the validated evidence clears their cost, both anchored on the validators' truthful effort. The natural question is whether these three locally optimal strategies are mutually consistent.
 
 \subsubsection{Symmetric Bayesian--Nash Equilibrium}
 \label{sec:bne}
 
-The previous three subsections derived V-IC, P-IR, and C-IR \emph{in isolation}, each holding the strategies of the other two roles fixed. The central question of \S\ref{sec:game_theory} is now whether these locally optimal strategies are mutually consistent: do they form a stable equilibrium when all three roles play simultaneously? If they did not, the ecosystem could unravel despite each component being well-designed in isolation. We now show that they are consistent, and that the three conditions together constitute a single symmetric Bayesian--Nash equilibrium---the climax of the analysis in this section.
+V-IC, P-IR, and C-IR were each derived holding the other roles' strategies fixed. If these conditions were not mutually consistent, the ecosystem could unravel despite each component being well-designed in isolation. We now show that they jointly form a symmetric Bayesian--Nash equilibrium.
 
 \begin{theorem}[Symmetric Bayesian--Nash Equilibrium]
 \label{Symmetric Bayesian Nash Equilibrium}
@@ -190,14 +199,15 @@ We verify that the candidate profile is a fixed point of every role's best respo
 \end{proof}
 
 \begin{interpretbox}{Takeaway: Three guarantees collapse into one fixed point}
-Equation~\eqref{eq:bne} is the structural payoff of \S\ref{sec:game_theory}: the validators' incentive-compatible effort, the producers' threshold-optimal entry, and the consumers' disciplined commitment---three conditions derived from independent decision problems in \S\ref{sec:ic}--\S\ref{sec:consumer_ir}---collapse into a single self-consistent equilibrium. No central authority directs the process, no off-protocol communication is required, and the equilibrium is robust to unilateral deviation. Its dynamic counterpart---progressive concentration of token mass on high-quality agents and the resulting selection pressure---is examined empirically in \S\ref{sec:case_study}.
+V-IC, P-IR, and C-IR, derived from independent decision problems, are mutually consistent and collapse into a single self-enforcing equilibrium. No central authority is needed: cooperation, accountability, and quality verification emerge from the economic structure alone. The dynamic counterpart of this equilibrium, the tokenomics-knowledge dual loop (\Cref{sec:dual_loop}), is examined empirically in \S\ref{sec:case_study}.
 \end{interpretbox}
 
+\noindent The equilibrium above rests on idealized assumptions. We now examine whether it survives realistic departures.
 
 \subsubsection{Robustness: Relaxing the Idealized Assumptions}
 \label{sec:robustness}
 
-The BNE in Theorem~\ref{Symmetric Bayesian Nash Equilibrium} relies on the idealized conditions of Assumptions~\ref{assum:validators}--\ref{assum:mlrp}: independent, identically capable validators with no coordinated misbehavior. We close \S\ref{sec:game_theory} by showing that the equilibrium survives three substantial relaxations of these idealizations. The argument is structurally uniform across all three: each relaxation reduces the informational edge $(P_{\text{match}} - \tfrac{1}{2})$ but preserves the load-bearing inequality $P_{\text{match}} > \tfrac{1}{2}$, after which the economic stake $(\tau_{\text{val}} + 2\sigma)$ in the IC condition acts as a tunable buffer that absorbs the loss. To keep the main text focused on this unifying mechanism, we state each relaxation at the level of its key result and defer the closed-form bounds and numerical calibrations to Appendix~\ref{app:robustness_full}.
+The BNE of Theorem~\ref{Symmetric Bayesian Nash Equilibrium} assumes independent, identically capable validators with no coordinated misbehavior. We show that the equilibrium survives three substantial relaxations of these conditions. The argument is structurally uniform: each relaxation reduces the informational edge $(P_{\text{match}} - \tfrac{1}{2})$ but preserves the load-bearing inequality $P_{\text{match}} > \tfrac{1}{2}$, after which the economic stake $(\tau_{\text{val}} + 2\sigma)$ acts as a tunable buffer that absorbs the loss. Moreover, because the monotonicity of $p_{\text{agree}}(q_p, q_v)$ in $q_p$ is unaffected by these relaxations, the MLRP of $V(q_p)$ is jointly preserved, so the P-IR and C-IR threshold structures carry over intact. We state each relaxation at the level of its key result and defer closed-form bounds to Appendix~\ref{app:robustness_full}.
 
 \vspace{2mm}
 \noindent\textbf{(A) Bounded Sybil attacks.}
@@ -216,7 +226,7 @@ The key step is that the honest bloc retains the consensus by strict majority, s
 
 \vspace{2mm}
 \noindent\textbf{(B) Residual correlation.}
-Architectural heterogeneity removes the dominant source of correlated failure but leaves residual correlation from overlapping training corpora. We capture this by a latent-factor mixture: with probability $1-\rho$ the $n$ validators draw signals independently as in the baseline, and with probability $\rho \in [0, 1)$ the $n-1$ peers of any truthful validator $v_i$ collapse onto a shared signal of accuracy $q_v$, while $v_i$'s own signal remains conditionally independent. In the correlated regime the peers form a unanimous block, so $v_i$ matches the block exactly when its own signal agrees with the shared peer signal---an event of probability $q_v^2 + (1-q_v)^2$. The matching probability under the mixture is therefore
+Architectural heterogeneity removes the dominant source of correlated failure but leaves residual correlation from overlapping training corpora. We capture this by a latent-factor mixture: with probability $1-\rho$ the $n$ validators draw signals independently as in the baseline, and with probability $\rho \in [0, 1)$ the $n-1$ peers of any truthful validator $v_i$ collapse onto a shared signal of accuracy $q_v$, while $v_i$'s own signal remains conditionally independent. In the correlated regime the peers form a unanimous block, so $v_i$ matches the block exactly when its own signal agrees with the shared peer signal, an event of probability $q_v^2 + (1-q_v)^2$. The matching probability under the mixture is therefore
 \begin{equation}
 \label{eq:pmatch_corr}
 P_{\text{match}}^{\rho}(n, q_v, \rho) = \rho\,\bigl[q_v^2 + (1-q_v)^2\bigr] + (1-\rho)\,P_{\text{match}}(n, q_v),
@@ -250,10 +260,12 @@ Quality heterogeneity & $P_{\text{match},i} > \tfrac{1}{2}$ for all $i$ & raise 
 \end{table}
 
 \begin{interpretbox}{Takeaway: Security as an economically tunable parameter}
-The three threats above---Sybil attacks, residual correlation, and quality heterogeneity---differ in mechanism but share a common structure under our analysis: each shrinks the informational edge $(P_{\text{match}} - \tfrac{1}{2})$ without driving it to zero, and the economic stake $(\tau_{\text{val}} + 2\sigma)$ multiplies through the IC condition as a uniform compensation lever. The protocol designer can therefore calibrate stake levels to the anticipated adversarial environment without changing any structural component of the mechanism. In this ecosystem, security is parameterized by economic cost rather than by cryptographic hardness---a defining structural advantage of the tokenomics-based design.
+The three threats above (Sybil attacks, residual correlation, and quality heterogeneity) differ in mechanism but share a common structure: each shrinks the informational edge $(P_{\text{match}} - \tfrac{1}{2})$ without driving it to zero, and the economic stake $(\tau_{\text{val}} + 2\sigma)$ multiplies through the IC condition as a uniform compensation lever. The protocol designer can therefore calibrate stake levels to the anticipated adversarial environment without changing any structural component of the mechanism. In this ecosystem, security is parameterized by economic cost rather than by cryptographic hardness, a defining structural advantage of the tokenomics-based design.
 \end{interpretbox}
 
-\noindent\textit{Scope.} The above results address \emph{Sybil attacks}---one adversary fabricating multiple validator identities---rather than \emph{voluntary collusion} among genuinely independent validators coordinating off-protocol. Architectural heterogeneity and the stake-forfeiture rule raise the cost of such collusion, but a formal communication-proof equilibrium analysis is left to future work (\S\ref{sec:future_work}).
+\noindent\textit{Scope.} The above results address Sybil attacks (one adversary fabricating multiple validator identities) rather than voluntary collusion among genuinely independent validators coordinating off-protocol. Architectural heterogeneity and the stake-forfeiture rule raise the cost of such collusion, but a formal communication-proof equilibrium analysis is left to future work (\S\ref{sec:future_work}).
+
+This concludes the theoretical analysis. The three guarantees (V-IC, P-IR, C-IR) and their robustness extensions establish that the ecosystem of \Cref{sec:ecosystem} admits a self-enforcing equilibrium under realistic operating conditions, directly addressing the cooperation, accountability, and verifiability challenges identified in \Cref{sec:trust_crisis}. We now validate these predictions empirically.
 
 
 % ===== FIGURES (experiment figures moved from old Methodology) =====
