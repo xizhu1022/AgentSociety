@@ -96,8 +96,8 @@ Under Assumptions~\ref{assum:validators}--\ref{assum:costs}, in a symmetric comm
 Imposing $\mathbb{E}[U\mid e=1] > \mathbb{E}[U\mid e=0]$ on the two expressions in~\eqref{eq:u_truthful} and substituting $R_{\min} = \tau_{\text{val}}+\sigma$, the algebra collapses to $(R_{\min}+\sigma)\bigl(P_{\text{match}}-\tfrac{1}{2}\bigr) > c_u$, which is exactly~\eqref{eq:ic}. The full derivation is in Appendix~\ref{app:proof_ic}.
 \end{proof}
 
-\begin{interpretbox}{Takeaway: Stake amplifies information}
-The IC condition factorizes into \textit{total economic exposure} $(\tau_{\text{val}}+2\sigma)$ times \textit{informational edge} $(P_{\text{match}}-\tfrac{1}{2})$. The protocol designer can therefore promote truthfulness through two independent levers: raising the economic stakes ($\tau_{\text{val}}, \sigma$), or widening the gap between informed and random voting ($n, q_v$).
+\begin{interpretbox}{Takeaway: V-IC factorizes into economics and information}
+The IC condition factorizes into \textit{total economic exposure} $(\tau_{\text{val}}+2\sigma)$ times \textit{informational edge} $(P_{\text{match}}-\tfrac{1}{2})$. The protocol designer can therefore promote truthfulness through two complementary levers: raising the economic stakes ($\tau_{\text{val}}, \sigma$), or widening the gap between informed and random voting ($n, q_v$).
 \end{interpretbox}
 
 \noindent Theorem~\ref{Strict IC for Validators} thus formalizes the V-IC condition. Whenever this inequality holds, truthful effort becomes the strictly dominant strategy for every validator, ensuring that the consensus $Z$ serves as a high-fidelity signal of producer quality. This alignment of individual utility with collective truthfulness effectively resolves the moral hazard inherent in the Proof-of-Intelligence protocol.
