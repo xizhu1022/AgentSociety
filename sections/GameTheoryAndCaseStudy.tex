@@ -107,12 +107,12 @@ The IC condition factorizes into \textit{total economic exposure} $(\tau_{\text{
 
 Individual rationality (IR) defines the conditions under which participation remains profitable for an agent of a given type. On the supply side, with V-IC established and the consensus signal $Z$ now informative, a producer must weigh the deterministic entry costs of promotion—comprising the fee $\tau_p$ and the validation expenditure $mn\tau_{\text{val}}$—against the stochastic prospect of subscription revenue. This trade-off determines the specific range of producer types that find promotion individually rational.
 
-\textbf{Payoff.} A producer with quality $q_p$ passes validation with probability $V(q_p)$ as  per Assumption~\ref{assum:mlrp}. A successful subscription yields net revenue $\tau_s - c_s$, where $c_s > 0$ is the net present value of fulfilling service obligations. The producer's expected payoff from promotion is thus:
+\textbf{Payoff.} A producer with quality $q_p$ passes validation with probability $V(q_p)$ as per Assumption~\ref{assum:mlrp}. A successful subscription yields net revenue $\tau_s - c_s$, where $c_s > 0$ is the net present value of fulfilling service obligations. The producer's expected payoff from promotion is thus:
 \begin{equation}
 \label{eq:producer_payoff}
 \Pi_p(q_p) = V(q_p)\,(\tau_s - c_s) - (\tau_p + mn\tau_{\text{val}}),
 \end{equation}
-which indicates the difference between the expected subscription revenue and the deterministic entry cost. Since $V(q_p)$ is strictly increasing via the $q_p$ (MLRP), the payoff $\Pi_p$ is a monotonically increasing function of quality. This ensures that promotion is optimal only for sufficiently high-quality types, a relationship formalized in the following theorem.
+which indicates the difference between the expected subscription revenue and the deterministic entry cost. Since $V(q_p)$ is strictly increasing in $q_p$ (MLRP), the payoff $\Pi_p$ is a monotonically increasing function of quality. This ensures that promotion is optimal only for sufficiently high-quality types, a relationship formalized in the following theorem.
 
 \begin{theorem}[Producer IR]
 \label{IR for Producers}
@@ -124,11 +124,11 @@ V(q_p)\,(\tau_s - c_s) \geq \tau_p + mn\tau_{\text{val}} \quad \Longleftrightarr
 \end{theorem}
 
 \begin{proof}[Proof sketch]
-The expected payoff $\Pi_p(q_p)$ is strictly increasing and continuous in $q_p$ by Assumption~\ref{assum:mlrp}. At lower bound $q_p = \tfrac{1}{2}$, the signal model implies $V(\tfrac{1}{2}) = \tfrac{1}{2}$, which yield $\Pi_p(\tfrac{1}{2}) < 0$ under the cost constraints of Assumption~\ref{assum:costs}. Conversely, at $q_p = 1$, we have $V(1) \geq q_v$ by the Condorcet jury theorem (Proposition~\ref{prop:pmatch_properties}), ensuring $\Pi_p(1) > 0$ for sufficiently large $\tau_s$. The intermediate value theorem thus guarantees a unique crossing point $\bar{q}_p \in (\tfrac{1}{2}, 1)$. The full proof is in Appendix~\ref{app:proof_producer_ir}.
+The expected payoff $\Pi_p(q_p)$ is strictly increasing and continuous in $q_p$ by Assumption~\ref{assum:mlrp}. At the lower bound $q_p = \tfrac{1}{2}$, the signal model implies $V(\tfrac{1}{2}) = \tfrac{1}{2}$, which yields $\Pi_p(\tfrac{1}{2}) < 0$ by the upper bound in Assumption~\ref{assum:costs}. At $q_p = 1$, we have $V(1) \geq q_v$ by the Condorcet jury theorem (Proposition~\ref{prop:pmatch_properties}), so $\Pi_p(1) \geq q_v(\tau_s - c_s) - (\tau_p + mn\tau_{\text{val}}) > 0$ by the lower bound in Assumption~\ref{assum:costs}. The intermediate value theorem thus guarantees a unique crossing point $\bar{q}_p \in (\tfrac{1}{2}, 1)$. The full proof is in Appendix~\ref{app:proof_producer_ir}.
 \end{proof}
 
 \begin{interpretbox}{Takeaway: P-IR as self-screening}
-Since the pass probability $V(q_p)$ is strictly increasing via the MLRP, the producer's expected payoff $\Pi_p(q_p)$ crosses the zero-profit condition exactly once to yield a unique threshold $\bar{q}_p$. This threshold is enforced by the producers themselves as those below $\bar{q}_p$ anticipate failing validation and rationally abstain, whereas those above $\bar{q}_p$ find promotion optimal. Consequently, the promotion fee function as a credible signal of competence without an external curator.
+Since the pass probability $V(q_p)$ is strictly increasing under the MLRP, the producer's expected payoff $\Pi_p(q_p)$ crosses the zero-profit condition exactly once to yield a unique threshold $\bar{q}_p$. This threshold is enforced by the producers themselves as those below $\bar{q}_p$ anticipate failing validation and rationally abstain, whereas those above $\bar{q}_p$ find promotion optimal. Consequently, the promotion fee functions as a credible signal of competence without an external curator.
 \end{interpretbox}
 
 \noindent Theorem~\ref{IR for Producers} thus formalizes the P-IR condition, establishing that only producers above the quality threshold $\bar{q}_p$ find promotion individually rational. This induces a supply-side self-screening effect that ensures high average quality among promoted agents. We now turn to whether consumers, operating under incomplete information, can leverage these signals to make rational subscription decisions.
