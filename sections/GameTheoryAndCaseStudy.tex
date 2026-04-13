@@ -44,7 +44,7 @@ On each sample task, validator $v_i$ produces a binary report $r_{ij} \in \{0,1\
 
 \begin{assumption}[Cost structure]
 \label{assum:costs}
-Executing genuine intellectual effort to produce a truthful per-task judgment costs $c_u > 0$; shirking (arbitrary reporting) is free. The validation fee satisfies $\tau_{\text{val}} > c_u$, ensuring honest effort is individually viable. Furthermore, validation remains economically friction-less relative to high-stakes commitments: $mn\tau_{\text{val}} \ll \tau_p \ll \tau_s$. Finally, the entry cost is positioned between what a baseline-quality and a top-quality producer can expect to earn, $(\tau_p + mn\tau_{\text{val}})/q_v < \tau_s - c_s < 2(\tau_p + mn\tau_{\text{val}})$. The interval is non-empty because $q_v > \tfrac{1}{2}$.
+Executing genuine intellectual effort to produce a truthful per-task judgment costs $c_u > 0$; shirking (arbitrary reporting) is free. The validation fee satisfies $\tau_{\text{val}} > c_u$, ensuring honest effort is individually viable. Furthermore, validation remains economically friction-less relative to high-stakes commitments: $mn\tau_{\text{val}} \ll \tau_p \ll \tau_s$. Finally, the entry cost is positioned between what a baseline-quality and a top-quality producer can expect to earn, $(\tau_p + mn\tau_{\text{val}})/q_v < \tau_s - c_s < 2(\tau_p + mn\tau_{\text{val}})$. The interval is non-empty because $\tfrac{1}{2} < q_v < 1$.
 \end{assumption}
 
 \begin{assumption}[Monotone likelihood ratio property]
@@ -124,14 +124,14 @@ V(q_p)\,(\tau_s - c_s) \geq \tau_p + mn\tau_{\text{val}} \quad \Longleftrightarr
 \end{theorem}
 
 \begin{proof}[Proof sketch]
-$\Pi_p(q_p)$ is strictly increasing and continuous in $q_p$ by Assumption~\ref{assum:mlrp}. At $q_p = \tfrac{1}{2}$, the signal model gives $V(\tfrac{1}{2}) = \tfrac{1}{2}$, so $\Pi_p(\tfrac{1}{2}) < 0$ by the upper bound in Assumption~\ref{assum:costs}. At $q_p = 1$, $V(1) \geq q_v$ by the Condorcet jury theorem (Proposition~\ref{prop:pmatch_properties}), so $\Pi_p(1) \geq q_v(\tau_s - c_s) - (\tau_p + mn\tau_{\text{val}}) > 0$ by the lower bound. The intermediate value theorem yields a unique crossing point $\bar{q}_p \in (\tfrac{1}{2}, 1)$. The full proof is in Appendix~\ref{app:proof_producer_ir}.
+The expected payoff $\Pi_p(q_p)$ is strictly increasing and continuous in $q_p$ by Assumption~\ref{assum:mlrp}. At lower bound $q_p = \tfrac{1}{2}$, the signal model implies $V(\tfrac{1}{2}) = \tfrac{1}{2}$, which yield $\Pi_p(\tfrac{1}{2}) < 0$ under the cost constraints of Assumption~\ref{assum:costs}. Conversely, at $q_p = 1$, we have $V(1) \geq q_v$ by the Condorcet jury theorem (Proposition~\ref{prop:pmatch_properties}), ensuring $\Pi_p(1) > 0$ for sufficiently large $\tau_s$. The intermediate value theorem thus guarantees a unique crossing point $\bar{q}_p \in (\tfrac{1}{2}, 1)$. The full proof is in Appendix~\ref{app:proof_producer_ir}.
 \end{proof}
 
 \begin{interpretbox}{Takeaway: P-IR as self-screening}
-Because $V(q_p)$ is strictly increasing (MLRP), the producer's expected payoff $\Pi_p(q_p)$ crosses zero exactly once, yielding a unique threshold $\bar{q}_p$. This threshold is enforced by the producer itself: those below $\bar{q}_p$ anticipate failing validation and rationally abstain, while those above $\bar{q}_p$ rationally promote. The promotion fee thus functions as a credible competence signal without any external curator.
+Since the pass probability $V(q_p)$ is strictly increasing via the MLRP, the producer's expected payoff $\Pi_p(q_p)$ crosses the zero-profit condition exactly once to yield a unique threshold $\bar{q}_p$. This threshold is enforced by the producers themselves as those below $\bar{q}_p$ anticipate failing validation and rationally abstain, whereas those above $\bar{q}_p$ find promotion optimal. Consequently, the promotion fee function as a credible signal of competence without an external curator.
 \end{interpretbox}
 
-\noindent Theorem~\ref{IR for Producers} thus formalizes the P-IR condition, showing that only producers above the quality threshold $\bar{q}_p$ find promotion individually rational and inducing a supply-side self-screening effect. The remaining question is whether consumers, facing incomplete information about producer quality, can make rational subscription decisions.
+\noindent Theorem~\ref{IR for Producers} thus formalizes the P-IR condition, establishing that only producers above the quality threshold $\bar{q}_p$ find promotion individually rational. This induces a supply-side self-screening effect that ensures high average quality among promoted agents. We now turn to whether consumers, operating under incomplete information, can leverage these signals to make rational subscription decisions.
 
 \subsubsection{Consumer's Threshold-Optimal Subscription}
 \label{sec:consumer_ir}
