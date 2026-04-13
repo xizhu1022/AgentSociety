@@ -81,13 +81,19 @@ P_{\text{match}}(n, q_v) = q_v \cdot \alpha(n, q_v) + (1 - q_v) \cdot \beta(n, q
 
 We first show $\alpha > \beta$. Both $\alpha(n, q_v)$ and $\beta(n, q_v)$ are cumulative binomial tail probabilities over the same threshold $\lfloor n/2 \rfloor$ out of $n-1$ trials, with success probabilities $q_v$ and $1-q_v$ respectively. Since $q_v > 1 - q_v$ when $q_v > \frac{1}{2}$, first-order stochastic dominance gives $\alpha > \beta$.
 
-We now establish the tighter bound. Since the full committee of $n$ validators forms an i.i.d.\ majority vote with individual accuracy $q_v > \frac{1}{2}$, the Condorcet jury theorem guarantees that the majority decision is correct with probability $p_{\text{maj}} > q_v > \frac{1}{2}$. Conditioning on whether $v_i$'s own report is correct:
-\begin{align}
-P_{\text{match}} &= \Pr(v_i \text{ correct}) \cdot \Pr(\text{majority correct} \mid v_i \text{ correct}) \nonumber \\
-&\quad + \Pr(v_i \text{ incorrect}) \cdot \Pr(\text{majority incorrect} \mid v_i \text{ incorrect}) \nonumber \\
-&\geq q_v \cdot q_v + (1-q_v) \cdot (1-q_v) = q_v^2 + (1-q_v)^2 > \tfrac{1}{2}, \nonumber
-\end{align}
-where the inequality uses the fact that $v_i$'s correctness is positively correlated with the majority's correctness (both depend on the same ground truth $\theta$), and the final step follows because $q_v^2 + (1-q_v)^2 = 1 - 2q_v(1-q_v) > \frac{1}{2}$ for all $q_v \neq \frac{1}{2}$.
+We now establish the tighter bound. Let $p_{\text{maj}} = \Pr(\text{majority correct})$. By the Condorcet jury theorem applied to the full committee, $p_{\text{maj}} \geq q_v > \tfrac{1}{2}$. Decomposing $P_{\text{match}}$ by whether $v_i$ and the majority are correct gives
+\[
+P_{\text{match}} = \Pr(v_i \text{ correct}, \, \text{maj correct}) + \Pr(v_i \text{ incorrect}, \, \text{maj incorrect}).
+\]
+Since both events are monotone functions of the same underlying report profile conditioned on the ground truth $\theta$, the indicators $\mathbf{1}\{v_i \text{ correct}\}$ and $\mathbf{1}\{\text{maj correct}\}$ are positively correlated, which yields
+\[
+\Pr(v_i \text{ correct}, \, \text{maj correct}) \geq q_v \cdot p_{\text{maj}}, \qquad \Pr(v_i \text{ incorrect}, \, \text{maj incorrect}) \geq (1-q_v)(1-p_{\text{maj}}).
+\]
+Summing gives $P_{\text{match}} \geq q_v\,p_{\text{maj}} + (1-q_v)(1-p_{\text{maj}})$. A direct calculation shows
+\[
+q_v\,p_{\text{maj}} + (1-q_v)(1-p_{\text{maj}}) - \bigl[q_v^2 + (1-q_v)^2\bigr] = (2q_v - 1)(p_{\text{maj}} - q_v) \geq 0,
+\]
+since $q_v > \tfrac{1}{2}$ and $p_{\text{maj}} \geq q_v$. Therefore $P_{\text{match}} \geq q_v^2 + (1-q_v)^2 > \tfrac{1}{2}$, where the final strict inequality uses $q_v^2 + (1-q_v)^2 = 1 - 2q_v(1-q_v) > \tfrac{1}{2}$ for $q_v \neq \tfrac{1}{2}$.
 
 \textbf{(ii) $P_{\text{match}}$ is strictly increasing in $q_v$ and in $n$.}
 
