@@ -172,7 +172,7 @@ Under the MLRP, the pass signal $Z=1$ carries sufficient information for the con
 \subsubsection{Symmetric Bayesian--Nash Equilibrium}
 \label{sec:bne}
 
-The three conditions so far, V-IC, P-IR, and C-IR, have each been derived in isolation, under the assumption that the other two hold. The culminating question is whether these locally-optimal strategies are mutually consistent, thereby pinning down a single stable equilibrium that characterizes the ecosystem's strategic structure. We answer affirmatively by showing that the three conditions jointly constitute a symmetric Bayesian--Nash equilibrium.
+The three conditions so far, V-IC, P-IR, and C-IR, have each been derived in isolation by assuming the strategic compliance of other agents. The culminating task is to demonstrate that these locally optimal strategies are mutually consistent, thereby defining a stable equilibrium that characterizes this incentive-compatible ecosystem. We answer this affirmatively by proving that these conditions jointly constitute a symmetric Bayesian--Nash equilibrium (BNE) where no agent has an incentive to deviate given the rational play of all others.
 
 \begin{theorem}[Symmetric Bayesian--Nash Equilibrium]
 \label{Symmetric Bayesian Nash Equilibrium}
@@ -183,17 +183,17 @@ Under Assumptions~\ref{assum:validators}--\ref{assum:mlrp}, suppose the followin
 \underbrace{q_p \geq \bar{q}_p}_{\text{\normalfont P-IR: producers self-screen}}\;,\quad
 \underbrace{\mathbb{E}\bigl[V_c(q_p) \mid Z = 1\bigr] \geq \tau_s + mn\tau_{\text{val}}}_{\text{\normalfont C-IR: consumers discipline demand}}\,,
 \end{equation}
-where the expectation in C-IR is taken under the posterior induced by truthful validation and producer self-screening at $\bar{q}_p$. Then a symmetric Bayesian--Nash equilibrium exists in which
+where the expectation in C-IR is taken under the posterior induced by truthful validation and producer self-screening at $\bar{q}_p$. Then a symmetric Bayesian--Nash equilibrium exists in which:
 \begin{enumerate}[leftmargin=2em]
     \item every validator exerts effort and reports truthfully (Theorem~\ref{Strict IC for Validators});
     \item every producer promotes if and only if $q_p \geq \bar{q}_p$ (Theorem~\ref{IR for Producers});
     \item every consumer subscribes if and only if $Z = 1$ and \eqref{eq:consumer_threshold} holds (Theorem~\ref{IR-based Policy for Consumers}).
 \end{enumerate}
-No agent of any role can strictly improve its payoff by unilateral deviation from this profile.
+In this equilibrium, no agent across any role can strictly improve its expected payoff via a unilateral deviation from this profile. The optimal behaviors of validators, producers, and consumers are thus mutually reinforcing, establishing a stable strategic structure for the decentralized ecosystem.
 \end{theorem}
 
 \begin{proof}[Proof sketch]
-We verify that the candidate profile is a fixed point of every role's best response. Given the other committee members are truthful, V-IC makes truthful effort strictly optimal for each validator. Given an informative validation signal, the threshold rule $q_p \geq \bar{q}_p$ from Theorem~\ref{IR for Producers} maximizes each producer's expected payoff. Given truthful validation and producer self-screening, the signal-contingent rule of Theorem~\ref{IR-based Policy for Consumers} is optimal for each consumer. Symmetry follows from identical payoff structures within each role, and the feasible parameter region is non-empty. The full argument is in Appendix~\ref{app:proof_bne}.
+We verify that the candidate profile is a fixed point of each role's best response. Given that other committee members are truthful, V-IC ensures that truthful effort is strictly optimal for each validator. Given an informative validation signal, the threshold rule $q_p \geq \bar{q}_p$ from Theorem~\ref{IR for Producers} maximizes the producer's expected payoff. Finally, given truthful validation and producer self-screening, the signal-contingent rule from Theorem~\ref{IR-based Policy for Consumers} is optimal for the consumer. Symmetry follows from the identical payoff structures within each role, and the existence of a non-empty parameter region ensures the equilibrium is well-defined. See Appendix~\ref{app:proof_bne} for the full proof.
 \end{proof}
 
 \begin{interpretbox}{Takeaway: BNE as a self-enforcing fixed point}
