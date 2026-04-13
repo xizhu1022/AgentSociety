@@ -44,7 +44,7 @@ On each sample task, validator $v_i$ produces a binary report $r_{ij} \in \{0,1\
 
 \begin{assumption}[Cost structure]
 \label{assum:costs}
-Executing genuine intellectual effort to produce a truthful per-task judgment costs $c_u > 0$; shirking (arbitrary reporting) is free. The validation fee satisfies $\tau_{\text{val}} > c_u$, ensuring honest effort is individually viable. Furthermore, validation remains economically friction-less relative to high-stakes commitments: $mn\tau_{\text{val}} \ll \tau_p \ll \tau_s$. Finally, the entry cost exceeds what a baseline-quality producer can expect to earn, $\tau_p + mn\tau_{\text{val}} > \tfrac{1}{2}(\tau_s - c_s)$, preventing trivial entry.
+Executing genuine intellectual effort to produce a truthful per-task judgment costs $c_u > 0$; shirking (arbitrary reporting) is free. The validation fee satisfies $\tau_{\text{val}} > c_u$, ensuring honest effort is individually viable. Furthermore, validation remains economically friction-less relative to high-stakes commitments: $mn\tau_{\text{val}} \ll \tau_p \ll \tau_s$. Finally, the entry cost is positioned between what a baseline-quality and a top-quality producer can expect to earn, $(\tau_p + mn\tau_{\text{val}})/q_v < \tau_s - c_s < 2(\tau_p + mn\tau_{\text{val}})$. The interval is non-empty because $q_v > \tfrac{1}{2}$.
 \end{assumption}
 
 \begin{assumption}[Monotone likelihood ratio property]
@@ -116,7 +116,7 @@ the difference between the expected subscription revenue and the entry cost. Sin
 
 \begin{theorem}[Producer IR]
 \label{IR for Producers}
-Under Assumption~\ref{assum:mlrp} and the cost ordering of Assumption~\ref{assum:costs}, there exists a unique threshold $\bar{q}_p \in (\tfrac{1}{2}, 1)$ such that promotion is the producer's best response if and only if
+Under Assumptions~\ref{assum:validators}--\ref{assum:mlrp}, there exists a unique threshold $\bar{q}_p \in (\tfrac{1}{2}, 1)$ such that promotion is the producer's best response if and only if
 \begin{equation}
 \label{eq:producer_threshold}
 V(q_p)\,(\tau_s - c_s) \geq \tau_p + mn\tau_{\text{val}} \quad \Longleftrightarrow \quad q_p \geq \bar{q}_p.
@@ -124,7 +124,7 @@ V(q_p)\,(\tau_s - c_s) \geq \tau_p + mn\tau_{\text{val}} \quad \Longleftrightarr
 \end{theorem}
 
 \begin{proof}[Proof sketch]
-$\Pi_p(q_p)$ is strictly increasing and continuous in $q_p$ by Assumption~\ref{assum:mlrp}. At $q_p = \tfrac{1}{2}$, the signal model gives $V(\tfrac{1}{2}) = \tfrac{1}{2}$, so $\Pi_p(\tfrac{1}{2}) < 0$ by the entry-cost condition in Assumption~\ref{assum:costs}. At $q_p = 1$, $V(1) = 1$, and the cost ordering $\tau_p \ll \tau_s$ guarantees $\Pi_p(1) > 0$. The intermediate value theorem yields a unique crossing point $\bar{q}_p \in (\tfrac{1}{2}, 1)$. The full proof is in Appendix~\ref{app:proof_producer_ir}.
+$\Pi_p(q_p)$ is strictly increasing and continuous in $q_p$ by Assumption~\ref{assum:mlrp}. At $q_p = \tfrac{1}{2}$, the signal model gives $V(\tfrac{1}{2}) = \tfrac{1}{2}$, so $\Pi_p(\tfrac{1}{2}) < 0$ by the upper bound in Assumption~\ref{assum:costs}. At $q_p = 1$, $V(1) \geq q_v$ by the Condorcet jury theorem (Proposition~\ref{prop:pmatch_properties}), so $\Pi_p(1) \geq q_v(\tau_s - c_s) - (\tau_p + mn\tau_{\text{val}}) > 0$ by the lower bound. The intermediate value theorem yields a unique crossing point $\bar{q}_p \in (\tfrac{1}{2}, 1)$. The full proof is in Appendix~\ref{app:proof_producer_ir}.
 \end{proof}
 
 \begin{interpretbox}{Takeaway: P-IR as self-screening}
