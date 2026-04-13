@@ -163,8 +163,8 @@ Under Assumption~\ref{assum:mlrp}, the consumer's optimal subscription policy is
 By the MLRP, the posterior $f(q_p \mid Z = 1)$ first-order stochastically dominates the prior. Since $V_c(\cdot)$ is strictly increasing, the posterior expectation $\mathbb{E}[V_c(q_p) \mid Z = 1]$ is strictly greater than the unconditional expectation. Subscription is optimal when this posterior value covers the total cost $\tau_s + mn\tau_{\text{val}}$, yielding the signal-contingent rule~\eqref{eq:consumer_threshold}. Conversely, when $Z = 0$, the posterior shifts toward lower quality, rendering subscription suboptimal under the same cost parameters. See Appendix~\ref{app:proof_consumer_ir} for the full proof.
 \end{proof}
 
-\begin{interpretbox}{Takeaway: C-IR under incomplete information}
-C-IR differs structurally from P-IR. The producer screens on its own type $q_p$, whereas the consumer screens on a public signal $Z$. The MLRP is what bridges this asymmetry, making the consensus an informative proxy for quality, so Bayesian updating on $Z$ suffices to convert a single binary signal into a rational subscription decision, without direct observation of $q_p$.
+\begin{interpretbox}{Takeaway: C-IR as delegated verification}
+Under the MLRP, the pass signal $Z=1$ carries enough information for the consumer's decision to reduce to a single expected-value check. Consumers thus subscribe rationally without observing $q_p$, relying on the validator committee's binary verdict. This outsources verification from the consumer to the validators, making rational subscription accessible to non-experts.
 \end{interpretbox}
 
 \noindent Theorem~\ref{IR-based Policy for Consumers} thus formalizes the C-IR condition. Combined with Theorem~\ref{IR for Producers}, it establishes a demand-supply double filter where producers self-select above $\bar{q}_p$ and consumers subscribe only upon a positive consensus $Z=1$. This layered architecture ensures that only high-quality services reach the market and only verified value is compensated. The focus now shifts to whether these three locally optimal strategies are mutually consistent in equilibrium.
