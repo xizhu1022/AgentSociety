@@ -105,14 +105,14 @@ The IC condition factorizes into \textit{total economic exposure} $(\tau_{\text{
 \subsubsection{Producer's Threshold-Optimal Promotion}
 \label{sec:producer_ir}
 
-Individual rationality (IR) asks whether participation is profitable for each agent given its type. On the supply side, with V-IC in place and the consensus signal $Z$ now informative, a producer must weigh the certain entry cost of promotion (the fee $\tau_p$ plus the validation cost $mn\tau_{\text{val}}$) against the uncertain prospect of subscription revenue. The natural question is which producer types find promotion individually rational.
+Individual rationality (IR) defines the conditions under which participation remains profitable for an agent of a given type. On the supply side, with V-IC established and the consensus signal $Z$ now informative, a producer must weigh the deterministic entry costs of promotion—comprising the fee $\tau_p$ and the validation expenditure $mn\tau_{\text{val}}$—against the stochastic prospect of subscription revenue. This trade-off determines the specific range of producer types that find promotion individually rational.
 
-\textbf{Payoff.} A producer with quality $q_p$ that promotes passes validation with probability $V(q_p)$ (Assumption~\ref{assum:mlrp}). A successful subscription yields net revenue $\tau_s - c_s$, where $c_s > 0$ is the net present value of fulfilling future service obligations. The producer's expected payoff from promotion is therefore
+\textbf{Payoff.} A producer with quality $q_p$ passes validation with probability $V(q_p)$ as  per Assumption~\ref{assum:mlrp}. A successful subscription yields net revenue $\tau_s - c_s$, where $c_s > 0$ is the net present value of fulfilling service obligations. The producer's expected payoff from promotion is thus:
 \begin{equation}
 \label{eq:producer_payoff}
 \Pi_p(q_p) = V(q_p)\,(\tau_s - c_s) - (\tau_p + mn\tau_{\text{val}}),
 \end{equation}
-the difference between the expected subscription revenue and the entry cost. Since $V(q_p)$ is strictly increasing in $q_p$ (MLRP), $\Pi_p$ increases with quality, suggesting that promotion should be optimal for sufficiently high quality and suboptimal otherwise. The following theorem makes this threshold precise.
+which indicates the difference between the expected subscription revenue and the deterministic entry cost. Since $V(q_p)$ is strictly increasing via the $q_p$ (MLRP), the payoff $\Pi_p$ is a monotonically increasing function of quality. This ensures that promotion is optimal only for sufficiently high-quality types, a relationship formalized in the following theorem.
 
 \begin{theorem}[Producer IR]
 \label{IR for Producers}
