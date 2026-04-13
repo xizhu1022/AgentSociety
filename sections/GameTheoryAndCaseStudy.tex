@@ -172,7 +172,7 @@ Under the MLRP, the pass signal $Z=1$ carries sufficient information for the con
 \subsubsection{Symmetric Bayesian--Nash Equilibrium}
 \label{sec:bne}
 
-V-IC, P-IR, and C-IR were each derived holding the other roles' strategies fixed. If these conditions were not mutually consistent, the ecosystem could unravel despite each component being well-designed in isolation. We now show that they jointly form a symmetric Bayesian--Nash equilibrium.
+The three conditions so far, V-IC, P-IR, and C-IR, have each been derived in isolation, under the assumption that the other two hold. The culminating question is whether these locally-optimal strategies are mutually consistent, thereby pinning down a single stable equilibrium that characterizes the ecosystem's strategic structure. We answer affirmatively by showing that the three conditions jointly constitute a symmetric Bayesian--Nash equilibrium.
 
 \begin{theorem}[Symmetric Bayesian--Nash Equilibrium]
 \label{Symmetric Bayesian Nash Equilibrium}
@@ -193,14 +193,14 @@ No agent of any role can strictly improve its payoff by unilateral deviation fro
 \end{theorem}
 
 \begin{proof}[Proof sketch]
-We verify that the candidate profile is a fixed point of every role's best response. For \emph{validators}, with the other $n-1$ committee members truthful, V-IC makes truthful effort strictly best for each $v_i$. For \emph{producers}, validation is informative ($V(q_p)$ is the actual pass probability), so the threshold rule $q_p \geq \bar{q}_p$ from Theorem~\ref{IR for Producers} maximizes each producer's payoff. For \emph{consumers}, the equilibrium-induced posterior is~\eqref{eq:posterior} computed under the conditional prior $f(q_p)\,\mathbf{1}_{q_p \geq \bar{q}_p}$, and Theorem~\ref{IR-based Policy for Consumers} certifies that subscribing under~\eqref{eq:consumer_threshold} is optimal against this posterior. Hence each role best-responds to the others, and the profile is a fixed point. Symmetry follows from identical type-conditional payoff structures within each role; non-emptiness of the parameter region is straightforward (e.g.\ $n = 5$, $q_v = 0.8$, $\tau_{\text{val}} = \sigma = 1$ already yields V-IC for any $c_u < 1.3$, after which raising $\tau_s$ relaxes both IR conditions). The full argument is in Appendix~\ref{app:proof_bne}.
+We verify that the candidate profile is a fixed point of every role's best response. Given the other committee members are truthful, V-IC makes truthful effort strictly optimal for each validator. Given an informative validation signal, the threshold rule $q_p \geq \bar{q}_p$ from Theorem~\ref{IR for Producers} maximizes each producer's expected payoff. Given truthful validation and producer self-screening, the signal-contingent rule of Theorem~\ref{IR-based Policy for Consumers} is optimal for each consumer. Symmetry follows from identical payoff structures within each role, and the feasible parameter region is non-empty. The full argument is in Appendix~\ref{app:proof_bne}.
 \end{proof}
 
-\begin{interpretbox}{Takeaway: Three guarantees collapse into one fixed point}
-V-IC, P-IR, and C-IR, derived from independent decision problems, are mutually consistent and collapse into a single self-enforcing equilibrium. No central authority is needed: cooperation, accountability, and quality verification emerge from the economic structure alone. The dynamic counterpart of this equilibrium, the tokenomics-knowledge dual loop (\Cref{sec:dual_loop}), is examined empirically in \S\ref{sec:case_study}.
+\begin{interpretbox}{Takeaway: BNE as a self-enforcing fixed point}
+V-IC, P-IR, and C-IR, derived from three independent decision problems, collapse into a single self-enforcing equilibrium. Cooperation, accountability, and verifiability, the three pillars of trust identified in \Cref{sec:trust_crisis}, emerge as equilibrium outcomes of the tokenomics mechanism rather than imposed constraints. The system is therefore stable under unilateral deviation, requiring no central authority or external enforcement.
 \end{interpretbox}
 
-\noindent The equilibrium above rests on idealized assumptions. We now examine whether it survives realistic departures.
+\noindent Theorem~\ref{Symmetric Bayesian Nash Equilibrium} thus formalizes the BNE of the ecosystem, closing the arc from validator truthfulness through producer and consumer rationality to a globally consistent equilibrium. This result rests on idealized assumptions. We now examine whether the equilibrium survives realistic departures.
 
 \subsubsection{Robustness: Relaxing the Idealized Assumptions}
 \label{sec:robustness}
