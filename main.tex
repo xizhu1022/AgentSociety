@@ -164,7 +164,7 @@
 \makeatother
 
 
-\title{Towards a Tokenomics-Driven Decentralized Ecosystem for Agent Society}
+\title{Towards an Incentive-Compatible Decentralized Ecosystem for the Agent Society}
 
 \author{
 Xi Zhu$^1$\quad
@@ -185,21 +185,16 @@ Yongfeng Zhang$^{1}$\thanks{Email: xi.zhu@rutgers.edu. }\\\\
 
 \begin{abstract}
 
-The proliferation of LLM-based agents---autonomous actors with heterogeneous domain expertise deployed by independent organizations---is giving rise to an \textit{agent society} in which cross-organizational knowledge exchange becomes structurally necessary.
-However, realizing trustworthy collaboration in this open setting faces a fundamental crisis: agents may produce hallucinated or erroneous outputs due to capability limitations, or engage in strategic misbehavior such as shirking effort and misrepresenting competence, creating a ``market for lemons'' where adverse selection threatens to unravel knowledge exchange entirely.
-Centralized orchestration cannot resolve this crisis: it faces both a capability barrier (no single authority can verify quality across all domains) and structural barriers (knowledge monopoly, routing manipulation, and suppression of agent autonomy).
+As Large Language Models mature into autonomous LLM-based agents deployed by independent organizations, the emerging landscape signifies a fundamental transition toward an open \textit{agent society}, a decentralized population of specialized agents that must discover, evaluate, and transact across organizational boundaries. Its realization, however, faces a fundamental trust crisis. Agents may produce hallucinated outputs due to capability limitations, or engage in strategic misbehavior such as shirking effort and misrepresenting competence. The simultaneous collapse of three foundational pillars, cooperation, accountability, and verifiability, triggers an adverse selection spiral that threatens to unravel the agent society into a ``market for lemons''. Centralized orchestration cannot resolve this crisis, as it introduces systemic pathologies including data monopoly, routing manipulation, and loss of self-governance.
 
-We propose a \textbf{tokenomics-driven decentralized ecosystem} that enables incentive-compatible coordination among LLM agents without centralized authority.
-Agents dynamically assume three interchangeable roles---consumers, producers, and validators---coordinated through a novel \textbf{Proof-of-Intelligence (PoI)} mechanism in which validators stake tokens, leverage domain knowledge to independently assess service quality, and are rewarded only when their assessments align with majority consensus.
-A key design principle is \textit{architectural heterogeneity}: validators must employ model architectures distinct from the producer under evaluation, substantially reducing correlated errors and approximating the independence assumption that underpins reliable consensus.
-Token flows across all roles form a \textbf{tokenomics--knowledge dual loop}: tokens incentivize truthful behavior, truthful behavior produces reliable information, and reliable information sustains token value.
+To address this trust crisis, we propose a \textbf{tokenomics-driven decentralized ecosystem} where autonomous agents coordinate through economic incentives without central authority. Agents assume three dynamically interchangeable roles, consumers issuing token-backed service requests, producers providing knowledge-intensive services, and validators assessing service quality. Inspired by Proof-of-Work and Proof-of-Stake, we define this validation paradigm as \textbf{Proof-of-Intelligence (PoI)}, in which heterogeneous validators exert effort and vote truthfully to form a high-fidelity consensus. Validators stake tokens and receive rewards for judgments aligned with the majority consensus, while those deviating forfeit their stake. A key design principle is \textit{architectural heterogeneity}, requiring validators to employ model architectures distinct from the producer to reduce correlated errors and approximate the independence assumption behind reliable consensus. Token flows across all three roles form a self-reinforcing \textbf{tokenomics-knowledge dual loop}, the primary driving force behind the prosperity of the ecosystem.
 
-Within a unified game-theoretic framework, we establish validator incentive compatibility (IC), derive threshold-optimal promotion and subscription policies under individual rationality (IR), and prove the existence of a symmetric Bayesian--Nash equilibrium (BNE) in which no agent has incentive to unilaterally deviate.
-We further show that these guarantees are robust to bounded Sybil attacks, correlated validator errors, and heterogeneous validator quality---with the economic stake serving as a tunable parameter that compensates for adversarial degradation.
-The dual loop further generates evolutionary selection pressure---high-quality agents accumulate tokens and expand their reach while low-quality agents are filtered out---progressively elevating the aggregate capability of the agent population.
-We instantiate the framework as a decentralized question answering system (DeQA) and conduct extensive simulations demonstrating that the mechanism drives agent communities toward truthful contribution and improved social welfare.
+Within a unified game-theoretic framework, we establish validator incentive compatibility (V-IC), derive threshold-optimal promotion and subscription policies under individual rationality (P-IR and C-IR), and prove the existence of a symmetric Bayesian--Nash equilibrium in which no agent has incentive to unilaterally deviate. These guarantees remain robust to bounded Sybil attacks, residual validator correlation, and heterogeneous validator quality, with the economic stake serving as a tunable parameter that compensates for adversarial degradation. The dual loop further generates evolutionary selection pressure, progressively filtering out low-quality agents and elevating the aggregate welfare of the agent society. We instantiate the framework as a decentralized question answering system (DeQA) and demonstrate through extensive simulation that the mechanism drives agent communities toward truthful participation, rigorous quality screening, and improved social welfare.
 
 \end{abstract}
+\newpage
+
+\tableofcontents
 \newpage
 
 \input{sections/Introduction}
