@@ -136,19 +136,19 @@ Since the pass probability $V(q_p)$ is strictly increasing under the MLRP, the p
 \subsubsection{Consumer's Threshold-Optimal Subscription}
 \label{sec:consumer_ir}
 
-Individual rationality on the demand side poses a distinct challenge, as consumers must find subscription worthwhile despite the most severe information asymmetry in the ecosystem, where producer quality $q_p$ is not directly observable. The PoI consensus signal $Z$ is therefore their sole window into producer competence, and consumer individual rationality (C-IR) asks under what conditions Bayesian inference on $Z$ justifies the subscription cost. Unlike the producer, who maximizes expected payoff against its own known type, the consumer's decision reduces to a posterior-driven threshold rule on $Z$.
+Individual rationality on the demand side requires that consumers find subscription worthwhile despite the severe information asymmetry regarding producer quality $q_p$. Since $q_p$ is not directly observable, the consensus signal $Z$ serves as the consumer's primary window into producer competence. The consumer must therefore adopt a Bayesian threshold rule to determine whether the posterior belief induced by $Z$ justifies the subscription cost.
 
-\textbf{Payoff.} Let $V_c(q_p)$ denote the consumer's per-subscription value function, defined as the discounted expected utility from delegating future tasks to a producer of quality $q_p$. We require only that $V_c(\cdot)$ is strictly increasing and continuous in $q_p$; a concrete parametric form is provided in Appendix~\ref{app:proof_consumer_ir}, but the result is form-agnostic. Conditional on a pass signal $Z = 1$, the consumer's posterior over producer quality follows from Bayes' rule,
+\textbf{Payoff.} Let $V_c(q_p)$ denote the consumer's per-subscription value function, representing the discounted expected utility from delegating future tasks to a producer of quality $q_p$. We assume $V_c(\cdot)$ is strictly increasing and continuous in $q_p$. While a concrete parametric form is provided in Appendix~\ref{app:proof_consumer_ir}, our core results remain form-agnostic. Conditional on a pass signal $Z = 1$, the consumer's posterior distribution over producer quality follows from Bayes' rule,
 \begin{equation}
 \label{eq:posterior}
 f(q_p \mid Z = 1) = \frac{V(q_p)\,f(q_p)}{\int V(q)\,f(q)\,dq},
 \end{equation}
-which by MLRP first-order stochastically dominates the prior, meaning that a pass signal is \emph{good news} about quality. The consumer's expected payoff from subscribing after observing $Z = 1$ is therefore
+which, by the MLRP, first-order stochastically dominates the prior, meaning that a pass signal is good news about quality. The consumer's expected payoff from subscribing after observing $Z = 1$ is thus:
 \begin{equation}
 \label{eq:consumer_payoff}
 \Pi_c = \mathbb{E}[V_c(q_p) \mid Z = 1] - (\tau_s + mn\tau_{\text{val}}).
 \end{equation}
-The consumer subscribes whenever $\Pi_c \geq 0$. Under the MLRP, this condition reduces to a signal-contingent threshold rule, as formalized in the following theorem.
+The consumer subscribes if and only if $\Pi_c \geq 0$. Under the MLRP, this condition reduces to a signal-contingent threshold rule, as formalized below.
 
 \begin{theorem}[Consumer IR]
 \label{IR-based Policy for Consumers}
@@ -160,14 +160,14 @@ Under Assumption~\ref{assum:mlrp}, the consumer's optimal subscription policy is
 \end{theorem}
 
 \begin{proof}[Proof sketch]
-By the MLRP, the posterior $f(q_p \mid Z = 1)$ first-order stochastically dominates the prior, and since $V_c(\cdot)$ is strictly increasing, $\mathbb{E}[V_c(q_p) \mid Z = 1]$ strictly dominates the unconditional expectation. Subscription is optimal precisely when this posterior expected value covers the total cost $\tau_s + mn\tau_{\text{val}}$, yielding the signal-contingent rule~\eqref{eq:consumer_threshold}. Conversely, when $Z = 0$, the posterior shifts toward lower quality, rendering subscription strictly suboptimal. The full proof is in Appendix~\ref{app:proof_consumer_ir}.
+By the MLRP, the posterior $f(q_p \mid Z = 1)$ first-order stochastically dominates the prior. Since $V_c(\cdot)$ is strictly increasing, the posterior expectation $\mathbb{E}[V_c(q_p) \mid Z = 1]$ is strictly greater than the unconditional expectation. Subscription is optimal when this posterior value covers the total cost $\tau_s + mn\tau_{\text{val}}$, yielding the signal-contingent rule~\eqref{eq:consumer_threshold}. Conversely, when $Z = 0$, the posterior shifts toward lower quality, rendering subscription suboptimal under the same cost parameters. See Appendix~\ref{app:proof_consumer_ir} for the full proof.
 \end{proof}
 
 \begin{interpretbox}{Takeaway: C-IR under incomplete information}
 C-IR differs structurally from P-IR. The producer screens on its own type $q_p$, whereas the consumer screens on a public signal $Z$. The MLRP is what bridges this asymmetry, making the consensus an informative proxy for quality, so Bayesian updating on $Z$ suffices to convert a single binary signal into a rational subscription decision, without direct observation of $q_p$.
 \end{interpretbox}
 
-\noindent Theorem~\ref{IR-based Policy for Consumers} thus formalizes the C-IR condition. Together with Theorem~\ref{IR for Producers}, it yields a demand-supply double filter, where producers self-select above $\bar{q}_p$ and consumers subscribe only when the consensus $Z$ clears. The natural question is whether these three locally optimal strategies are mutually consistent.
+\noindent Theorem~\ref{IR-based Policy for Consumers} thus formalizes the C-IR condition. Combined with Theorem~\ref{IR for Producers}, it establishes a demand-supply double filter where producers self-select above $\bar{q}_p$ and consumers subscribe only upon a positive consensus $Z=1$. This layered architecture ensures that only high-quality services reach the market and only verified value is compensated. The focus now shifts to whether these three locally optimal strategies are mutually consistent in equilibrium.
 
 \subsubsection{Symmetric Bayesian--Nash Equilibrium}
 \label{sec:bne}
