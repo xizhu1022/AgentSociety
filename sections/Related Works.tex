@@ -1,88 +1,12 @@
 \section{Related Work}
 \label{sec:related_work}
 
-Our work sits at the intersection of several active research areas: LLM-based agent systems, multi-agent collaboration, decentralized AI infrastructure, mechanism design for strategic AI systems, and trust/verification in AI-generated content. We survey each area and position our contributions relative to the existing landscape.
+Our work draws from and extends several active research areas spanning LLM agents, decentralized AI infrastructure, mechanism design and strategic behavior, and trust/verification in AI-generated content. We survey each briefly and position our contributions.
 
+\noindent\textbf{LLM Agent Systems.} Foundational frameworks advance individual agent capability, including ReAct~\cite{yao2023react} (reasoning interleaved with actions), Toolformer~\cite{schick2024toolformer} (self-supervised tool acquisition), HuggingGPT~\cite{shen2024hugginggpt} (cross-modal model orchestration), ToolLLM~\cite{qin2024toolllm} (API tool use at scale), Voyager~\cite{wang2023voyager} (lifelong learning), Reflexion~\cite{shinn2023reflexion}, and Self-Refine~\cite{madaan2023selfrefine} (self-improvement through reflection). Agent infrastructure (AIOS~\cite{mei2024aios}), benchmarks (AgentBench~\cite{liu2024agentbench}), and surveys~\cite{xi2023rise, li2024survey, wang2024survey_agents} support systematic study of the rapidly expanding landscape. Multi-agent frameworks extend these to collaborative task solving, including AutoGen~\cite{wu2023autogen}, MetaGPT~\cite{hong2023metagpt}, CAMEL~\cite{li2023camel}, ChatDev~\cite{qian2023communicative}, AgentVerse~\cite{chen2023agentverse}, CompeteAI~\cite{zhao2023competeai}, Generative Agents~\cite{park2023generative}, and deliberation or debate approaches~\cite{du2024debate, zhuge2024gptswarm, zhang2024proagent, chan2024chateval, zhang2024cooperative_embodied}. These frameworks assume cooperative agents under a central orchestrator or within a single organization, leaving the strategic self-interest and cross-organizational trust of open agent societies unaddressed.
 
-\subsection{LLM-Based Agent Systems}
+\noindent\textbf{Decentralized AI Infrastructure.} Blockchain platforms such as Ethereum~\cite{buterin2014ethereum} and data availability layers~\cite{celestia2025data} provide the substrate for programmable coordination. AI-specific projects build token-incentivized infrastructure and marketplaces, including Bittensor~\cite{bittensor2023} (peer-to-peer intelligence market), Petals~\cite{borzunov2023petals} (distributed inference), SingularityNET~\cite{goertzel2017singularitynet}, Ocean Protocol~\cite{ocean2019protocol}, and Fetch.AI~\cite{fetch2019ai} (decentralized AI and data marketplaces), alongside recent agent-specific platforms such as Virtuals Protocol~\cite{virtuals2024}, ElizaOS~\cite{walters2025eliza}, and Olas~\cite{olas2024valory} that tokenize agents as on-chain economic actors. Surveys~\cite{yuan2024decentralized_inference, ding2024deai} and blockchain-based federated learning~\cite{hu2024blockchain_fl} further address distributed LLM serving and verifiable aggregation. These systems provide infrastructure and marketplaces but lack formal game-theoretic guarantees for cross-organizational agent coordination, which our ecosystem contributes at the mechanism-design layer.
 
-The rapid advancement of LLMs has catalyzed a shift from stateless language models to autonomous agents with perception, memory, tool use, and goal-directed decision-making~\cite{xi2023rise, wang2024survey_agents}.
-Foundational frameworks include ReAct~\cite{yao2023react}, which interleaves reasoning traces with environment actions, and Toolformer~\cite{schick2024toolformer}, which enables LLMs to self-supervise tool acquisition.
-HuggingGPT~\cite{shen2024hugginggpt} uses an LLM as a controller to orchestrate specialized models across modalities, while ToolLLM~\cite{qin2024toolllm} scales tool use to 16,000+ real-world APIs via depth-first decision tree search.
-Embodied agents such as Voyager~\cite{wang2023voyager} demonstrate lifelong learning through code-as-action and automatic curriculum generation.
-Recent work on agent infrastructure includes AIOS~\cite{mei2024aios}, which proposes OS-level resource management for concurrent agent execution, and benchmarks such as AgentBench~\cite{liu2024agentbench} that reveal substantial capability gaps between commercial and open-source models on agentic tasks.
-Comprehensive surveys~\cite{li2024survey, wang2024survey_agents} map the rapidly expanding landscape.
+\noindent\textbf{Mechanism Design and Strategic Behavior.} Tokenomics research~\cite{ito2024cryptoeconomics, abadi2024governance, zuo2023set} grounds our incentive design, and information-elicitation mechanisms such as prediction markets~\cite{wolfers2004prediction} and peer prediction~\cite{miller2005eliciting} provide theoretical precedents for truthful reporting without ground truth. A growing literature examines the strategic behavior of LLM agents~\cite{duetting2024mechanism, horton2023homo, brookins2023gpt_games, akata2023repeated_games, fish2024collusion, conitzer2024social_choice}, showing that LLM agents approximate rational play and can even learn to collude. We extend tokenomics and mechanism design to agent ecosystems, adding formal IC, IR, and BNE guarantees tailored to the three-role interaction structure.
 
-These systems focus on \textit{individual agent capability}---how a single agent reasons, plans, and uses tools---but do not address the economic coordination, quality verification, or trust mechanisms needed when agents from independent organizations must collaborate.
-Our ecosystem provides the missing \textit{coordination layer} that enables trustworthy cross-organizational agent interaction.
-
-
-\subsection{Multi-Agent LLM Collaboration}
-
-A growing body of work explores multi-agent LLM systems for collaborative task solving.
-AutoGen~\cite{wu2023autogen} enables flexible multi-agent conversation with customizable roles and human-in-the-loop capabilities.
-MetaGPT~\cite{hong2023metagpt} encodes human-like standard operating procedures into multi-agent coordination, assigning specialized software engineering roles to collaborating agents.
-CAMEL~\cite{li2023camel} explores autonomous cooperation through role-playing with inception prompting, while ChatDev~\cite{qian2023communicative} models software development as a multi-agent chat chain.
-AgentVerse~\cite{chen2023agentverse} investigates emergent group behaviors in dynamic multi-agent collaboration, and CompeteAI~\cite{zhao2023competeai} studies competitive dynamics among LLM agents in market simulations.
-
-Beyond task-oriented collaboration, recent work has explored multi-agent \textit{deliberation and debate}.
-Du et al.~\cite{du2024debate} demonstrate that multi-agent debate significantly improves factual accuracy and reasoning.
-GPT-Swarm~\cite{zhuge2024gptswarm} optimizes communication topology among agents, showing that connectivity structure substantially affects collective performance.
-ProAgent~\cite{zhang2024proagent} builds agents that proactively anticipate partner behavior through theory-of-mind reasoning.
-ChatEval~\cite{chan2024chateval} applies multi-agent debate specifically to evaluation, showing diverse agent personas produce more reliable quality assessments than single-judge approaches.
-Zhang et al.~\cite{zhang2024cooperative_embodied} decompose multi-agent cooperation into modular LLM components for embodied settings.
-
-All these frameworks share a common architectural assumption: agents are cooperative and governed by a single orchestrator or operate within a single organization.
-None addresses the fundamental challenges of cross-organizational trust, strategic misbehavior, or incentive misalignment that arise when agents are deployed by independent entities with divergent objectives---the core challenges our ecosystem is designed to resolve.
-Our work complements these frameworks by providing the economic coordination layer that enables trustworthy collaboration among self-interested agents.
-
-
-\subsection{Decentralized AI Systems}
-
-Decentralized architectures have redefined digital coordination by enabling trustless value exchange without central authority.
-Blockchain platforms like Ethereum~\cite{buterin2014ethereum} introduced programmable smart contracts and token incentives to power autonomous applications, while recent architectures adopt rollups and data availability layers~\cite{celestia2025data} for scalability.
-
-At the intersection of decentralization and AI, several lines of work are relevant.
-Bittensor~\cite{bittensor2023} creates a token-incentivized peer-to-peer market for machine intelligence, rewarding models based on their contribution to a shared knowledge pool.
-Petals~\cite{borzunov2023petals} enables collaborative decentralized inference by distributing model layers across volunteer nodes.
-Yuan et al.~\cite{yuan2024decentralized_inference} provide a comprehensive survey of distributed LLM serving techniques, covering model parallelism, communication optimization, and fault tolerance across decentralized nodes.
-The emerging field of Decentralized AI (DeAI)~\cite{ding2024deai} outlines research agendas spanning inference, training, data markets, and governance.
-
-Blockchain-based federated learning~\cite{hu2024blockchain_fl} integrates blockchain with federated learning for verifiable aggregation, tamper-proof model provenance, and incentive mechanisms for heterogeneous participants.
-
-However, these systems focus primarily on model training or inference infrastructure rather than on the higher-level problem of \textit{runtime agent collaboration}---coordinating which agent should serve which task, verifying output quality, and distributing rewards among knowledge producers.
-Our work extends decentralized coordination to this knowledge-intensive agent ecosystem layer, where tokens regulate not just access but also validation, service routing, and participation quality.
-
-
-\subsection{Mechanism Design and Strategic Behavior of LLM Agents}
-
-Economic incentives and mechanism design are central to decentralized system viability.
-Web3 protocols embed coordination into infrastructure via programmable tokens---a paradigm known as \textit{tokenomics}---governing token issuance, distribution, and utility~\cite{ito2024cryptoeconomics, abadi2024governance, zuo2023set}.
-Information elicitation mechanisms such as prediction markets~\cite{wolfers2004prediction} and peer prediction~\cite{miller2005eliciting} provide theoretical foundations for truthful reporting without ground truth---a problem directly relevant to our PoI mechanism, where validators must be incentivized to report honestly despite the absence of verifiable correct answers.
-
-A rapidly growing literature examines the strategic behavior of LLM agents in economic settings.
-Duetting et al.~\cite{duetting2024mechanism} investigate mechanism design for LLM agent interactions, designing truthful mechanisms for settings with private information.
-Horton~\cite{horton2023homo} demonstrates that LLMs can simulate economic agents whose behavior aligns with classical game-theoretic predictions, supporting our modeling assumption that agent behavior can be captured by Bayesian game theory.
-Brookins and DeBacker~\cite{brookins2023gpt_games} systematically evaluate LLM behavior in canonical strategic-form games, finding near-Nash-equilibrium play in many settings.
-Akata et al.~\cite{akata2023repeated_games} evaluate LLMs in iterated games, finding sophisticated cooperation strategies.
-Fish et al.~\cite{fish2024collusion} demonstrate that LLM agents can learn to collude in pricing games without explicit coordination, highlighting risks relevant to our non-collusion assumption.
-Conitzer et al.~\cite{conitzer2024social_choice} apply social choice theory to AI alignment, proposing preference aggregation mechanisms that resonate with our majority-vote consensus design.
-
-We extend tokenomics and mechanism design beyond financial systems to agent ecosystems, where tokens incentivize knowledge validation and honest service provision, and provide formal game-theoretic guarantees (IC, IR, BNE) tailored to the three-role agent interaction structure.
-
-
-\subsection{Trust, Verification, and Quality Assessment}
-
-LLM hallucination---generating plausible but incorrect outputs---remains a fundamental challenge~\cite{huang2023survey, ji2023hallucination, zhang2023siren}.
-Most mitigation strategies focus on individual model improvements, but a growing line of work tackles reliability through \textit{multi-agent verification}.
-
-LLM-as-judge approaches~\cite{zheng2023judging} use LLMs to evaluate other LLMs' outputs, with MT-Bench showing high agreement with human rankings.
-Prometheus~\cite{kim2024prometheus} trains open-source evaluation models, enabling decentralized quality assessment without dependence on proprietary models.
-SelfCheckGPT~\cite{manakul2023selfcheckgpt} detects hallucinations by sampling multiple responses and checking consistency, while Cohen et al.~\cite{cohen2023crossexam} use cross-examination between LLMs to detect factual errors.
-Self-consistency~\cite{wang2023selfconsistency} and chain-of-verification~\cite{dhuliawala2023chainofverification} leverage multiple reasoning paths to improve reliability.
-Self-contradictory hallucination detection~\cite{mundler2024selfcontradictory} shows that contradiction frequency correlates with hallucination rate, motivating multi-perspective verification.
-Peer evaluation through discussion~\cite{chan2024chateval} demonstrates that multi-agent deliberation produces more reliable assessments than single-judge approaches.
-
-Our approach tackles reliability at the \textit{ecosystem level}: rather than trusting any single agent or relying on self-verification, we aggregate assessments from multiple architecturally heterogeneous validators under economic incentives that promote truthful evaluation.
-This connects multi-agent verification with mechanism design: PoI provides the \textit{economic backbone} that makes cross-verification incentive-compatible, ensuring validators invest genuine effort rather than free-riding on others' assessments.
-Kapoor et al.~\cite{kapoor2024agents} argue that rigorous evaluation of AI agent capabilities is essential for building reliable systems---our PoI mechanism provides exactly such rigorous, decentralized, and incentive-compatible evaluation.
+\noindent\textbf{Trust and Verification.} LLM hallucination~\cite{huang2023survey, ji2023hallucination, zhang2023siren} has motivated a multi-agent verification line of work, including LLM-as-judge~\cite{zheng2023judging, kim2024prometheus}, self-consistency checks~\cite{manakul2023selfcheckgpt, wang2023selfconsistency, dhuliawala2023chainofverification, mundler2024selfcontradictory}, cross-examination~\cite{cohen2023crossexam}, and debate-based evaluation~\cite{chan2024chateval}; Kapoor et al.~\cite{kapoor2024agents} further argue that rigorous evaluation is essential for reliable agent systems. These approaches verify at the individual or small-group level. Our ecosystem-level PoI mechanism aggregates architecturally heterogeneous validators under economic incentives, making cross-verification incentive-compatible.
