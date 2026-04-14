@@ -247,14 +247,6 @@ Cynthia Dwork and Moni Naor.
 \newblock In {\em Annual international cryptology conference}, pages 139--147.
   Springer, 1992.
 
-\bibitem{shen2024hugginggpt}
-Yongliang Shen, Kaitao Song, Xu~Tan, Dongsheng Li, Weiming Lu, and Yueting
-  Zhuang.
-\newblock {HuggingGPT}: Solving {AI} tasks with {ChatGPT} and its friends in
-  {Hugging Face}.
-\newblock In {\em Advances in Neural Information Processing Systems (NeurIPS)},
-  2023.
-
 \bibitem{zhuge2024gptswarm}
 Mingchen Zhuge, Wenyi Wang, Louis Kirsch, Francesco Faccio, Dmitrii Borber, and
   J{\"u}rgen Schmidhuber.
@@ -275,83 +267,6 @@ Hongxin Zhang, Weihua Du, Jiaming Shan, Qinhong Zhou, Yilun Du, Joshua~B
   models.
 \newblock In {\em International Conference on Learning Representations (ICLR)},
   2024.
-
-\bibitem{buterin2014ethereum}
-Vitalik Buterin.
-\newblock A next-generation smart contract and decentralized application
-  platform.
-\newblock
-  \url{https://blockchainlab.com/pdf/Ethereum_white_paper-a_next_generation_smart_contract_and_decentralized_application_platform-vitalik-buterin.pdf},
-  2014.
-
-\bibitem{celestia2025data}
-Celestia Labs.
-\newblock Celestia's data availability layer.
-\newblock
-  \url{https://docs.celestia.org/learn/how-celestia-works/data-availability-layer},
-  2025.
-
-\bibitem{borzunov2023petals}
-Alexander Borzunov, Dmitry Baranchuk, Tim Dettmers, Maksim Ryabinin, Younes
-  Belkada, Artem Chumachenko, Pavel Samygin, and Colin Raffel.
-\newblock Petals: Collaborative inference and fine-tuning of large models.
-\newblock In {\em Proceedings of the 61st Annual Meeting of the Association for
-  Computational Linguistics: System Demonstrations}, pages 558--568, 2023.
-
-\bibitem{ding2024deai}
-Zhenzhi Ding, Yinda Chen, et~al.
-\newblock {DeAI}: Decentralized artificial intelligence.
-\newblock {\em arXiv preprint arXiv:2406.18049}, 2024.
-
-\bibitem{hu2024blockchain_fl}
-Yongzhi Hu, Yan Gao, et~al.
-\newblock Blockchain-based federated learning: A comprehensive survey.
-\newblock {\em IEEE Internet of Things Journal}, 2024.
-
-\bibitem{ito2024cryptoeconomics}
-Kensuke Ito.
-\newblock Cryptoeconomics and tokenomics as economics: A survey with opinions.
-\newblock {\em arXiv preprint arXiv:2407.15715}, 2024.
-
-\bibitem{abadi2024governance}
-Joseph Abadi and Markus Brunnermeier.
-\newblock Token-based platform governance.
-\newblock {\em Journal of Financial Economics}, 162(1):103951, 2024.
-
-\bibitem{zuo2023set}
-Wenrui Zuo, Aravindh Raman, Raul~J. Mondrag{\'o}n, and Gareth Tyson.
-\newblock Set in stone: Analysis of an immutable web3 social media platform.
-\newblock In {\em Proceedings of the ACM Web Conference 2023 (WWW '23)}, pages
-  1865--1874. ACM, 2023.
-
-\bibitem{wolfers2004prediction}
-Justin Wolfers and Eric Zitzewitz.
-\newblock Prediction markets.
-\newblock {\em Journal of Economic Perspectives}, 18(2):107--126, 2004.
-
-\bibitem{miller2005eliciting}
-Nolan Miller, Paul Resnick, and Richard Zeckhauser.
-\newblock Eliciting informative feedback: The peer-prediction method.
-\newblock {\em Management Science}, 51(9):1359--1373, 2005.
-
-\bibitem{duetting2024mechanism}
-Paul Duetting, Vahab Mirrokni, Renato Paes~Leme, Haifeng Xu, and Song Zuo.
-\newblock Mechanism design for large language models.
-\newblock {\em arXiv preprint arXiv:2404.09937}, 2024.
-
-\bibitem{brookins2023gpt_games}
-Philip Brookins and Jason~M DeBacker.
-\newblock Playing games with {GPT}: What can we learn about a large language
-  model from canonical strategic-form games?
-\newblock {\em arXiv preprint arXiv:2305.07970}, 2023.
-
-\bibitem{conitzer2024social_choice}
-Vincent Conitzer, Rachel Freedman, Jobst Heitzig, Nicholas Jennings, Matthijs
-  Maas, Francesca Piatti, Stuart Russell, Csaba Szepesvari, Joshua Tenenbaum,
-  et~al.
-\newblock Social choice for {AI} alignment: Dealing with diverse human
-  feedback.
-\newblock In {\em ICML Workshop on Models of Human Feedback}, 2024.
 
 \bibitem{huang2023survey}
 Lei Huang, Weijiang Yu, Weitao Ma, Weihong Zhong, Zhangyin Feng, Haotian Wang,
@@ -388,16 +303,16 @@ Seungone Kim, Jamin Shin, Yejin Cho, Joel Jang, Shayne Longpre, Hwaran Lee,
 \newblock In {\em International Conference on Learning Representations (ICLR)},
   2024.
 
+\bibitem{cohen2023crossexam}
+Roi Cohen, May Biran, Ori Yoran, Amir Globerson, and Mor Geva.
+\newblock {LM} vs {LM}: Detecting factual errors via cross-examination.
+\newblock In {\em Conference on Empirical Methods in Natural Language
+  Processing (EMNLP)}, 2023.
+
 \bibitem{manakul2023selfcheckgpt}
 Potsawee Manakul, Adian Liusie, and Mark~JF Gales.
 \newblock {SelfCheckGPT}: Zero-resource black-box hallucination detection for
   generative large language models.
-\newblock In {\em Conference on Empirical Methods in Natural Language
-  Processing (EMNLP)}, 2023.
-
-\bibitem{cohen2023crossexam}
-Roi Cohen, May Biran, Ori Yoran, Amir Globerson, and Mor Geva.
-\newblock {LM} vs {LM}: Detecting factual errors via cross-examination.
 \newblock In {\em Conference on Empirical Methods in Natural Language
   Processing (EMNLP)}, 2023.
 
@@ -422,11 +337,149 @@ Niels M{\"u}ndler, Jingxuan He, Slobodan Jenko, and Martin Vechev.
 \newblock In {\em International Conference on Learning Representations (ICLR)},
   2024.
 
+\bibitem{kamvar2003eigentrust}
+Sepandar~D Kamvar, Mario~T Schlosser, and Hector Garcia-Molina.
+\newblock The {E}igen{T}rust algorithm for reputation management in {P}2{P}
+  networks.
+\newblock In {\em Proceedings of the 12th International Conference on World
+  Wide Web}, pages 640--651, 2003.
+
+\bibitem{douceur2002sybil}
+John~R Douceur.
+\newblock The {S}ybil attack.
+\newblock In {\em International Workshop on Peer-to-Peer Systems}, pages
+  251--260. Springer, 2002.
+
 \bibitem{kapoor2024agents}
 Sayash Kapoor, Benedikt Stroebl, Zachary~S Siegel, Nitarshan Rajkumar, and
   Arvind Narayanan.
 \newblock {AI} agents that matter.
 \newblock {\em arXiv preprint arXiv:2407.01502}, 2024.
+
+\bibitem{nakamoto2008bitcoin}
+Satoshi Nakamoto.
+\newblock Bitcoin: A peer-to-peer electronic cash system.
+\newblock 2008.
+
+\bibitem{buterin2017casper}
+Vitalik Buterin and Virgil Griffith.
+\newblock Casper the friendly finality gadget.
+\newblock {\em arXiv preprint arXiv:1710.09437}, 2017.
+
+\bibitem{buterin2014ethereum}
+Vitalik Buterin.
+\newblock A next-generation smart contract and decentralized application
+  platform.
+\newblock
+  \url{https://blockchainlab.com/pdf/Ethereum_white_paper-a_next_generation_smart_contract_and_decentralized_application_platform-vitalik-buterin.pdf},
+  2014.
+
+\bibitem{goertzel2017singularitynet}
+Ben Goertzel, Simone Giacomelli, David Hanson, Cassio Pennachin, and Marco
+  Argentieri.
+\newblock {SingularityNET}: A decentralized, open market and inter-network for
+  {AI}s.
+\newblock SingularityNET Foundation whitepaper, 2017.
+
+\bibitem{ocean2019protocol}
+{Ocean Protocol Foundation}.
+\newblock Ocean protocol: A decentralized substrate for {AI} data \& services.
+\newblock Ocean Protocol Technical Whitepaper, 2019.
+
+\bibitem{fetch2019ai}
+{Fetch.ai Foundation}.
+\newblock {Fetch.ai}: An autonomous economic agent framework.
+\newblock Fetch.ai Technical Whitepaper, 2019.
+
+\bibitem{virtuals2024}
+{Virtuals Protocol}.
+\newblock Virtuals protocol: Tokenized {AI} agents on-chain.
+\newblock Virtuals Protocol Documentation, 2024.
+
+\bibitem{walters2025eliza}
+Shaw Walters, Sam Gao, Shakker Nerd, Feng Da, Warren Williams, Ting-Chien Meng,
+  Hunter Han, Frank He, Allen Zhang, and Ming Wu.
+\newblock Eliza: A web3 friendly {AI} agent operating system.
+\newblock {\em arXiv preprint arXiv:2501.06781}, 2025.
+
+\bibitem{olas2024valory}
+{Valory AG}.
+\newblock {Olas}: A unified network for off-chain services.
+\newblock Olas Whitepaper, 2024.
+
+\bibitem{breidenbach2021chainlink}
+Lorenz Breidenbach, Christian Cachin, Benedict Chan, Alex Coventry, Steve
+  Ellis, Ari Juels, Farinaz Koushanfar, Andrew Miller, Brendan Magauran, Daniel
+  Moroz, et~al.
+\newblock Chainlink 2.0: Next steps in the evolution of decentralized oracle
+  networks.
+\newblock {\em Chainlink Labs}, 1:1--136, 2021.
+
+\bibitem{ding2024deai}
+Zhenzhi Ding, Yinda Chen, et~al.
+\newblock {DeAI}: Decentralized artificial intelligence.
+\newblock {\em arXiv preprint arXiv:2406.18049}, 2024.
+
+\bibitem{spence1973job}
+Michael Spence.
+\newblock Job market signaling.
+\newblock {\em The Quarterly Journal of Economics}, 87(3):355--374, 1973.
+
+\bibitem{ito2024cryptoeconomics}
+Kensuke Ito.
+\newblock Cryptoeconomics and tokenomics as economics: A survey with opinions.
+\newblock {\em arXiv preprint arXiv:2407.15715}, 2024.
+
+\bibitem{abadi2024governance}
+Joseph Abadi and Markus Brunnermeier.
+\newblock Token-based platform governance.
+\newblock {\em Journal of Financial Economics}, 162(1):103951, 2024.
+
+\bibitem{zuo2023set}
+Wenrui Zuo, Aravindh Raman, Raul~J. Mondrag{\'o}n, and Gareth Tyson.
+\newblock Set in stone: Analysis of an immutable web3 social media platform.
+\newblock In {\em Proceedings of the ACM Web Conference 2023 (WWW '23)}, pages
+  1865--1874. ACM, 2023.
+
+\bibitem{wolfers2004prediction}
+Justin Wolfers and Eric Zitzewitz.
+\newblock Prediction markets.
+\newblock {\em Journal of Economic Perspectives}, 18(2):107--126, 2004.
+
+\bibitem{miller2005eliciting}
+Nolan Miller, Paul Resnick, and Richard Zeckhauser.
+\newblock Eliciting informative feedback: The peer-prediction method.
+\newblock {\em Management Science}, 51(9):1359--1373, 2005.
+
+\bibitem{dasgupta2013crowdsourced}
+Anirban Dasgupta and Arpita Ghosh.
+\newblock Crowdsourced judgement elicitation with endogenous proficiency.
+\newblock In {\em Proceedings of the 22nd International Conference on World
+  Wide Web}, pages 319--330, 2013.
+
+\bibitem{prelec2004bayesian}
+Dra{\v{z}}en Prelec.
+\newblock A {B}ayesian truth serum for subjective data.
+\newblock {\em Science}, 306(5695):462--466, 2004.
+
+\bibitem{duetting2024mechanism}
+Paul Duetting, Vahab Mirrokni, Renato Paes~Leme, Haifeng Xu, and Song Zuo.
+\newblock Mechanism design for large language models.
+\newblock {\em arXiv preprint arXiv:2404.09937}, 2024.
+
+\bibitem{brookins2023gpt_games}
+Philip Brookins and Jason~M DeBacker.
+\newblock Playing games with {GPT}: What can we learn about a large language
+  model from canonical strategic-form games?
+\newblock {\em arXiv preprint arXiv:2305.07970}, 2023.
+
+\bibitem{conitzer2024social_choice}
+Vincent Conitzer, Rachel Freedman, Jobst Heitzig, Nicholas Jennings, Matthijs
+  Maas, Francesca Piatti, Stuart Russell, Csaba Szepesvari, Joshua Tenenbaum,
+  et~al.
+\newblock Social choice for {AI} alignment: Dealing with diverse human
+  feedback.
+\newblock In {\em ICML Workshop on Models of Human Feedback}, 2024.
 
 \bibitem{kang2022scaling}
 Daniel Kang, Tatsunori Hashimoto, Ion Stoica, and Yi~Sun.
