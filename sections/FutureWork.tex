@@ -1,14 +1,38 @@
-\section{Future Work}
-\label{sec:future_work}
+\section{Limitations and Future Work}
+\label{sec:limitations_and_future_work}
 
-Our framework opens several directions for further research, each tied to a limitation of the current model or a practical need for real-world deployment.
+\subsection{Limitations}
+\label{sec:limitations}
+
+We acknowledge several limitations that scope the present work and mark the boundary of what the current ecosystem and mechanism design can claim.
 
 \begin{itemize}[leftmargin=1.5em, itemsep=4pt, topsep=2pt]
-    \item \textbf{Dynamic Agent Quality.} Our analysis treats agent quality $q_u$ as static, but real agents continuously fine-tune on new data, expand their retrieval resources, and learn from validation feedback. Modeling quality as a dynamic state that evolves with experience would let us study whether the tokenomics-knowledge dual loop converges to a diverse high-quality population or collapses into winner-take-all dynamics.
+    \item \textbf{Architectural heterogeneity in practice.} Our mechanism relies on validator committees architecturally distinct from the producer to reduce correlated errors. Real-world ecosystems, however, may converge on a small number of dominant model families such as GPT, Claude, and Llama derivatives, making architectural diversity a scarce resource and weakening the independence assumption on which reliable consensus rests.
 
-    \item \textbf{Reputation Systems.} The current mechanism evaluates each transaction independently, ignoring agents' historical behavior. An on-chain reputation system built from past validation outcomes and subscription results could improve validator selection and lower per-transaction verification cost, though its design must guard against agents building reputation through low-stakes honesty and then shirking on high-stakes interactions.
+    \item \textbf{Scalar and binary quality signal.} PoI uses a single binary verdict per validator and represents agent quality as a scalar $q_u$. Real-world service quality is often multi-dimensional, covering correctness, completeness, pedagogical quality, and domain-specific nuance, which the current pass/fail aggregation cannot distinguish, limiting applicability to nuanced domains.
 
-    \item \textbf{Privacy-Preserving Validation.} High-stakes domains such as healthcare and legal analysis require stronger privacy guarantees than the hybrid on-chain/off-chain architecture provides. Zero-knowledge proofs~\cite{kang2022scaling} and secure multi-party computation would let validators prove they performed genuine inference without revealing their models or intermediate outputs, with recent progress in zkML suggesting practical implementations may soon be feasible.
+    \item \textbf{Blockchain deployment not concretely specified.} The mechanism maps naturally onto blockchain primitives such as decentralized ledgers, smart contracts, and on-chain consensus, but we treat the underlying infrastructure as a black box rather than analyzing real-world deployment trade-offs. Critical unresolved questions include gas costs, settlement latency, and the choice among Layer-1, Layer-2, and dedicated validation layers, each of which materially affects the mechanism's economic viability in practice.
 
-    \item \textbf{Cold-Start and Ecosystem Bootstrapping.} The tokenomics-knowledge dual loop is self-reinforcing once the ecosystem reaches critical mass, but it cannot activate from an empty state, since validators need producers to serve and producers need consumers to pay. Bootstrapping strategies such as trusted consortium seeding, initial token subsidies, or protocols that amortize early validation costs across future transactions deserve careful study to ensure a smooth ramp from launch to self-sustaining operation.
+    \item \textbf{Validation overhead at scale.} Every promotion and subscription invokes $n$ validators running independent inference on $m$ tasks, adding both latency and compute cost. For high-throughput or latency-sensitive applications such as real-time trading or emergency consultation, this overhead is a meaningful scalability bottleneck that the present design does not try to amortize.
+
+    \item \textbf{Simulation-based empirical evidence.} Our DeQA case study uses parameterized synthetic agents rather than live LLM deployments, which isolates the mechanism dynamics cleanly but leaves open whether the predicted patterns survive in practice. Field studies with heterogeneous open-source and proprietary agents are needed before the incentive predictions can be trusted to transfer across real-world inference variability and adversarial behavior.
+\end{itemize}
+
+\subsection{Future Work}
+\label{sec:future_work}
+
+Looking beyond the limitations above, we envision several broader directions that extend the ecosystem toward its longer-term potential.
+
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt, topsep=2pt]
+    \item \textbf{Richer Trust Substrate.} Our current mechanism binds trust to a single per-transaction validator stake, with no memory across interactions. A natural extension layers stake with on-chain reputation and portable decentralized identity, so that persistent honesty earns cumulative credit and trust travels with agents across the broader agent society. The central design challenge is preventing reputation laundering, where agents accumulate credit through low-stake honesty and then cash it out in high-stake deception, hollowing the very trust signal the system seeks to build.
+
+    \item \textbf{Privacy-Preserving and Verifiable Validation.} Our current PoI mechanism requires validators to openly execute inference and compare outputs, which clashes with the privacy demands of sensitive domains such as healthcare, law, and finance. Cryptographic techniques including trusted execution environments, zero-knowledge machine learning, and secure multi-party computation open a path for validators to attest to honest, effortful inference without revealing model weights, the consumer's query, or intermediate reasoning traces. The design challenge is preserving the auditability and economic transparency that the tokenomics layer requires while embedding privacy into consensus, a balance that no current cryptographic primitive achieves fully at the scale PoI demands.
+
+    \item \textbf{Cross-Ecosystem Interoperability.} A single PoI ecosystem is one cell in the larger agent society we envision, and realizing that vision requires agents, reputations, and economic commitments to travel across independently governed ecosystems. Interoperability primitives such as stake bridging, portable reputation attestations, and cross-chain identity would let a medical-domain agent's track record in one ecosystem count toward its standing in another, while preserving each local mechanism's incentive structure. The open problem is exposing a consistent trust surface to outsiders without forcing every ecosystem onto a single common protocol.
+
+    \item \textbf{Cold-Start and Ecosystem Bootstrapping.} The \textbf{tokenomics-knowledge dual loop} becomes self-sustaining only after the ecosystem reaches critical mass, and cannot ignite from an empty state, since validators await producers, producers await consumers, and no role rationally moves first. Promising bootstrap strategies include trusted consortium seeding, initial token subsidies, and transferable early-stage commitments that amortize validation costs across future transactions. The open question is how much external scaffolding an ecosystem can absorb before its decentralization promise erodes into a disguised form of centralized launch.
+
+    \item \textbf{Mature-Ecosystem Governance.} A long-lived agent society outgrows its initial configuration and must evolve its rules, economic parameters, and the underlying Proof-of-Intelligence protocol itself over time. Decentralized governance provides the natural vehicle, though the familiar pathologies of on-chain voting, from plutocratic capture to low participation, threaten its integrity. Designing governance that remains responsive, legitimate, and capture-resistant across an ecosystem's full lifespan is a defining open problem for decentralized infrastructure at scale.
+
+    \item \textbf{Theoretical Extensions.} Our game-theoretic analysis rests on a single-shot, static-quality abstraction that deliberately simplifies the richer dynamics of real ecosystems. Natural extensions include dynamic quality that evolves with validation feedback, communication-proof equilibria that address voluntary validator collusion beyond the bounded Sybil setting, repeated-game treatments with endogenous reputation and learning, and an independent empirical study of consumer individual rationality. Each refines a modeling assumption without altering the underlying mechanism, so theoretical refinement and mechanism deployment can advance along separable but mutually informed research tracks.
 \end{itemize}

@@ -2,18 +2,3 @@
 \label{sec:conclusion}
 
 As LLM agents evolve into an interconnected society of autonomous, cross-organizational actors, the question of how to coordinate their collaboration without centralized authority becomes both urgent and foundational. This paper argues that such coordination can be grounded in economic incentives rather than hierarchical control. We instantiate this argument as a tokenomics-driven decentralized ecosystem built on three dynamically interchangeable roles (consumers, producers, and validators), a novel \textbf{Proof-of-Intelligence (PoI)} consensus mechanism, and a self-reinforcing \textbf{tokenomics-knowledge dual loop}, with \textit{architectural heterogeneity} as the structural complement that keeps validator consensus reliable. Theoretically, we showed that validator incentive compatibility together with producer and consumer individual rationality collectively form a symmetric Bayesian--Nash equilibrium, and that these guarantees remain robust to bounded Sybil attacks, residual validator correlation, and heterogeneous validator quality, with the economic stake serving as a tunable parameter against adversarial degradation. Empirically, our decentralized question answering case study (DeQA) confirms that the mechanism drives agent communities toward truthful participation, effective quality screening, and rising social welfare, corroborating the theoretical predictions. We view this work as an early step toward a general coordination layer for the agent society. Realizing that vision requires advances along the directions outlined in \Cref{sec:future_work}, as well as broader engagement with the economic, cryptographic, and governance challenges of decentralized AI infrastructure.
-
-\textbf{Limitations.}
-We acknowledge several limitations in our ecosystem and mechanism design.
-
-\textit{(i) Architectural heterogeneity in practice.}
-Our mechanism relies on validator committees that are architecturally distinct from the producer to reduce correlated errors. Real-world ecosystems, however, may converge on a small number of dominant model families (e.g., GPT, Claude, and Llama derivatives), making architectural diversity a scarce resource and weakening the independence assumption that reliable consensus rests on.
-
-\textit{(ii) Scalar and binary quality signal.}
-PoI uses a single binary verdict per validator and represents agent quality as a scalar $q_u$. Real-world service quality is often multi-dimensional (correctness, completeness, pedagogical quality, domain-specific nuance), which the current pass/fail aggregation cannot distinguish, limiting applicability to nuanced domains.
-
-\textit{(iii) Blockchain deployment not concretely specified.}
-The mechanism maps naturally onto blockchain primitives such as decentralized ledgers, smart contracts, and on-chain consensus, but we treat the underlying infrastructure as a black box rather than analyzing real-world deployment trade-offs. Critical unresolved questions include gas costs that scale with committee size, settlement latency that may exceed application-level requirements, and the choice of Layer-1, Layer-2, or dedicated validation layers, each of which materially affects the mechanism's economic viability.
-
-\textit{(iv) Validation overhead at scale.}
-Every promotion and subscription invokes $n$ validators running independent inference on $m$ tasks, adding both latency and compute cost. For high-throughput or latency-sensitive applications such as real-time trading or emergency consultation, this overhead is a meaningful scalability bottleneck.
