@@ -1,0 +1,1 @@
+/Users/jerry/Desktop/OpenClaw-on-Fire/AnchoredAutoResearch/.claude/commands/research.md

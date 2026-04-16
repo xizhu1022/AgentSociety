@@ -1,0 +1,395 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{openai2023gpt4,claude,brown2020language}
+\citation{xi2023rise,li2024survey,wang2024survey_agents}
+\citation{yao2023react,schick2024toolformer,qin2024toolllm}
+\citation{wang2023voyager}
+\citation{mei2024aios,liu2024agentbench}
+\citation{hong2023metagpt,qian2023communicative,wu2023autogen,li2023camel}
+\citation{du2024debate,chan2024chateval,zhuge2024gptswarm,zhang2024proagent}
+\citation{chen2023agentverse}
+\citation{park2023generative,zhao2023competeai,horton2023homo,fish2024collusion,akata2023repeated_games}
+\citation{guo2024large}
+\citation{hayek1945use}
+\citation{wu2023autogen,hong2023metagpt,li2023camel,qian2023communicative}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{3}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{3}{Introduction}{section.1}{}}
+\newlabel{sec:intro@cref}{{[section][1][]1}{[1][3][]3}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}From Language Models to an Agent Society}{3}{subsection.1.1}\protected@file@percent }
+\newlabel{sec:agent_society}{{1.1}{3}{From Language Models to an Agent Society}{subsection.1.1}{}}
+\newlabel{sec:agent_society@cref}{{[subsection][1][1]1.1}{[1][3][]3}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}The Trust Crisis in Agent Collaboration}{3}{subsection.1.2}\protected@file@percent }
+\newlabel{sec:trust_crisis}{{1.2}{3}{The Trust Crisis in Agent Collaboration}{subsection.1.2}{}}
+\newlabel{sec:trust_crisis@cref}{{[subsection][2][1]1.2}{[1][3][]3}{}{}{}}
+\citation{douceur2002sybil}
+\citation{kamvar2003eigentrust}
+\citation{huang2023survey,ji2023hallucination,zhang2023siren}
+\citation{akerlof1970market}
+\citation{Narayanan2012Critical,Secoda2024Decentralized}
+\citation{Beck2023BreakingUp,Giaretta2022DecentralizedDataMarket}
+\citation{Eslami2019Opacity,Ali2019Discrimination}
+\citation{Engelmann2020DemocraticSocialMedia,Jiang2023TradeOffModeration}
+\citation{yao2023react,schick2024toolformer}
+\citation{bittensor2023,yuan2024decentralized_inference}
+\citation{jakobsson1999proofs,nakamoto2008bitcoin}
+\citation{dwork1992pricing,buterin2017casper}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}An Incentive-Compatible Ecosystem}{4}{subsection.1.3}\protected@file@percent }
+\newlabel{sec:vision}{{1.3}{4}{An Incentive-Compatible Ecosystem}{subsection.1.3}{}}
+\newlabel{sec:vision@cref}{{[subsection][3][1]1.3}{[1][4][]4}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Transition from centralized orchestration to decentralized agent-to-agent coordination. At the macro level, a single-orchestrator hub-and-spoke architecture evolves into a peer-to-peer network where agents coordinate autonomously. At the micro level, our ecosystem enables decentralized service routing through validator-mediated collective intelligence, replacing centralized quality assessment with incentive-compatible distributed consensus.}}{5}{figure.caption.3}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:decentralization}{{1}{5}{Transition from centralized orchestration to decentralized agent-to-agent coordination. At the macro level, a single-orchestrator hub-and-spoke architecture evolves into a peer-to-peer network where agents coordinate autonomously. At the micro level, our ecosystem enables decentralized service routing through validator-mediated collective intelligence, replacing centralized quality assessment with incentive-compatible distributed consensus}{figure.caption.3}{}}
+\newlabel{fig:decentralization@cref}{{[figure][1][]1}{[1][4][]5}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Contributions}{5}{subsection.1.4}\protected@file@percent }
+\newlabel{sec:contributions}{{1.4}{5}{Contributions}{subsection.1.4}{}}
+\newlabel{sec:contributions@cref}{{[subsection][4][1]1.4}{[1][5][]5}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Tokenomics incentive flow in the ecosystem. Each agent dynamically assumes the role of a producer, consumer, or validator. In any role, agents may spend tokens to request services or earn tokens by contributing. This dual-path design sustains active participation, internalizes coordination within the community, and requires no centralized control.}}{6}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:tokenomics}{{2}{6}{Tokenomics incentive flow in the ecosystem. Each agent dynamically assumes the role of a producer, consumer, or validator. In any role, agents may spend tokens to request services or earn tokens by contributing. This dual-path design sustains active participation, internalizes coordination within the community, and requires no centralized control}{figure.caption.4}{}}
+\newlabel{fig:tokenomics@cref}{{[figure][2][]2}{[1][5][]6}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}An Incentive-Compatible Ecosystem for Agent Society}{6}{section.2}\protected@file@percent }
+\newlabel{sec:ecosystem}{{2}{6}{An Incentive-Compatible Ecosystem for Agent Society}{section.2}{}}
+\newlabel{sec:ecosystem@cref}{{[section][2][]2}{[1][6][]6}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Agent Roles and Agent Services}{6}{subsection.2.1}\protected@file@percent }
+\newlabel{sec:motivation}{{2.1}{6}{Agent Roles and Agent Services}{subsection.2.1}{}}
+\newlabel{sec:motivation@cref}{{[subsection][1][2]2.1}{[1][6][]6}{}{}{}}
+\newlabel{def:consumer}{{1}{6}{Consumer Agent}{definition.1}{}}
+\newlabel{def:consumer@cref}{{[definition][1][]1}{[1][6][]6}{}{}{}}
+\newlabel{def:producer}{{2}{6}{Producer Agent}{definition.2}{}}
+\newlabel{def:producer@cref}{{[definition][2][]2}{[1][6][]6}{}{}{}}
+\newlabel{def:validator}{{3}{7}{Validator Agent}{definition.3}{}}
+\newlabel{def:validator@cref}{{[definition][3][]3}{[1][7][]7}{}{}{}}
+\newlabel{def:agent-service-routing}{{4}{7}{Agent Service Routing}{definition.4}{}}
+\newlabel{def:agent-service-routing@cref}{{[definition][4][]4}{[1][7][]7}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Agent Actions and Validation Protocol}{7}{subsection.2.2}\protected@file@percent }
+\newlabel{sec:mechanism}{{2.2}{7}{Agent Actions and Validation Protocol}{subsection.2.2}{}}
+\newlabel{sec:mechanism@cref}{{[subsection][2][2]2.2}{[1][7][]7}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Summary of notation used throughout the paper.}}{8}{table.caption.5}\protected@file@percent }
+\newlabel{tab:notation}{{1}{8}{Summary of notation used throughout the paper}{table.caption.5}{}}
+\newlabel{tab:notation@cref}{{[table][1][]1}{[1][8][]8}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Promotion and Subscription}{8}{subsubsection.2.2.1}\protected@file@percent }
+\newlabel{def:promotion}{{5}{8}{Promotion}{definition.5}{}}
+\newlabel{def:promotion@cref}{{[definition][5][]5}{[1][8][]8}{}{}{}}
+\newlabel{def:subscription}{{6}{8}{Subscription}{definition.6}{}}
+\newlabel{def:subscription@cref}{{[definition][6][]6}{[1][8][]8}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Validation Requests}{9}{subsubsection.2.2.2}\protected@file@percent }
+\newlabel{def:promo_validation}{{7}{9}{Promotion Validation Request}{definition.7}{}}
+\newlabel{def:promo_validation@cref}{{[definition][7][]7}{[1][9][]9}{}{}{}}
+\newlabel{def:sub_validation}{{8}{9}{Subscription Validation Request}{definition.8}{}}
+\newlabel{def:sub_validation@cref}{{[definition][8][]8}{[1][9][]9}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Consensus Formation and Proof-of-Intelligence}{9}{subsubsection.2.2.3}\protected@file@percent }
+\newlabel{sec:poi_detail}{{2.2.3}{9}{Consensus Formation and Proof-of-Intelligence}{subsubsection.2.2.3}{}}
+\newlabel{sec:poi_detail@cref}{{[subsubsection][3][2,2]2.2.3}{[1][9][]9}{}{}{}}
+\newlabel{def:promo_consensus}{{9}{9}{Promotion Consensus}{definition.9}{}}
+\newlabel{def:promo_consensus@cref}{{[definition][9][]9}{[1][9][]9}{}{}{}}
+\citation{jakobsson1999proofs}
+\citation{dwork1992pricing}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Overall Promotion Workflow. (1)~A consumer broadcasts a sample task when a service need arises. (2)~A producer provides its output and requests validators to assess correctness. (3)~Validators independently produce outputs, form a consensus, and return it to the producer. (4)~If the producer's output agrees with the consensus, the service capability is confirmed, and the producer proceeds with the promotion offer to the consumer.}}{10}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:promotion}{{3}{10}{Overall Promotion Workflow. (1)~A consumer broadcasts a sample task when a service need arises. (2)~A producer provides its output and requests validators to assess correctness. (3)~Validators independently produce outputs, form a consensus, and return it to the producer. (4)~If the producer's output agrees with the consensus, the service capability is confirmed, and the producer proceeds with the promotion offer to the consumer}{figure.caption.6}{}}
+\newlabel{fig:promotion@cref}{{[figure][3][]3}{[1][9][]10}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Overall Subscription Workflow. (1)~Upon receiving a promotion, the consumer issues new sample tasks and requests fresh validators to assess the producer's capability. (2)~Validators independently produce their outputs and reach a consensus. (3)~The producer provides its own output to the same tasks. (4)~Validators return the consensus result. (5)~The consumer compares the two outputs and decides whether to subscribe to the service.}}{10}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:subscription}{{4}{10}{Overall Subscription Workflow. (1)~Upon receiving a promotion, the consumer issues new sample tasks and requests fresh validators to assess the producer's capability. (2)~Validators independently produce their outputs and reach a consensus. (3)~The producer provides its own output to the same tasks. (4)~Validators return the consensus result. (5)~The consumer compares the two outputs and decides whether to subscribe to the service}{figure.caption.7}{}}
+\newlabel{fig:subscription@cref}{{[figure][4][]4}{[1][9][]10}{}{}{}}
+\newlabel{def:sub_consensus}{{10}{10}{Subscription Consensus}{definition.10}{}}
+\newlabel{def:sub_consensus@cref}{{[definition][10][]10}{[1][9][]10}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Tokenomics Incentive Structure}{11}{subsection.2.3}\protected@file@percent }
+\newlabel{sec:tokenomics_loop}{{2.3}{11}{Tokenomics Incentive Structure}{subsection.2.3}{}}
+\newlabel{sec:tokenomics_loop@cref}{{[subsection][3][2]2.3}{[1][11][]11}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Staking, Rewards, and Penalties}{11}{subsubsection.2.3.1}\protected@file@percent }
+\newlabel{sec:staking}{{2.3.1}{11}{Staking, Rewards, and Penalties}{subsubsection.2.3.1}{}}
+\newlabel{sec:staking@cref}{{[subsubsection][1][2,3]2.3.1}{[1][11][]11}{}{}{}}
+\newlabel{eq:validator_payoff_mechanism}{{3}{11}{Staking, Rewards, and Penalties}{equation.3}{}}
+\newlabel{eq:validator_payoff_mechanism@cref}{{[equation][3][]3}{[1][11][]11}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}Token Flow and the Tokenomics--Knowledge Dual Loop}{12}{subsubsection.2.3.2}\protected@file@percent }
+\newlabel{sec:dual_loop}{{2.3.2}{12}{Token Flow and the Tokenomics--Knowledge Dual Loop}{subsubsection.2.3.2}{}}
+\newlabel{sec:dual_loop@cref}{{[subsubsection][2][2,3]2.3.2}{[1][12][]12}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Token flow across ecosystem actions. Each cell shows the net token change for a given agent role. Validator payoffs depend on consensus alignment, where $n_{\text  {agree}}$ denotes the number of validators whose judgments agree with the majority.}}{12}{table.caption.8}\protected@file@percent }
+\newlabel{tab:token_flow}{{2}{12}{Token flow across ecosystem actions. Each cell shows the net token change for a given agent role. Validator payoffs depend on consensus alignment, where $n_{\text {agree}}$ denotes the number of validators whose judgments agree with the majority}{table.caption.8}{}}
+\newlabel{tab:token_flow@cref}{{[table][2][]2}{[1][12][]12}{}{}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Agent Service Routing Protocol}}{13}{algorithm.1}\protected@file@percent }
+\newlabel{alg:ecosystem}{{1}{13}{Agent Service Routing Protocol}{algorithm.1}{}}
+\newlabel{alg:ecosystem@cref}{{[algorithm][1][]1}{[1][12][]13}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.3}Protocol Summary}{14}{subsubsection.2.3.3}\protected@file@percent }
+\newlabel{sec:protocol_summary}{{2.3.3}{14}{Protocol Summary}{subsubsection.2.3.3}{}}
+\newlabel{sec:protocol_summary@cref}{{[subsubsection][3][2,3]2.3.3}{[1][12][]14}{}{}{}}
+\newlabel{sec:decentral_tech}{{2.3.3}{14}{Protocol Summary}{subsubsection.2.3.3}{}}
+\newlabel{sec:decentral_tech@cref}{{[subsubsection][3][2,3]2.3.3}{[1][14][]14}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Theoretical Foundations and Empirical Validation}{14}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Game-Theoretic Guarantees}{14}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:game_theory}{{3.1}{14}{Game-Theoretic Guarantees}{subsection.3.1}{}}
+\newlabel{sec:game_theory@cref}{{[subsection][1][3]3.1}{[1][14][]14}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Model Setup and Assumptions}{15}{subsubsection.3.1.1}\protected@file@percent }
+\newlabel{sec:setup}{{3.1.1}{15}{Model Setup and Assumptions}{subsubsection.3.1.1}{}}
+\newlabel{sec:setup@cref}{{[subsubsection][1][3,1]3.1.1}{[1][14][]15}{}{}{}}
+\newlabel{assum:validators}{{1}{15}{Validator population and independence}{assumption.1}{}}
+\newlabel{assum:validators@cref}{{[assumption][1][]1}{[1][15][]15}{}{}{}}
+\newlabel{assum:binary}{{2}{15}{Per-task binary signal}{assumption.2}{}}
+\newlabel{assum:binary@cref}{{[assumption][2][]2}{[1][15][]15}{}{}{}}
+\newlabel{assum:costs}{{3}{15}{Cost structure}{assumption.3}{}}
+\newlabel{assum:costs@cref}{{[assumption][3][]3}{[1][15][]15}{}{}{}}
+\newlabel{assum:mlrp}{{4}{15}{Monotone likelihood ratio property}{assumption.4}{}}
+\newlabel{assum:mlrp@cref}{{[assumption][4][]4}{[1][15][]15}{}{}{}}
+\newlabel{rem:mlrp_derived}{{1}{15}{MLRP as a derived property}{remark.1}{}}
+\newlabel{rem:mlrp_derived@cref}{{[remark][1][]1}{[1][15][]15}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Incentive Compatibility of Validators}{16}{subsubsection.3.1.2}\protected@file@percent }
+\newlabel{sec:ic}{{3.1.2}{16}{Incentive Compatibility of Validators}{subsubsection.3.1.2}{}}
+\newlabel{sec:ic@cref}{{[subsubsection][2][3,1]3.1.2}{[1][15][]16}{}{}{}}
+\newlabel{eq:pmatch}{{4}{16}{Incentive Compatibility of Validators}{equation.4}{}}
+\newlabel{eq:pmatch@cref}{{[equation][4][]4}{[1][16][]16}{}{}{}}
+\newlabel{prop:pmatch_properties}{{1}{16}{Properties of $P_{\text {match}}$}{proposition.1}{}}
+\newlabel{prop:pmatch_properties@cref}{{[proposition][1][]1}{[1][16][]16}{}{}{}}
+\newlabel{eq:u_truthful}{{5}{16}{Incentive Compatibility of Validators}{equation.5}{}}
+\newlabel{eq:u_truthful@cref}{{[equation][5][]5}{[1][16][]16}{}{}{}}
+\newlabel{Strict IC for Validators}{{1}{16}{Validator IC}{theorem.1}{}}
+\newlabel{Strict IC for Validators@cref}{{[theorem][1][]1}{[1][16][]16}{}{}{}}
+\newlabel{eq:ic}{{6}{16}{Validator IC}{equation.6}{}}
+\newlabel{eq:ic@cref}{{[equation][6][]6}{[1][16][]16}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Producer's Threshold-Optimal Promotion}{17}{subsubsection.3.1.3}\protected@file@percent }
+\newlabel{sec:producer_ir}{{3.1.3}{17}{Producer's Threshold-Optimal Promotion}{subsubsection.3.1.3}{}}
+\newlabel{sec:producer_ir@cref}{{[subsubsection][3][3,1]3.1.3}{[1][16][]17}{}{}{}}
+\newlabel{eq:producer_payoff}{{7}{17}{Producer's Threshold-Optimal Promotion}{equation.7}{}}
+\newlabel{eq:producer_payoff@cref}{{[equation][7][]7}{[1][17][]17}{}{}{}}
+\newlabel{IR for Producers}{{2}{17}{Producer IR}{theorem.2}{}}
+\newlabel{IR for Producers@cref}{{[theorem][2][]2}{[1][17][]17}{}{}{}}
+\newlabel{eq:producer_threshold}{{8}{17}{Producer IR}{equation.8}{}}
+\newlabel{eq:producer_threshold@cref}{{[equation][8][]8}{[1][17][]17}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.4}Consumer's Threshold-Optimal Subscription}{17}{subsubsection.3.1.4}\protected@file@percent }
+\newlabel{sec:consumer_ir}{{3.1.4}{17}{Consumer's Threshold-Optimal Subscription}{subsubsection.3.1.4}{}}
+\newlabel{sec:consumer_ir@cref}{{[subsubsection][4][3,1]3.1.4}{[1][17][]17}{}{}{}}
+\newlabel{eq:posterior}{{9}{17}{Consumer's Threshold-Optimal Subscription}{equation.9}{}}
+\newlabel{eq:posterior@cref}{{[equation][9][]9}{[1][17][]17}{}{}{}}
+\newlabel{eq:consumer_payoff}{{10}{17}{Consumer's Threshold-Optimal Subscription}{equation.10}{}}
+\newlabel{eq:consumer_payoff@cref}{{[equation][10][]10}{[1][17][]17}{}{}{}}
+\newlabel{IR-based Policy for Consumers}{{3}{18}{Consumer IR}{theorem.3}{}}
+\newlabel{IR-based Policy for Consumers@cref}{{[theorem][3][]3}{[1][17][]18}{}{}{}}
+\newlabel{eq:consumer_threshold}{{11}{18}{Consumer IR}{equation.11}{}}
+\newlabel{eq:consumer_threshold@cref}{{[equation][11][]11}{[1][17][]18}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.5}Symmetric Bayesian--Nash Equilibrium}{18}{subsubsection.3.1.5}\protected@file@percent }
+\newlabel{sec:bne}{{3.1.5}{18}{Symmetric Bayesian--Nash Equilibrium}{subsubsection.3.1.5}{}}
+\newlabel{sec:bne@cref}{{[subsubsection][5][3,1]3.1.5}{[1][18][]18}{}{}{}}
+\newlabel{Symmetric Bayesian Nash Equilibrium}{{4}{18}{Symmetric Bayesian--Nash Equilibrium}{theorem.4}{}}
+\newlabel{Symmetric Bayesian Nash Equilibrium@cref}{{[theorem][4][]4}{[1][18][]18}{}{}{}}
+\newlabel{eq:bne}{{12}{18}{Symmetric Bayesian--Nash Equilibrium}{equation.12}{}}
+\newlabel{eq:bne@cref}{{[equation][12][]12}{[1][18][]18}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.6}Robustness: Relaxing the Idealized Assumptions}{19}{subsubsection.3.1.6}\protected@file@percent }
+\newlabel{sec:robustness}{{3.1.6}{19}{Robustness: Relaxing the Idealized Assumptions}{subsubsection.3.1.6}{}}
+\newlabel{sec:robustness@cref}{{[subsubsection][6][3,1]3.1.6}{[1][19][]19}{}{}{}}
+\newlabel{thm:sybil_ic}{{5}{19}{IC under bounded Sybil attacks}{theorem.5}{}}
+\newlabel{thm:sybil_ic@cref}{{[theorem][5][]5}{[1][19][]19}{}{}{}}
+\newlabel{eq:ic_sybil}{{13}{19}{IC under bounded Sybil attacks}{equation.13}{}}
+\newlabel{eq:ic_sybil@cref}{{[equation][13][]13}{[1][19][]19}{}{}{}}
+\newlabel{eq:pmatch_corr}{{14}{19}{Robustness: Relaxing the Idealized Assumptions}{equation.14}{}}
+\newlabel{eq:pmatch_corr@cref}{{[equation][14][]14}{[1][19][]19}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces ROC comparison over 100,000 episodes under different strategy configurations. Top row: varying $S_p$ (proportion of rational agents) with $S_u = 1$. Bottom row: varying $S_u$ (strategy update probability) with $S_p = 1$.}}{20}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:roc_comp}{{5}{20}{ROC comparison over 100,000 episodes under different strategy configurations. Top row: varying $S_p$ (proportion of rational agents) with $S_u = 1$. Bottom row: varying $S_u$ (strategy update probability) with $S_p = 1$}{figure.caption.10}{}}
+\newlabel{fig:roc_comp@cref}{{[figure][5][]5}{[1][20][]20}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Robustness of validator IC under three relaxations of the idealized assumptions. In every case the load-bearing inequality $P_{\text  {match}} > \tfrac  {1}{2}$ is preserved, and the economic stake $(\tau _{\text  {val}}+2\sigma )$ can be tuned to compensate for the reduced informational edge.}}{20}{table.caption.9}\protected@file@percent }
+\newlabel{tab:robustness}{{3}{20}{Robustness of validator IC under three relaxations of the idealized assumptions. In every case the load-bearing inequality $P_{\text {match}} > \tfrac {1}{2}$ is preserved, and the economic stake $(\tau _{\text {val}}+2\sigma )$ can be tuned to compensate for the reduced informational edge}{table.caption.9}{}}
+\newlabel{tab:robustness@cref}{{[table][3][]3}{[1][20][]20}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Truthful participation rate comparison under different $S_u$ and $S_p$ configurations. As rational agents increase ($S_p \uparrow $) and update their strategies more frequently ($S_u \uparrow $), the population converges toward higher truthful participation.}}{21}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:truthful_participation}{{6}{21}{Truthful participation rate comparison under different $S_u$ and $S_p$ configurations. As rational agents increase ($S_p \uparrow $) and update their strategies more frequently ($S_u \uparrow $), the population converges toward higher truthful participation}{figure.caption.11}{}}
+\newlabel{fig:truthful_participation@cref}{{[figure][6][]6}{[1][20][]21}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Performance under different effort costs and validator counts. Larger committees improve posterior quality and consumer welfare up to a point, after which diminishing returns from increased validation cost reduce total welfare.}}{21}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:cost_validators}{{7}{21}{Performance under different effort costs and validator counts. Larger committees improve posterior quality and consumer welfare up to a point, after which diminishing returns from increased validation cost reduce total welfare}{figure.caption.12}{}}
+\newlabel{fig:cost_validators@cref}{{[figure][7][]7}{[1][21][]21}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Case Study: Decentralized Question Answering (DeQA)}{21}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:case_study}{{3.2}{21}{Case Study: Decentralized Question Answering (DeQA)}{subsection.3.2}{}}
+\newlabel{sec:case_study@cref}{{[subsection][2][3]3.2}{[1][20][]21}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Instantiation}{21}{subsubsection.3.2.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Performance under different service quality levels. When producer quality is low ($q \approx 0.5$), the incentive mechanism cannot compensate, and welfare collapses. As quality increases, the mechanism amplifies honest effort into ecosystem-wide gains.}}{22}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:quality_impact}{{8}{22}{Performance under different service quality levels. When producer quality is low ($q \approx 0.5$), the incentive mechanism cannot compensate, and welfare collapses. As quality increases, the mechanism amplifies honest effort into ecosystem-wide gains}{figure.caption.13}{}}
+\newlabel{fig:quality_impact@cref}{{[figure][8][]8}{[1][21][]22}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Simulation Setting}{22}{subsubsection.3.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Agent Rationality and Community Evolution (RQ1)}{23}{subsubsection.3.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.4}Validation Mechanism Analysis (RQ2)}{23}{subsubsection.3.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.5}Service Quality Impacts (RQ3)}{24}{subsubsection.3.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Application Scope}{24}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:applications}{{3.3}{24}{Application Scope}{subsection.3.3}{}}
+\newlabel{sec:applications@cref}{{[subsection][3][3]3.3}{[1][24][]24}{}{}{}}
+\citation{xi2023rise,wang2024survey_agents}
+\citation{wu2023autogen}
+\citation{hong2023metagpt}
+\citation{li2023camel}
+\citation{qian2023communicative}
+\citation{chen2023agentverse}
+\citation{zhao2023competeai}
+\citation{park2023generative}
+\citation{du2024debate,zhuge2024gptswarm,zhang2024proagent,chan2024chateval,zhang2024cooperative_embodied}
+\citation{huang2023survey,ji2023hallucination,zhang2023siren}
+\citation{zheng2023judging,kim2024prometheus}
+\citation{cohen2023crossexam}
+\citation{manakul2023selfcheckgpt,wang2023selfconsistency,dhuliawala2023chainofverification,mundler2024selfcontradictory}
+\citation{kamvar2003eigentrust}
+\citation{douceur2002sybil}
+\citation{nakamoto2008bitcoin}
+\citation{buterin2017casper}
+\citation{buterin2014ethereum}
+\citation{bittensor2023}
+\citation{goertzel2017singularitynet}
+\citation{ocean2019protocol}
+\citation{fetch2019ai}
+\citation{virtuals2024}
+\citation{walters2025eliza}
+\citation{olas2024valory}
+\citation{breidenbach2021chainlink}
+\citation{ding2024deai}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Related Work}{25}{section.4}\protected@file@percent }
+\newlabel{sec:related_work}{{4}{25}{Related Work}{section.4}{}}
+\newlabel{sec:related_work@cref}{{[section][4][]4}{[1][25][]25}{}{}{}}
+\citation{akerlof1970market}
+\citation{spence1973job}
+\citation{ito2024cryptoeconomics,abadi2024governance,zuo2023set}
+\citation{wolfers2004prediction}
+\citation{miller2005eliciting,dasgupta2013crowdsourced}
+\citation{prelec2004bayesian}
+\citation{duetting2024mechanism,horton2023homo,brookins2023gpt_games,akata2023repeated_games,fish2024collusion,conitzer2024social_choice}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Limitations and Future Work}{26}{section.5}\protected@file@percent }
+\newlabel{sec:limitations_and_future_work}{{5}{26}{Limitations and Future Work}{section.5}{}}
+\newlabel{sec:limitations_and_future_work@cref}{{[section][5][]5}{[1][26][]26}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Limitations}{26}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:limitations}{{5.1}{26}{Limitations}{subsection.5.1}{}}
+\newlabel{sec:limitations@cref}{{[subsection][1][5]5.1}{[1][26][]26}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Future Work}{26}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:future_work}{{5.2}{26}{Future Work}{subsection.5.2}{}}
+\newlabel{sec:future_work@cref}{{[subsection][2][5]5.2}{[1][26][]26}{}{}{}}
+\bibstyle{unsrt}
+\bibdata{references}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{27}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{27}{Conclusion}{section.6}{}}
+\newlabel{sec:conclusion@cref}{{[section][6][]6}{[1][27][]27}{}{}{}}
+\bibcite{openai2023gpt4}{{1}{}{{}}{{}}}
+\bibcite{claude}{{2}{}{{}}{{}}}
+\bibcite{brown2020language}{{3}{}{{}}{{}}}
+\bibcite{xi2023rise}{{4}{}{{}}{{}}}
+\bibcite{li2024survey}{{5}{}{{}}{{}}}
+\bibcite{wang2024survey_agents}{{6}{}{{}}{{}}}
+\bibcite{yao2023react}{{7}{}{{}}{{}}}
+\bibcite{schick2024toolformer}{{8}{}{{}}{{}}}
+\bibcite{qin2024toolllm}{{9}{}{{}}{{}}}
+\bibcite{wang2023voyager}{{10}{}{{}}{{}}}
+\bibcite{mei2024aios}{{11}{}{{}}{{}}}
+\bibcite{liu2024agentbench}{{12}{}{{}}{{}}}
+\bibcite{hong2023metagpt}{{13}{}{{}}{{}}}
+\bibcite{qian2023communicative}{{14}{}{{}}{{}}}
+\bibcite{du2024debate}{{15}{}{{}}{{}}}
+\bibcite{chan2024chateval}{{16}{}{{}}{{}}}
+\bibcite{chen2023agentverse}{{17}{}{{}}{{}}}
+\bibcite{park2023generative}{{18}{}{{}}{{}}}
+\bibcite{zhao2023competeai}{{19}{}{{}}{{}}}
+\bibcite{horton2023homo}{{20}{}{{}}{{}}}
+\bibcite{fish2024collusion}{{21}{}{{}}{{}}}
+\bibcite{akata2023repeated_games}{{22}{}{{}}{{}}}
+\bibcite{guo2024large}{{23}{}{{}}{{}}}
+\bibcite{hayek1945use}{{24}{}{{}}{{}}}
+\bibcite{wu2023autogen}{{25}{}{{}}{{}}}
+\bibcite{li2023camel}{{26}{}{{}}{{}}}
+\bibcite{akerlof1970market}{{27}{}{{}}{{}}}
+\bibcite{Narayanan2012Critical}{{28}{}{{}}{{}}}
+\bibcite{Secoda2024Decentralized}{{29}{}{{}}{{}}}
+\bibcite{Beck2023BreakingUp}{{30}{}{{}}{{}}}
+\bibcite{Giaretta2022DecentralizedDataMarket}{{31}{}{{}}{{}}}
+\bibcite{Eslami2019Opacity}{{32}{}{{}}{{}}}
+\bibcite{Ali2019Discrimination}{{33}{}{{}}{{}}}
+\bibcite{Engelmann2020DemocraticSocialMedia}{{34}{}{{}}{{}}}
+\bibcite{Jiang2023TradeOffModeration}{{35}{}{{}}{{}}}
+\bibcite{bittensor2023}{{36}{}{{}}{{}}}
+\bibcite{yuan2024decentralized_inference}{{37}{}{{}}{{}}}
+\bibcite{jakobsson1999proofs}{{38}{}{{}}{{}}}
+\bibcite{dwork1992pricing}{{39}{}{{}}{{}}}
+\bibcite{zhuge2024gptswarm}{{40}{}{{}}{{}}}
+\bibcite{zhang2024proagent}{{41}{}{{}}{{}}}
+\bibcite{zhang2024cooperative_embodied}{{42}{}{{}}{{}}}
+\bibcite{huang2023survey}{{43}{}{{}}{{}}}
+\bibcite{ji2023hallucination}{{44}{}{{}}{{}}}
+\bibcite{zhang2023siren}{{45}{}{{}}{{}}}
+\bibcite{zheng2023judging}{{46}{}{{}}{{}}}
+\bibcite{kim2024prometheus}{{47}{}{{}}{{}}}
+\bibcite{cohen2023crossexam}{{48}{}{{}}{{}}}
+\bibcite{manakul2023selfcheckgpt}{{49}{}{{}}{{}}}
+\bibcite{wang2023selfconsistency}{{50}{}{{}}{{}}}
+\bibcite{dhuliawala2023chainofverification}{{51}{}{{}}{{}}}
+\bibcite{mundler2024selfcontradictory}{{52}{}{{}}{{}}}
+\bibcite{kamvar2003eigentrust}{{53}{}{{}}{{}}}
+\bibcite{douceur2002sybil}{{54}{}{{}}{{}}}
+\bibcite{kapoor2024agents}{{55}{}{{}}{{}}}
+\bibcite{nakamoto2008bitcoin}{{56}{}{{}}{{}}}
+\bibcite{buterin2017casper}{{57}{}{{}}{{}}}
+\bibcite{buterin2014ethereum}{{58}{}{{}}{{}}}
+\bibcite{goertzel2017singularitynet}{{59}{}{{}}{{}}}
+\bibcite{ocean2019protocol}{{60}{}{{}}{{}}}
+\bibcite{fetch2019ai}{{61}{}{{}}{{}}}
+\bibcite{virtuals2024}{{62}{}{{}}{{}}}
+\bibcite{walters2025eliza}{{63}{}{{}}{{}}}
+\bibcite{olas2024valory}{{64}{}{{}}{{}}}
+\bibcite{breidenbach2021chainlink}{{65}{}{{}}{{}}}
+\bibcite{ding2024deai}{{66}{}{{}}{{}}}
+\bibcite{spence1973job}{{67}{}{{}}{{}}}
+\bibcite{ito2024cryptoeconomics}{{68}{}{{}}{{}}}
+\bibcite{abadi2024governance}{{69}{}{{}}{{}}}
+\bibcite{zuo2023set}{{70}{}{{}}{{}}}
+\bibcite{wolfers2004prediction}{{71}{}{{}}{{}}}
+\bibcite{miller2005eliciting}{{72}{}{{}}{{}}}
+\bibcite{dasgupta2013crowdsourced}{{73}{}{{}}{{}}}
+\bibcite{prelec2004bayesian}{{74}{}{{}}{{}}}
+\bibcite{duetting2024mechanism}{{75}{}{{}}{{}}}
+\bibcite{brookins2023gpt_games}{{76}{}{{}}{{}}}
+\bibcite{conitzer2024social_choice}{{77}{}{{}}{{}}}
+\bibcite{kang2022scaling}{{78}{}{{}}{{}}}
+\@writefile{toc}{\setcounter {tocdepth}{1}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Proofs and Technical Details}{32}{appendix.A}\protected@file@percent }
+\newlabel{sec:appendix_proofs}{{A}{32}{Proofs and Technical Details}{appendix.A}{}}
+\newlabel{sec:appendix_proofs@cref}{{[section][1][]A}{[1][32][]32}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Preliminaries}{32}{subsection.A.1}\protected@file@percent }
+\newlabel{app:preliminaries}{{A.1}{32}{Preliminaries}{subsection.A.1}{}}
+\newlabel{app:preliminaries@cref}{{[subsection][1][1]A.1}{[1][32][]32}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.1.1}MLRP as a Consequence of the Binary Signal Model}{32}{subsubsection.A.1.1}\protected@file@percent }
+\newlabel{app:mlrp_derived}{{A.1.1}{32}{MLRP as a Consequence of the Binary Signal Model}{subsubsection.A.1.1}{}}
+\newlabel{app:mlrp_derived@cref}{{[subsubsection][1][1,1]A.1.1}{[1][32][]32}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.1.2}Extension from Single Task to $m$ Tasks}{32}{subsubsection.A.1.2}\protected@file@percent }
+\newlabel{app:m_extension}{{A.1.2}{32}{Extension from Single Task to $m$ Tasks}{subsubsection.A.1.2}{}}
+\newlabel{app:m_extension@cref}{{[subsubsection][2][1,1]A.1.2}{[1][32][]32}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Validator Incentive Compatibility}{32}{subsection.A.2}\protected@file@percent }
+\newlabel{app:ic_proofs}{{A.2}{32}{Validator Incentive Compatibility}{subsection.A.2}{}}
+\newlabel{app:ic_proofs@cref}{{[subsection][2][1]A.2}{[1][32][]32}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.1}Derivation of the Matching Probability $P_{\text  {match}}$}{33}{subsubsection.A.2.1}\protected@file@percent }
+\newlabel{app:pmatch_derivation}{{A.2.1}{33}{Derivation of the Matching Probability $P_{\text {match}}$}{subsubsection.A.2.1}{}}
+\newlabel{app:pmatch_derivation@cref}{{[subsubsection][1][1,2]A.2.1}{[1][32][]33}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.2}Proof of Proposition~\ref {prop:pmatch_properties} (Properties of $P_{\text  {match}}$)}{33}{subsubsection.A.2.2}\protected@file@percent }
+\newlabel{app:pmatch_properties}{{A.2.2}{33}{Proof of Proposition~\ref {prop:pmatch_properties} (Properties of $P_{\text {match}}$)}{subsubsection.A.2.2}{}}
+\newlabel{app:pmatch_properties@cref}{{[subsubsection][2][1,2]A.2.2}{[1][33][]33}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.3}Free-Riding Matching Probability}{34}{subsubsection.A.2.3}\protected@file@percent }
+\newlabel{app:freeriding}{{A.2.3}{34}{Free-Riding Matching Probability}{subsubsection.A.2.3}{}}
+\newlabel{app:freeriding@cref}{{[subsubsection][3][1,2]A.2.3}{[1][34][]34}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.2.4}Proof of Theorem~\ref {Strict IC for Validators} (Validator IC)}{34}{subsubsection.A.2.4}\protected@file@percent }
+\newlabel{app:proof_ic}{{A.2.4}{34}{Proof of Theorem~\ref {Strict IC for Validators} (Validator IC)}{subsubsection.A.2.4}{}}
+\newlabel{app:proof_ic@cref}{{[subsubsection][4][1,2]A.2.4}{[1][34][]34}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Individual Rationality}{34}{subsection.A.3}\protected@file@percent }
+\newlabel{app:ir_proofs}{{A.3}{34}{Individual Rationality}{subsection.A.3}{}}
+\newlabel{app:ir_proofs@cref}{{[subsection][3][1]A.3}{[1][34][]34}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.3.1}Proof of Theorem~\ref {IR for Producers} (Producer IR)}{35}{subsubsection.A.3.1}\protected@file@percent }
+\newlabel{app:proof_producer_ir}{{A.3.1}{35}{Proof of Theorem~\ref {IR for Producers} (Producer IR)}{subsubsection.A.3.1}{}}
+\newlabel{app:proof_producer_ir@cref}{{[subsubsection][1][1,3]A.3.1}{[1][34][]35}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.3.2}Proof of Theorem~\ref {IR-based Policy for Consumers} (Consumer IR)}{35}{subsubsection.A.3.2}\protected@file@percent }
+\newlabel{app:proof_consumer_ir}{{A.3.2}{35}{Proof of Theorem~\ref {IR-based Policy for Consumers} (Consumer IR)}{subsubsection.A.3.2}{}}
+\newlabel{app:proof_consumer_ir@cref}{{[subsubsection][2][1,3]A.3.2}{[1][35][]35}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Equilibrium and Robustness}{36}{subsection.A.4}\protected@file@percent }
+\newlabel{app:eq_robustness}{{A.4}{36}{Equilibrium and Robustness}{subsection.A.4}{}}
+\newlabel{app:eq_robustness@cref}{{[subsection][4][1]A.4}{[1][35][]36}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.4.1}Proof of Theorem~\ref {Symmetric Bayesian Nash Equilibrium} (Symmetric BNE)}{36}{subsubsection.A.4.1}\protected@file@percent }
+\newlabel{app:proof_bne}{{A.4.1}{36}{Proof of Theorem~\ref {Symmetric Bayesian Nash Equilibrium} (Symmetric BNE)}{subsubsection.A.4.1}{}}
+\newlabel{app:proof_bne@cref}{{[subsubsection][1][1,4]A.4.1}{[1][36][]36}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.4.2}Proof of Theorem~\ref {thm:sybil_ic} (IC under Bounded Sybil Attacks)}{37}{subsubsection.A.4.2}\protected@file@percent }
+\newlabel{app:proof_sybil}{{A.4.2}{37}{Proof of Theorem~\ref {thm:sybil_ic} (IC under Bounded Sybil Attacks)}{subsubsection.A.4.2}{}}
+\newlabel{app:proof_sybil@cref}{{[subsubsection][2][1,4]A.4.2}{[1][36][]37}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Closed form and Sybil-resistance budget.}{37}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.4.3}Robustness Details: Correlation and Heterogeneity}{37}{subsubsection.A.4.3}\protected@file@percent }
+\newlabel{app:robustness_full}{{A.4.3}{37}{Robustness Details: Correlation and Heterogeneity}{subsubsection.A.4.3}{}}
+\newlabel{app:robustness_full@cref}{{[subsubsection][3][1,4]A.4.3}{[1][37][]37}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{(B) Residual correlation: closed form of $\rho ^*$.}{37}{section*.17}\protected@file@percent }
+\newlabel{eq:rhostar}{{16}{37}{(B) Residual correlation: closed form of $\rho ^*$}{equation.16}{}}
+\newlabel{eq:rhostar@cref}{{[equation][16][]16}{[1][37][]37}{}{}{}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers
+\@writefile{toc}{\contentsline {paragraph}{(C) Heterogeneous validator quality.}{38}{section*.18}\protected@file@percent }
+\@writefile{toc}{\setcounter {tocdepth}{3}}
+\gdef \@abspage@last{38}

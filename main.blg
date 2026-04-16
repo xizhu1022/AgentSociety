@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99e (TeX Live 2026)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: unsrt.bst
+Database file #1: references.bib
+Warning--empty journal in claude
+Warning--empty journal in nakamoto2008bitcoin
+You've used 78 entries,
+            1791 wiz_defined-function locations,
+            1070 strings with 25138 characters,
+and the built_in function-call counts, 17929 in all, are:
+= -- 1235
+> -- 1394
+< -- 7
++ -- 496
+- -- 418
+* -- 1211
+:= -- 3094
+add.period$ -- 237
+call.type$ -- 78
+change.case$ -- 78
+chr.to.int$ -- 0
+cite$ -- 80
+duplicate$ -- 769
+empty$ -- 1611
+format.name$ -- 418
+if$ -- 3862
+int.to.chr$ -- 0
+int.to.str$ -- 78
+missing$ -- 68
+newline$ -- 391
+num.names$ -- 78
+pop$ -- 328
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 332
+stack$ -- 0
+substring$ -- 486
+swap$ -- 164
+text.length$ -- 7
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 2
+while$ -- 121
+width$ -- 80
+write$ -- 805
+(There were 2 warnings)

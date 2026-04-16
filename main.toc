@@ -1,0 +1,56 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}From Language Models to an Agent Society}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}The Trust Crisis in Agent Collaboration}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}An Incentive-Compatible Ecosystem}{4}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Contributions}{5}{subsection.1.4}%
+\contentsline {section}{\numberline {2}An Incentive-Compatible Ecosystem for Agent Society}{6}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Agent Roles and Agent Services}{6}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Agent Actions and Validation Protocol}{7}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Promotion and Subscription}{8}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Validation Requests}{9}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Consensus Formation and Proof-of-Intelligence}{9}{subsubsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.3}Tokenomics Incentive Structure}{11}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Staking, Rewards, and Penalties}{11}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Token Flow and the Tokenomics--Knowledge Dual Loop}{12}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}Protocol Summary}{14}{subsubsection.2.3.3}%
+\contentsline {section}{\numberline {3}Theoretical Foundations and Empirical Validation}{14}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Game-Theoretic Guarantees}{14}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Model Setup and Assumptions}{15}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Incentive Compatibility of Validators}{16}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Producer's Threshold-Optimal Promotion}{17}{subsubsection.3.1.3}%
+\contentsline {subsubsection}{\numberline {3.1.4}Consumer's Threshold-Optimal Subscription}{17}{subsubsection.3.1.4}%
+\contentsline {subsubsection}{\numberline {3.1.5}Symmetric Bayesian--Nash Equilibrium}{18}{subsubsection.3.1.5}%
+\contentsline {subsubsection}{\numberline {3.1.6}Robustness: Relaxing the Idealized Assumptions}{19}{subsubsection.3.1.6}%
+\contentsline {subsection}{\numberline {3.2}Case Study: Decentralized Question Answering (DeQA)}{21}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Instantiation}{21}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Simulation Setting}{22}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Agent Rationality and Community Evolution (RQ1)}{23}{subsubsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.4}Validation Mechanism Analysis (RQ2)}{23}{subsubsection.3.2.4}%
+\contentsline {subsubsection}{\numberline {3.2.5}Service Quality Impacts (RQ3)}{24}{subsubsection.3.2.5}%
+\contentsline {subsection}{\numberline {3.3}Application Scope}{24}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Related Work}{25}{section.4}%
+\contentsline {section}{\numberline {5}Limitations and Future Work}{26}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Limitations}{26}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Future Work}{26}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Conclusion}{27}{section.6}%
+\setcounter {tocdepth}{1}
+\contentsline {section}{\numberline {A}Proofs and Technical Details}{32}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Preliminaries}{32}{subsection.A.1}%
+\contentsline {subsubsection}{\numberline {A.1.1}MLRP as a Consequence of the Binary Signal Model}{32}{subsubsection.A.1.1}%
+\contentsline {subsubsection}{\numberline {A.1.2}Extension from Single Task to $m$ Tasks}{32}{subsubsection.A.1.2}%
+\contentsline {subsection}{\numberline {A.2}Validator Incentive Compatibility}{32}{subsection.A.2}%
+\contentsline {subsubsection}{\numberline {A.2.1}Derivation of the Matching Probability $P_{\text {match}}$}{33}{subsubsection.A.2.1}%
+\contentsline {subsubsection}{\numberline {A.2.2}Proof of Proposition~\ref {prop:pmatch_properties} (Properties of $P_{\text {match}}$)}{33}{subsubsection.A.2.2}%
+\contentsline {subsubsection}{\numberline {A.2.3}Free-Riding Matching Probability}{34}{subsubsection.A.2.3}%
+\contentsline {subsubsection}{\numberline {A.2.4}Proof of Theorem~\ref {Strict IC for Validators} (Validator IC)}{34}{subsubsection.A.2.4}%
+\contentsline {subsection}{\numberline {A.3}Individual Rationality}{34}{subsection.A.3}%
+\contentsline {subsubsection}{\numberline {A.3.1}Proof of Theorem~\ref {IR for Producers} (Producer IR)}{35}{subsubsection.A.3.1}%
+\contentsline {subsubsection}{\numberline {A.3.2}Proof of Theorem~\ref {IR-based Policy for Consumers} (Consumer IR)}{35}{subsubsection.A.3.2}%
+\contentsline {subsection}{\numberline {A.4}Equilibrium and Robustness}{36}{subsection.A.4}%
+\contentsline {subsubsection}{\numberline {A.4.1}Proof of Theorem~\ref {Symmetric Bayesian Nash Equilibrium} (Symmetric BNE)}{36}{subsubsection.A.4.1}%
+\contentsline {subsubsection}{\numberline {A.4.2}Proof of Theorem~\ref {thm:sybil_ic} (IC under Bounded Sybil Attacks)}{37}{subsubsection.A.4.2}%
+\contentsline {paragraph}{Closed form and Sybil-resistance budget.}{37}{section*.16}%
+\contentsline {subsubsection}{\numberline {A.4.3}Robustness Details: Correlation and Heterogeneity}{37}{subsubsection.A.4.3}%
+\contentsline {paragraph}{(B) Residual correlation: closed form of $\rho ^*$.}{37}{section*.17}%
+\contentsline {paragraph}{(C) Heterogeneous validator quality.}{38}{section*.18}%
+\setcounter {tocdepth}{3}
